@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Road to AGI</title>
+  <style>
+    body {
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    #countdown {
+        font-size: 3em;
+        color: white;
+        text-align: center;   
+        background-color: black;
+        border-radius: 8px;
+    }
+
+    a {
+        color: rgb(172, 222, 255);
+    }
+
+    .huec {
+        font-size: 48px;
+        -webkit-text-stroke-width: 2px; /* Ancho de contorno para navegadores basados en WebKit como Chrome y Safari */
+        -webkit-text-stroke-color: rgb(255, 255, 255); /* Color del contorno para navegadores basados en WebKit */
+        color: rgba(0, 0, 0, 0); /* Color del texto con transparencia total para que solo se muestre el contorno */
+    }
+
+    .text {
+        font-size: 36px;
+        color: rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .ref {
+        color: rgb(255, 255, 255);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="countdown" id="countdown">
+           <span class="huec">COUNTDOWN</span><br>
+           <span class="huec">TO</span><br>
+           <span class="huec">ARTIFICAL</span><br>
+           <span class="huec">GENERAL</span><br>
+           <span class="huec">INTELLIGENCE</span><br>
+    </div>
+    <div class="text">
+        <p>UNTIL <a href="https://www.metaculus.com/questions/3479/date-weakly-general-ai-is-publicly-known/">AGI</a></p>
+    </div>
+
+<script>
+
+    async function fetchDate() {
+        try {
+            const response = await fetch('/date');
+            const dateText = await response.text();
+            return new Date(dateText);
+        } catch (error) {
+            console.error('Error fetching date:', error);
+            return null;
+        }
+    }
+
+    async function main() {
+        const targetDate = await fetchDate();
+        console.log(targetDate);
+        
+        if (!targetDate) {
+            console.error('No se pudo obtener la fecha del servidor');
+            return;
+        }
+
+        const countdownElement = document.getElementById("countdown");
+        function updateCountdown() {
+            
+            const now = new Date();
+
+            const totalSeconds = Math.floor((targetDate - now) / 1000);
+            const years = Math.floor(totalSeconds / (60 * 60 * 24 * 365));
+            const months = Math.floor((totalSeconds % (60 * 60 * 24 * 365)) / (60 * 60 * 24 * 30));
+            const days = Math.floor((totalSeconds % (60 * 60 * 24 * 30)) / (60 * 60 * 24));
+            const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+            const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+            const seconds = Math.floor(totalSeconds % 60);
+
+            countdownElement.innerHTML = `
+            ${years} <span class="huec">YEARS</span><br>
+            ${months} <span class="huec">MONTHS</span><br>
+            ${days} <span class="huec">DAYS</span><br>
+            ${hours} <span class="huec">HOURS</span><br>
+            ${minutes} <span class="huec">MINUTES</span><br>
+            ${seconds} <span class="huec">SECONDS</span><br>
+            `;
+        }
+
+        setInterval(updateCountdown, 1000);
+    }
+
+    // Ejecuta la funcion main cuando el documento esta listo
+    document.addEventListener('DOMContentLoaded', main);
+
+</script>
+</body>
+</html>
