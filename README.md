@@ -1,7 +1,7 @@
-# agi-countdown
-# Road to AGI Countdown
+# CountdownToAi.com
+# Road to AGI
 
-Countdown for Artifical General Intelligence by Metaculus predictions
+Countdown for Artifical General Intelligence by Metaculus predictions.
 
 After the death of https://aicountdown.com/ i decided to make my own site:
 
