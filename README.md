@@ -3,7 +3,7 @@
 
 Countdown for Artifical General Intelligence by Metaculus predictions.
 
-After the death of https://aicountdown.com/ i decided to make my own site:
+After ~the death of~ https://aicountdown.com/ (now fixed and alive) i decided to make my own site:
 
   https://countdowntoai.com/
 
