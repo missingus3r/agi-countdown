@@ -1,46 +1,43 @@
-# CountdownToAi.com
-# Road to AGI
+# Road to AGI - Every AI Model Since Transformers
 
-Countdown for Artifical General Intelligence by Metaculus predictions.
+Interactive timeline tracking **270+ AI models** from the original Transformer (2017) to the current frontier (March 2026).
 
-After ~the death of~ https://aicountdown.com/ (now fixed and alive) i decided to make my own site:
+**Live:** [countdowntoai.com](https://countdowntoai.com/)
 
-  https://countdowntoai.com/
+## Features
 
-This project is a simple web application that displays a countdown timer to an estimated date of achieving Artificial General Intelligence (AGI). The estimated date is parsed from the [Metaculus question](https://www.metaculus.com/questions/3479/date-weakly-general-ai-is-publicly-known/) page.
+- **Interactive scatter chart** — models plotted by date vs intelligence rating, with weighted trend line
+- **Drag-to-zoom** — select any region of the chart to zoom in, double-click to reset
+- **Filters** — by type (LLM, Diffusion, Reasoning, Multimodal, ASR, Text Diffusion), category (text, code, image, video, audio, multi), open/closed source, and year range
+- **Sort** — by date (newest first) or intelligence ranking
+- **Search** — filter by model name, company, or type
+- **i18n** — English, Spanish, and Portuguese with auto-detection via timezone and browser language
+- **Dark/Light theme** — toggle with persistence via localStorage
+- **Timeline playback** — animated reveal of models chronologically
+- **Card tooltips** — comparative stats (this model vs type average vs type max)
 
-## Prerequisites
+## Intelligence Scale
 
-- Python 3
+Relative 0-100 scale calibrated against public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Not absolute metrics.
 
-Dependencies:
+| Range | Era | Examples |
+|-------|-----|----------|
+| 5-15 | 2017-2018 | Transformer, ELMo, GPT-1, BERT |
+| 15-30 | 2019-2021 | GPT-2, GPT-3, DALL-E 1 |
+| 30-45 | 2022-2023 | ChatGPT, GPT-4, Claude 1-2, Llama 1-2 |
+| 45-60 | Early 2024 | GPT-4o, Claude 3, Gemini 1.5, FLUX.1 |
+| 60-75 | Late 2024-Mid 2025 | Claude 3.5/3.7, DeepSeek-R1, Grok-3/4 |
+| 75-85 | Late 2025 | GPT-5.1/5.2, Opus 4/4.5, Gemini 3 |
+| 85-95 | Early 2026 | Opus 4.6, Sonnet 4.6, GPT-5.4, Gemini 3.1 |
 
-- BeautifulSoup4
-- Requests
+## Tech Stack
 
-To install the dependencies, run the following command:
+Single HTML file — zero dependencies, zero build step. Just HTML + CSS + vanilla JS.
 
-```bash
-pip install beautifulsoup4 requests
-```
+## Updating
 
-## Usage
+See [UPDATE_GUIDE.md](UPDATE_GUIDE.md) for a reusable prompt to audit and add new models.
 
-1. Run the web application using a WSGI server such as Gunicorn or cPanel:
+## License
 
-```bash
-gunicorn app:application
-```
-
-2. Open the `index.html` file in your web browser or host it using a static file server.
-
-## How It Works
-
-The application consists of two parts:
-
-1. The frontend (HTML, CSS, and JavaScript) in `index.html` which displays the countdown to AGI.
-2. The Python backend script `app.py` which fetches and parses the estimative date from the Metaculus question page.
-
-The frontend fetches the estimative date from the Python backend and updates the countdown on the web page in real-time.
-
-The python endpoint is '/date'
+MIT
