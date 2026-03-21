@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ROAD TO AGI · Every AI Model Since Transformers</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bd-sub:#1a1a22;--grid-line:#12121a;--grid-base:#2a2a32;--t-faint:#555;--t-xghost:#333;--t-ghost:#444;--bg-surface:#16161e;--t-max:#fff;--t-dim:#777;--t-soft:#aaa}
+@keyframes headerGlow{0%{background-position:0% 50%}100%{background-position:300% 50%}}
+@keyframes cardPulse{0%{border-color:#6b8aff;box-shadow:0 0 0 0 rgba(107,138,255,0.4)}30%{border-color:#c084fc;box-shadow:0 0 14px 5px rgba(192,132,252,0.35)}60%{border-color:#c084fc;box-shadow:0 0 10px 3px rgba(192,132,252,0.2)}100%{border-color:var(--bd-sub);box-shadow:none}}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100vh;background:#0c0c11;color:#d0d0d8;font-family:'Courier New',Courier,monospace}
+
+.header{background:linear-gradient(180deg,#101018 0%,#0c0c11 100%);border-bottom:1px solid #1e1e28;padding:20px 20px 14px;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.header-inner{max-width:1200px;margin:0 auto}
+.header h1{font-family:'IBM Plex Mono',monospace;font-size:clamp(15px,2.5vw,21px);font-weight:700;margin:0;letter-spacing:-0.3px;background:linear-gradient(90deg,#5e9de5,#a878d4,#d4729a,#e0a54c,#4cc99a,#5e9de5);background-size:300% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:headerGlow 20s linear infinite}
+.header .subtitle{font-family:'IBM Plex Mono';font-size:11px;color:#555;margin:3px 0 10px}
+
+.filters{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.filter-label{display:flex;align-items:center;gap:4px;cursor:pointer;font-size:11px;color:#888;font-family:'IBM Plex Mono'}
+.filter-label input{accent-color:#eee}
+.dot-closed{width:9px;height:9px;border-radius:50%;background:#f472b6;display:inline-block}
+.dot-open{width:9px;height:9px;border-radius:50%;background:#34d399;display:inline-block}
+.sep{width:1px;height:16px;background:#222;margin:0 4px}
+
+.type-btn{padding:3px 10px;border-radius:12px;font-size:10px;font-family:'IBM Plex Mono';cursor:pointer;border:1px solid #1e1e28;background:transparent;color:#555}
+.type-btn.active{border-color:#555;background:#1a1a24;color:#ccc}
+
+.filters select{padding:4px 8px;border-radius:8px;border:1px solid #333;background:#16161e;color:#ccc;font-size:11px;font-family:'IBM Plex Mono';cursor:pointer;min-width:60px}
+
+.content{max-width:1200px;margin:0 auto;padding:16px 20px 40px}
+
+.chart-container{position:relative;width:100%;height:clamp(340px,50vh,520px);background:#08080c;border:1px solid #1a1a22;border-radius:6px;overflow:hidden;margin-bottom:24px}
+.grid-line-y{position:absolute;height:1px}
+.grid-label-y{position:absolute;left:4px;transform:translateY(-50%);font-size:9px;color:#333;font-family:'IBM Plex Mono'}
+.grid-line-x{position:absolute;width:1px}
+.grid-label-x{position:absolute;bottom:6px;transform:translateX(-50%);font-size:10px;color:#444;font-family:'IBM Plex Mono';font-weight:500}
+.y-axis-label{position:absolute;left:0;top:50%;transform:translateY(-50%) rotate(-90deg);font-size:8px;color:#333;font-family:'IBM Plex Mono';letter-spacing:1.5px}
+
+.point{position:absolute;border-radius:50%;transform:translate(-50%,-50%);cursor:pointer;transition:all 0.12s;opacity:0.8}
+.point.closed-point{background:#f472b6;border:none}
+.point.open-point{background:#34d399;border:none}
+.point:hover{opacity:1;z-index:100!important;box-shadow:0 0 16px rgba(255,255,255,0.35)}
+
+.tooltip{position:absolute;background:#16161e;border:1px solid #2a2a35;border-radius:5px;padding:8px 12px;white-space:nowrap;z-index:200;box-shadow:0 8px 28px rgba(0,0,0,0.8);pointer-events:none;display:none}
+.point:hover .tooltip{display:block}
+.tooltip .t-name{font-family:'IBM Plex Mono';font-size:13px;font-weight:600;color:#fff}
+.tooltip .t-meta{font-size:10px;color:#777;margin-top:2px;font-family:'IBM Plex Mono'}
+.tooltip .t-stats{font-size:10px;color:#aaa;margin-top:2px;font-family:'IBM Plex Mono'}
+.tooltip .t-stats b{color:#fff}
+
+.trend-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:3}
+
+.chart-footer{font-size:8px;color:#444;font-family:'IBM Plex Mono';line-height:1.7;padding:6px 0 16px;display:flex;gap:12px;flex-wrap:wrap;align-items:baseline}
+.chart-footer .trend-line{color:#f472b6}
+
+.year-section{margin-bottom:20px}
+.year-header{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.year-header .year-title{font-family:'IBM Plex Mono';font-size:17px;font-weight:700;color:#ddd}
+.year-header .year-count{font-family:'IBM Plex Mono';font-size:11px;color:#555}
+.year-header .year-line{flex:1;height:1px;background:#1a1a22}
+
+.cards-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:6px}
+.card{background:#0e0e14;border:1px solid #1a1a22;border-radius:6px;padding:9px 11px;position:relative;overflow:visible;transition:border-color 0.15s}
+.card:hover{border-color:#333}
+.card.highlight{animation:cardPulse 5s ease-out forwards}
+.card .accent{position:absolute;top:0;left:0;right:0;height:2px;opacity:0.35;border-radius:6px 6px 0 0}
+.card .card-top{display:flex;justify-content:space-between;align-items:flex-start}
+.card .card-info{flex:1;min-width:0}
+.card .card-name{font-family:'IBM Plex Mono';font-size:12px;font-weight:600;color:#ddd;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .card-meta{font-size:10px;color:#666;font-family:'IBM Plex Mono';margin-top:1px}
+.card .badges{display:flex;gap:3px;flex-shrink:0;align-items:center}
+.badge{font-size:7px;padding:2px 5px;border-radius:6px;font-weight:700;font-family:'IBM Plex Mono'}
+.badge-open{background:rgba(52,211,153,0.12);color:#34d399;letter-spacing:0.5px}
+.card .bar-section{margin-top:7px}
+.card .bar-label{font-size:7px;color:#444;margin-bottom:2px;font-family:'IBM Plex Mono';letter-spacing:0.5px}
+.card .bar-bg{height:4px;border-radius:2px;background:#151520;overflow:hidden}
+.card .bar-fill{height:100%;background:linear-gradient(90deg,#6b8aff,#c084fc);border-radius:2px}
+
+.page-footer{margin-top:16px;font-size:8px;color:#ccc;font-family:'IBM Plex Mono';line-height:1.7;border-top:1px solid #1a1a22;padding-top:12px}
+
+.card-number{color:#555;font-size:10px;font-weight:400}
+.card-meta a{color:#5bc0be;text-decoration:none;transition:color 0.15s}
+.card-meta a:hover{color:#8de8e6}
+.sort-btn{padding:3px 10px;border-radius:12px;font-size:10px;font-family:'IBM Plex Mono';cursor:pointer;border:1px solid #1e1e28;background:transparent;color:#555;transition:all 0.15s}
+.sort-btn.active{border-color:#555;background:#1a1a24;color:#ccc}
+.intel-rank{color:#fbbf24;font-size:10px;font-weight:600}
+.tooltip a.t-link{color:#6b8aff;text-decoration:none;font-size:10px;margin-left:4px}
+.tooltip a.t-link:hover{text-decoration:underline}
+
+.search-input{padding:4px 8px;border-radius:8px;border:1px solid #333;background:#16161e;color:#ccc;font-size:11px;font-family:'IBM Plex Mono';width:180px;outline:none}
+.search-input:focus{border-color:#6b8aff}
+
+.stats-bar{display:flex;gap:16px;flex-wrap:wrap;padding:10px 0 16px;border-bottom:1px solid #1a1a22;margin-bottom:16px}
+.stat-item{font-family:'IBM Plex Mono';font-size:11px;color:#888}
+.stat-item b{color:#ddd;font-size:13px}
+
+@keyframes pointAppear{from{transform:translate(-50%,-50%) scale(0);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:0.8}}
+.point.hidden-point{opacity:0!important;transform:translate(-50%,-50%) scale(0)!important}
+.point.appear{animation:pointAppear 0.3s ease-out forwards}
+.play-btn{padding:3px 10px;border-radius:12px;font-size:10px;font-family:'IBM Plex Mono';cursor:pointer;border:1px solid #1e1e28;background:transparent;color:#555;transition:all 0.15s}
+.play-btn.playing{border-color:#f472b6;color:#f472b6}
+
+.chart-container.crosshair{cursor:crosshair}
+.zoom-sel{position:absolute;border:1px solid rgba(107,138,255,0.6);background:rgba(107,138,255,0.08);pointer-events:none;z-index:50;border-radius:2px}
+.zoom-reset{position:absolute;top:6px;right:6px;z-index:60;padding:3px 10px;border-radius:12px;font-size:10px;font-family:'IBM Plex Mono';cursor:pointer;border:1px solid #6b8aff;background:rgba(107,138,255,0.12);color:#6b8aff;transition:all 0.15s}
+.zoom-reset:hover{background:rgba(107,138,255,0.25)}
+.zoom-info{position:absolute;bottom:6px;right:6px;z-index:60;font-size:8px;font-family:'IBM Plex Mono';color:#555}
+
+.theme-btn{padding:3px 10px;border-radius:12px;font-size:10px;font-family:'IBM Plex Mono';cursor:pointer;border:1px solid #1e1e28;background:transparent;color:#555;transition:all 0.15s}
+.theme-btn:hover{border-color:#555;color:#ccc}
+
+html.light{--bd-sub:#e5e5ea;--grid-line:#e8e8ee;--grid-base:#ccc;--t-faint:#999;--t-xghost:#bbb;--t-ghost:#aaa;--bg-surface:#f0f0f5;--t-max:#000;--t-dim:#777;--t-soft:#555}
+html.light,html.light body{background:#f5f5f7;color:#1a1a2e}
+html.light .header{background:linear-gradient(180deg,#fafafa 0%,#f5f5f7 100%);border-bottom-color:#ddd}
+html.light .header .subtitle{color:#999}
+html.light .filter-label{color:#666}
+html.light .filter-label input{accent-color:#333}
+html.light .sep{background:#ddd}
+html.light .type-btn{border-color:#ddd;color:#999}
+html.light .type-btn.active{border-color:#999;background:#e0e0ea;color:#333}
+html.light .filters select{border-color:#bbb;background:#f0f0f5;color:#333}
+html.light .chart-container{background:#fff;border-color:#e5e5ea}
+html.light .grid-label-y{color:#bbb}
+html.light .grid-label-x{color:#aaa}
+html.light .y-axis-label{color:#bbb}
+html.light .point:hover{box-shadow:0 0 16px rgba(0,0,0,0.25)}
+html.light .tooltip{background:#f0f0f5;border-color:#ccc;box-shadow:0 8px 28px rgba(0,0,0,0.12)}
+html.light .tooltip .t-name{color:#000}
+html.light .tooltip .t-meta{color:#777}
+html.light .tooltip .t-stats{color:#555}
+html.light .tooltip .t-stats b{color:#000}
+html.light .chart-footer{color:#aaa}
+html.light .year-header .year-title{color:#111}
+html.light .year-header .year-count{color:#999}
+html.light .year-header .year-line{background:#e5e5ea}
+html.light .card{background:#fff;border-color:#e5e5ea}
+html.light .card:hover{border-color:#bbb}
+html.light .card .card-name{color:#111}
+html.light .card .card-meta{color:#888}
+html.light .card .bar-label{color:#aaa}
+html.light .card .bar-bg{background:#e4e4ec}
+html.light .page-footer{color:#555;border-top-color:#e5e5ea}
+html.light .card-number{color:#999}
+html.light .card-meta a{color:#0d8e8c}
+html.light .card-meta a:hover{color:#0a7170}
+html.light .sort-btn{border-color:#ddd;color:#999}
+html.light .sort-btn.active{border-color:#999;background:#e0e0ea;color:#333}
+html.light .search-input{border-color:#bbb;background:#f0f0f5;color:#333}
+html.light .search-input:focus{border-color:#6b8aff}
+html.light .stats-bar{border-bottom-color:#e5e5ea}
+html.light .stat-item{color:#666}
+html.light .stat-item b{color:#111}
+html.light .play-btn{border-color:#ddd;color:#999}
+html.light .zoom-info{color:#999}
+html.light .zoom-sel{border-color:rgba(107,138,255,0.5);background:rgba(107,138,255,0.1)}
+html.light .zoom-reset{background:rgba(107,138,255,0.08)}
+html.light .zoom-reset:hover{background:rgba(107,138,255,0.18)}
+html.light .theme-btn{border-color:#ddd;color:#999}
+html.light .theme-btn:hover{border-color:#999;color:#333}
+.lang-btn{padding:3px 8px;border-radius:12px;font-size:10px;font-family:'IBM Plex Mono';cursor:pointer;border:1px solid #1e1e28;background:transparent;color:#555;transition:all 0.15s;text-transform:uppercase;letter-spacing:0.5px}
+.lang-btn.active{border-color:#6b8aff;background:rgba(107,138,255,0.12);color:#6b8aff}
+.lang-btn:hover{border-color:#555;color:#ccc}
+html.light .lang-btn{border-color:#ddd;color:#999}
+html.light .lang-btn.active{border-color:#6b8aff;background:rgba(107,138,255,0.08);color:#6b8aff}
+html.light .lang-btn:hover{border-color:#999;color:#333}
+html.light .badge-open{background:rgba(52,211,153,0.1)}
+html.light .card-tooltip{background:#f0f0f5;border-color:#ccc;box-shadow:0 8px 28px rgba(0,0,0,0.12)}
+html.light .card-tooltip .ct-name{color:#000}
+html.light .card-tooltip .ct-row{color:#555}
+html.light .card-tooltip .ct-row b{color:#000}
+html.light .card-tooltip .ct-label{color:#aaa}
+html.light .badge-new{background:rgba(239,68,68,0.15);color:#dc2626}
+
+@keyframes barGrow{from{width:0}to{width:var(--bar-w)}}
+@keyframes countUp{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+@keyframes newPulse{0%{opacity:1}50%{opacity:0.5}100%{opacity:1}}
+.bar-fill.animate{animation:barGrow 0.6s ease-out forwards}
+.bar-label.animate{animation:countUp 0.3s ease-out both}
+.badge-new{background:rgba(239,68,68,0.12);color:#ef4444;letter-spacing:0.5px;animation:newPulse 2s ease-in-out 3;box-shadow:0 0 6px rgba(239,68,68,0.4)}
+
+.card-tooltip{position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);background:var(--bg-surface,#16161e);border:1px solid #2a2a35;border-radius:5px;padding:8px 10px;white-space:nowrap;z-index:300;box-shadow:0 8px 28px rgba(0,0,0,0.8);pointer-events:none;display:none;min-width:180px}
+.card:hover .card-tooltip{display:block}
+.card-tooltip .ct-name{font-family:'IBM Plex Mono';font-size:11px;font-weight:600;color:var(--t-max,#fff);margin-bottom:5px}
+.card-tooltip .ct-bars{display:flex;flex-direction:column;gap:3px}
+.card-tooltip .ct-row{display:flex;align-items:center;gap:5px;font-family:'IBM Plex Mono';font-size:9px;color:var(--t-soft,#aaa)}
+.card-tooltip .ct-row b{color:var(--t-max,#fff);min-width:16px;text-align:right}
+.card-tooltip .ct-bar-bg{flex:1;height:3px;border-radius:2px;background:#151520;min-width:60px;overflow:hidden}
+html.light .card-tooltip .ct-bar-bg{background:#e4e4ec}
+.card-tooltip .ct-bar-fill{height:100%;border-radius:2px}
+.card-tooltip .ct-label{font-family:'IBM Plex Mono';font-size:8px;color:var(--t-ghost,#444);margin-top:4px;text-align:center}
+.card-tooltip .ct-bar-this{background:linear-gradient(90deg,#6b8aff,#c084fc)}
+.card-tooltip .ct-bar-avg{background:#555}
+.card-tooltip .ct-bar-max{background:linear-gradient(90deg,#fbbf24,#f97316)}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-inner">
+    <h1>ROAD TO AGI · Every AI Model Since Transformers</h1>
+    <p class="subtitle" id="pageSubtitle"></p>
+    <div class="filters">
+      <input type="text" class="search-input" id="searchInput" placeholder="Buscar modelo, empresa..."/>
+      <span class="sep"></span>
+      <label class="filter-label"><input type="checkbox" id="chkClosed" checked/><span class="dot-closed"></span>Closed</label>
+      <label class="filter-label"><input type="checkbox" id="chkOpen" checked/><span class="dot-open"></span>Open</label>
+      <span class="sep"></span>
+      <div id="typeButtons"></div>
+      <span class="sep"></span>
+      <div id="catButtons"></div>
+      <span class="sep"></span>
+      <span class="filter-label" id="labelRange">Rango:</span>
+      <select id="selFrom"></select>
+      <span class="filter-label arrow">→</span>
+      <select id="selTo"></select>
+      <span class="filter-label count">(<span id="filteredCount">0</span>)</span>
+      <span class="sep"></span>
+      <span class="filter-label" id="labelSort">Ordenar:</span>
+      <button class="sort-btn active" id="sortDate">Fecha</button>
+      <button class="sort-btn" id="sortIntel">Inteligencia</button>
+      <span class="sep"></span>
+      <button class="play-btn" id="playBtn">▶ Play</button>
+      <span class="sep"></span>
+      <button class="theme-btn" id="themeBtn">Light</button>
+      <span class="sep"></span>
+      <button class="lang-btn" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="es">ES</button>
+      <button class="lang-btn" data-lang="pt">PT</button>
+    </div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="chart-container" id="chart"></div>
+  <div class="chart-footer" id="chartFooter">
+    <span><span style="color:#f472b6">●</span> closed &nbsp; <span style="color:#34d399">●</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">━━</span> tendencia ponderada</span>
+    <span style="color:var(--t-xghost)">|</span>
+    <span><span class="trend-line">t(x)</span> = Σ(intel³) / Σ(intel²) — ventana ±8%, peso = intel², frontier domina</span>
+  </div>
+  <div class="stats-bar" id="statsBar"></div>
+  <div id="timeline"></div>
+  <div class="page-footer" id="pageFooter"></div>
+</div>
+
+<script>
+const models = [
+  {name:"Transformer (original)",date:"2017-06-12",company:"Google",open:true,intelligence:5,type:"LLM",cat:"text"},
+  {name:"ELMo",date:"2018-02-15",company:"AllenNLP",open:true,intelligence:8,type:"LLM",cat:"text"},
+  {name:"ULMFiT",date:"2018-01-18",company:"fast.ai",open:true,intelligence:7,type:"LLM",cat:"text"},
+  {name:"GPT-1",date:"2018-06-11",company:"OpenAI",open:true,intelligence:10,type:"LLM",cat:"text"},
+  {name:"BERT",date:"2018-10-11",company:"Google",open:true,intelligence:12,type:"LLM",cat:"text"},
+  {name:"Transformer-XL",date:"2018-06-14",company:"Google",open:true,intelligence:9,type:"LLM",cat:"text"},
+  {name:"GPT-2",date:"2019-02-14",company:"OpenAI",open:false,intelligence:15,type:"LLM",cat:"text"},
+  {name:"XLNet",date:"2019-06-19",company:"Google",open:true,intelligence:14,type:"LLM",cat:"text"},
+  {name:"RoBERTa",date:"2019-07-26",company:"Meta",open:true,intelligence:13,type:"LLM",cat:"text"},
+  {name:"ALBERT",date:"2019-09-26",company:"Google",open:true,intelligence:12,type:"LLM",cat:"text"},
+  {name:"T5",date:"2019-10-23",company:"Google",open:true,intelligence:16,type:"LLM",cat:"text"},
+  {name:"DistilBERT",date:"2019-10-02",company:"HuggingFace",open:true,intelligence:10,type:"LLM",cat:"text"},
+  {name:"GPT-3",date:"2020-06-11",company:"OpenAI",open:false,intelligence:30,type:"LLM",cat:"text"},
+  {name:"mBART",date:"2020-01-22",company:"Meta",open:true,intelligence:14,type:"LLM",cat:"text"},
+  {name:"DALL·E",date:"2021-01-05",company:"OpenAI",open:false,intelligence:20,type:"Diffusion",cat:"image"},
+  {name:"CLIP",date:"2021-01-05",company:"OpenAI",open:true,intelligence:22,type:"Multimodal",cat:"multi"},
+  {name:"LaMDA",date:"2021-05-18",company:"Google",open:false,intelligence:25,type:"LLM",cat:"text"},
+  {name:"Codex",date:"2021-08-10",company:"OpenAI",open:false,intelligence:28,type:"LLM",cat:"code"},
+  {name:"Megatron-Turing NLG",date:"2021-10-11",company:"NVIDIA",open:false,intelligence:27,type:"LLM",cat:"text"},
+  {name:"Gopher",date:"2021-12-08",company:"DeepMind",open:false,intelligence:28,type:"LLM",cat:"text"},
+  {name:"GLIDE",date:"2021-12-20",company:"OpenAI",open:true,intelligence:22,type:"Diffusion",cat:"image"},
+  {name:"Jurassic-1",date:"2021-08-11",company:"AI21 Labs",open:false,intelligence:24,type:"LLM",cat:"text"},
+  {name:"Ernie 3.0",date:"2021-07-05",company:"Baidu",open:false,intelligence:23,type:"LLM",cat:"text"},
+  {name:"Chinchilla",date:"2022-03-29",company:"DeepMind",open:false,intelligence:32,type:"LLM",cat:"text"},
+  {name:"PaLM",date:"2022-04-04",company:"Google",open:false,intelligence:35,type:"LLM",cat:"text"},
+  {name:"DALL·E 2",date:"2022-04-06",company:"OpenAI",open:false,intelligence:30,type:"Diffusion",cat:"image"},
+  {name:"Imagen",date:"2022-05-23",company:"Google",open:false,intelligence:32,type:"Diffusion",cat:"image"},
+  {name:"Midjourney v1",date:"2022-07-12",company:"Midjourney",open:false,intelligence:28,type:"Diffusion",cat:"image"},
+  {name:"Stable Diffusion 1.x",date:"2022-08-22",company:"Stability AI",open:true,intelligence:30,type:"Diffusion",cat:"image"},
+  {name:"BLOOM",date:"2022-07-06",company:"BigScience",open:true,intelligence:26,type:"LLM",cat:"text"},
+  {name:"Minerva",date:"2022-06-29",company:"Google",open:false,intelligence:30,type:"LLM",cat:"text"},
+  {name:"Whisper",date:"2022-09-21",company:"OpenAI",open:true,intelligence:28,type:"ASR",cat:"audio"},
+  {name:"Flan-T5",date:"2022-10-20",company:"Google",open:true,intelligence:28,type:"LLM",cat:"text"},
+  {name:"ChatGPT (GPT-3.5)",date:"2022-11-30",company:"OpenAI",open:false,intelligence:38,type:"LLM",cat:"text"},
+  {name:"YaLM 100B",date:"2022-06-23",company:"Yandex",open:true,intelligence:22,type:"LLM",cat:"text"},
+  {name:"AlexaTM 20B",date:"2022-08-02",company:"Amazon",open:false,intelligence:20,type:"LLM",cat:"text"},
+  {name:"GPT-4",date:"2023-03-14",company:"OpenAI",open:false,intelligence:55,type:"LLM",cat:"text"},
+  {name:"Claude 1",date:"2023-03-14",company:"Anthropic",open:false,intelligence:40,type:"LLM",cat:"text"},
+  {name:"PaLM 2",date:"2023-05-10",company:"Google",open:false,intelligence:45,type:"LLM",cat:"text"},
+  {name:"Llama 1",date:"2023-02-24",company:"Meta",open:true,intelligence:35,type:"LLM",cat:"text"},
+  {name:"Llama 2",date:"2023-07-18",company:"Meta",open:true,intelligence:42,type:"LLM",cat:"text"},
+  {name:"Claude 2",date:"2023-07-11",company:"Anthropic",open:false,intelligence:45,type:"LLM",cat:"text"},
+  {name:"Mistral 7B",date:"2023-09-27",company:"Mistral AI",open:true,intelligence:38,type:"LLM",cat:"text"},
+  {name:"Falcon 180B",date:"2023-09-06",company:"TII",open:true,intelligence:37,type:"LLM",cat:"text"},
+  {name:"Gemini 1.0",date:"2023-12-06",company:"Google",open:false,intelligence:50,type:"LLM",cat:"multi"},
+  {name:"Mixtral 8x7B",date:"2023-12-11",company:"Mistral AI",open:true,intelligence:42,type:"LLM",cat:"text"},
+  {name:"DALL·E 3",date:"2023-10-04",company:"OpenAI",open:false,intelligence:40,type:"Diffusion",cat:"image"},
+  {name:"Midjourney v5",date:"2023-03-15",company:"Midjourney",open:false,intelligence:38,type:"Diffusion",cat:"image"},
+  {name:"Stable Diffusion XL",date:"2023-07-26",company:"Stability AI",open:true,intelligence:38,type:"Diffusion",cat:"image"},
+  {name:"Grok-1",date:"2023-11-04",company:"xAI",open:true,intelligence:38,type:"LLM",cat:"text"},
+  {name:"Claude 2.1",date:"2023-11-21",company:"Anthropic",open:false,intelligence:47,type:"LLM",cat:"text"},
+  {name:"Phi-1",date:"2023-06-20",company:"Microsoft",open:true,intelligence:25,type:"LLM",cat:"code"},
+  {name:"Phi-2",date:"2023-12-12",company:"Microsoft",open:true,intelligence:35,type:"LLM",cat:"text"},
+  {name:"DeepSeek LLM",date:"2023-11-29",company:"DeepSeek",open:true,intelligence:35,type:"LLM",cat:"text"},
+  {name:"Qwen 1.0",date:"2023-08-03",company:"Alibaba",open:true,intelligence:34,type:"LLM",cat:"text"},
+  {name:"Yi 34B",date:"2023-11-02",company:"01.AI",open:true,intelligence:36,type:"LLM",cat:"text"},
+  {name:"Cohere Command R",date:"2023-10-01",company:"Cohere",open:false,intelligence:38,type:"LLM",cat:"text"},
+  {name:"Claude 3 Opus",date:"2024-03-04",company:"Anthropic",open:false,intelligence:58,type:"LLM",cat:"text"},
+  {name:"Claude 3 Sonnet",date:"2024-03-04",company:"Anthropic",open:false,intelligence:52,type:"LLM",cat:"text"},
+  {name:"Claude 3 Haiku",date:"2024-03-04",company:"Anthropic",open:false,intelligence:42,type:"LLM",cat:"text"},
+  {name:"Gemini 1.5 Pro",date:"2024-02-15",company:"Google",open:false,intelligence:55,type:"LLM",cat:"multi"},
+  {name:"Llama 3",date:"2024-04-18",company:"Meta",open:true,intelligence:50,type:"LLM",cat:"text"},
+  {name:"Mistral Large",date:"2024-02-26",company:"Mistral AI",open:false,intelligence:48,type:"LLM",cat:"text"},
+  {name:"GPT-4o",date:"2024-05-13",company:"OpenAI",open:false,intelligence:58,type:"LLM",cat:"multi"},
+  {name:"GPT-4o mini",date:"2024-07-18",company:"OpenAI",open:false,intelligence:45,type:"LLM",cat:"multi"},
+  {name:"Claude 3.5 Sonnet",date:"2024-06-20",company:"Anthropic",open:false,intelligence:60,type:"LLM",cat:"text"},
+  {name:"Gemma 1.0",date:"2024-02-21",company:"Google",open:true,intelligence:35,type:"LLM",cat:"text"},
+  {name:"Stable Diffusion 3",date:"2024-02-22",company:"Stability AI",open:true,intelligence:45,type:"Diffusion",cat:"image"},
+  {name:"Midjourney v6",date:"2024-01-01",company:"Midjourney",open:false,intelligence:48,type:"Diffusion",cat:"image"},
+  {name:"Sora",date:"2024-02-15",company:"OpenAI",open:false,intelligence:50,type:"Diffusion",cat:"video"},
+  {name:"FLUX.1",date:"2024-08-01",company:"Black Forest Labs",open:true,intelligence:50,type:"Diffusion",cat:"image"},
+  {name:"Grok-1.5",date:"2024-03-29",company:"xAI",open:false,intelligence:42,type:"LLM",cat:"text"},
+  {name:"Grok-2",date:"2024-08-13",company:"xAI",open:false,intelligence:50,type:"LLM",cat:"text"},
+  {name:"Llama 3.1 405B",date:"2024-07-23",company:"Meta",open:true,intelligence:55,type:"LLM",cat:"text"},
+  {name:"Mistral Large 2",date:"2024-07-24",company:"Mistral AI",open:false,intelligence:52,type:"LLM",cat:"text"},
+  {name:"DeepSeek-V2",date:"2024-05-07",company:"DeepSeek",open:true,intelligence:48,type:"LLM",cat:"text"},
+  {name:"Qwen 2",date:"2024-06-07",company:"Alibaba",open:true,intelligence:48,type:"LLM",cat:"text"},
+  {name:"Phi-3",date:"2024-04-23",company:"Microsoft",open:true,intelligence:40,type:"LLM",cat:"text"},
+  {name:"o1-preview",date:"2024-09-12",company:"OpenAI",open:false,intelligence:65,type:"Reasoning",cat:"reasoning"},
+  {name:"o1-mini",date:"2024-09-12",company:"OpenAI",open:false,intelligence:55,type:"Reasoning",cat:"reasoning"},
+  {name:"Claude 3.5 Sonnet v2",date:"2024-10-22",company:"Anthropic",open:false,intelligence:62,type:"LLM",cat:"text"},
+  {name:"Claude 3.5 Haiku",date:"2024-10-22",company:"Anthropic",open:false,intelligence:48,type:"LLM",cat:"text"},
+  {name:"Llama 3.2",date:"2024-09-25",company:"Meta",open:true,intelligence:52,type:"LLM",cat:"multi"},
+  {name:"Qwen 2.5",date:"2024-09-19",company:"Alibaba",open:true,intelligence:55,type:"LLM",cat:"text"},
+  {name:"Gemini 2.0 Flash Exp",date:"2024-12-11",company:"Google",open:false,intelligence:58,type:"LLM",cat:"multi"},
+  {name:"DeepSeek-V3",date:"2024-12-26",company:"DeepSeek",open:true,intelligence:62,type:"LLM",cat:"text"},
+  {name:"QwQ-32B",date:"2024-11-27",company:"Alibaba",open:true,intelligence:55,type:"Reasoning",cat:"reasoning"},
+  {name:"DeepSeek-R1-Lite",date:"2024-11-20",company:"DeepSeek",open:true,intelligence:58,type:"Reasoning",cat:"reasoning"},
+  {name:"Recraft V3",date:"2024-10-29",company:"Recraft",open:false,intelligence:52,type:"Diffusion",cat:"image"},
+  {name:"Aurora",date:"2024-12-09",company:"xAI",open:false,intelligence:45,type:"Diffusion",cat:"image"},
+  {name:"Imagen 3",date:"2024-08-01",company:"Google",open:false,intelligence:50,type:"Diffusion",cat:"image"},
+  {name:"GPT-4 Turbo",date:"2024-04-09",company:"OpenAI",open:false,intelligence:56,type:"LLM",cat:"text"},
+  {name:"Llama 3.3",date:"2024-12-06",company:"Meta",open:true,intelligence:55,type:"LLM",cat:"text"},
+  {name:"Gemma 2",date:"2024-06-27",company:"Google",open:true,intelligence:42,type:"LLM",cat:"text"},
+  {name:"Ideogram 2.0",date:"2024-08-19",company:"Ideogram",open:false,intelligence:48,type:"Diffusion",cat:"image"},
+  {name:"DeepSeek-R1",date:"2025-01-20",company:"DeepSeek",open:true,intelligence:70,type:"Reasoning",cat:"reasoning"},
+  {name:"GPT-4.5 Orion",date:"2025-02-27",company:"OpenAI",open:false,intelligence:62,type:"LLM",cat:"text"},
+  {name:"Gemini 2.0 Pro",date:"2025-02-05",company:"Google",open:false,intelligence:62,type:"LLM",cat:"multi"},
+  {name:"Grok-3",date:"2025-02-17",company:"xAI",open:false,intelligence:65,type:"LLM",cat:"text"},
+  {name:"Claude 3.7 Sonnet",date:"2025-02-24",company:"Anthropic",open:false,intelligence:65,type:"LLM",cat:"text"},
+  {name:"Mistral Small 3",date:"2025-01-30",company:"Mistral AI",open:true,intelligence:50,type:"LLM",cat:"text"},
+  {name:"Gemini 2.5 Pro",date:"2025-03-25",company:"Google",open:false,intelligence:68,type:"LLM",cat:"multi"},
+  {name:"GPT-4.1",date:"2025-04-14",company:"OpenAI",open:false,intelligence:60,type:"LLM",cat:"text"},
+  {name:"Llama 4",date:"2025-04-05",company:"Meta",open:true,intelligence:58,type:"LLM",cat:"text"},
+  {name:"o3 / o4-mini",date:"2025-04-16",company:"OpenAI",open:false,intelligence:72,type:"Reasoning",cat:"reasoning"},
+  {name:"Qwen 3",date:"2025-04-29",company:"Alibaba",open:true,intelligence:65,type:"LLM",cat:"text"},
+  {name:"Gemini 2.5 Flash",date:"2025-05-20",company:"Google",open:false,intelligence:62,type:"LLM",cat:"multi"},
+  {name:"Claude Sonnet 4",date:"2025-05-22",company:"Anthropic",open:false,intelligence:70,type:"LLM",cat:"text"},
+  {name:"Claude Opus 4",date:"2025-05-22",company:"Anthropic",open:false,intelligence:75,type:"LLM",cat:"text"},
+  {name:"Phi-4",date:"2025-05-01",company:"Microsoft",open:true,intelligence:52,type:"LLM",cat:"text"},
+  {name:"Stable Diffusion 3.5",date:"2025-04-01",company:"Stability AI",open:true,intelligence:52,type:"Diffusion",cat:"image"},
+  {name:"Gemma 3n",date:"2025-06-01",company:"Google",open:true,intelligence:45,type:"LLM",cat:"multi"},
+  {name:"Midjourney v7",date:"2025-06-01",company:"Midjourney",open:false,intelligence:55,type:"Diffusion",cat:"image"},
+  {name:"Gemini Diffusion",date:"2025-06-15",company:"Google",open:false,intelligence:55,type:"Diffusion",cat:"text"},
+  {name:"DeepSeek-R1.1",date:"2025-06-01",company:"DeepSeek",open:true,intelligence:72,type:"Reasoning",cat:"reasoning"},
+  {name:"Kimi K2",date:"2025-07-01",company:"Moonshot AI",open:true,intelligence:65,type:"LLM",cat:"text"},
+  {name:"GLM-4.5",date:"2025-07-01",company:"Zhipu AI",open:true,intelligence:60,type:"LLM",cat:"text"},
+  {name:"Qwen3-Coder",date:"2025-07-01",company:"Alibaba",open:true,intelligence:68,type:"LLM",cat:"code"},
+  {name:"Grok-4",date:"2025-07-09",company:"xAI",open:false,intelligence:76,type:"LLM",cat:"text"},
+  {name:"Grok-4 Heavy",date:"2025-07-09",company:"xAI",open:false,intelligence:80,type:"LLM",cat:"text"},
+  {name:"Gemini Deep Think",date:"2025-08-01",company:"Google",open:false,intelligence:75,type:"Reasoning",cat:"reasoning"},
+  {name:"GPT-5",date:"2025-08-07",company:"OpenAI",open:false,intelligence:78,type:"LLM",cat:"multi"},
+  {name:"gpt-oss-120b",date:"2025-08-01",company:"OpenAI",open:true,intelligence:60,type:"LLM",cat:"text"},
+  {name:"Claude Opus 4.1",date:"2025-08-05",company:"Anthropic",open:false,intelligence:77,type:"LLM",cat:"text"},
+  {name:"Sonnet 4.5",date:"2025-09-15",company:"Anthropic",open:false,intelligence:78,type:"LLM",cat:"text"},
+  {name:"Sora 2",date:"2025-09-30",company:"OpenAI",open:false,intelligence:65,type:"Diffusion",cat:"video"},
+  {name:"Veo 2",date:"2024-12-16",company:"Google",open:false,intelligence:52,type:"Diffusion",cat:"video"},
+  {name:"Veo 3",date:"2025-05-20",company:"Google",open:false,intelligence:60,type:"Diffusion",cat:"video"},
+  {name:"GPT-5.1",date:"2025-10-01",company:"OpenAI",open:false,intelligence:80,type:"LLM",cat:"multi"},
+  {name:"Imagen 4",date:"2025-10-01",company:"Google",open:false,intelligence:58,type:"Diffusion",cat:"image"},
+  {name:"GPT Image 1.5",date:"2025-10-01",company:"OpenAI",open:false,intelligence:55,type:"Diffusion",cat:"image"},
+  {name:"Haiku 4.5",date:"2025-10-15",company:"Anthropic",open:false,intelligence:65,type:"LLM",cat:"text"},
+  {name:"Grok-4.1",date:"2025-11-17",company:"xAI",open:false,intelligence:82,type:"LLM",cat:"text"},
+  {name:"Gemini 3.0 Pro",date:"2025-11-18",company:"Google",open:false,intelligence:80,type:"LLM",cat:"multi"},
+  {name:"Opus 4.5",date:"2025-11-24",company:"Anthropic",open:false,intelligence:82,type:"LLM",cat:"text"},
+  {name:"FLUX 2 Dev",date:"2025-11-26",company:"Black Forest Labs",open:true,intelligence:58,type:"Diffusion",cat:"image"},
+  {name:"Nano Banana",date:"2025-11-01",company:"Google",open:false,intelligence:55,type:"Diffusion",cat:"image"},
+  {name:"DeepSeek-V3.2",date:"2025-12-01",company:"DeepSeek",open:true,intelligence:75,type:"LLM",cat:"text"},
+  {name:"Mistral Large 3",date:"2025-12-02",company:"Mistral AI",open:true,intelligence:72,type:"LLM",cat:"text"},
+  {name:"GPT-5.2",date:"2025-12-11",company:"OpenAI",open:false,intelligence:83,type:"LLM",cat:"multi"},
+  {name:"Gemini 3.0 Flash",date:"2025-12-17",company:"Google",open:false,intelligence:72,type:"LLM",cat:"multi"},
+  {name:"GPT-5.3 Instant",date:"2026-01-15",company:"OpenAI",open:false,intelligence:75,type:"LLM",cat:"multi"},
+  {name:"Mistral 3 675B",date:"2026-01-15",company:"Mistral AI",open:true,intelligence:78,type:"LLM",cat:"text"},
+  {name:"Qwen3-Max",date:"2025-09-05",company:"Alibaba",open:false,intelligence:72,type:"LLM",cat:"text"},
+  {name:"Qwen3-Next",date:"2025-09-10",company:"Alibaba",open:true,intelligence:70,type:"LLM",cat:"text"},
+  {name:"Qwen3-Max-Thinking",date:"2026-01-27",company:"Alibaba",open:false,intelligence:80,type:"Reasoning",cat:"reasoning"},
+  {name:"Qwen3-Coder-Next",date:"2026-02-01",company:"Alibaba",open:true,intelligence:78,type:"LLM",cat:"code"},
+  {name:"Qwen 3.5 (397B-A17B)",date:"2026-02-16",company:"Alibaba",open:true,intelligence:84,type:"LLM",cat:"multi"},
+  {name:"Qwen 3.5-Plus",date:"2026-02-16",company:"Alibaba",open:false,intelligence:86,type:"LLM",cat:"multi"},
+  {name:"Opus 4.6",date:"2026-02-05",company:"Anthropic",open:false,intelligence:88,type:"LLM",cat:"text"},
+  {name:"Sonnet 4.6",date:"2026-02-17",company:"Anthropic",open:false,intelligence:85,type:"LLM",cat:"text"},
+  {name:"Gemini 3.1 Pro",date:"2026-02-19",company:"Google",open:false,intelligence:86,type:"LLM",cat:"multi"},
+  {name:"Nano Banana 2",date:"2026-02-26",company:"Google",open:false,intelligence:60,type:"Diffusion",cat:"image"},
+  {name:"GPT-5.4",date:"2026-03-05",company:"OpenAI",open:false,intelligence:90,type:"LLM",cat:"multi"},
+  {name:"GPT-5.4 Thinking",date:"2026-03-05",company:"OpenAI",open:false,intelligence:92,type:"Reasoning",cat:"reasoning"},
+  {name:"Grok 3 Mini",date:"2025-06-10",company:"xAI",open:false,intelligence:52,type:"LLM",cat:"text"},
+  {name:"Gemini 2.5 Flash Lite",date:"2025-07-22",company:"Google",open:false,intelligence:55,type:"LLM",cat:"multi"},
+  {name:"Grok-4 Fast",date:"2025-09-01",company:"xAI",open:false,intelligence:72,type:"LLM",cat:"text"},
+  {name:"GLM-4.6",date:"2025-09-30",company:"Zhipu AI",open:true,intelligence:65,type:"LLM",cat:"text"},
+  {name:"Magistral Medium",date:"2025-09-01",company:"Mistral AI",open:false,intelligence:60,type:"LLM",cat:"text"},
+  {name:"Kimi K2 Thinking",date:"2025-11-06",company:"Moonshot AI",open:true,intelligence:70,type:"Reasoning",cat:"reasoning"},
+  {name:"GPT-5.1 Codex",date:"2025-11-13",company:"OpenAI",open:false,intelligence:78,type:"LLM",cat:"code"},
+  {name:"MiMo-V2-Flash",date:"2025-12-17",company:"Xiaomi",open:true,intelligence:62,type:"LLM",cat:"text"},
+  {name:"MiniMax-M2.1",date:"2025-12-23",company:"MiniMax",open:true,intelligence:68,type:"LLM",cat:"text"},
+  {name:"GLM-4.7",date:"2025-12-22",company:"Zhipu AI",open:true,intelligence:74,type:"LLM",cat:"text"},
+  {name:"Devstral 2",date:"2025-12-09",company:"Mistral AI",open:true,intelligence:65,type:"LLM",cat:"code"},
+  {name:"Nova 2.0 Pro",date:"2025-11-01",company:"Amazon",open:false,intelligence:62,type:"LLM",cat:"text"},
+  {name:"OLMo 3.1",date:"2026-01-20",company:"AI2",open:true,intelligence:55,type:"LLM",cat:"text"},
+  {name:"Kimi K2.5",date:"2026-01-27",company:"Moonshot AI",open:true,intelligence:80,type:"LLM",cat:"text"},
+  {name:"Kimi K2.5 Thinking",date:"2026-01-27",company:"Moonshot AI",open:true,intelligence:82,type:"Reasoning",cat:"reasoning"},
+  {name:"GLM-5",date:"2026-02-12",company:"Zhipu AI",open:true,intelligence:83,type:"LLM",cat:"text"},
+  {name:"MiniMax M2.5",date:"2026-02-12",company:"MiniMax",open:true,intelligence:75,type:"LLM",cat:"text"},
+  {name:"Gemini 3 Deep Think",date:"2026-02-13",company:"Google",open:false,intelligence:90,type:"Reasoning",cat:"reasoning"},
+  {name:"Gemini 3.1 Flash-Lite",date:"2026-03-03",company:"Google",open:false,intelligence:68,type:"LLM",cat:"multi"},
+  {name:"Qwen 3.5 Flash",date:"2026-03-04",company:"Alibaba",open:true,intelligence:72,type:"LLM",cat:"multi"},
+  {name:"Mercury Coder (dLLM)",date:"2025-11-18",company:"Inception",open:false,intelligence:45,type:"Text Diffusion",cat:"code"},
+  {name:"Mercury 2 (dLLM)",date:"2026-02-24",company:"Inception",open:false,intelligence:62,type:"Text Diffusion",cat:"reasoning"},
+  {name:"Nemotron 3 Nano",date:"2025-12-15",company:"NVIDIA",open:true,intelligence:58,type:"LLM",cat:"text"},
+  {name:"Llama Nemotron Super",date:"2025-03-18",company:"NVIDIA",open:true,intelligence:55,type:"LLM",cat:"text"},
+  {name:"Granite 4.0",date:"2025-10-03",company:"IBM",open:true,intelligence:48,type:"LLM",cat:"text"},
+  {name:"K-EXAONE (236B MoE)",date:"2025-12-31",company:"LG AI",open:true,intelligence:68,type:"LLM",cat:"text"},
+  {name:"EXAONE 4.0",date:"2025-07-15",company:"LG AI",open:true,intelligence:55,type:"LLM",cat:"text"},
+  {name:"Cohere Command R+",date:"2024-04-04",company:"Cohere",open:true,intelligence:48,type:"LLM",cat:"text"},
+  {name:"Command A",date:"2025-03-13",company:"Cohere",open:true,intelligence:55,type:"LLM",cat:"text"},
+  {name:"Jamba 1.5",date:"2024-08-22",company:"AI21 Labs",open:true,intelligence:45,type:"LLM",cat:"text"},
+  {name:"GPT-5 Mini",date:"2025-08-07",company:"OpenAI",open:false,intelligence:62,type:"LLM",cat:"multi"},
+  {name:"GPT-5 Nano",date:"2025-08-07",company:"OpenAI",open:false,intelligence:48,type:"LLM",cat:"multi"},
+  {name:"GPT-5.1 Codex Max",date:"2025-12-04",company:"OpenAI",open:false,intelligence:82,type:"LLM",cat:"code"},
+  {name:"GPT-5.3 Codex",date:"2026-02-01",company:"OpenAI",open:false,intelligence:86,type:"LLM",cat:"code"},
+  {name:"gpt-oss-20b",date:"2025-08-01",company:"OpenAI",open:true,intelligence:45,type:"LLM",cat:"text"},
+  {name:"Gemini 3 Pro Image",date:"2025-12-01",company:"Google",open:false,intelligence:60,type:"Diffusion",cat:"image"},
+  {name:"Mistral Medium 3.1",date:"2025-09-01",company:"Mistral AI",open:false,intelligence:62,type:"LLM",cat:"text"},
+  {name:"Devstral Small 2",date:"2025-12-09",company:"Mistral AI",open:true,intelligence:52,type:"LLM",cat:"code"},
+  {name:"Voxtral Transcribe 2",date:"2026-01-15",company:"Mistral AI",open:true,intelligence:50,type:"ASR",cat:"audio"},
+  {name:"FLUX 2 Max",date:"2026-01-15",company:"Black Forest Labs",open:false,intelligence:62,type:"Diffusion",cat:"image"},
+  {name:"Seedream 5.0",date:"2026-02-20",company:"ByteDance",open:false,intelligence:58,type:"Diffusion",cat:"image"},
+  {name:"Qwen-Image 2.0",date:"2026-02-01",company:"Alibaba",open:false,intelligence:58,type:"Diffusion",cat:"image"},
+  {name:"Hunyuan Image 3.0",date:"2026-01-26",company:"Tencent",open:true,intelligence:55,type:"Diffusion",cat:"image"},
+  {name:"Wan 2.6",date:"2026-01-29",company:"Alibaba",open:true,intelligence:55,type:"Diffusion",cat:"video"},
+  {name:"Runway Gen-4.5",date:"2026-03-02",company:"Runway",open:false,intelligence:58,type:"Diffusion",cat:"video"},
+  {name:"Ministral 3B/8B",date:"2024-10-16",company:"Mistral AI",open:true,intelligence:38,type:"LLM",cat:"text"},
+  {name:"Codestral",date:"2024-05-29",company:"Mistral AI",open:false,intelligence:48,type:"LLM",cat:"code"},
+  {name:"Mistral Nemo 12B",date:"2024-07-18",company:"Mistral AI",open:true,intelligence:42,type:"LLM",cat:"text"},
+  {name:"Gemma 3",date:"2025-03-12",company:"Google",open:true,intelligence:52,type:"LLM",cat:"multi"},
+  {name:"Granite 3.1",date:"2025-03-05",company:"IBM",open:true,intelligence:40,type:"LLM",cat:"text"},
+  {name:"Codestral 25.01",date:"2025-01-14",company:"Mistral AI",open:false,intelligence:52,type:"LLM",cat:"code"},
+  {name:"Seed1.5-VL",date:"2025-05-12",company:"ByteDance",open:true,intelligence:58,type:"LLM",cat:"multi"},
+  {name:"Codestral 25.08",date:"2025-08-01",company:"Mistral AI",open:false,intelligence:58,type:"LLM",cat:"code"},
+  {name:"Seed-OSS-36B",date:"2025-08-21",company:"ByteDance",open:true,intelligence:58,type:"LLM",cat:"text"},
+  {name:"Magistral Small",date:"2025-06-01",company:"Mistral AI",open:true,intelligence:52,type:"Reasoning",cat:"reasoning"},
+  {name:"Magistral Medium",date:"2025-06-01",company:"Mistral AI",open:false,intelligence:60,type:"Reasoning",cat:"reasoning"},
+  {name:"Ernie 4.5",date:"2025-06-01",company:"Baidu",open:true,intelligence:55,type:"LLM",cat:"text"},
+  {name:"LFM-1 (Liquid)",date:"2025-03-01",company:"Liquid AI",open:false,intelligence:35,type:"LLM",cat:"text"},
+  {name:"Ministral 3 (3B/8B/14B)",date:"2025-12-02",company:"Mistral AI",open:true,intelligence:55,type:"LLM",cat:"multi"},
+  {name:"Rnj-1 (8B)",date:"2025-12-06",company:"Essential AI",open:true,intelligence:55,type:"LLM",cat:"code"},
+  {name:"LFM2 (24B-A2B)",date:"2026-01-10",company:"Liquid AI",open:true,intelligence:50,type:"LLM",cat:"text"},
+  {name:"Make-A-Video",date:"2022-09-29",company:"Meta",open:false,intelligence:18,type:"Diffusion",cat:"video"},
+  {name:"CogVideo",date:"2022-05-29",company:"Tsinghua/Zhipu",open:true,intelligence:15,type:"Diffusion",cat:"video"},
+  {name:"Runway Gen-1",date:"2023-02-06",company:"Runway",open:false,intelligence:25,type:"Diffusion",cat:"video"},
+  {name:"Runway Gen-2",date:"2023-06-07",company:"Runway",open:false,intelligence:32,type:"Diffusion",cat:"video"},
+  {name:"Pika 1.0",date:"2023-11-28",company:"Pika",open:false,intelligence:30,type:"Diffusion",cat:"video"},
+  {name:"Stable Video Diffusion",date:"2023-11-21",company:"Stability AI",open:true,intelligence:28,type:"Diffusion",cat:"video"},
+  {name:"Kling 1.0",date:"2024-06-06",company:"Kuaishou",open:false,intelligence:42,type:"Diffusion",cat:"video"},
+  {name:"Luma Dream Machine",date:"2024-06-13",company:"Luma AI",open:false,intelligence:40,type:"Diffusion",cat:"video"},
+  {name:"Runway Gen-3 Alpha",date:"2024-06-17",company:"Runway",open:false,intelligence:45,type:"Diffusion",cat:"video"},
+  {name:"CogVideoX",date:"2024-08-06",company:"Tsinghua/Zhipu",open:true,intelligence:38,type:"Diffusion",cat:"video"},
+  {name:"Hailuo AI (Video-01)",date:"2024-09-01",company:"MiniMax",open:false,intelligence:42,type:"Diffusion",cat:"video"},
+  {name:"Meta Movie Gen",date:"2024-10-04",company:"Meta",open:false,intelligence:45,type:"Diffusion",cat:"video"},
+  {name:"Mochi 1",date:"2024-10-22",company:"Genmo",open:true,intelligence:35,type:"Diffusion",cat:"video"},
+  {name:"Kling 1.6",date:"2024-12-20",company:"Kuaishou",open:false,intelligence:48,type:"Diffusion",cat:"video"},
+  {name:"Wan 2.1",date:"2025-02-22",company:"Alibaba",open:true,intelligence:48,type:"Diffusion",cat:"video"},
+  {name:"Runway Gen-4",date:"2025-03-31",company:"Runway",open:false,intelligence:52,type:"Diffusion",cat:"video"},
+  {name:"Seedance 1.0",date:"2025-06-12",company:"ByteDance",open:false,intelligence:50,type:"Diffusion",cat:"video"},
+  {name:"Kling 2.1",date:"2025-08-01",company:"Kuaishou",open:false,intelligence:55,type:"Diffusion",cat:"video"},
+  {name:"Luma Ray 2",date:"2025-09-18",company:"Luma AI",open:false,intelligence:52,type:"Diffusion",cat:"video"},
+  {name:"Pika 2.1",date:"2025-06-01",company:"Pika",open:false,intelligence:48,type:"Diffusion",cat:"video"},
+  {name:"Seedance 2.0",date:"2025-11-01",company:"ByteDance",open:false,intelligence:55,type:"Diffusion",cat:"video"},
+  {name:"Kling O1",date:"2025-12-15",company:"Kuaishou",open:false,intelligence:58,type:"Diffusion",cat:"video"},
+  {name:"Veo 3.1",date:"2026-01-15",company:"Google",open:false,intelligence:62,type:"Diffusion",cat:"video"},
+  {name:"LTX Video (2B)",date:"2024-11-01",company:"Lightricks",open:true,intelligence:35,type:"Diffusion",cat:"video"},
+  {name:"LTXV-13B",date:"2025-05-06",company:"Lightricks",open:true,intelligence:50,type:"Diffusion",cat:"video"},
+  {name:"LTX-2 (4K+audio)",date:"2025-10-23",company:"Lightricks",open:true,intelligence:58,type:"Diffusion",cat:"video"},
+  {name:"LTX-2.3 (19B, 4K stereo)",date:"2026-03-04",company:"Lightricks",open:true,intelligence:62,type:"Diffusion",cat:"video"},
+  {name:"Grok Imagine Video",date:"2025-07-28",company:"xAI",open:false,intelligence:45,type:"Diffusion",cat:"video"},
+  {name:"MusicLM",date:"2023-01-26",company:"Google",open:false,intelligence:22,type:"Diffusion",cat:"audio"},
+  {name:"MusicGen",date:"2023-06-12",company:"Meta",open:true,intelligence:25,type:"Diffusion",cat:"audio"},
+  {name:"AudioCraft",date:"2023-08-02",company:"Meta",open:true,intelligence:28,type:"Diffusion",cat:"audio"},
+  {name:"Bark (TTS)",date:"2023-04-15",company:"Suno",open:true,intelligence:20,type:"Diffusion",cat:"audio"},
+  {name:"Lyria 1",date:"2023-12-01",company:"Google",open:false,intelligence:30,type:"Diffusion",cat:"audio"},
+  {name:"Suno v3",date:"2024-03-21",company:"Suno",open:false,intelligence:38,type:"Diffusion",cat:"audio"},
+  {name:"Udio v1",date:"2024-04-10",company:"Udio",open:false,intelligence:40,type:"Diffusion",cat:"audio"},
+  {name:"Suno v4",date:"2024-11-19",company:"Suno",open:false,intelligence:48,type:"Diffusion",cat:"audio"},
+  {name:"Suno v4.5",date:"2025-05-01",company:"Suno",open:false,intelligence:55,type:"Diffusion",cat:"audio"},
+  {name:"Lyria 2",date:"2025-04-24",company:"Google",open:false,intelligence:42,type:"Diffusion",cat:"audio"},
+  {name:"ElevenLabs Music v3",date:"2025-08-01",company:"ElevenLabs",open:false,intelligence:48,type:"Diffusion",cat:"audio"},
+  {name:"Lyria 3",date:"2026-02-18",company:"Google",open:false,intelligence:52,type:"Diffusion",cat:"audio"},
+  {name:"Riffusion",date:"2022-12-15",company:"Riffusion",open:true,intelligence:15,type:"Diffusion",cat:"audio"},
+  {name:"AIVA",date:"2023-01-01",company:"AIVA",open:false,intelligence:20,type:"Diffusion",cat:"audio"},
+  {name:"Mureka",date:"2024-06-01",company:"Mureka",open:false,intelligence:35,type:"Diffusion",cat:"audio"},
+  {name:"Boomy",date:"2023-01-01",company:"Boomy",open:false,intelligence:15,type:"Diffusion",cat:"audio"},
+  {name:"ElevenLabs v2",date:"2024-01-01",company:"ElevenLabs",open:false,intelligence:35,type:"Diffusion",cat:"audio"},
+  {name:"Sesame CSM",date:"2025-03-14",company:"Sesame AI",open:true,intelligence:40,type:"Diffusion",cat:"audio"},
+  {name:"Grok 4.20",date:"2026-02-17",company:"xAI",open:false,intelligence:83,type:"LLM",cat:"text"},
+  {name:"Seed 2.0 Pro",date:"2026-02-14",company:"ByteDance",open:false,intelligence:82,type:"LLM",cat:"multi"},
+  {name:"Seed 2.0 Lite",date:"2026-03-10",company:"ByteDance",open:false,intelligence:78,type:"LLM",cat:"multi"},
+  {name:"Nemotron 3 Super",date:"2026-03-11",company:"NVIDIA",open:true,intelligence:73,type:"LLM",cat:"code"},
+  {name:"Mistral Small 4",date:"2026-03-16",company:"Mistral AI",open:true,intelligence:68,type:"LLM",cat:"multi"},
+  {name:"GPT-5.4 Mini",date:"2026-03-17",company:"OpenAI",open:false,intelligence:78,type:"LLM",cat:"multi"},
+  {name:"GPT-5.4 Nano",date:"2026-03-17",company:"OpenAI",open:false,intelligence:65,type:"LLM",cat:"multi"},
+  {name:"Midjourney V8 Alpha",date:"2026-03-17",company:"Midjourney",open:false,intelligence:62,type:"Diffusion",cat:"image"},
+  {name:"MiMo-V2-Pro",date:"2026-03-18",company:"Xiaomi",open:false,intelligence:82,type:"LLM",cat:"code"},
+  {name:"MiMo-V2-Omni",date:"2026-03-18",company:"Xiaomi",open:false,intelligence:76,type:"Multimodal",cat:"multi"},
+  {name:"MiniMax M2.7",date:"2026-03-18",company:"MiniMax",open:false,intelligence:80,type:"LLM",cat:"text"}
+];
+
+// URL map — official announcements, arxiv papers, GitHub repos
+const modelUrls={
+"Transformer (original)":"https://arxiv.org/abs/1706.03762",
+"ELMo":"https://arxiv.org/abs/1802.05365",
+"ULMFiT":"https://arxiv.org/abs/1801.06146",
+"GPT-1":"https://openai.com/index/language-unsupervised/",
+"BERT":"https://arxiv.org/abs/1810.04805",
+"Transformer-XL":"https://arxiv.org/abs/1901.02860",
+"GPT-2":"https://openai.com/index/better-language-models/",
+"XLNet":"https://arxiv.org/abs/1906.08237",
+"RoBERTa":"https://arxiv.org/abs/1907.11692",
+"ALBERT":"https://arxiv.org/abs/1909.11942",
+"T5":"https://arxiv.org/abs/1910.10683",
+"DistilBERT":"https://arxiv.org/abs/1910.01108",
+"GPT-3":"https://arxiv.org/abs/2005.14165",
+"mBART":"https://arxiv.org/abs/2001.08210",
+"DALL·E":"https://openai.com/index/dall-e/",
+"CLIP":"https://openai.com/index/clip/",
+"LaMDA":"https://blog.google/technology/ai/lamda/",
+"Codex":"https://openai.com/blog/openai-codex/",
+"Megatron-Turing NLG":"https://developer.nvidia.com/blog/using-deepspeed-and-megatron-to-train-megatron-turing-nlg-530b/",
+"Gopher":"https://arxiv.org/abs/2112.11446",
+"GLIDE":"https://arxiv.org/abs/2112.10741",
+"Jurassic-1":"https://www.ai21.com/blog/announcing-ai21-studio-and-jurassic-1",
+"Ernie 3.0":"https://arxiv.org/abs/2107.02137",
+"Chinchilla":"https://arxiv.org/abs/2203.15556",
+"PaLM":"https://arxiv.org/abs/2204.02311",
+"DALL·E 2":"https://openai.com/index/dall-e-2/",
+"Imagen":"https://arxiv.org/abs/2205.11487",
+"Midjourney v1":"https://www.midjourney.com/",
+"Stable Diffusion 1.x":"https://stability.ai/blog/stable-diffusion-public-release",
+"BLOOM":"https://arxiv.org/abs/2211.05100",
+"Minerva":"https://arxiv.org/abs/2206.14858",
+"Whisper":"https://openai.com/index/whisper/",
+"Flan-T5":"https://arxiv.org/abs/2210.11416",
+"ChatGPT (GPT-3.5)":"https://openai.com/index/chatgpt/",
+"YaLM 100B":"https://github.com/yandex/YaLM-100B",
+"AlexaTM 20B":"https://arxiv.org/abs/2208.01448",
+"GPT-4":"https://openai.com/index/gpt-4/",
+"Claude 1":"https://www.anthropic.com/news/introducing-claude",
+"PaLM 2":"https://ai.google/discover/palm2/",
+"Llama 1":"https://arxiv.org/abs/2302.13971",
+"Llama 2":"https://ai.meta.com/llama/",
+"Claude 2":"https://www.anthropic.com/news/claude-2",
+"Mistral 7B":"https://mistral.ai/news/announcing-mistral-7b/",
+"Falcon 180B":"https://falconllm.tii.ae/",
+"Gemini 1.0":"https://blog.google/technology/ai/google-gemini-ai/",
+"Mixtral 8x7B":"https://mistral.ai/news/mixtral-of-experts/",
+"DALL·E 3":"https://openai.com/index/dall-e-3/",
+"Midjourney v5":"https://www.midjourney.com/",
+"Stable Diffusion XL":"https://stability.ai/news/stable-diffusion-sdxl-1-announcement",
+"Grok-1":"https://x.ai/blog/grok",
+"Claude 2.1":"https://www.anthropic.com/news/claude-2-1",
+"Phi-1":"https://arxiv.org/abs/2306.11644",
+"Phi-2":"https://www.microsoft.com/en-us/research/blog/phi-2-the-surprising-power-of-small-language-models/",
+"DeepSeek LLM":"https://github.com/deepseek-ai/DeepSeek-LLM",
+"Qwen 1.0":"https://github.com/QwenLM/Qwen",
+"Yi 34B":"https://github.com/01-ai/Yi",
+"Cohere Command R":"https://cohere.com/blog/command-r",
+"Claude 3 Opus":"https://www.anthropic.com/news/claude-3-family",
+"Claude 3 Sonnet":"https://www.anthropic.com/news/claude-3-family",
+"Claude 3 Haiku":"https://www.anthropic.com/news/claude-3-family",
+"Gemini 1.5 Pro":"https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/",
+"Llama 3":"https://ai.meta.com/blog/meta-llama-3/",
+"Mistral Large":"https://mistral.ai/news/mistral-large/",
+"GPT-4o":"https://openai.com/index/hello-gpt-4o/",
+"GPT-4o mini":"https://openai.com/index/gpt-4o-mini-advancing-cost-efficient-intelligence/",
+"Claude 3.5 Sonnet":"https://www.anthropic.com/news/claude-3-5-sonnet",
+"Gemma 1.0":"https://blog.google/technology/developers/gemma-open-models/",
+"Stable Diffusion 3":"https://stability.ai/news/stable-diffusion-3",
+"Midjourney v6":"https://www.midjourney.com/",
+"Sora":"https://openai.com/index/sora/",
+"FLUX.1":"https://blackforestlabs.ai/announcing-black-forest-labs/",
+"Grok-1.5":"https://x.ai/blog/grok-1.5",
+"Grok-2":"https://x.ai/blog/grok-2",
+"Llama 3.1 405B":"https://ai.meta.com/blog/meta-llama-3-1/",
+"Mistral Large 2":"https://mistral.ai/news/mistral-large-2407/",
+"DeepSeek-V2":"https://github.com/deepseek-ai/DeepSeek-V2",
+"Qwen 2":"https://qwenlm.github.io/blog/qwen2/",
+"Phi-3":"https://arxiv.org/abs/2404.14219",
+"o1-preview":"https://openai.com/index/learning-to-reason-with-llms/",
+"o1-mini":"https://openai.com/index/learning-to-reason-with-llms/",
+"Claude 3.5 Sonnet v2":"https://www.anthropic.com/news/3-5-models-and-computer-use",
+"Claude 3.5 Haiku":"https://www.anthropic.com/news/3-5-models-and-computer-use",
+"Llama 3.2":"https://ai.meta.com/blog/llama-3-2-connect-2024-vision-edge-mobile-devices/",
+"Qwen 2.5":"https://qwenlm.github.io/blog/qwen2.5/",
+"Gemini 2.0 Flash Exp":"https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/",
+"DeepSeek-V3":"https://github.com/deepseek-ai/DeepSeek-V3",
+"QwQ-32B":"https://qwenlm.github.io/blog/qwq-32b-preview/",
+"DeepSeek-R1-Lite":"https://api-docs.deepseek.com/news/news1120",
+"Recraft V3":"https://www.recraft.ai/blog/recraft-v3",
+"Aurora":"https://x.ai/blog/aurora",
+"Imagen 3":"https://deepmind.google/technologies/imagen-3/",
+"GPT-4 Turbo":"https://openai.com/index/gpt-4-turbo/",
+"Llama 3.3":"https://ai.meta.com/blog/llama-3-3/",
+"Gemma 2":"https://blog.google/technology/developers/google-gemma-2/",
+"Ideogram 2.0":"https://about.ideogram.ai/2.0",
+"DeepSeek-R1":"https://github.com/deepseek-ai/DeepSeek-R1",
+"GPT-4.5 Orion":"https://openai.com/index/introducing-gpt-4-5/",
+"Gemini 2.0 Pro":"https://blog.google/technology/google-deepmind/gemini-model-updates-february-2025/",
+"Grok-3":"https://x.ai/blog/grok-3",
+"Claude 3.7 Sonnet":"https://www.anthropic.com/news/claude-3-7-sonnet",
+"Mistral Small 3":"https://mistral.ai/news/mistral-small-3/",
+"Gemini 2.5 Pro":"https://blog.google/technology/google-deepmind/gemini-2-5-pro-experiment/",
+"GPT-4.1":"https://openai.com/index/gpt-4-1/",
+"Llama 4":"https://ai.meta.com/blog/llama-4/",
+"o3 / o4-mini":"https://openai.com/index/introducing-o3-and-o4-mini/",
+"Qwen 3":"https://qwenlm.github.io/blog/qwen3/",
+"Gemini 2.5 Flash":"https://blog.google/technology/google-deepmind/gemini-2-5-flash/",
+"Claude Sonnet 4":"https://www.anthropic.com/news/claude-sonnet-4",
+"Claude Opus 4":"https://www.anthropic.com/news/claude-opus-4",
+"Phi-4":"https://www.microsoft.com/en-us/research/blog/phi-4/",
+"Stable Diffusion 3.5":"https://stability.ai/news/stable-diffusion-3-5",
+"Gemma 3n":"https://blog.google/technology/developers/gemma-3n/",
+"Midjourney v7":"https://www.midjourney.com/",
+"Gemini Diffusion":"https://blog.google/technology/google-deepmind/gemini-diffusion/",
+"DeepSeek-R1.1":"https://github.com/deepseek-ai/DeepSeek-R1",
+"Kimi K2":"https://github.com/MoonshotAI/Kimi-K2",
+"GLM-4.5":"https://github.com/THUDM/GLM-4",
+"Qwen3-Coder":"https://qwenlm.github.io/blog/qwen3-coder/",
+"Grok-4":"https://x.ai/blog/grok-4",
+"Grok-4 Heavy":"https://x.ai/blog/grok-4",
+"Gemini Deep Think":"https://deepmind.google/technologies/gemini/",
+"GPT-5":"https://openai.com/index/gpt-5/",
+"gpt-oss-120b":"https://github.com/openai/gpt-oss",
+"Claude Opus 4.1":"https://www.anthropic.com/news/claude-opus-4-1",
+"Sonnet 4.5":"https://www.anthropic.com/news/sonnet-4-5",
+"Sora 2":"https://openai.com/index/sora/",
+"Veo 2":"https://deepmind.google/technologies/veo/",
+"Veo 3":"https://deepmind.google/technologies/veo/",
+"GPT-5.1":"https://openai.com/index/gpt-5-1/",
+"Imagen 4":"https://deepmind.google/technologies/imagen/",
+"GPT Image 1.5":"https://openai.com/index/introducing-gpt-image-1/",
+"Haiku 4.5":"https://www.anthropic.com/news/haiku-4-5",
+"Grok-4.1":"https://x.ai/blog/grok-4-1",
+"Gemini 3.0 Pro":"https://blog.google/technology/google-deepmind/gemini-3/",
+"Opus 4.5":"https://www.anthropic.com/news/opus-4-5",
+"FLUX 2 Dev":"https://blackforestlabs.ai/flux-2/",
+"Nano Banana":"https://blog.google/technology/google-deepmind/nano-banana/",
+"DeepSeek-V3.2":"https://github.com/deepseek-ai/DeepSeek-V3",
+"Mistral Large 3":"https://mistral.ai/news/mistral-large-3/",
+"GPT-5.2":"https://openai.com/index/gpt-5-2/",
+"Gemini 3.0 Flash":"https://blog.google/technology/google-deepmind/gemini-3/",
+"GPT-5.3 Instant":"https://openai.com/index/gpt-5-3/",
+"Mistral 3 675B":"https://mistral.ai/news/mistral-3/",
+"Qwen3-Max":"https://qwenlm.github.io/blog/qwen3/",
+"Qwen3-Next":"https://qwenlm.github.io/blog/qwen3/",
+"Qwen3-Max-Thinking":"https://qwenlm.github.io/blog/qwen3/",
+"Qwen3-Coder-Next":"https://qwenlm.github.io/blog/qwen3-coder/",
+"Qwen 3.5 (397B-A17B)":"https://qwenlm.github.io/blog/qwen3.5/",
+"Qwen 3.5-Plus":"https://qwenlm.github.io/blog/qwen3.5/",
+"Opus 4.6":"https://www.anthropic.com/news/opus-4-6",
+"Sonnet 4.6":"https://www.anthropic.com/news/sonnet-4-6",
+"Gemini 3.1 Pro":"https://blog.google/technology/google-deepmind/gemini-3-1/",
+"Nano Banana 2":"https://blog.google/technology/google-deepmind/nano-banana-2/",
+"GPT-5.4":"https://openai.com/index/gpt-5-4/",
+"GPT-5.4 Thinking":"https://openai.com/index/gpt-5-4/",
+"Grok 3 Mini":"https://x.ai/blog/grok-3",
+"Gemini 2.5 Flash Lite":"https://blog.google/technology/google-deepmind/gemini-2-5-flash/",
+"Grok-4 Fast":"https://x.ai/blog/grok-4",
+"GLM-4.6":"https://github.com/THUDM/GLM-4",
+"Magistral Medium":"https://mistral.ai/news/magistral/",
+"Kimi K2 Thinking":"https://github.com/MoonshotAI/Kimi-K2",
+"GPT-5.1 Codex":"https://openai.com/index/gpt-5-1/",
+"MiMo-V2-Flash":"https://github.com/xiaomi/mimo",
+"MiniMax-M2.1":"https://www.minimax.io/",
+"GLM-4.7":"https://github.com/THUDM/GLM-4",
+"Devstral 2":"https://mistral.ai/news/devstral-2/",
+"Nova 2.0 Pro":"https://aws.amazon.com/ai/generative-ai/nova/",
+"OLMo 3.1":"https://allenai.org/olmo",
+"Kimi K2.5":"https://github.com/MoonshotAI/Kimi-K2",
+"Kimi K2.5 Thinking":"https://github.com/MoonshotAI/Kimi-K2",
+"GLM-5":"https://github.com/THUDM/GLM",
+"MiniMax M2.5":"https://www.minimax.io/",
+"Gemini 3 Deep Think":"https://blog.google/technology/google-deepmind/gemini-3/",
+"Gemini 3.1 Flash-Lite":"https://blog.google/technology/google-deepmind/gemini-3-1/",
+"Qwen 3.5 Flash":"https://qwenlm.github.io/blog/qwen3.5/",
+"Mercury Coder (dLLM)":"https://www.inceptionlabs.ai/",
+"Mercury 2 (dLLM)":"https://www.inceptionlabs.ai/",
+"Nemotron 3 Nano":"https://developer.nvidia.com/nemotron",
+"Llama Nemotron Super":"https://developer.nvidia.com/blog/llama-nemotron/",
+"Granite 4.0":"https://github.com/ibm-granite",
+"K-EXAONE (236B MoE)":"https://github.com/LG-AI-EXAONE/EXAONE",
+"EXAONE 4.0":"https://github.com/LG-AI-EXAONE/EXAONE",
+"Cohere Command R+":"https://cohere.com/blog/command-r-plus",
+"Command A":"https://cohere.com/blog/command-a",
+"Jamba 1.5":"https://www.ai21.com/blog/jamba-1-5",
+"GPT-5 Mini":"https://openai.com/index/gpt-5/",
+"GPT-5 Nano":"https://openai.com/index/gpt-5/",
+"GPT-5.1 Codex Max":"https://openai.com/index/gpt-5-1/",
+"GPT-5.3 Codex":"https://openai.com/index/gpt-5-3/",
+"gpt-oss-20b":"https://github.com/openai/gpt-oss",
+"Gemini 3 Pro Image":"https://blog.google/technology/google-deepmind/gemini-3/",
+"Mistral Medium 3.1":"https://mistral.ai/news/mistral-medium-3/",
+"Devstral Small 2":"https://mistral.ai/news/devstral/",
+"Voxtral Transcribe 2":"https://mistral.ai/news/voxtral/",
+"FLUX 2 Max":"https://blackforestlabs.ai/flux-2/",
+"Seedream 5.0":"https://github.com/bytedance/seedream",
+"Qwen-Image 2.0":"https://qwenlm.github.io/blog/",
+"Hunyuan Image 3.0":"https://github.com/Tencent/HunyuanDiT",
+"Wan 2.6":"https://github.com/Wan-Video/Wan2.1",
+"Runway Gen-4.5":"https://runwayml.com/",
+"Ministral 3B/8B":"https://mistral.ai/news/ministraux/",
+"Codestral":"https://mistral.ai/news/codestral/",
+"Mistral Nemo 12B":"https://mistral.ai/news/mistral-nemo/",
+"Gemma 3":"https://blog.google/technology/developers/gemma-3/",
+"Granite 3.1":"https://github.com/ibm-granite",
+"Codestral 25.01":"https://mistral.ai/news/codestral-2501/",
+"Seed1.5-VL":"https://github.com/bytedance/seed-vl",
+"Codestral 25.08":"https://mistral.ai/news/codestral/",
+"Seed-OSS-36B":"https://github.com/bytedance/seed",
+"Magistral Small":"https://mistral.ai/news/magistral/",
+"Ernie 4.5":"https://yiyan.baidu.com/",
+"LFM-1 (Liquid)":"https://www.liquid.ai/",
+"Ministral 3 (3B/8B/14B)":"https://mistral.ai/news/ministraux/",
+"Rnj-1 (8B)":"https://www.essential.ai/",
+"LFM2 (24B-A2B)":"https://www.liquid.ai/",
+"Make-A-Video":"https://arxiv.org/abs/2209.14792",
+"CogVideo":"https://github.com/THUDM/CogVideo",
+"Runway Gen-1":"https://runwayml.com/",
+"Runway Gen-2":"https://runwayml.com/",
+"Pika 1.0":"https://pika.art/",
+"Stable Video Diffusion":"https://stability.ai/news/stable-video-diffusion-open-ai-video-model",
+"Kling 1.0":"https://kling.kuaishou.com/",
+"Luma Dream Machine":"https://lumalabs.ai/",
+"Runway Gen-3 Alpha":"https://runwayml.com/",
+"CogVideoX":"https://github.com/THUDM/CogVideo",
+"Hailuo AI (Video-01)":"https://hailuoai.video/",
+"Meta Movie Gen":"https://ai.meta.com/blog/movie-gen-media-foundation-models-generative-ai-video/",
+"Mochi 1":"https://github.com/genmoai/mochi",
+"Kling 1.6":"https://kling.kuaishou.com/",
+"Wan 2.1":"https://github.com/Wan-Video/Wan2.1",
+"Runway Gen-4":"https://runwayml.com/",
+"Seedance 1.0":"https://github.com/bytedance/seedance",
+"Kling 2.1":"https://kling.kuaishou.com/",
+"Luma Ray 2":"https://lumalabs.ai/",
+"Pika 2.1":"https://pika.art/",
+"Seedance 2.0":"https://github.com/bytedance/seedance",
+"Kling O1":"https://kling.kuaishou.com/",
+"Veo 3.1":"https://deepmind.google/technologies/veo/",
+"LTX Video (2B)":"https://github.com/Lightricks/LTX-Video",
+"LTXV-13B":"https://github.com/Lightricks/LTX-Video",
+"LTX-2 (4K+audio)":"https://github.com/Lightricks/LTX-Video",
+"LTX-2.3 (19B, 4K stereo)":"https://github.com/Lightricks/LTX-Video",
+"Grok Imagine Video":"https://x.ai/blog/grok-imagine",
+"MusicLM":"https://arxiv.org/abs/2301.11325",
+"MusicGen":"https://github.com/facebookresearch/audiocraft",
+"AudioCraft":"https://github.com/facebookresearch/audiocraft",
+"Bark (TTS)":"https://github.com/suno-ai/bark",
+"Lyria 1":"https://deepmind.google/technologies/lyria/",
+"Suno v3":"https://suno.com/",
+"Udio v1":"https://www.udio.com/",
+"Suno v4":"https://suno.com/",
+"Suno v4.5":"https://suno.com/",
+"Lyria 2":"https://deepmind.google/technologies/lyria/",
+"ElevenLabs Music v3":"https://elevenlabs.io/",
+"Lyria 3":"https://deepmind.google/technologies/lyria/",
+"Riffusion":"https://github.com/riffusion/riffusion",
+"AIVA":"https://www.aiva.ai/",
+"Mureka":"https://www.mureka.ai/",
+"Boomy":"https://boomy.com/",
+"ElevenLabs v2":"https://elevenlabs.io/",
+"Sesame CSM":"https://github.com/SesameAILabs/csm"
+};
+models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
+
+// --- i18n ---
+const i18n={
+  en:{
+    sub:n=>`${n} models · <span style="color:#f472b6">●</span> closed &nbsp; <span style="color:#34d399">●</span> open source · hover for details`,
+    search:"Search model, company...",
+    range:"Range:",sort:"Sort:",date:"Date",intel:"Intelligence",
+    all:"All",noR:"Non-Reasoning",
+    cats:{all:"All",text:"Text",code:"Code",image:"Image",video:"Video",audio:"Audio",multi:"Multi",reasoning:"Reasoning"},
+    showing:"Showing",openPct:"Open",avgIntel:"Avg Intel",top:"Top",maxIntel:"Max Intel",
+    noRes:"No results",intelRank:"Intelligence Ranking",models:"models",
+    yAxis:"INTELLIGENCE",thisM:"This",avg:"Avg",max:"Max",vs:"vs",
+    footer:"* Estimated intelligence (0\u2013100), relative to state of the art in March 2026. Based on public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Diffusion models rated by generation quality and prompt adherence. Not absolute metrics.",
+    cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
+    loc:"en-US"
+  },
+  es:{
+    sub:n=>`${n} modelos · <span style="color:#f472b6">●</span> closed &nbsp; <span style="color:#34d399">●</span> open source · hover para detalles`,
+    search:"Buscar modelo, empresa...",
+    range:"Rango:",sort:"Ordenar:",date:"Fecha",intel:"Inteligencia",
+    all:"Todos",noR:"Sin Reasoning",
+    cats:{all:"Todos",text:"Texto",code:"C\u00f3digo",image:"Imagen",video:"Video",audio:"Audio",multi:"Multi",reasoning:"Reasoning"},
+    showing:"Mostrando",openPct:"Open",avgIntel:"Intel promedio",top:"Top",maxIntel:"Max Intel",
+    noRes:"Sin resultados",intelRank:"Ranking por Inteligencia",models:"modelos",
+    yAxis:"INTELIGENCIA",thisM:"Este",avg:"Avg",max:"Max",vs:"vs",
+    footer:"* Inteligencia estimada (0\u2013100), relativa al estado del arte en marzo 2026. Basado en benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opiniones de expertos y posicionamiento de mercado. Modelos de difusi\u00f3n evaluados por calidad de generaci\u00f3n y adherencia a prompts. No son m\u00e9tricas absolutas.",
+    cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tendencia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 ventana \u00b18%, peso = intel\u00b2, frontier domina</span>',
+    loc:"es-UY"
+  },
+  pt:{
+    sub:n=>`${n} modelos · <span style="color:#f472b6">●</span> closed &nbsp; <span style="color:#34d399">●</span> open source · hover para detalhes`,
+    search:"Buscar modelo, empresa...",
+    range:"Intervalo:",sort:"Ordenar:",date:"Data",intel:"Intelig\u00eancia",
+    all:"Todos",noR:"Sem Reasoning",
+    cats:{all:"Todos",text:"Texto",code:"C\u00f3digo",image:"Imagem",video:"V\u00eddeo",audio:"\u00c1udio",multi:"Multi",reasoning:"Reasoning"},
+    showing:"Mostrando",openPct:"Open",avgIntel:"Intel m\u00e9dia",top:"Top",maxIntel:"Max Intel",
+    noRes:"Sem resultados",intelRank:"Ranking por Intelig\u00eancia",models:"modelos",
+    yAxis:"INTELIG\u00caNCIA",thisM:"Este",avg:"M\u00e9d",max:"M\u00e1x",vs:"vs",
+    footer:"* Intelig\u00eancia estimada (0\u2013100), relativa ao estado da arte em mar\u00e7o de 2026. Baseado em benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opini\u00f5es de especialistas e posicionamento de mercado. Modelos de difus\u00e3o avaliados por qualidade de gera\u00e7\u00e3o e ader\u00eancia a prompts. N\u00e3o s\u00e3o m\u00e9tricas absolutas.",
+    cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tend\u00eancia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 janela \u00b18%, peso = intel\u00b2, frontier domina</span>',
+    loc:"pt-BR"
+  }
+};
+function detectLang(){
+  const saved=localStorage.getItem('tmlang');
+  if(saved&&i18n[saved])return saved;
+  try{
+    const tz=Intl.DateTimeFormat().resolvedOptions().timeZone||'';
+    if(/Sao_Paulo|Recife|Fortaleza|Bahia|Belem|Manaus|Cuiaba|Porto_Velho|Noronha|Rio_Branco|Boa_Vista|Macapa|Santarem|Lisboa|Lisbon|Azores|Madeira/.test(tz))return'pt';
+    if(/Mexico|Bogota|Buenos_Aires|Argentina|Lima|Santiago|Caracas|Montevideo|Asuncion|La_Paz|Guayaquil|Havana|Tegucigalpa|Managua|Guatemala|El_Salvador|Costa_Rica|Panama|Madrid|Canary|Santo_Domingo/.test(tz))return'es';
+  }catch(e){}
+  const nav=(navigator.language||'en').toLowerCase();
+  if(nav.startsWith('pt'))return'pt';
+  if(nav.startsWith('es'))return'es';
+  return'en';
+}
+let currentLang=detectLang();
+function t(k){return i18n[currentLang][k]}
+
+// Compute chronological numbering
+const chronoSorted=[...models].sort((a,b)=>new Date(a.date)-new Date(b.date));
+chronoSorted.forEach((m,i)=>{m.chronoNum=i+1});
+
+const PL=48,PR=14,PT=14,PB=36;
+const allYears=["2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"];
+const typeColors={LLM:"#6b8aff",Diffusion:"#c084fc",Reasoning:"#fbbf24",Multimodal:"#34d399",ASR:"#f472b6","Text Diffusion":"#06b6d4"};
+
+let showOpen=true,showClosed=true,typeFilter="all",yearFrom="2017",yearTo="2026",sortMode="date";
+let searchQuery="",catFilter="all";
+let playingTimeline=false,playTimeouts=[];
+let chartZoom=null; // null or {dateStart,dateEnd,intelMin,intelMax}
+const NOW_MS=new Date().getTime();
+const ONE_MONTH_MS=30*24*60*60*1000;
+function isNewModel(m){return(NOW_MS-new Date(m.date).getTime())<=ONE_MONTH_MS}
+
+// Build type buttons
+const typeBtnContainer=document.getElementById("typeButtons");
+["all","LLM","Diffusion","Reasoning","Non-Reasoning"].forEach(tp=>{
+  const btn=document.createElement("button");
+  btn.className="type-btn"+(tp==="all"?" active":"");
+  btn.textContent=tp==="all"?t('all'):tp==="Non-Reasoning"?t('noR'):tp;
+  btn.dataset.type=tp;
+  btn.addEventListener("click",()=>{typeFilter=tp;render()});
+  typeBtnContainer.appendChild(btn);
+});
+
+// Build cat buttons
+const catBtnContainer=document.getElementById("catButtons");
+const catKeys=["all","text","code","image","video","audio","multi","reasoning"];
+catKeys.forEach(c=>{
+  const btn=document.createElement("button");
+  btn.className="type-btn"+(c==="all"?" active":"");
+  btn.textContent=t('cats')[c]||c;
+  btn.dataset.cat=c;
+  btn.addEventListener("click",()=>{catFilter=c;render()});
+  catBtnContainer.appendChild(btn);
+});
+
+// Search input
+document.getElementById("searchInput").addEventListener("input",e=>{searchQuery=e.target.value;render()});
+
+// Play button
+document.getElementById("playBtn").addEventListener("click",()=>{
+  if(playingTimeline){stopTimeline()}else{playTimeline()}
+});
+
+function playTimeline(){
+  playingTimeline=true;
+  const btn=document.getElementById("playBtn");
+  btn.textContent="⏹ Stop";
+  btn.classList.add("playing");
+  const points=[...document.querySelectorAll("#chart .point")];
+  // Get model data index from each point to sort by date
+  const filtered=getFiltered();
+  points.forEach(p=>p.classList.add("hidden-point"));
+  const delay=Math.max(30,Math.min(80,3000/points.length));
+  points.forEach((p,i)=>{
+    const tid=setTimeout(()=>{
+      p.classList.remove("hidden-point");
+      p.classList.add("appear");
+    },delay*i);
+    playTimeouts.push(tid);
+  });
+  const endTid=setTimeout(()=>{
+    playingTimeline=false;
+    btn.textContent="▶ Play";
+    btn.classList.remove("playing");
+    playTimeouts=[];
+  },delay*points.length+400);
+  playTimeouts.push(endTid);
+}
+
+function stopTimeline(){
+  playTimeouts.forEach(t=>clearTimeout(t));
+  playTimeouts=[];
+  playingTimeline=false;
+  const btn=document.getElementById("playBtn");
+  btn.textContent="▶ Play";
+  btn.classList.remove("playing");
+  document.querySelectorAll("#chart .point").forEach(p=>{
+    p.classList.remove("hidden-point","appear");
+  });
+}
+
+// Build selects
+const selFrom=document.getElementById("selFrom"),selTo=document.getElementById("selTo");
+allYears.forEach(y=>{
+  selFrom.appendChild(new Option(y,y));
+  selTo.appendChild(new Option(y,y));
+});
+selTo.value="2026";
+selFrom.addEventListener("change",()=>{yearFrom=selFrom.value;if(parseInt(yearFrom)>parseInt(yearTo)){yearTo=yearFrom;selTo.value=yearTo}chartZoom=null;render()});
+selTo.addEventListener("change",()=>{yearTo=selTo.value;if(parseInt(yearTo)<parseInt(yearFrom)){yearFrom=yearTo;selFrom.value=yearFrom}chartZoom=null;render()});
+
+document.getElementById("chkOpen").addEventListener("change",e=>{showOpen=e.target.checked;render()});
+document.getElementById("chkClosed").addEventListener("change",e=>{showClosed=e.target.checked;render()});
+
+document.getElementById("sortDate").addEventListener("click",()=>{sortMode="date";render()});
+document.getElementById("sortIntel").addEventListener("click",()=>{sortMode="intelligence";render()});
+
+function fmtDate(d){return new Date(d+"T00:00:00").toLocaleDateString(t('loc'),{month:"short",day:"numeric"})}
+
+function getFiltered(){
+  return models.filter(m=>{
+    if(m.open&&!showOpen)return false;
+    if(!m.open&&!showClosed)return false;
+    if(typeFilter==="Non-Reasoning"){if(m.type==="Reasoning")return false}
+    else if(typeFilter!=="all"&&m.type!==typeFilter)return false;
+    if(catFilter!=="all"&&m.cat!==catFilter)return false;
+    if(searchQuery){
+      const q=searchQuery.toLowerCase();
+      if(!m.name.toLowerCase().includes(q)&&!m.company.toLowerCase().includes(q)&&!m.type.toLowerCase().includes(q))return false;
+    }
+    const y=parseInt(m.date.substring(0,4));
+    if(y<parseInt(yearFrom)||y>parseInt(yearTo))return false;
+    return true;
+  }).sort((a,b)=>new Date(b.date)-new Date(a.date));
+}
+
+function render(){
+  // Update type button states
+  document.querySelectorAll("#typeButtons .type-btn").forEach(b=>{
+    b.classList.toggle("active",b.dataset.type===typeFilter);
+  });
+  document.querySelectorAll("#catButtons .type-btn").forEach(b=>{
+    b.classList.toggle("active",b.dataset.cat===catFilter);
+  });
+
+  const filtered=getFiltered();
+  document.getElementById("filteredCount").textContent=filtered.length;
+
+  // Stats dashboard
+  const statsBar=document.getElementById("statsBar");
+  if(filtered.length>0){
+    const openCount=filtered.filter(m=>m.open).length;
+    const pctOpen=Math.round(openCount/filtered.length*100);
+    const avgIntel=Math.round(filtered.reduce((s,m)=>s+m.intelligence,0)/filtered.length);
+    const maxIntelModel=filtered.reduce((a,b)=>b.intelligence>a.intelligence?b:a);
+    const companyCount={};filtered.forEach(m=>{companyCount[m.company]=(companyCount[m.company]||0)+1});
+    const topCompany=Object.entries(companyCount).sort((a,b)=>b[1]-a[1])[0];
+    statsBar.innerHTML=`<span class="stat-item">${t('showing')} <b>${filtered.length}</b></span><span class="stat-item">${t('openPct')} <b>${pctOpen}%</b></span><span class="stat-item">${t('avgIntel')} <b>${avgIntel}</b></span><span class="stat-item">${t('top')} <b>${topCompany[0]}</b> (${topCompany[1]})</span><span class="stat-item">${t('maxIntel')} <b>${maxIntelModel.name}</b> (${maxIntelModel.intelligence})</span>`;
+  }else{
+    statsBar.innerHTML=`<span class="stat-item">${t('noRes')}</span>`;
+  }
+
+  const baseChartStart=new Date(yearFrom+"-01-01").getTime();
+  const baseChartEnd=new Date(yearTo==="2026"?"2026-04-15":(parseInt(yearTo)+1)+"-01-01").getTime();
+  const chartStart=chartZoom?chartZoom.dateStart:baseChartStart;
+  const chartEnd=chartZoom?chartZoom.dateEnd:baseChartEnd;
+  const chartRange=chartEnd-chartStart;
+  const intelMin=chartZoom?chartZoom.intelMin:0;
+  const intelMax=chartZoom?chartZoom.intelMax:100;
+  const intelRange=intelMax-intelMin;
+  const visibleYears=allYears.filter(y=>{const ts=new Date(y+"-01-01").getTime();return ts>=chartStart&&ts<=chartEnd});
+
+  // Build chart
+  const chart=document.getElementById("chart");
+  chart.innerHTML="";
+  chart.classList.toggle("crosshair",!chartZoom);
+
+  // Reset zoom button
+  if(chartZoom){
+    const resetBtn=document.createElement("button");
+    resetBtn.className="zoom-reset";
+    resetBtn.textContent="Reset Zoom";
+    resetBtn.addEventListener("click",e=>{e.stopPropagation();chartZoom=null;render()});
+    chart.appendChild(resetBtn);
+    const d1=new Date(chartStart),d2=new Date(chartEnd);
+    const infoEl=document.createElement("div");
+    infoEl.className="zoom-info";
+    infoEl.textContent=`${d1.toLocaleDateString(t('loc'),{month:"short",year:"numeric"})} – ${d2.toLocaleDateString(t('loc'),{month:"short",year:"numeric"})} · Intel ${Math.round(intelMin)}–${Math.round(intelMax)}`;
+    chart.appendChild(infoEl);
+  }
+
+  // Y grid — dynamic ticks
+  const yStep=intelRange<=20?2:intelRange<=50?5:10;
+  const yStart=Math.ceil(intelMin/yStep)*yStep;
+  for(let v=yStart;v<=intelMax;v+=yStep){
+    const frac=(v-intelMin)/intelRange;
+    const top=`calc(${PT}px + ${(1-frac)} * (100% - ${PT+PB}px))`;
+    const line=document.createElement("div");
+    line.className="grid-line-y";
+    line.style.cssText=`position:absolute;left:${PL}px;right:${PR}px;top:${top};height:1px;background:${v===intelMin?"var(--grid-base)":"var(--grid-line)"}`;
+    chart.appendChild(line);
+    const lbl=document.createElement("span");
+    lbl.className="grid-label-y";
+    lbl.style.top=top;
+    lbl.textContent=v;
+    chart.appendChild(lbl);
+  }
+
+  // X grid
+  visibleYears.forEach(yr=>{
+    const ts=new Date(yr+"-01-01").getTime();
+    const pct=(ts-chartStart)/chartRange;
+    if(pct<0||pct>1)return;
+    const left=`calc(${PL}px + ${pct} * (100% - ${PL+PR}px))`;
+    const line=document.createElement("div");
+    line.style.cssText=`position:absolute;top:${PT}px;bottom:${PB}px;left:${left};width:1px;background:var(--grid-line)`;
+    chart.appendChild(line);
+    const lbl=document.createElement("span");
+    lbl.className="grid-label-x";
+    lbl.style.left=left;
+    lbl.textContent=yr;
+    chart.appendChild(lbl);
+  });
+
+  // Y label
+  const yLabel=document.createElement("div");
+  yLabel.className="y-axis-label";
+  yLabel.textContent=t('yAxis');
+  chart.appendChild(yLabel);
+
+  // Points
+  filtered.forEach((m,i)=>{
+    const ts=new Date(m.date).getTime();
+    const xP=(ts-chartStart)/chartRange;
+    const yP=(m.intelligence-intelMin)/intelRange;
+    if(chartZoom&&(xP<-0.02||xP>1.02||yP<-0.02||yP>1.02))return;
+    const left=`calc(${PL}px + ${xP} * (100% - ${PL+PR}px))`;
+    const top=`calc(${PT}px + ${(1-yP)} * (100% - ${PT+PB}px))`;
+
+    const dot=document.createElement("div");
+    dot.className="point "+(m.open?"open-point":"closed-point");
+    dot.style.cssText=`left:${left};top:${top};width:9px;height:9px;z-index:2`;
+
+    // Tooltip positioning
+    const tipBelow=yP>0.72;
+    const tipAlignLeft=xP<0.15;
+    const tipAlignRight=xP>0.85;
+
+    let tipStyle="";
+    if(tipBelow)tipStyle+="top:calc(100% + 10px);";
+    else tipStyle+="bottom:calc(100% + 10px);";
+    if(tipAlignLeft)tipStyle+="left:0;transform:none;";
+    else if(tipAlignRight)tipStyle+="right:0;transform:none;";
+    else tipStyle+="left:50%;transform:translateX(-50%);";
+
+    const linkHtml=m.url&&m.url!=='#'?`<a class="t-link" href="${m.url}" target="_blank" rel="noopener">↗</a>`:'';
+    dot.innerHTML=`<div class="tooltip" style="${tipStyle};pointer-events:auto">
+      <div class="t-name"><span style="color:var(--t-faint);font-size:10px">#${m.chronoNum}</span> ${m.name}${linkHtml}</div>
+      <div class="t-meta">${m.company} · ${m.date}</div>
+      <div class="t-stats">Intel: <b>${m.intelligence}</b> · ${m.type} · ${m.open?"Open":"Closed"}</div>
+    </div>`;
+
+    dot.addEventListener("mouseenter",()=>{dot.style.width="16px";dot.style.height="16px";dot.style.zIndex="100"});
+    dot.addEventListener("mouseleave",()=>{dot.style.width="9px";dot.style.height="9px";dot.style.zIndex="2"});
+    dot.addEventListener("click",e=>{
+      e.stopPropagation();
+      const card=document.getElementById("card-"+m.chronoNum);
+      if(!card)return;
+      card.scrollIntoView({behavior:"smooth",block:"center"});
+      card.classList.remove("highlight");
+      void card.offsetWidth;
+      card.classList.add("highlight");
+    });
+
+    chart.appendChild(dot);
+  });
+
+  // Trend line
+  if(filtered.length>=3){
+    const sorted=[...filtered].sort((a,b)=>new Date(a.date)-new Date(b.date));
+    const numSamples=50;
+    const points=[];
+    for(let s=0;s<=numSamples;s++){
+      const t=chartStart+(s/numSamples)*chartRange;
+      const windowSize=chartRange*0.08;
+      const nearby=sorted.filter(m=>{
+        const mt=new Date(m.date).getTime();
+        return Math.abs(mt-t)<=windowSize;
+      });
+      if(nearby.length===0)continue;
+      const totalWeight=nearby.reduce((sum,m)=>sum+m.intelligence*m.intelligence,0);
+      const weightedSum=nearby.reduce((sum,m)=>sum+m.intelligence*m.intelligence*m.intelligence,0);
+      const wAvg=totalWeight>0?weightedSum/totalWeight:0;
+      const xPct=(t-chartStart)/chartRange;
+      const yPct=(wAvg-intelMin)/intelRange;
+      points.push({x:xPct,y:yPct});
+    }
+    if(points.length>=2){
+      const mL=4.8,mR=1.4,mT=1.4,mB=3.6;
+      const svgX=xP=>mL+xP*(100-mL-mR);
+      const svgY=yP=>mT+(1-yP)*(100-mT-mB);
+      const pathD=points.map((p,i)=>`${i===0?'M':'L'} ${svgX(p.x).toFixed(2)} ${svgY(p.y).toFixed(2)}`).join(' ');
+      const ns="http://www.w3.org/2000/svg";
+      const svg=document.createElementNS(ns,"svg");
+      svg.setAttribute("class","trend-svg");
+      svg.setAttribute("viewBox","0 0 100 100");
+      svg.setAttribute("preserveAspectRatio","none");
+      svg.innerHTML=`<defs><linearGradient id="trendGrad" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ef4444" stop-opacity="0.25"/><stop offset="25%" stop-color="#f97316" stop-opacity="0.45"/><stop offset="50%" stop-color="#eab308" stop-opacity="0.6"/><stop offset="75%" stop-color="#22c55e" stop-opacity="0.8"/><stop offset="100%" stop-color="#10b981" stop-opacity="1"/></linearGradient><linearGradient id="trendGlow" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#ef4444" stop-opacity="0.05"/><stop offset="50%" stop-color="#eab308" stop-opacity="0.08"/><stop offset="100%" stop-color="#10b981" stop-opacity="0.15"/></linearGradient></defs><path d="${pathD}" fill="none" stroke="url(#trendGlow)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="${pathD}" fill="none" stroke="url(#trendGrad)" stroke-width="0.5" stroke-linecap="round" stroke-linejoin="round"/>`;
+      chart.appendChild(svg);
+    }
+  }
+
+  // Update sort button states
+  document.getElementById("sortDate").classList.toggle("active",sortMode==="date");
+  document.getElementById("sortIntel").classList.toggle("active",sortMode==="intelligence");
+
+  // Precompute comparison stats for tooltips
+  const sameTypeModels={};
+  filtered.forEach(m=>{if(!sameTypeModels[m.type])sameTypeModels[m.type]=[];sameTypeModels[m.type].push(m)});
+  const globalMaxIntel=filtered.length?Math.max(...filtered.map(m=>m.intelligence)):100;
+  const globalAvgIntel=filtered.length?Math.round(filtered.reduce((s,m)=>s+m.intelligence,0)/filtered.length):0;
+
+  // Helper: build card HTML
+  function cardHTML(m,extraPrefix){
+    const tc=typeColors[m.type]||"#666";
+    const metaText=`${m.company} · ${fmtDate(m.date)}`;
+    const metaContent=m.url&&m.url!=='#'?`<a href="${m.url}" target="_blank" rel="noopener">${metaText}</a>`:metaText;
+    const prefix=extraPrefix||'';
+    const newBadge=isNewModel(m)?'<span class="badge badge-new">NEW</span>':'';
+    // Mini comparison chart for tooltip
+    const typeArr=sameTypeModels[m.type]||[];
+    const typeAvg=typeArr.length?Math.round(typeArr.reduce((s,x)=>s+x.intelligence,0)/typeArr.length):0;
+    const typeMax=typeArr.length?Math.max(...typeArr.map(x=>x.intelligence)):0;
+    const tipHtml=`<div class="card-tooltip"><div class="ct-name">${m.name}</div><div class="ct-bars"><div class="ct-row"><span>${t('thisM')}</span><b>${m.intelligence}</b><div class="ct-bar-bg"><div class="ct-bar-fill ct-bar-this" style="width:${m.intelligence}%"></div></div></div><div class="ct-row"><span>${t('avg')} ${m.type}</span><b>${typeAvg}</b><div class="ct-bar-bg"><div class="ct-bar-fill ct-bar-avg" style="width:${typeAvg}%"></div></div></div><div class="ct-row"><span>${t('max')} ${m.type}</span><b>${typeMax}</b><div class="ct-bar-bg"><div class="ct-bar-fill ct-bar-max" style="width:${typeMax}%"></div></div></div></div><div class="ct-label">${t('vs')} ${typeArr.length} ${t('models')} ${m.type}</div></div>`;
+    return `<div class="accent" style="background:${tc}"></div><div class="card-top"><div class="card-info"><div class="card-name">${prefix}<span class="card-number">#${m.chronoNum}</span> ${m.name}</div><div class="card-meta">${metaContent}</div></div><div class="badges">${newBadge}${m.open?'<span class="badge badge-open">OPEN</span>':''}<span class="badge" style="background:${tc}18;color:${tc}">${m.type.toUpperCase()}</span></div></div><div class="bar-section"><div class="bar-label animate">INTEL ${m.intelligence}</div><div class="bar-bg"><div class="bar-fill animate" style="--bar-w:${m.intelligence}%;width:${m.intelligence}%"></div></div></div>${tipHtml}`;
+  }
+
+  // Timeline list
+  const timeline=document.getElementById("timeline");
+  timeline.innerHTML="";
+
+  if(sortMode==="intelligence"){
+    // Flat grid sorted by intelligence descending
+    const byIntel=[...filtered].sort((a,b)=>b.intelligence-a.intelligence||new Date(b.date)-new Date(a.date));
+    const section=document.createElement("div");
+    section.className="year-section";
+    section.innerHTML=`<div class="year-header"><span class="year-title">${t('intelRank')}</span><span class="year-count">${byIntel.length} ${t('models')}</span><div class="year-line"></div></div>`;
+    const grid=document.createElement("div");
+    grid.className="cards-grid";
+    byIntel.forEach((m,i)=>{
+      const card=document.createElement("div");
+      card.className="card";
+      card.id="card-"+m.chronoNum;
+      card.innerHTML=cardHTML(m,`<span class="intel-rank">🏆#${i+1}</span> `);
+      const delay=Math.min(i*15,800);
+      const fill=card.querySelector(".bar-fill");
+      const lbl=card.querySelector(".bar-label");
+      if(fill)fill.style.animationDelay=delay+"ms";
+      if(lbl)lbl.style.animationDelay=delay+"ms";
+      grid.appendChild(card);
+    });
+    section.appendChild(grid);
+    timeline.appendChild(section);
+  } else {
+    // Date mode: grouped by year
+    const byYear={};
+    allYears.forEach(y=>byYear[y]=[]);
+    filtered.forEach(m=>{const y=m.date.substring(0,4);if(byYear[y])byYear[y].push(m)});
+
+    [...allYears].reverse().forEach(year=>{
+      const ym=byYear[year];
+      if(!ym||ym.length===0)return;
+      const section=document.createElement("div");
+      section.className="year-section";
+      section.innerHTML=`<div class="year-header"><span class="year-title">${year}</span><span class="year-count">${ym.length} ${t('models')}</span><div class="year-line"></div></div>`;
+      const grid=document.createElement("div");
+      grid.className="cards-grid";
+      ym.forEach((m,i)=>{
+        const card=document.createElement("div");
+        card.className="card";
+        card.id="card-"+m.chronoNum;
+        card.innerHTML=cardHTML(m);
+        const delay=Math.min(i*15,800);
+        const fill=card.querySelector(".bar-fill");
+        const lbl=card.querySelector(".bar-label");
+        if(fill)fill.style.animationDelay=delay+"ms";
+        if(lbl)lbl.style.animationDelay=delay+"ms";
+        grid.appendChild(card);
+      });
+      section.appendChild(grid);
+      timeline.appendChild(section);
+    });
+  }
+}
+
+// --- i18n: apply language ---
+function applyLang(){
+  document.documentElement.lang=currentLang;
+  document.getElementById('pageSubtitle').innerHTML=t('sub')(models.length);
+  document.getElementById('searchInput').placeholder=t('search');
+  document.getElementById('labelRange').textContent=t('range');
+  document.getElementById('labelSort').textContent=t('sort');
+  document.getElementById('sortDate').textContent=t('date');
+  document.getElementById('sortIntel').textContent=t('intel');
+  document.getElementById('chartFooter').innerHTML=t('cfoot');
+  document.getElementById('pageFooter').textContent=t('footer');
+  document.querySelectorAll('#typeButtons .type-btn').forEach(b=>{
+    const tp=b.dataset.type;
+    b.textContent=tp==='all'?t('all'):tp==='Non-Reasoning'?t('noR'):tp;
+  });
+  document.querySelectorAll('#catButtons .type-btn').forEach(b=>{
+    b.textContent=t('cats')[b.dataset.cat]||b.dataset.cat;
+  });
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active',b.dataset.lang===currentLang);
+  });
+  render();
+}
+function setLang(lang){
+  currentLang=lang;
+  localStorage.setItem('tmlang',lang);
+  applyLang();
+}
+document.querySelectorAll('.lang-btn').forEach(b=>{
+  b.addEventListener('click',()=>setLang(b.dataset.lang));
+});
+applyLang();
+
+// --- Drag-to-zoom on chart ---
+(function(){
+  const chart=document.getElementById("chart");
+  let dragging=false,startX=0,startY=0,selBox=null;
+
+  function chartCoords(e){
+    const r=chart.getBoundingClientRect();
+    return{x:e.clientX-r.left,y:e.clientY-r.top,w:r.width,h:r.height};
+  }
+
+  function pxToData(x,y,w,h){
+    const innerW=w-PL-PR, innerH=h-PT-PB;
+    const xFrac=Math.max(0,Math.min(1,(x-PL)/innerW));
+    const yFrac=Math.max(0,Math.min(1,(y-PT)/innerH));
+    // Current chart ranges — read from last render
+    const cStart=chartZoom?chartZoom.dateStart:new Date(yearFrom+"-01-01").getTime();
+    const cEnd=chartZoom?chartZoom.dateEnd:new Date(yearTo==="2026"?"2026-04-15":(parseInt(yearTo)+1)+"-01-01").getTime();
+    const iMin=chartZoom?chartZoom.intelMin:0;
+    const iMax=chartZoom?chartZoom.intelMax:100;
+    const date=cStart+xFrac*(cEnd-cStart);
+    const intel=iMax-(yFrac*(iMax-iMin));
+    return{date,intel};
+  }
+
+  chart.addEventListener("mousedown",e=>{
+    if(e.button!==0)return;
+    // Don't start drag if clicking on a point, button, or tooltip
+    if(e.target.closest(".point")||e.target.closest(".zoom-reset")||e.target.closest(".tooltip"))return;
+    dragging=true;
+    const c=chartCoords(e);
+    startX=c.x;startY=c.y;
+    selBox=document.createElement("div");
+    selBox.className="zoom-sel";
+    selBox.style.cssText=`left:${startX}px;top:${startY}px;width:0;height:0`;
+    chart.appendChild(selBox);
+    e.preventDefault();
+  });
+
+  document.addEventListener("mousemove",e=>{
+    if(!dragging||!selBox)return;
+    const c=chartCoords(e);
+    const x=Math.max(0,Math.min(c.w,c.x));
+    const y=Math.max(0,Math.min(c.h,c.y));
+    const left=Math.min(startX,x),top=Math.min(startY,y);
+    const w=Math.abs(x-startX),h=Math.abs(y-startY);
+    selBox.style.left=left+"px";
+    selBox.style.top=top+"px";
+    selBox.style.width=w+"px";
+    selBox.style.height=h+"px";
+  });
+
+  document.addEventListener("mouseup",e=>{
+    if(!dragging)return;
+    dragging=false;
+    if(selBox){selBox.remove();selBox=null}
+    const c=chartCoords(e);
+    const endX=Math.max(0,Math.min(c.w,c.x));
+    const endY=Math.max(0,Math.min(c.h,c.y));
+    const dx=Math.abs(endX-startX),dy=Math.abs(endY-startY);
+    // Minimum drag size to trigger zoom (prevent accidental clicks)
+    if(dx<20||dy<20)return;
+    const corner1=pxToData(Math.min(startX,endX),Math.min(startY,endY),c.w,c.h);
+    const corner2=pxToData(Math.max(startX,endX),Math.max(startY,endY),c.w,c.h);
+    const dateStart=corner1.date;
+    const dateEnd=corner2.date;
+    const intelMax2=corner1.intel;
+    const intelMin2=corner2.intel;
+    if(dateEnd-dateStart<86400000*7)return; // min 1 week range
+    if(intelMax2-intelMin2<3)return; // min 3 intel range
+    chartZoom={dateStart,dateEnd,intelMin:Math.max(0,intelMin2-1),intelMax:Math.min(100,intelMax2+1)};
+    render();
+  });
+
+  // Double-click to reset zoom
+  chart.addEventListener("dblclick",e=>{
+    if(e.target.closest(".point")||e.target.closest(".zoom-reset"))return;
+    if(chartZoom){chartZoom=null;render()}
+  });
+})();
+
+// --- Dark / Light theme toggle ---
+(function(){
+  const btn=document.getElementById("themeBtn");
+  const saved=localStorage.getItem("theme");
+  if(saved==="light"){document.documentElement.classList.add("light");btn.textContent="Dark"}
+  function toggle(){
+    const isLight=document.documentElement.classList.toggle("light");
+    btn.textContent=isLight?"Dark":"Light";
+    localStorage.setItem("theme",isLight?"light":"dark");
+  }
+  btn.addEventListener("click",toggle);
+})();
+</script>
+</body>
+</html>
