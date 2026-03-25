@@ -642,7 +642,17 @@ const models = [
   {name:"GWM-1",date:"2025-12-11",company:"Runway",open:false,intelligence:50,type:"World Model",cat:"world"},
   {name:"HY-World 1.5 (WorldPlay)",date:"2025-12-17",company:"Tencent",open:true,intelligence:48,type:"World Model",cat:"world"},
   {name:"Waypoint-1",date:"2026-01-01",company:"Overworld",open:true,intelligence:45,type:"World Model",cat:"world"},
-{name:"Uni-1",date:"2026-03-05",company:"Luma AI",open:false,intelligence:68,type:"Multimodal",cat:"image"}
+{name:"Uni-1",date:"2026-03-05",company:"Luma AI",open:false,intelligence:68,type:"Multimodal",cat:"image"},
+  {name:"Kling 1.5",date:"2024-10-15",company:"Kuaishou",open:false,intelligence:45,type:"Diffusion",cat:"video"},
+  {name:"Kling 2.0",date:"2025-04-15",company:"Kuaishou",open:false,intelligence:52,type:"Diffusion",cat:"video"},
+  {name:"Kling 2.5 Turbo",date:"2025-09-23",company:"Kuaishou",open:false,intelligence:56,type:"Diffusion",cat:"video"},
+  {name:"Kling 2.6",date:"2025-12-03",company:"Kuaishou",open:false,intelligence:58,type:"Diffusion",cat:"video"},
+  {name:"Kling 3.0",date:"2026-02-05",company:"Kuaishou",open:false,intelligence:65,type:"Diffusion",cat:"video"},
+  {name:"GLM-OCR (0.9B)",date:"2026-03-12",company:"Zhipu AI",open:true,intelligence:42,type:"LLM",cat:"text"},
+  {name:"Mistral OCR",date:"2025-03-06",company:"Mistral AI",open:false,intelligence:38,type:"LLM",cat:"text"},
+  {name:"Mistral OCR 3",date:"2025-12-19",company:"Mistral AI",open:false,intelligence:48,type:"LLM",cat:"text"},
+  {name:"ACE-Step v1 (3.5B)",date:"2025-06-02",company:"ACE Studio/StepFun",open:true,intelligence:40,type:"Diffusion",cat:"audio"},
+  {name:"ACE-Step v1.5",date:"2026-01-28",company:"ACE Studio/StepFun",open:true,intelligence:52,type:"Diffusion",cat:"audio"}
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -927,7 +937,17 @@ const modelUrls={
 "Mureka":"https://www.mureka.ai/",
 "Boomy":"https://boomy.com/",
 "ElevenLabs v2":"https://elevenlabs.io/",
-"Sesame CSM":"https://github.com/SesameAILabs/csm"
+"Sesame CSM":"https://github.com/SesameAILabs/csm",
+"Kling 1.5":"https://kling.kuaishou.com/",
+"Kling 2.0":"https://kling.kuaishou.com/",
+"Kling 2.5 Turbo":"https://kling.kuaishou.com/",
+"Kling 2.6":"https://kling.kuaishou.com/",
+"Kling 3.0":"https://kling.kuaishou.com/",
+"GLM-OCR (0.9B)":"https://github.com/zai-org/GLM-OCR",
+"Mistral OCR":"https://mistral.ai/news/mistral-ocr",
+"Mistral OCR 3":"https://mistral.ai/news/mistral-ocr-3",
+"ACE-Step v1 (3.5B)":"https://github.com/ace-step/ACE-Step",
+"ACE-Step v1.5":"https://github.com/ace-step/ACE-Step-1.5"
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
