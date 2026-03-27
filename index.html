@@ -594,24 +594,24 @@ const models = [
   {name:"LTX-2 (4K+audio)",date:"2025-10-23",company:"Lightricks",open:true,intelligence:58,type:"Diffusion",cat:"video"},
   {name:"LTX-2.3 (19B, 4K stereo)",date:"2026-03-04",company:"Lightricks",open:true,intelligence:62,type:"Diffusion",cat:"video"},
   {name:"Grok Imagine Video",date:"2025-07-28",company:"xAI",open:false,intelligence:45,type:"Diffusion",cat:"video"},
-  {name:"MusicLM",date:"2023-01-26",company:"Google",open:false,intelligence:22,type:"Diffusion",cat:"audio"},
-  {name:"MusicGen",date:"2023-06-12",company:"Meta",open:true,intelligence:25,type:"Diffusion",cat:"audio"},
-  {name:"AudioCraft",date:"2023-08-02",company:"Meta",open:true,intelligence:28,type:"Diffusion",cat:"audio"},
-  {name:"Bark (TTS)",date:"2023-04-15",company:"Suno",open:true,intelligence:20,type:"Diffusion",cat:"audio"},
-  {name:"Lyria 1",date:"2023-12-01",company:"Google",open:false,intelligence:30,type:"Diffusion",cat:"audio"},
-  {name:"Suno v3",date:"2024-03-21",company:"Suno",open:false,intelligence:38,type:"Diffusion",cat:"audio"},
-  {name:"Udio v1",date:"2024-04-10",company:"Udio",open:false,intelligence:40,type:"Diffusion",cat:"audio"},
-  {name:"Suno v4",date:"2024-11-19",company:"Suno",open:false,intelligence:48,type:"Diffusion",cat:"audio"},
-  {name:"Suno v4.5",date:"2025-05-01",company:"Suno",open:false,intelligence:55,type:"Diffusion",cat:"audio"},
-  {name:"Lyria 2",date:"2025-04-24",company:"Google",open:false,intelligence:42,type:"Diffusion",cat:"audio"},
-  {name:"ElevenLabs Music v3",date:"2025-08-01",company:"ElevenLabs",open:false,intelligence:48,type:"Diffusion",cat:"audio"},
-  {name:"Lyria 3",date:"2026-02-18",company:"Google",open:false,intelligence:52,type:"Diffusion",cat:"audio"},
-  {name:"Riffusion",date:"2022-12-15",company:"Riffusion",open:true,intelligence:15,type:"Diffusion",cat:"audio"},
-  {name:"AIVA",date:"2023-01-01",company:"AIVA",open:false,intelligence:20,type:"Diffusion",cat:"audio"},
-  {name:"Mureka",date:"2024-06-01",company:"Mureka",open:false,intelligence:35,type:"Diffusion",cat:"audio"},
-  {name:"Boomy",date:"2023-01-01",company:"Boomy",open:false,intelligence:15,type:"Diffusion",cat:"audio"},
-  {name:"ElevenLabs v2",date:"2024-01-01",company:"ElevenLabs",open:false,intelligence:35,type:"Diffusion",cat:"audio"},
-  {name:"Sesame CSM",date:"2025-03-14",company:"Sesame AI",open:true,intelligence:40,type:"Diffusion",cat:"audio"},
+  {name:"MusicLM",date:"2023-01-26",company:"Google",open:false,intelligence:22,type:"Music Gen",cat:"audio"},
+  {name:"MusicGen",date:"2023-06-12",company:"Meta",open:true,intelligence:25,type:"Music Gen",cat:"audio"},
+  {name:"AudioCraft",date:"2023-08-02",company:"Meta",open:true,intelligence:28,type:"Music Gen",cat:"audio"},
+  {name:"Bark (TTS)",date:"2023-04-15",company:"Suno",open:true,intelligence:20,type:"TTS",cat:"audio"},
+  {name:"Lyria 1",date:"2023-12-01",company:"Google",open:false,intelligence:30,type:"Music Gen",cat:"audio"},
+  {name:"Suno v3",date:"2024-03-21",company:"Suno",open:false,intelligence:38,type:"Music Gen",cat:"audio"},
+  {name:"Udio v1",date:"2024-04-10",company:"Udio",open:false,intelligence:40,type:"Music Gen",cat:"audio"},
+  {name:"Suno v4",date:"2024-11-19",company:"Suno",open:false,intelligence:48,type:"Music Gen",cat:"audio"},
+  {name:"Suno v4.5",date:"2025-05-01",company:"Suno",open:false,intelligence:55,type:"Music Gen",cat:"audio"},
+  {name:"Lyria 2",date:"2025-04-24",company:"Google",open:false,intelligence:42,type:"Music Gen",cat:"audio"},
+  {name:"ElevenLabs Music v3",date:"2025-08-01",company:"ElevenLabs",open:false,intelligence:48,type:"Music Gen",cat:"audio"},
+  {name:"Lyria 3",date:"2026-02-18",company:"Google",open:false,intelligence:52,type:"Music Gen",cat:"audio"},
+  {name:"Riffusion",date:"2022-12-15",company:"Riffusion",open:true,intelligence:15,type:"Music Gen",cat:"audio"},
+  {name:"AIVA",date:"2023-01-01",company:"AIVA",open:false,intelligence:20,type:"Music Gen",cat:"audio"},
+  {name:"Mureka",date:"2024-06-01",company:"Mureka",open:false,intelligence:35,type:"Music Gen",cat:"audio"},
+  {name:"Boomy",date:"2023-01-01",company:"Boomy",open:false,intelligence:15,type:"Music Gen",cat:"audio"},
+  {name:"ElevenLabs v2",date:"2024-01-01",company:"ElevenLabs",open:false,intelligence:35,type:"TTS",cat:"audio"},
+  {name:"Sesame CSM",date:"2025-03-14",company:"Sesame AI",open:true,intelligence:40,type:"TTS",cat:"audio"},
   {name:"Grok 4.20",date:"2026-02-17",company:"xAI",open:false,intelligence:83,type:"LLM",cat:"text"},
   {name:"Seed 2.0 Pro",date:"2026-02-14",company:"ByteDance",open:false,intelligence:82,type:"LLM",cat:"multi"},
   {name:"Seed 2.0 Lite",date:"2026-03-10",company:"ByteDance",open:false,intelligence:78,type:"LLM",cat:"multi"},
@@ -651,8 +651,14 @@ const models = [
   {name:"GLM-OCR (0.9B)",date:"2026-03-12",company:"Zhipu AI",open:true,intelligence:42,type:"LLM",cat:"text"},
   {name:"Mistral OCR",date:"2025-03-06",company:"Mistral AI",open:false,intelligence:38,type:"LLM",cat:"text"},
   {name:"Mistral OCR 3",date:"2025-12-19",company:"Mistral AI",open:false,intelligence:48,type:"LLM",cat:"text"},
-  {name:"ACE-Step v1 (3.5B)",date:"2025-06-02",company:"ACE Studio/StepFun",open:true,intelligence:40,type:"Diffusion",cat:"audio"},
-  {name:"ACE-Step v1.5",date:"2026-01-28",company:"ACE Studio/StepFun",open:true,intelligence:52,type:"Diffusion",cat:"audio"}
+  {name:"ACE-Step v1 (3.5B)",date:"2025-06-02",company:"ACE Studio/StepFun",open:true,intelligence:40,type:"Music Gen",cat:"audio"},
+  {name:"ACE-Step v1.5",date:"2026-01-28",company:"ACE Studio/StepFun",open:true,intelligence:52,type:"Music Gen",cat:"audio"},
+{name:"SAM (Segment Anything)",date:"2023-04-05",company:"Meta",open:true,intelligence:30,type:"Segmentation",cat:"image"},
+{name:"SAM 2",date:"2024-07-29",company:"Meta",open:true,intelligence:45,type:"Segmentation",cat:"image"},
+{name:"SAM 3",date:"2025-11-19",company:"Meta",open:true,intelligence:58,type:"Segmentation",cat:"image"},
+{name:"TRIBE v2",date:"2026-03-26",company:"Meta",open:true,intelligence:55,type:"Multimodal",cat:"multi"},
+{name:"Voxtral TTS (4B)",date:"2026-03-23",company:"Mistral AI",open:true,intelligence:55,type:"TTS",cat:"audio"},
+{name:"Gemini 3.1 Flash Live",date:"2026-03-26",company:"Google",open:false,intelligence:78,type:"Multimodal",cat:"multi"}
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -947,7 +953,13 @@ const modelUrls={
 "Mistral OCR":"https://mistral.ai/news/mistral-ocr",
 "Mistral OCR 3":"https://mistral.ai/news/mistral-ocr-3",
 "ACE-Step v1 (3.5B)":"https://github.com/ace-step/ACE-Step",
-"ACE-Step v1.5":"https://github.com/ace-step/ACE-Step-1.5"
+"ACE-Step v1.5":"https://github.com/ace-step/ACE-Step-1.5",
+"SAM (Segment Anything)":"https://ai.meta.com/research/publications/segment-anything/",
+"SAM 2":"https://ai.meta.com/sam2/",
+"SAM 3":"https://ai.meta.com/blog/segment-anything-model-3/",
+"TRIBE v2":"https://ai.meta.com/research/publications/tribe-v2/",
+"Voxtral TTS (4B)":"https://mistral.ai/news/voxtral-tts",
+"Gemini 3.1 Flash Live":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-flash-live/"
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
@@ -1183,7 +1195,7 @@ chronoSorted.forEach((m,i)=>{m.chronoNum=i+1});
 
 const PL=48,PR=14,PT=14,PB=36;
 const allYears=["2017","2018","2019","2020","2021","2022","2023","2024","2025","2026"];
-const typeColors={LLM:"#6b8aff",Diffusion:"#c084fc",Reasoning:"#fbbf24",Multimodal:"#34d399",ASR:"#f472b6","Text Diffusion":"#06b6d4","World Model":"#f97316"};
+const typeColors={LLM:"#6b8aff",Diffusion:"#c084fc",Reasoning:"#fbbf24",Multimodal:"#34d399",ASR:"#f472b6",TTS:"#818cf8","Music Gen":"#a3e635",Segmentation:"#ef4444","Text Diffusion":"#06b6d4","World Model":"#f97316"};
 
 let showOpen=true,showClosed=true,typeFilter="all",yearFrom="2017",yearTo="2026",sortMode="date";
 let searchQuery="",catFilter="all";
@@ -1195,7 +1207,7 @@ function isNewModel(m){return(NOW_MS-new Date(m.date).getTime())<=ONE_MONTH_MS}
 
 // Build type buttons
 const typeBtnContainer=document.getElementById("typeButtons");
-["all","LLM","Diffusion","Reasoning","World Model","Non-Reasoning"].forEach(tp=>{
+["all","LLM","Diffusion","Reasoning","Multimodal","ASR","TTS","Music Gen","Segmentation","Text Diffusion","World Model","Non-Reasoning"].forEach(tp=>{
   const btn=document.createElement("button");
   btn.className="type-btn"+(tp==="all"?" active":"");
   btn.textContent=tp==="all"?t('all'):tp==="Non-Reasoning"?t('noR'):tp;
@@ -1229,7 +1241,7 @@ function playTimeline(){
   const btn=document.getElementById("playBtn");
   btn.textContent="⏹ Stop";
   btn.classList.add("playing");
-  const points=[...document.querySelectorAll("#chart .point")];
+  const points=[...document.querySelectorAll("#chart .point")].reverse();
   // Get model data index from each point to sort by date
   const filtered=getFiltered();
   points.forEach(p=>p.classList.add("hidden-point"));
