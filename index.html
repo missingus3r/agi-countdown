@@ -325,6 +325,7 @@ html.light .forecast-card .fc-timeline-bar{background:#e4e4ec}
     <button class="tab-btn active" data-tab="tab-models">AI Models</button>
     <button class="tab-btn" data-tab="tab-arc">ARC-AGI Benchmarks</button>
     <button class="tab-btn" data-tab="tab-metaculus">Metaculus Forecasts</button>
+    <button class="tab-btn" data-tab="tab-api">API</button>
   </div>
 </div>
 
@@ -347,6 +348,9 @@ html.light .forecast-card .fc-timeline-bar{background:#e4e4ec}
 
 <!-- ==================== METACULUS TAB ==================== -->
 <div class="tab-panel" id="tab-metaculus"></div>
+
+<!-- ==================== API TAB ==================== -->
+<div class="tab-panel" id="tab-api"></div>
 
 <script>
 const models = [
@@ -1118,6 +1122,58 @@ const modelUrls={
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
+// --- API v1 (self-contained, query-param based) ---
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  const api=params.get('api');
+  if(!api) return;
+
+  function filterModels(list,p){
+    let r=list;
+    if(p.get('company')) r=r.filter(m=>m.company.toLowerCase()===p.get('company').toLowerCase());
+    if(p.get('type')) r=r.filter(m=>m.type.toLowerCase()===p.get('type').toLowerCase());
+    if(p.get('cat')) r=r.filter(m=>m.cat.toLowerCase()===p.get('cat').toLowerCase());
+    if(p.has('open')) r=r.filter(m=>m.open===(p.get('open')==='true'));
+    if(p.get('search')) {const q=p.get('search').toLowerCase();r=r.filter(m=>m.name.toLowerCase().includes(q)||m.company.toLowerCase().includes(q));}
+    if(p.get('after')) r=r.filter(m=>m.date>p.get('after'));
+    if(p.get('before')) r=r.filter(m=>m.date<p.get('before'));
+    const sort=p.get('sort')||'date';
+    const order=p.get('order')==='asc'?1:-1;
+    r.sort((a,b)=>a[sort]>b[sort]?order:a[sort]<b[sort]?-order:0);
+    const total=r.length;
+    const limit=parseInt(p.get('limit'))||total;
+    const offset=parseInt(p.get('offset'))||0;
+    return {data:r.slice(offset,offset+limit),total,limit,offset};
+  }
+
+  let result;
+  const clean=m=>({name:m.name,date:m.date,company:m.company,open:m.open,intelligence:m.intelligence,type:m.type,cat:m.cat,url:m.url&&m.url!=='#'?m.url:undefined});
+
+  if(api==='v1/models'||api==='v1/models/'){
+    const f=filterModels(models,params);
+    result={ok:true,endpoint:'v1/models',total:f.total,count:f.data.length,limit:f.limit,offset:f.offset,data:f.data.map(clean)};
+  } else if(api==='v1/companies'||api==='v1/companies/'){
+    const map={};
+    models.forEach(m=>{if(!map[m.company])map[m.company]={company:m.company,models:0,types:new Set(),open:0,closed:0,latest:m.date};map[m.company].models++;map[m.company].types.add(m.type);if(m.open)map[m.company].open++;else map[m.company].closed++;if(m.date>map[m.company].latest)map[m.company].latest=m.date;});
+    const data=Object.values(map).map(c=>({...c,types:[...c.types]})).sort((a,b)=>b.models-a.models);
+    result={ok:true,endpoint:'v1/companies',total:data.length,data};
+  } else if(api==='v1/stats'||api==='v1/stats/'){
+    const companies=new Set(models.map(m=>m.company));
+    const types={};models.forEach(m=>{types[m.type]=(types[m.type]||0)+1});
+    const cats={};models.forEach(m=>{cats[m.cat]=(cats[m.cat]||0)+1});
+    const openC=models.filter(m=>m.open).length;
+    const dates=models.map(m=>m.date).sort();
+    result={ok:true,endpoint:'v1/stats',data:{total_models:models.length,total_companies:companies.size,open_source:openC,closed_source:models.length-openC,open_pct:Math.round(openC/models.length*100),types,categories:cats,date_range:{earliest:dates[0],latest:dates[dates.length-1]},avg_intelligence:Math.round(models.reduce((s,m)=>s+m.intelligence,0)/models.length)}};
+  } else {
+    result={ok:false,error:'Unknown endpoint',available:['v1/models','v1/companies','v1/stats'],docs:'Add ?api=v1/models to the page URL. See the API tab for full documentation.'};
+  }
+
+  // Render JSON response and stop page
+  document.documentElement.innerHTML='<head><title>API Response</title></head><body><pre style="background:#0c0c11;color:#d0d0d8;margin:0;padding:20px;font-family:monospace;white-space:pre-wrap;word-break:break-word">'+JSON.stringify(result,null,2).replace(/</g,'&lt;')+'</pre></body>';
+  document.documentElement.style.background='#0c0c11';
+  return;
+})();
+
 // --- i18n ---
 const i18n={
   en:{
@@ -1132,7 +1188,7 @@ const i18n={
     footer:"* Estimated intelligence (0\u2013100), relative to state of the art in March 2026. Based on public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Diffusion models rated by generation quality and prompt adherence. Not absolute metrics.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
-    tabs:{models:"AI Models",arc:"ARC-AGI Benchmarks",meta:"Metaculus Forecasts"},
+    tabs:{models:"AI Models",arc:"ARC-AGI Benchmarks",meta:"Metaculus Forecasts",api:"API"},
     arc:{
       title:"ARC-AGI Benchmark Series",
       sub:'Measuring the gap between human and AI reasoning \u00b7 Created by <b>Fran\u00e7ois Chollet</b> (Keras) \u00b7 <a href="https://arcprize.org/" target="_blank">arcprize.org</a>',
@@ -1201,7 +1257,7 @@ const i18n={
     footer:"* Inteligencia estimada (0\u2013100), relativa al estado del arte en marzo 2026. Basado en benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opiniones de expertos y posicionamiento de mercado. Modelos de difusi\u00f3n evaluados por calidad de generaci\u00f3n y adherencia a prompts. No son m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tendencia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 ventana \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"es-UY",
-    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Pron\u00f3sticos Metaculus"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Pron\u00f3sticos Metaculus",api:"API"},
     arc:{
       title:"Serie de Benchmarks ARC-AGI",
       sub:'Midiendo la brecha entre el razonamiento humano y el de la IA \u00b7 Creado por <b>Fran\u00e7ois Chollet</b> (Keras) \u00b7 <a href="https://arcprize.org/" target="_blank">arcprize.org</a>',
@@ -1270,7 +1326,7 @@ const i18n={
     footer:"* Intelig\u00eancia estimada (0\u2013100), relativa ao estado da arte em mar\u00e7o de 2026. Baseado em benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opini\u00f5es de especialistas e posicionamento de mercado. Modelos de difus\u00e3o avaliados por qualidade de gera\u00e7\u00e3o e ader\u00eancia a prompts. N\u00e3o s\u00e3o m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tend\u00eancia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 janela \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"pt-BR",
-    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Previs\u00f5es Metaculus"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Previs\u00f5es Metaculus",api:"API"},
     arc:{
       title:"S\u00e9rie de Benchmarks ARC-AGI",
       sub:'Medindo a lacuna entre o racioc\u00ednio humano e o da IA \u00b7 Criado por <b>Fran\u00e7ois Chollet</b> (Keras) \u00b7 <a href="https://arcprize.org/" target="_blank">arcprize.org</a>',
@@ -1912,6 +1968,111 @@ function renderMetaTab(){
 </div>`;
 }
 
+// --- Render API tab ---
+function renderApiTab(){
+  const base=window.location.origin+window.location.pathname;
+  document.getElementById('tab-api').innerHTML=`<div class="info-page">
+  <h2 style="font-family:'IBM Plex Mono';font-size:18px;font-weight:700;color:#6b8aff;margin-bottom:4px">API v1</h2>
+  <p style="font-family:'IBM Plex Mono';font-size:11px;color:#888;margin-bottom:20px">Self-contained REST-like API. Add <code style="background:#1a1a24;padding:2px 6px;border-radius:4px;color:#c084fc">?api=ENDPOINT</code> to the page URL. Returns JSON.</p>
+
+  <div class="info-section"><h3 style="font-family:'IBM Plex Mono';font-size:13px;color:#ddd;margin-bottom:10px">Endpoints</h3>
+    <div style="display:flex;flex-direction:column;gap:12px">
+
+      <div style="background:#0e0e14;border:1px solid #1a1a22;border-radius:6px;padding:12px">
+        <div style="font-family:'IBM Plex Mono';font-size:12px;font-weight:600;color:#34d399;margin-bottom:6px">GET <span style="color:#ddd">?api=v1/models</span></div>
+        <div style="font-family:'IBM Plex Mono';font-size:10px;color:#888;margin-bottom:8px">Returns all models with their attributes.</div>
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#666;margin-bottom:4px">FILTERS (all optional, combinable):</div>
+        <table style="font-family:'IBM Plex Mono';font-size:10px;color:#aaa;border-collapse:collapse;width:100%">
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">company=</td><td style="padding:3px 0">Filter by company name (case insensitive)</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">type=</td><td style="padding:3px 0">Filter by type: LLM, Diffusion, Reasoning, Multimodal, ASR, TTS, Text Diffusion, World Model</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">cat=</td><td style="padding:3px 0">Filter by category: text, image, video, audio, multi, code, reasoning, world</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">open=</td><td style="padding:3px 0">true or false</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">search=</td><td style="padding:3px 0">Search in model name and company</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">after=</td><td style="padding:3px 0">Models after date (YYYY-MM-DD)</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">before=</td><td style="padding:3px 0">Models before date (YYYY-MM-DD)</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">sort=</td><td style="padding:3px 0">Sort field: date (default), intelligence, name, company</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">order=</td><td style="padding:3px 0">asc or desc (default)</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">limit=</td><td style="padding:3px 0">Max results to return</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">offset=</td><td style="padding:3px 0">Skip N results (for pagination)</td></tr>
+        </table>
+      </div>
+
+      <div style="background:#0e0e14;border:1px solid #1a1a22;border-radius:6px;padding:12px">
+        <div style="font-family:'IBM Plex Mono';font-size:12px;font-weight:600;color:#34d399;margin-bottom:6px">GET <span style="color:#ddd">?api=v1/companies</span></div>
+        <div style="font-family:'IBM Plex Mono';font-size:10px;color:#888">Returns all companies with model count, types, open/closed split, and latest release date.</div>
+      </div>
+
+      <div style="background:#0e0e14;border:1px solid #1a1a22;border-radius:6px;padding:12px">
+        <div style="font-family:'IBM Plex Mono';font-size:12px;font-weight:600;color:#34d399;margin-bottom:6px">GET <span style="color:#ddd">?api=v1/stats</span></div>
+        <div style="font-family:'IBM Plex Mono';font-size:10px;color:#888">Returns aggregate statistics: total models, companies, open/closed ratio, type breakdown, date range, avg intelligence.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="info-section" style="margin-top:20px"><h3 style="font-family:'IBM Plex Mono';font-size:13px;color:#ddd;margin-bottom:10px">Examples</h3>
+    <div style="display:flex;flex-direction:column;gap:8px">
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">All models (full list)</div>
+        <a href="?api=v1/models" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/models</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">OpenAI models only</div>
+        <a href="?api=v1/models&company=OpenAI" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/models&company=OpenAI</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">Open-source reasoning models</div>
+        <a href="?api=v1/models&type=Reasoning&open=true" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/models&type=Reasoning&open=true</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">Video models released after 2025</div>
+        <a href="?api=v1/models&cat=video&after=2025-01-01" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/models&cat=video&after=2025-01-01</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">Search for "GPT"</div>
+        <a href="?api=v1/models&search=GPT" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/models&search=GPT</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">Top 10 by intelligence</div>
+        <a href="?api=v1/models&sort=intelligence&order=desc&limit=10" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/models&sort=intelligence&order=desc&limit=10</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">All companies</div>
+        <a href="?api=v1/companies" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/companies</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">Aggregate stats</div>
+        <a href="?api=v1/stats" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/stats</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-section" style="margin-top:20px"><h3 style="font-family:'IBM Plex Mono';font-size:13px;color:#ddd;margin-bottom:10px">Usage with fetch / curl</h3>
+    <div style="background:#0a0a10;border-radius:4px;padding:10px 12px;border-left:2px solid #34d399">
+      <pre style="font-family:'IBM Plex Mono';font-size:10px;color:#aaa;margin:0;white-space:pre-wrap">// JavaScript (same-origin)
+const res = await fetch('${base}?api=v1/models&company=Meta');
+const html = await res.text();
+const json = JSON.parse(new DOMParser()
+  .parseFromString(html,'text/html')
+  .querySelector('pre').textContent);
+console.log(json.data);
+
+// Browser console (quickest)
+// Just open the URL \u2192 copy JSON from the page
+
+# curl + extract JSON
+curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&gt;.*//p'</pre>
+    </div>
+    <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-top:8px">Note: This is a client-side API. The response is an HTML page containing JSON in a &lt;pre&gt; tag. For programmatic use, extract the text content from the &lt;pre&gt; element or use the browser console.</div>
+  </div>
+
+  <div style="font-family:'IBM Plex Mono';font-size:9px;color:#444;margin-top:16px;padding-top:12px;border-top:1px solid #1a1a22">
+    Response format: <code style="background:#1a1a24;padding:2px 6px;border-radius:4px;color:#888">{ ok, endpoint, total, count, limit, offset, data[] }</code><br>
+    All endpoints are read-only. No authentication required. Data updates with every page deploy.
+  </div>
+</div>`;
+}
+
 // --- i18n: apply language ---
 function applyLang(){
   document.documentElement.lang=currentLang;
@@ -1938,9 +2099,11 @@ function applyLang(){
   document.querySelector('[data-tab="tab-models"]').textContent=tabs.models;
   document.querySelector('[data-tab="tab-arc"]').textContent=tabs.arc;
   document.querySelector('[data-tab="tab-metaculus"]').textContent=tabs.meta;
+  document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
   // Render info tabs
   renderArcTab();
   renderMetaTab();
+  renderApiTab();
   render();
 }
 function setLang(lang){
