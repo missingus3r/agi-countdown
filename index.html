@@ -376,6 +376,13 @@ html.light .forecast-card .fc-title{color:#111}
 html.light .forecast-card .fc-criteria-list li{color:#555;border-bottom-color:#f0f0f5}
 html.light .forecast-card .fc-timeline-bar{background:#e4e4ec}
 
+/* ===== Scroll to top button ===== */
+.scroll-top{position:fixed;bottom:20px;right:20px;width:40px;height:40px;border-radius:50%;border:1px solid #333;background:rgba(22,22,30,0.9);color:#aaa;font-size:18px;cursor:pointer;z-index:500;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px);transition:all 0.2s;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
+.scroll-top:hover{border-color:#6b8aff;color:#6b8aff;transform:translateY(-2px)}
+.scroll-top.visible{display:flex}
+html.light .scroll-top{border-color:#bbb;background:rgba(240,240,245,0.9);color:#666;box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+html.light .scroll-top:hover{border-color:#6b8aff;color:#6b8aff}
+
 /* ===== MOBILE RESPONSIVE ===== */
 
 /* Hamburger menu button (hidden on desktop) */
@@ -417,9 +424,9 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   /* Mobile filter groups */
   .mobile-filter-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 
-  /* Tabs */
-  .tab-nav{padding:0 8px;gap:0}
-  .tab-btn{padding:8px 12px;font-size:11px}
+  /* Tabs - all visible, no scroll */
+  .tab-nav{padding:0 6px;gap:0;display:flex;flex-wrap:nowrap;overflow-x:visible}
+  .tab-btn{padding:7px 0;font-size:9px;flex:1;text-align:center;white-space:nowrap;letter-spacing:0}
 
   /* Chart */
   .chart-container{height:250px!important;border-radius:4px}
@@ -474,7 +481,7 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   .chart-container{height:200px!important}
   .cards-grid{gap:4px}
   .card .card-name{font-size:11px}
-  .tab-btn{padding:7px 10px;font-size:10px}
+  .tab-btn{padding:6px 0;font-size:8px}
   .info-page h2{font-size:16px}
   .forecast-card .fc-pred-date{font-size:20px}
 }
@@ -2454,6 +2461,10 @@ applyLang();
     });
   });
 })();
+</script>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+(function(){const b=document.getElementById('scrollTop');window.addEventListener('scroll',()=>{b.classList.toggle('visible',window.scrollY>400)},{passive:true})})();
 </script>
 </body>
 </html>
