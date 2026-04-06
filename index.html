@@ -1082,7 +1082,9 @@ const models = [
 {name:"OMol25",date:"2026-04-02",company:"Meta",open:true,intelligence:45,type:"LLM",cat:"text"},
 {name:"MAI-Transcribe-1",date:"2026-04-03",company:"Microsoft",open:false,intelligence:60,type:"ASR",cat:"audio"},
 {name:"MAI-Voice-1",date:"2026-04-03",company:"Microsoft",open:false,intelligence:58,type:"TTS",cat:"audio"},
-{name:"MAI-Image-2",date:"2026-04-03",company:"Microsoft",open:false,intelligence:62,type:"Diffusion",cat:"image"}
+{name:"MAI-Image-2",date:"2026-04-03",company:"Microsoft",open:false,intelligence:62,type:"Diffusion",cat:"image"},
+{name:"Asset Harvester",date:"2026-04-06",company:"NVIDIA",open:true,intelligence:50,type:"Diffusion",cat:"image"},
+{name:"GLM-5V-Turbo",date:"2026-04-01",company:"Zhipu AI",open:false,intelligence:78,type:"Multimodal",cat:"multi"}
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1478,7 +1480,9 @@ const modelUrls={
 "OMol25":"https://huggingface.co/facebook/OMol25",
 "MAI-Transcribe-1":"https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-transcribe-1-mai-voice-1-and-mai-image-2-in-microsoft-foundry/4507787",
 "MAI-Voice-1":"https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-transcribe-1-mai-voice-1-and-mai-image-2-in-microsoft-foundry/4507787",
-"MAI-Image-2":"https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-transcribe-1-mai-voice-1-and-mai-image-2-in-microsoft-foundry/4507787"
+"MAI-Image-2":"https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-transcribe-1-mai-voice-1-and-mai-image-2-in-microsoft-foundry/4507787",
+"Asset Harvester":"https://huggingface.co/nvidia/asset-harvester",
+"GLM-5V-Turbo":"https://huggingface.co/THUDM/GLM-5V-Turbo"
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
