@@ -375,6 +375,109 @@ html.light .forecast-card:hover{border-color:#bbb}
 html.light .forecast-card .fc-title{color:#111}
 html.light .forecast-card .fc-criteria-list li{color:#555;border-bottom-color:#f0f0f5}
 html.light .forecast-card .fc-timeline-bar{background:#e4e4ec}
+
+/* ===== MOBILE RESPONSIVE ===== */
+
+/* Hamburger menu button (hidden on desktop) */
+.menu-toggle{display:none;padding:6px 12px;border-radius:8px;font-size:11px;font-family:'IBM Plex Mono';cursor:pointer;border:1px solid #333;background:#16161e;color:#aaa;transition:all 0.15s}
+.menu-toggle:hover{border-color:#6b8aff;color:#ccc}
+.menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
+html.light .menu-toggle{border-color:#bbb;background:#f0f0f5;color:#666}
+html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
+
+@media(max-width:768px){
+  /* Header */
+  .header{padding:12px 12px 10px}
+  .header h1{font-size:14px}
+  .header .subtitle{font-size:10px;margin:2px 0 8px}
+
+  /* Show hamburger, hide filters by default */
+  .menu-toggle{display:inline-block}
+  .filters{display:none;flex-direction:column;gap:8px;align-items:stretch;padding-top:10px;border-top:1px solid #1a1a22}
+  .filters.mobile-open{display:flex}
+
+  /* Search full width */
+  .search-input{width:100%!important}
+
+  /* Filter row: wrap checkboxes and type/cat buttons */
+  .filters .sep{display:none}
+  .filter-label{font-size:12px}
+
+  #typeButtons,#catButtons{display:flex;flex-wrap:wrap;gap:4px}
+  .type-btn{font-size:9px;padding:4px 8px}
+
+  /* Range selectors in a row */
+  .filters select{flex:1;min-width:0;font-size:12px;padding:6px 8px}
+  .filter-label.arrow{flex-shrink:0}
+  .filter-label.count{font-size:12px}
+
+  /* Sort and controls row */
+  .sort-btn,.play-btn,.theme-btn,.lang-btn{font-size:10px;padding:5px 10px}
+
+  /* Mobile filter groups */
+  .mobile-filter-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+
+  /* Tabs */
+  .tab-nav{padding:0 8px;gap:0}
+  .tab-btn{padding:8px 12px;font-size:11px}
+
+  /* Chart */
+  .chart-container{height:250px!important;border-radius:4px}
+  .grid-label-x{font-size:8px!important}
+  .grid-label-y{font-size:8px!important}
+  .y-axis-label{font-size:7px}
+  .chart-footer{font-size:7px;gap:6px;padding:4px 0 10px;flex-direction:column}
+  .zoom-info{font-size:7px}
+
+  /* Content */
+  .content{padding:10px 10px 30px}
+
+  /* Stats bar */
+  .stats-bar{gap:10px;padding:8px 0 12px}
+  .stat-item{font-size:10px}
+  .stat-item b{font-size:12px}
+
+  /* Cards grid: single column */
+  .cards-grid{grid-template-columns:1fr;gap:5px}
+  .card{padding:8px 10px}
+  .card .card-name{font-size:12px}
+
+  /* Tooltip adjustments */
+  .tooltip{font-size:10px;max-width:260px;white-space:normal}
+  .card-tooltip{max-width:240px;white-space:normal;left:0;transform:none}
+
+  /* Info pages */
+  .info-page{padding:16px 12px 30px}
+  .info-page h2{font-size:18px}
+  .info-cards{grid-template-columns:1fr}
+  .info-card{padding:12px 14px}
+
+  /* Forecast cards */
+  .forecast-card{padding:14px 16px}
+  .forecast-card .fc-title{font-size:14px}
+  .forecast-card .fc-pred-date{font-size:22px}
+  .forecast-card .fc-range{flex-wrap:wrap;gap:12px}
+
+  /* Year headers */
+  .year-header .year-title{font-size:15px}
+
+  /* Page footer */
+  .page-footer{font-size:7px}
+
+  /* Point sizes slightly smaller on mobile */
+  .point{min-width:6px;min-height:6px}
+}
+
+@media(max-width:480px){
+  .header h1{font-size:12px}
+  .header h1 svg{width:16px;height:16px}
+  .chart-container{height:200px!important}
+  .cards-grid{gap:4px}
+  .card .card-name{font-size:11px}
+  .tab-btn{padding:7px 10px;font-size:10px}
+  .info-page h2{font-size:16px}
+  .forecast-card .fc-pred-date{font-size:20px}
+}
 </style>
 </head>
 <body>
@@ -382,6 +485,7 @@ html.light .forecast-card .fc-timeline-bar{background:#e4e4ec}
   <div class="header-inner">
     <h1><svg viewBox="0 0 64 64" width="22" height="22" style="vertical-align:-3px;margin-right:6px"><defs><linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5e9de5"/><stop offset="40%" stop-color="#a878d4"/><stop offset="70%" stop-color="#d4729a"/><stop offset="100%" stop-color="#e0a54c"/></linearGradient></defs><circle cx="18" cy="44" r="4" fill="url(#logo-g)" opacity=".6"/><circle cx="28" cy="36" r="4.5" fill="url(#logo-g)" opacity=".7"/><circle cx="38" cy="28" r="5" fill="url(#logo-g)" opacity=".8"/><circle cx="48" cy="18" r="6" fill="url(#logo-g)"/><line x1="18" y1="44" x2="28" y2="36" stroke="url(#logo-g)" stroke-width="1.5" opacity=".4"/><line x1="28" y1="36" x2="38" y2="28" stroke="url(#logo-g)" stroke-width="1.5" opacity=".5"/><line x1="38" y1="28" x2="48" y2="18" stroke="url(#logo-g)" stroke-width="1.5" opacity=".6"/></svg>ROAD TO AGI · Every AI Model Since Transformers</h1>
     <p class="subtitle" id="pageSubtitle"></p>
+    <button class="menu-toggle" id="menuToggle" onclick="this.classList.toggle('open');document.querySelector('.filters').classList.toggle('mobile-open')">☰ Filters</button>
     <div class="filters">
       <input type="text" class="search-input" id="searchInput" placeholder="Buscar modelo, empresa..."/>
       <span class="sep"></span>
