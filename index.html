@@ -543,6 +543,7 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
     <button class="tab-btn" data-tab="tab-metaculus">Metaculus Forecasts</button>
     <button class="tab-btn" data-tab="tab-countdown">Countdown</button>
     <button class="tab-btn" data-tab="tab-api">API</button>
+    <button class="tab-btn" data-tab="tab-contact">Contact</button>
   </div>
 </div>
 
@@ -652,6 +653,30 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
 
 <!-- ==================== API TAB ==================== -->
 <div class="tab-panel" id="tab-api"></div>
+
+<!-- ==================== CONTACT TAB ==================== -->
+<div class="tab-panel" id="tab-contact">
+<div class="info-page">
+  <h2 id="contactTitle">Contact</h2>
+  <p class="info-subtitle" id="contactSub">Get in touch</p>
+  <div class="info-cards" style="max-width:500px">
+    <a href="https://github.com/missingus3r" target="_blank" rel="noopener" style="text-decoration:none">
+    <div class="info-card">
+      <div class="ic-accent" style="background:linear-gradient(90deg,#6b8aff,#c084fc)"></div>
+      <div class="ic-title">GitHub</div>
+      <div class="ic-desc" id="contactGhDesc">Source code, issues, and contributions.</div>
+      <div class="ic-link">github.com/missingus3r →</div>
+    </div></a>
+    <a href="mailto:sam-assistant@agentmail.to" style="text-decoration:none">
+    <div class="info-card">
+      <div class="ic-accent" style="background:linear-gradient(90deg,#34d399,#10b981)"></div>
+      <div class="ic-title">Email</div>
+      <div class="ic-desc" id="contactEmailDesc">Questions, suggestions, or feedback.</div>
+      <div class="ic-link">sam-assistant@agentmail.to →</div>
+    </div></a>
+  </div>
+</div>
+</div>
 
 <script>
 const models = [
@@ -1523,7 +1548,8 @@ const i18n={
     footer:"* Estimated intelligence (0\u2013100), relative to state of the art in March 2026. Based on public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Diffusion models rated by generation quality and prompt adherence. Not absolute metrics.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
-    tabs:{models:"AI Models",arc:"ARC-AGI Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",api:"API"},
+    tabs:{models:"AI Models",arc:"ARC-AGI Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",api:"API",contact:"Contact"},
+    contact:{title:"Contact",sub:"Get in touch",ghDesc:"Source code, issues, and contributions.",emailDesc:"Questions, suggestions, or feedback."},
     countdown:{
       title:"AGI Countdown",
       sub:"Average estimate across Metaculus forecasts and community predictions",
@@ -1601,7 +1627,8 @@ const i18n={
     footer:"* Inteligencia estimada (0\u2013100), relativa al estado del arte en marzo 2026. Basado en benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opiniones de expertos y posicionamiento de mercado. Modelos de difusi\u00f3n evaluados por calidad de generaci\u00f3n y adherencia a prompts. No son m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tendencia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 ventana \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"es-UY",
-    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Pronósticos Metaculus",countdown:"Countdown",api:"API"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Pronósticos Metaculus",countdown:"Countdown",api:"API",contact:"Contacto"},
+    contact:{title:"Contacto",sub:"Ponete en contacto",ghDesc:"Código fuente, issues y contribuciones.",emailDesc:"Preguntas, sugerencias o feedback."},
     countdown:{
       title:"Cuenta Regresiva AGI",
       sub:"Estimación promedio de los pronósticos de Metaculus y predicciones comunitarias",
@@ -1679,7 +1706,8 @@ const i18n={
     footer:"* Intelig\u00eancia estimada (0\u2013100), relativa ao estado da arte em mar\u00e7o de 2026. Baseado em benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opini\u00f5es de especialistas e posicionamento de mercado. Modelos de difus\u00e3o avaliados por qualidade de gera\u00e7\u00e3o e ader\u00eancia a prompts. N\u00e3o s\u00e3o m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tend\u00eancia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 janela \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"pt-BR",
-    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Previsões Metaculus",countdown:"Countdown",api:"API"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Previsões Metaculus",countdown:"Countdown",api:"API",contact:"Contato"},
+    contact:{title:"Contato",sub:"Entre em contato",ghDesc:"Código fonte, issues e contribuições.",emailDesc:"Perguntas, sugestões ou feedback."},
     countdown:{
       title:"Contagem Regressiva AGI",
       sub:"Estimativa média das previsões do Metaculus e predições comunitárias",
@@ -2463,6 +2491,16 @@ function applyLang(){
   document.querySelector('[data-tab="tab-metaculus"]').textContent=tabs.meta;
   document.querySelector('[data-tab="tab-countdown"]').textContent=tabs.countdown||'Countdown';
   document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
+  document.querySelector('[data-tab="tab-contact"]').textContent=tabs.contact||'Contact';
+  // Update contact tab i18n
+  const ct=t('contact');
+  if(ct){
+    const el=id=>document.getElementById(id);
+    if(el('contactTitle'))el('contactTitle').textContent=ct.title;
+    if(el('contactSub'))el('contactSub').textContent=ct.sub;
+    if(el('contactGhDesc'))el('contactGhDesc').textContent=ct.ghDesc;
+    if(el('contactEmailDesc'))el('contactEmailDesc').textContent=ct.emailDesc;
+  }
   // Update countdown tab i18n
   const cd=t('countdown');
   if(cd){
