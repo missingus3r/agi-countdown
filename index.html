@@ -1084,7 +1084,10 @@ const models = [
 {name:"MAI-Voice-1",date:"2026-04-03",company:"Microsoft",open:false,intelligence:58,type:"TTS",cat:"audio"},
 {name:"MAI-Image-2",date:"2026-04-03",company:"Microsoft",open:false,intelligence:62,type:"Diffusion",cat:"image"},
 {name:"Asset Harvester",date:"2026-04-06",company:"NVIDIA",open:true,intelligence:50,type:"Diffusion",cat:"image"},
-{name:"GLM-5V-Turbo",date:"2026-04-01",company:"Zhipu AI",open:false,intelligence:78,type:"Multimodal",cat:"multi"}
+{name:"GLM-5V-Turbo",date:"2026-04-01",company:"Zhipu AI",open:false,intelligence:78,type:"Multimodal",cat:"multi"},
+{name:"Sparrow-1",date:"2026-01-13",company:"Tavus",open:false,intelligence:52,type:"LLM",cat:"audio"},
+{name:"Raven-1",date:"2026-02-16",company:"Tavus",open:false,intelligence:55,type:"Multimodal",cat:"multi"},
+{name:"Phoenix-4",date:"2026-02-18",company:"Tavus",open:false,intelligence:60,type:"Diffusion",cat:"video"}
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1482,7 +1485,10 @@ const modelUrls={
 "MAI-Voice-1":"https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-transcribe-1-mai-voice-1-and-mai-image-2-in-microsoft-foundry/4507787",
 "MAI-Image-2":"https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-transcribe-1-mai-voice-1-and-mai-image-2-in-microsoft-foundry/4507787",
 "Asset Harvester":"https://huggingface.co/nvidia/asset-harvester",
-"GLM-5V-Turbo":"https://huggingface.co/THUDM/GLM-5V-Turbo"
+"GLM-5V-Turbo":"https://huggingface.co/THUDM/GLM-5V-Turbo",
+"Sparrow-1":"https://www.tavus.io/post/sparrow-1-human-level-conversational-timing-in-real-time-voice",
+"Raven-1":"https://aijourn.com/tavus-introduces-raven-1-bringing-multimodal-perception-to-real-time-conversational-ai/",
+"Phoenix-4":"https://www.tavus.io/post/phoenix-4-real-time-human-rendering-with-emotional-intelligence"
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
