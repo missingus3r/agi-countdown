@@ -2588,15 +2588,28 @@ applyLang();
 (function(){
   const tabBtns=document.querySelectorAll('.tab-btn');
   const tabPanels=document.querySelectorAll('.tab-panel');
+  function switchTab(tabId){
+    tabBtns.forEach(b=>b.classList.remove('active'));
+    tabPanels.forEach(p=>p.classList.remove('active'));
+    const btn=document.querySelector('[data-tab="'+tabId+'"]');
+    if(btn)btn.classList.add('active');
+    const panel=document.getElementById(tabId);
+    if(panel)panel.classList.add('active');
+  }
   tabBtns.forEach(btn=>{
     btn.addEventListener('click',()=>{
       const target=btn.dataset.tab;
-      tabBtns.forEach(b=>b.classList.remove('active'));
-      tabPanels.forEach(p=>p.classList.remove('active'));
-      btn.classList.add('active');
-      document.getElementById(target).classList.add('active');
+      location.hash=target.replace('tab-','');
+      switchTab(target);
     });
   });
+  // On load/hashchange, restore tab from URL hash
+  function restoreFromHash(){
+    const h=location.hash.replace('#','');
+    if(h){const tabId='tab-'+h;if(document.getElementById(tabId))switchTab(tabId)}
+  }
+  window.addEventListener('hashchange',restoreFromHash);
+  restoreFromHash();
 })();
 </script>
 <script>
