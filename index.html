@@ -588,6 +588,10 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
     </div>
     <div style="font-family:'IBM Plex Mono';font-size:11px;color:#666;margin-top:14px" id="cdUntil">until estimated AGI arrival</div>
     <div style="font-family:'IBM Plex Mono';font-size:8px;color:#444;margin-top:8px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto" id="cdBasedOn">Based on the average of Metaculus community forecasts (Weak AGI ~Mar 2028, Full AGI ~2032) and estimates from similar countdown/forecast projects.</div>
+    <div style="font-family:'IBM Plex Mono';font-size:8px;color:#555;margin-top:6px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
+      <span id="cdLastAdjust">Last adjusted: 2026-04-06</span>
+      <span id="cdShift" style="color:#34d399">No change since last review</span>
+    </div>
   </div>
 
   <!-- Disclaimer -->
@@ -1567,7 +1571,9 @@ const i18n={
       similarTitle:"Similar Projects",
       years:"years",days:"days",hours:"hours",minutes:"minutes",seconds:"seconds",
       untilAGI:"until estimated AGI arrival",
-      basedOn:"Based on the average of Metaculus community forecasts (Weak AGI ~Mar 2028, Full AGI ~2032) and estimates from similar countdown/forecast projects."
+      basedOn:"Based on the average of Metaculus community forecasts (Weak AGI ~Mar 2028, Full AGI ~2032) and estimates from similar countdown/forecast projects.",
+      lastAdjust:"Last adjusted",
+      noChange:"No change since last review"
     },
     arc:{
       title:"ARC-AGI Benchmark Series",
@@ -1646,7 +1652,9 @@ const i18n={
       similarTitle:"Páginas Similares",
       years:"años",days:"días",hours:"horas",minutes:"minutos",seconds:"segundos",
       untilAGI:"para la llegada estimada de AGI",
-      basedOn:"Basado en el promedio de los pronósticos de la comunidad Metaculus (AGI Débil ~Mar 2028, AGI Completa ~2032) y estimaciones de proyectos similares de countdown."
+      basedOn:"Basado en el promedio de los pronósticos de la comunidad Metaculus (AGI Débil ~Mar 2028, AGI Completa ~2032) y estimaciones de proyectos similares de countdown.",
+      lastAdjust:"Último ajuste",
+      noChange:"Sin cambios desde la última revisión"
     },
     arc:{
       title:"Serie de Benchmarks ARC-AGI",
@@ -1725,7 +1733,9 @@ const i18n={
       similarTitle:"Projetos Similares",
       years:"anos",days:"dias",hours:"horas",minutes:"minutos",seconds:"segundos",
       untilAGI:"até a chegada estimada da AGI",
-      basedOn:"Baseado na média das previsões da comunidade Metaculus (AGI Fraca ~Mar 2028, AGI Completa ~2032) e estimativas de projetos similares de countdown."
+      basedOn:"Baseado na média das previsões da comunidade Metaculus (AGI Fraca ~Mar 2028, AGI Completa ~2032) e estimativas de projetos similares de countdown.",
+      lastAdjust:"Último ajuste",
+      noChange:"Sem alterações desde a última revisão"
     },
     arc:{
       title:"S\u00e9rie de Benchmarks ARC-AGI",
@@ -2522,6 +2532,10 @@ function applyLang(){
     if(el('cdUntil'))el('cdUntil').textContent=cd.untilAGI;
     if(el('cdBasedOn'))el('cdBasedOn').textContent=cd.basedOn;
     document.querySelectorAll('.cd-label').forEach(l=>{if(cd[l.dataset.cd])l.textContent=cd[l.dataset.cd]});
+    const laEl=document.getElementById('cdLastAdjust');
+    if(laEl){const d=laEl.textContent.match(/\d{4}-\d{2}-\d{2}/);if(d)laEl.textContent=cd.lastAdjust+': '+d[0]}
+    const shEl=document.getElementById('cdShift');
+    if(shEl&&!shEl.dataset.shifted)shEl.textContent=cd.noChange;
   }
   // Render info tabs
   renderArcTab();
