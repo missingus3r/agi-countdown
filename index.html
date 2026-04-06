@@ -1092,7 +1092,21 @@ const models = [
 {name:"TranslateGemma",date:"2026-01-15",company:"Google",open:true,intelligence:55,type:"LLM",cat:"text"},
 {name:"Sparrow-1",date:"2026-01-13",company:"Tavus",open:false,intelligence:52,type:"LLM",cat:"audio"},
 {name:"Raven-1",date:"2026-02-16",company:"Tavus",open:false,intelligence:55,type:"Multimodal",cat:"multi"},
-{name:"Phoenix-4",date:"2026-02-18",company:"Tavus",open:false,intelligence:60,type:"Diffusion",cat:"video"}
+{name:"Phoenix-4",date:"2026-02-18",company:"Tavus",open:false,intelligence:60,type:"Diffusion",cat:"video"},
+{name:"BAGEL",date:"2026-03-15",company:"ByteDance",open:true,intelligence:62,type:"Multimodal",cat:"multi"},
+{name:"UI-TARS-1.5",date:"2026-02-01",company:"ByteDance",open:true,intelligence:65,type:"Multimodal",cat:"multi"},
+{name:"Seed Diffusion Preview",date:"2026-03-01",company:"ByteDance",open:false,intelligence:62,type:"Text Diffusion",cat:"text"},
+{name:"Seedream 4.0",date:"2025-09-01",company:"ByteDance",open:false,intelligence:48,type:"Diffusion",cat:"image"},
+{name:"Seedream 4.5",date:"2025-11-01",company:"ByteDance",open:false,intelligence:52,type:"Diffusion",cat:"image"},
+{name:"Seedream 5.0 Lite",date:"2026-03-01",company:"ByteDance",open:false,intelligence:55,type:"Diffusion",cat:"image"},
+{name:"SeedEdit 3.0",date:"2026-02-01",company:"ByteDance",open:false,intelligence:50,type:"Diffusion",cat:"image"},
+{name:"Seed3D 1.0",date:"2026-01-15",company:"ByteDance",open:false,intelligence:50,type:"Diffusion",cat:"image"},
+{name:"Seedance 1.5 Pro",date:"2026-02-15",company:"ByteDance",open:false,intelligence:52,type:"Diffusion",cat:"video"},
+{name:"Seed LiveInterpret 2.0",date:"2026-02-01",company:"ByteDance",open:false,intelligence:58,type:"ASR",cat:"audio"},
+{name:"Seed Realtime Voice",date:"2026-01-15",company:"ByteDance",open:false,intelligence:60,type:"LLM",cat:"audio"},
+{name:"Seed-Music",date:"2025-12-01",company:"ByteDance",open:false,intelligence:52,type:"Diffusion",cat:"audio"},
+{name:"Protenix",date:"2025-12-15",company:"ByteDance",open:true,intelligence:60,type:"LLM",cat:"text"},
+{name:"Seed GR-3",date:"2026-03-01",company:"ByteDance",open:false,intelligence:65,type:"Multimodal",cat:"multi"}
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1494,7 +1508,21 @@ const modelUrls={
 "TranslateGemma":"https://blog.google/innovation-and-ai/technology/developers-tools/translategemma/",
 "Sparrow-1":"https://www.tavus.io/post/sparrow-1-human-level-conversational-timing-in-real-time-voice",
 "Raven-1":"https://aijourn.com/tavus-introduces-raven-1-bringing-multimodal-perception-to-real-time-conversational-ai/",
-"Phoenix-4":"https://www.tavus.io/post/phoenix-4-real-time-human-rendering-with-emotional-intelligence"
+"Phoenix-4":"https://www.tavus.io/post/phoenix-4-real-time-human-rendering-with-emotional-intelligence",
+"BAGEL":"https://seed.bytedance.com/en/models#bagel",
+"UI-TARS-1.5":"https://seed.bytedance.com/en/models#ui-tars",
+"Seed Diffusion Preview":"https://seed.bytedance.com/en/models#seed-diffusion",
+"Seedream 4.0":"https://seed.bytedance.com/en/models#seedream",
+"Seedream 4.5":"https://seed.bytedance.com/en/models#seedream",
+"Seedream 5.0 Lite":"https://seed.bytedance.com/en/models#seedream",
+"SeedEdit 3.0":"https://seed.bytedance.com/en/models#seededit",
+"Seed3D 1.0":"https://seed.bytedance.com/en/models#seed3d",
+"Seedance 1.5 Pro":"https://seed.bytedance.com/en/models#seedance",
+"Seed LiveInterpret 2.0":"https://seed.bytedance.com/en/models#seed-liveinterpret",
+"Seed Realtime Voice":"https://seed.bytedance.com/en/models#seed-realtime-voice",
+"Seed-Music":"https://seed.bytedance.com/en/models#seed-music",
+"Protenix":"https://seed.bytedance.com/en/models#protenix",
+"Seed GR-3":"https://seed.bytedance.com/en/models#seed-gr"
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
