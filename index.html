@@ -575,6 +575,8 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   <!-- Countdown Clock -->
   <div style="background:#08080c;border:1px solid #1a1a22;border-radius:10px;padding:28px 20px;margin-bottom:24px;text-align:center">
     <div id="countdownClock" style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
+      <div style="min-width:70px"><div style="font-family:'IBM Plex Mono';font-size:36px;font-weight:700;background:linear-gradient(90deg,#5e9de5,#6b8aff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="cdYears">--</div><div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;letter-spacing:1px" class="cd-label" data-cd="years">years</div></div>
+      <div style="font-family:'IBM Plex Mono';font-size:36px;color:#333;font-weight:300">:</div>
       <div style="min-width:70px"><div style="font-family:'IBM Plex Mono';font-size:36px;font-weight:700;background:linear-gradient(90deg,#6b8aff,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="cdDays">---</div><div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;letter-spacing:1px" class="cd-label" data-cd="days">days</div></div>
       <div style="font-family:'IBM Plex Mono';font-size:36px;color:#333;font-weight:300">:</div>
       <div style="min-width:70px"><div style="font-family:'IBM Plex Mono';font-size:36px;font-weight:700;background:linear-gradient(90deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="cdHours">--</div><div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;letter-spacing:1px" class="cd-label" data-cd="hours">hours</div></div>
@@ -1527,7 +1529,7 @@ const i18n={
       sub:"Average estimate across Metaculus forecasts and community predictions",
       disclaimer:"All of these pages are made by independent individuals or small groups, using speculative methods and subjective estimates. Their predictions may be inaccurate and should not be taken as reliable forecasts. Any of these sites may stop working or be taken down at any time.",
       similarTitle:"Similar Projects",
-      days:"days",hours:"hours",minutes:"minutes",seconds:"seconds",
+      years:"years",days:"days",hours:"hours",minutes:"minutes",seconds:"seconds",
       untilAGI:"until estimated AGI arrival",
       basedOn:"Based on the average of Metaculus community forecasts (Weak AGI ~Mar 2028, Full AGI ~2032) and estimates from similar countdown/forecast projects."
     },
@@ -1605,7 +1607,7 @@ const i18n={
       sub:"Estimación promedio de los pronósticos de Metaculus y predicciones comunitarias",
       disclaimer:"Todas estas páginas son creadas por personas particulares o grupos pequeños, usando métodos especulativos y estimaciones subjetivas. Sus predicciones pueden ser inexactas y no deben tomarse como pronósticos confiables. Cualquiera de estos sitios puede dejar de funcionar en cualquier momento.",
       similarTitle:"Páginas Similares",
-      days:"días",hours:"horas",minutes:"minutos",seconds:"segundos",
+      years:"años",days:"días",hours:"horas",minutes:"minutos",seconds:"segundos",
       untilAGI:"para la llegada estimada de AGI",
       basedOn:"Basado en el promedio de los pronósticos de la comunidad Metaculus (AGI Débil ~Mar 2028, AGI Completa ~2032) y estimaciones de proyectos similares de countdown."
     },
@@ -1683,7 +1685,7 @@ const i18n={
       sub:"Estimativa média das previsões do Metaculus e predições comunitárias",
       disclaimer:"Todas essas páginas são criadas por indivíduos ou pequenos grupos, usando métodos especulativos e estimativas subjetivas. Suas previsões podem ser imprecisas e não devem ser tomadas como prognósticos confiáveis. Qualquer um desses sites pode parar de funcionar a qualquer momento.",
       similarTitle:"Projetos Similares",
-      days:"dias",hours:"horas",minutes:"minutos",seconds:"segundos",
+      years:"anos",days:"dias",hours:"horas",minutes:"minutos",seconds:"segundos",
       untilAGI:"até a chegada estimada da AGI",
       basedOn:"Baseado na média das previsões da comunidade Metaculus (AGI Fraca ~Mar 2028, AGI Completa ~2032) e estimativas de projetos similares de countdown."
     },
@@ -2604,9 +2606,11 @@ applyLang();
   const targetDate=new Date('2030-01-15T00:00:00Z').getTime();
   function update(){
     const now=Date.now(),diff=targetDate-now;
-    if(diff<=0){document.getElementById('cdDays').textContent='0';document.getElementById('cdHours').textContent='00';document.getElementById('cdMins').textContent='00';document.getElementById('cdSecs').textContent='00';return}
-    const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
-    document.getElementById('cdDays').textContent=d.toLocaleString();
+    if(diff<=0){document.getElementById('cdYears').textContent='00';document.getElementById('cdDays').textContent='000';document.getElementById('cdHours').textContent='00';document.getElementById('cdMins').textContent='00';document.getElementById('cdSecs').textContent='00';return}
+    const totalDays=Math.floor(diff/86400000),y=Math.floor(totalDays/365),d=totalDays%365;
+    const h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    document.getElementById('cdYears').textContent=String(y).padStart(2,'0');
+    document.getElementById('cdDays').textContent=String(d).padStart(3,'0');
     document.getElementById('cdHours').textContent=String(h).padStart(2,'0');
     document.getElementById('cdMins').textContent=String(m).padStart(2,'0');
     document.getElementById('cdSecs').textContent=String(s).padStart(2,'0');
