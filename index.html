@@ -488,9 +488,12 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   .cards-grid{gap:4px}
   .card .card-name{font-size:11px}
   .tab-btn{padding:6px 0;font-size:8px}
-  /* Countdown clock smaller on tiny screens */
-  #countdownClock div[style*="font-size:36px"]{font-size:28px!important}
-  #countdownClock>div{min-width:55px!important}
+  /* Countdown clock: single line, scaled down */
+  #countdownClock{gap:6px!important;flex-wrap:nowrap!important}
+  #countdownClock>div[style*="min-width"]{min-width:auto!important}
+  #countdownClock>div[style*="font-size:36px"]{font-size:20px!important}
+  #countdownClock>div[style*="font-size:36px;color:#333"]{font-size:20px!important}
+  #countdownClock .cd-label{font-size:7px!important}
   .info-page h2{font-size:16px}
   .forecast-card .fc-pred-date{font-size:20px}
 }
