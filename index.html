@@ -6,8 +6,8 @@
 <title>ROAD TO AGI · Every AI Model Since Transformers</title>
 
 <!-- SEO core -->
-<meta name="description" content="Interactive timeline of every major AI model since the Transformer (2017). 380+ models from 85+ companies: LLMs, diffusion, reasoning, multimodal, video, audio. Open-source API included."/>
-<meta name="keywords" content="AI models, LLM, artificial intelligence, AGI, timeline, GPT, Claude, Gemini, Llama, Stable Diffusion, DALL-E, Midjourney, deep learning, transformer, open source AI, AI benchmark, AI history"/>
+<meta name="description" content="Interactive timeline of every major AI model since the Transformer (2017). 400+ models from 85+ companies: LLMs, diffusion, reasoning, multimodal, video, audio. AGI countdown timer, ARC-AGI benchmarks, Metaculus forecasts. Open-source API included."/>
+<meta name="keywords" content="AI models, LLM, artificial intelligence, AGI, AGI countdown, ASI countdown, AI timeline, AI forecast, GPT, Claude, Gemini, Llama, Stable Diffusion, DALL-E, Midjourney, deep learning, transformer, open source AI, AI benchmark, AI history, ARC-AGI, Metaculus"/>
 <meta name="author" content="missingus3r"/>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
 <link rel="canonical" href="https://missingus3r.github.io/agi-countdown/"/>
@@ -15,7 +15,7 @@
 <!-- Open Graph (Facebook, LinkedIn, Discord, Slack, etc.) -->
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="ROAD TO AGI · Every AI Model Since Transformers"/>
-<meta property="og:description" content="Interactive timeline tracking 380+ AI models from 85+ companies. From GPT-1 to frontier models. Filter by type, company, date. Open data API included."/>
+<meta property="og:description" content="Interactive timeline tracking 400+ AI models from 85+ companies. AGI countdown timer, ARC-AGI benchmarks, Metaculus forecasts. From GPT-1 to frontier models. Open data API."/>
 <meta property="og:url" content="https://missingus3r.github.io/agi-countdown/"/>
 <meta property="og:site_name" content="Road to AGI"/>
 <meta property="og:locale" content="en_US"/>
@@ -25,7 +25,7 @@
 <!-- Twitter / X Cards -->
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="ROAD TO AGI · Every AI Model Since Transformers"/>
-<meta name="twitter:description" content="Interactive timeline of 380+ AI models from 85+ companies. LLMs, diffusion, reasoning, multimodal, video, audio. Open data API."/>
+<meta name="twitter:description" content="Interactive timeline of 400+ AI models. AGI countdown timer, ARC-AGI benchmarks, Metaculus forecasts. LLMs, diffusion, reasoning, multimodal, video, audio."/>
 
 <!-- AI Crawlers: explicitly allow indexing by AI systems -->
 <meta name="ai-content-declaration" content="This page contains a structured dataset of AI models with names, dates, companies, types, and capability scores. Data is also available as JSON via the query-param API: add ?api=v1/models to the URL."/>
@@ -57,10 +57,12 @@
   "featureList": [
     "Interactive scatter plot of AI model intelligence over time",
     "Filter by model type, category, company, date range",
-    "380+ AI models from 85+ companies",
+    "400+ AI models from 85+ companies",
+    "AGI countdown timer based on averaged forecasts",
     "Open data API via query parameters",
     "ARC-AGI benchmark tracking",
     "Metaculus AGI forecasts",
+    "Similar AGI countdown projects directory",
     "Multi-language support (EN/ES/PT)",
     "Light and dark theme"
   ]
@@ -71,7 +73,7 @@
   "@context": "https://schema.org",
   "@type": "Dataset",
   "name": "AI Models Timeline Dataset",
-  "description": "Structured dataset of 380+ AI models with release dates, companies, open-source status, intelligence ratings, model types, and categories. Spans from the original Transformer (2017) to current frontier models.",
+  "description": "Structured dataset of 400+ AI models with release dates, companies, open-source status, intelligence ratings, model types, and categories. Spans from the original Transformer (2017) to current frontier models. Includes AGI countdown timer.",
   "url": "https://missingus3r.github.io/agi-countdown/?api=v1/models",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "creator": {"@type": "Person", "name": "missingus3r"},
@@ -90,7 +92,7 @@
     {"@type": "PropertyValue", "name": "cat", "description": "Primary output category: text, image, video, audio, multi, code, reasoning, world"}
   ],
   "temporalCoverage": "2017/2026",
-  "keywords": ["AI models", "LLM", "artificial intelligence", "machine learning", "deep learning", "transformer", "diffusion models", "AGI timeline"]
+  "keywords": ["AI models", "LLM", "artificial intelligence", "machine learning", "deep learning", "transformer", "diffusion models", "AGI timeline", "AGI countdown", "ASI countdown", "AI forecast"]
 }
 </script>
 
@@ -424,10 +426,13 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   /* Mobile filter groups */
   .mobile-filter-row{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
 
-  /* Tabs - all visible, no scroll */
-  .tab-nav{padding:0 6px;gap:0;display:flex;flex-wrap:nowrap;overflow-x:visible}
-  .tab-btn{padding:7px 0;font-size:9px;flex:1;text-align:center;white-space:nowrap;letter-spacing:0;border-right:1px solid #2a2a35}
-  .tab-btn:last-child{border-right:none}
+  /* Tabs - 2x grid on mobile */
+  .tab-nav{padding:0;gap:0;display:grid;grid-template-columns:1fr 1fr}
+  .tab-btn{padding:8px 4px;font-size:9px;text-align:center;white-space:normal;letter-spacing:0;border-right:1px solid #2a2a35;border-bottom:1px solid #2a2a35;line-height:1.3}
+  .tab-btn:nth-child(even){border-right:none}
+  .tab-btn:nth-last-child(-n+1):nth-child(odd){grid-column:1/-1;border-right:none}
+  .tab-btn:nth-last-child(-n+2){border-bottom:none}
+  html.light .tab-btn{border-right-color:#ddd;border-bottom-color:#ddd}
 
   /* Chart */
   .chart-container{height:250px!important;border-radius:4px}
@@ -482,8 +487,10 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   .chart-container{height:200px!important}
   .cards-grid{gap:4px}
   .card .card-name{font-size:11px}
-  .tab-btn{padding:6px 0;font-size:8px;border-right:1px solid #2a2a35}
-  .tab-btn:last-child{border-right:none}
+  .tab-btn{padding:6px 0;font-size:8px}
+  /* Countdown clock smaller on tiny screens */
+  #countdownClock div[style*="font-size:36px"]{font-size:28px!important}
+  #countdownClock>div{min-width:55px!important}
   .info-page h2{font-size:16px}
   .forecast-card .fc-pred-date{font-size:20px}
 }
@@ -531,7 +538,7 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
     <button class="tab-btn active" data-tab="tab-models">AI Models</button>
     <button class="tab-btn" data-tab="tab-arc">ARC-AGI Benchmarks</button>
     <button class="tab-btn" data-tab="tab-metaculus">Metaculus Forecasts</button>
-    <button class="tab-btn" data-tab="tab-similar">Similar</button>
+    <button class="tab-btn" data-tab="tab-countdown">Countdown</button>
     <button class="tab-btn" data-tab="tab-api">API</button>
   </div>
 </div>
@@ -556,14 +563,34 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
 <!-- ==================== METACULUS TAB ==================== -->
 <div class="tab-panel" id="tab-metaculus"></div>
 
-<!-- ==================== SIMILAR SITES TAB ==================== -->
-<div class="tab-panel" id="tab-similar">
+<!-- ==================== COUNTDOWN TAB ==================== -->
+<div class="tab-panel" id="tab-countdown">
 <div class="info-page">
-  <h2>Similar Projects</h2>
-  <p class="info-subtitle">Other AGI/ASI countdowns and AI timelines from around the web</p>
-  <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:12px 16px;margin-bottom:24px;font-family:'IBM Plex Mono';font-size:10px;color:#ef4444;line-height:1.7">
-    <b>⚠ Disclaimer:</b> All of these pages are made by independent individuals or small groups, using speculative methods and subjective estimates. Their predictions may be inaccurate and should not be taken as reliable forecasts. Additionally, any of these sites may stop working or be taken down at any time without notice.
+  <h2 id="countdownTitle">AGI Countdown</h2>
+  <p class="info-subtitle" id="countdownSub">Average estimate across Metaculus forecasts and community predictions</p>
+
+  <!-- Countdown Clock -->
+  <div style="background:#08080c;border:1px solid #1a1a22;border-radius:10px;padding:28px 20px;margin-bottom:24px;text-align:center">
+    <div id="countdownClock" style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap">
+      <div style="min-width:70px"><div style="font-family:'IBM Plex Mono';font-size:36px;font-weight:700;background:linear-gradient(90deg,#6b8aff,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="cdDays">---</div><div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;letter-spacing:1px" class="cd-label" data-cd="days">days</div></div>
+      <div style="font-family:'IBM Plex Mono';font-size:36px;color:#333;font-weight:300">:</div>
+      <div style="min-width:70px"><div style="font-family:'IBM Plex Mono';font-size:36px;font-weight:700;background:linear-gradient(90deg,#c084fc,#f472b6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="cdHours">--</div><div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;letter-spacing:1px" class="cd-label" data-cd="hours">hours</div></div>
+      <div style="font-family:'IBM Plex Mono';font-size:36px;color:#333;font-weight:300">:</div>
+      <div style="min-width:70px"><div style="font-family:'IBM Plex Mono';font-size:36px;font-weight:700;background:linear-gradient(90deg,#f472b6,#fbbf24);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="cdMins">--</div><div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;letter-spacing:1px" class="cd-label" data-cd="minutes">minutes</div></div>
+      <div style="font-family:'IBM Plex Mono';font-size:36px;color:#333;font-weight:300">:</div>
+      <div style="min-width:70px"><div style="font-family:'IBM Plex Mono';font-size:36px;font-weight:700;background:linear-gradient(90deg,#fbbf24,#34d399);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text" id="cdSecs">--</div><div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;letter-spacing:1px" class="cd-label" data-cd="seconds">seconds</div></div>
+    </div>
+    <div style="font-family:'IBM Plex Mono';font-size:11px;color:#666;margin-top:14px" id="cdUntil">until estimated AGI arrival</div>
+    <div style="font-family:'IBM Plex Mono';font-size:8px;color:#444;margin-top:8px;line-height:1.6;max-width:600px;margin-left:auto;margin-right:auto" id="cdBasedOn">Based on the average of Metaculus community forecasts (Weak AGI ~Mar 2028, Full AGI ~2032) and estimates from similar countdown/forecast projects.</div>
   </div>
+
+  <!-- Disclaimer -->
+  <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:12px 16px;margin-bottom:24px;font-family:'IBM Plex Mono';font-size:10px;color:#ef4444;line-height:1.7" id="countdownDisclaimer">
+    <b>⚠ Disclaimer:</b> <span id="cdDisclaimerText">All of these pages are made by independent individuals or small groups, using speculative methods and subjective estimates. Their predictions may be inaccurate and should not be taken as reliable forecasts. Any of these sites may stop working or be taken down at any time.</span>
+  </div>
+
+  <!-- Similar Projects Header -->
+  <div class="info-section"><h3 id="similarHeader">Similar Projects</h3></div>
   <div class="info-cards">
     <a href="https://aicountdown.com/" target="_blank" rel="noopener" style="text-decoration:none">
     <div class="info-card">
@@ -1491,7 +1518,16 @@ const i18n={
     footer:"* Estimated intelligence (0\u2013100), relative to state of the art in March 2026. Based on public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Diffusion models rated by generation quality and prompt adherence. Not absolute metrics.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
-    tabs:{models:"AI Models",arc:"ARC-AGI Benchmarks",meta:"Metaculus Forecasts",api:"API"},
+    tabs:{models:"AI Models",arc:"ARC-AGI Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",api:"API"},
+    countdown:{
+      title:"AGI Countdown",
+      sub:"Average estimate across Metaculus forecasts and community predictions",
+      disclaimer:"All of these pages are made by independent individuals or small groups, using speculative methods and subjective estimates. Their predictions may be inaccurate and should not be taken as reliable forecasts. Any of these sites may stop working or be taken down at any time.",
+      similarTitle:"Similar Projects",
+      days:"days",hours:"hours",minutes:"minutes",seconds:"seconds",
+      untilAGI:"until estimated AGI arrival",
+      basedOn:"Based on the average of Metaculus community forecasts (Weak AGI ~Mar 2028, Full AGI ~2032) and estimates from similar countdown/forecast projects."
+    },
     arc:{
       title:"ARC-AGI Benchmark Series",
       sub:'Measuring the gap between human and AI reasoning \u00b7 Created by <b>Fran\u00e7ois Chollet</b> (Keras) \u00b7 <a href="https://arcprize.org/" target="_blank">arcprize.org</a>',
@@ -1560,7 +1596,16 @@ const i18n={
     footer:"* Inteligencia estimada (0\u2013100), relativa al estado del arte en marzo 2026. Basado en benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opiniones de expertos y posicionamiento de mercado. Modelos de difusi\u00f3n evaluados por calidad de generaci\u00f3n y adherencia a prompts. No son m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tendencia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 ventana \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"es-UY",
-    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Pron\u00f3sticos Metaculus",api:"API"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Pronósticos Metaculus",countdown:"Countdown",api:"API"},
+    countdown:{
+      title:"Cuenta Regresiva AGI",
+      sub:"Estimación promedio de los pronósticos de Metaculus y predicciones comunitarias",
+      disclaimer:"Todas estas páginas son creadas por personas particulares o grupos pequeños, usando métodos especulativos y estimaciones subjetivas. Sus predicciones pueden ser inexactas y no deben tomarse como pronósticos confiables. Cualquiera de estos sitios puede dejar de funcionar en cualquier momento.",
+      similarTitle:"Páginas Similares",
+      days:"días",hours:"horas",minutes:"minutos",seconds:"segundos",
+      untilAGI:"para la llegada estimada de AGI",
+      basedOn:"Basado en el promedio de los pronósticos de la comunidad Metaculus (AGI Débil ~Mar 2028, AGI Completa ~2032) y estimaciones de proyectos similares de countdown."
+    },
     arc:{
       title:"Serie de Benchmarks ARC-AGI",
       sub:'Midiendo la brecha entre el razonamiento humano y el de la IA \u00b7 Creado por <b>Fran\u00e7ois Chollet</b> (Keras) \u00b7 <a href="https://arcprize.org/" target="_blank">arcprize.org</a>',
@@ -1629,7 +1674,16 @@ const i18n={
     footer:"* Intelig\u00eancia estimada (0\u2013100), relativa ao estado da arte em mar\u00e7o de 2026. Baseado em benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opini\u00f5es de especialistas e posicionamento de mercado. Modelos de difus\u00e3o avaliados por qualidade de gera\u00e7\u00e3o e ader\u00eancia a prompts. N\u00e3o s\u00e3o m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tend\u00eancia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 janela \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"pt-BR",
-    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Previs\u00f5es Metaculus",api:"API"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks ARC-AGI",meta:"Previsões Metaculus",countdown:"Countdown",api:"API"},
+    countdown:{
+      title:"Contagem Regressiva AGI",
+      sub:"Estimativa média das previsões do Metaculus e predições comunitárias",
+      disclaimer:"Todas essas páginas são criadas por indivíduos ou pequenos grupos, usando métodos especulativos e estimativas subjetivas. Suas previsões podem ser imprecisas e não devem ser tomadas como prognósticos confiáveis. Qualquer um desses sites pode parar de funcionar a qualquer momento.",
+      similarTitle:"Projetos Similares",
+      days:"dias",hours:"horas",minutes:"minutos",seconds:"segundos",
+      untilAGI:"até a chegada estimada da AGI",
+      basedOn:"Baseado na média das previsões da comunidade Metaculus (AGI Fraca ~Mar 2028, AGI Completa ~2032) e estimativas de projetos similares de countdown."
+    },
     arc:{
       title:"S\u00e9rie de Benchmarks ARC-AGI",
       sub:'Medindo a lacuna entre o racioc\u00ednio humano e o da IA \u00b7 Criado por <b>Fran\u00e7ois Chollet</b> (Keras) \u00b7 <a href="https://arcprize.org/" target="_blank">arcprize.org</a>',
@@ -2402,7 +2456,20 @@ function applyLang(){
   document.querySelector('[data-tab="tab-models"]').textContent=tabs.models;
   document.querySelector('[data-tab="tab-arc"]').textContent=tabs.arc;
   document.querySelector('[data-tab="tab-metaculus"]').textContent=tabs.meta;
+  document.querySelector('[data-tab="tab-countdown"]').textContent=tabs.countdown||'Countdown';
   document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
+  // Update countdown tab i18n
+  const cd=t('countdown');
+  if(cd){
+    const el=id=>document.getElementById(id);
+    if(el('countdownTitle'))el('countdownTitle').textContent=cd.title;
+    if(el('countdownSub'))el('countdownSub').textContent=cd.sub;
+    if(el('cdDisclaimerText'))el('cdDisclaimerText').textContent=cd.disclaimer;
+    if(el('similarHeader'))el('similarHeader').textContent=cd.similarTitle;
+    if(el('cdUntil'))el('cdUntil').textContent=cd.untilAGI;
+    if(el('cdBasedOn'))el('cdBasedOn').textContent=cd.basedOn;
+    document.querySelectorAll('.cd-label').forEach(l=>{if(cd[l.dataset.cd])l.textContent=cd[l.dataset.cd]});
+  }
   // Render info tabs
   renderArcTab();
   renderMetaTab();
@@ -2525,6 +2592,23 @@ applyLang();
       document.getElementById(target).classList.add('active');
     });
   });
+})();
+</script>
+<script>
+// AGI Countdown Timer — average of estimates: Metaculus Weak AGI Mar 2028, Full AGI ~2032,
+// plus external sites avg ~mid 2029. Overall average: ~Jan 2030
+(function(){
+  const targetDate=new Date('2030-01-15T00:00:00Z').getTime();
+  function update(){
+    const now=Date.now(),diff=targetDate-now;
+    if(diff<=0){document.getElementById('cdDays').textContent='0';document.getElementById('cdHours').textContent='00';document.getElementById('cdMins').textContent='00';document.getElementById('cdSecs').textContent='00';return}
+    const d=Math.floor(diff/86400000),h=Math.floor((diff%86400000)/3600000),m=Math.floor((diff%3600000)/60000),s=Math.floor((diff%60000)/1000);
+    document.getElementById('cdDays').textContent=d.toLocaleString();
+    document.getElementById('cdHours').textContent=String(h).padStart(2,'0');
+    document.getElementById('cdMins').textContent=String(m).padStart(2,'0');
+    document.getElementById('cdSecs').textContent=String(s).padStart(2,'0');
+  }
+  update();setInterval(update,1000);
 })();
 </script>
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
