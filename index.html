@@ -555,6 +555,10 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
     <span style="color:var(--t-xghost)">|</span>
     <span><span class="trend-line">t(x)</span> = Σ(intel³) / Σ(intel²) — ventana ±8%, peso = intel², frontier domina</span>
   </div>
+  <div id="upcomingSection" style="margin:16px 0;padding:16px 0;border-top:1px solid var(--bd-sub);border-bottom:1px solid var(--bd-sub)">
+    <h3 style="font-family:'IBM Plex Mono';font-size:13px;font-weight:700;color:var(--t-dim);margin-bottom:12px;display:flex;align-items:center;gap:8px;letter-spacing:0.5px"><span style="color:#fbbf24">⚡</span> PRÓXIMAMENTE</h3>
+    <div id="upcomingCards" style="display:flex;gap:10px;flex-wrap:wrap"></div>
+  </div>
   <div class="stats-bar" id="statsBar"></div>
   <div id="timeline"></div>
   <div class="page-footer" id="pageFooter"></div>
@@ -2606,6 +2610,30 @@ document.querySelectorAll('.lang-btn').forEach(b=>{
   b.addEventListener('click',()=>setLang(b.dataset.lang));
 });
 applyLang();
+
+// --- Upcoming models ---
+const upcomingModels = [
+  {name:"GPT-5.5 / Spud",company:"OpenAI",expected:"Abr-May 2026",type:"LLM",status:"Pretraining completado",color:"#34d399"},
+  {name:"Claude Mythos",company:"Anthropic",expected:"Abr-May 2026",type:"LLM",status:"Leak confirmado",color:"#c084fc"},
+  {name:"DeepSeek-V4",company:"DeepSeek",expected:"Abr 2026",type:"LLM",status:"Rumores",color:"#60a5fa"},
+  {name:"Grok 5",company:"xAI",expected:"Q2 2026",type:"LLM",status:"En training (6T MoE)",color:"#f472b6"},
+  {name:"Llama 5",company:"Meta",expected:"Q2-Q3 2026",type:"LLM",status:"Anunciado",color:"#fb923c"},
+];
+
+function renderUpcoming(){
+  const container=document.getElementById('upcomingCards');
+  if(!container)return;
+  container.innerHTML=upcomingModels.map(m=>`
+    <div style="background:rgba(255,255,255,0.02);border:1px dashed rgba(255,255,255,0.1);border-radius:10px;padding:10px 14px;min-width:160px;flex:1;max-width:220px;transition:border-color 0.2s;cursor:default"
+         onmouseover="this.style.borderColor='${m.color}'" onmouseout="this.style.borderColor='rgba(255,255,255,0.1)'">
+      <div style="font-family:'IBM Plex Mono';font-size:12px;font-weight:700;color:${m.color};margin-bottom:2px">${m.name}</div>
+      <div style="font-family:'IBM Plex Mono';font-size:9px;color:var(--t-dim)">${m.company}</div>
+      <div style="font-family:'IBM Plex Mono';font-size:9px;color:var(--t-faint);margin-top:4px">${m.type} · ${m.expected}</div>
+      <div style="font-family:'IBM Plex Mono';font-size:8px;color:var(--t-ghost);margin-top:2px;font-style:italic">${m.status}</div>
+    </div>
+  `).join('');
+}
+renderUpcoming();
 
 // --- Drag-to-zoom on chart ---
 (function(){
