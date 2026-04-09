@@ -2599,8 +2599,8 @@ function renderPlatformsTab(){
   <h2 id="platformsTitle">Platforms, Tools & Aggregators</h2>
   <p class="info-subtitle" id="platformsSub">AI platforms, cloud providers, local tools, and coding agents</p>
 
-  <div class="info-section"><h3>Cloud — Providers / Chat</h3></div>
-  <div class="info-cards">
+  <div class="info-section" style="cursor:pointer" onclick="togglePlatSec('ps-cloud')"><h3><span id="ps-cloud-arrow">▼</span> Cloud — Providers / Chat</h3></div>
+  <div class="info-cards" id="ps-cloud">
     ${pc("openai","chatgpt.com","OpenAI","GPT-4o, o3, o4-mini. Chat, image generation, code interpreter, plugins.",[["Chat","https://chatgpt.com"],["Platform","https://platform.openai.com"]],["#1a1a2e","#0d0d1a","#10a37f"])}
     ${pc("anthropic","claude.ai","Anthropic","Claude Opus, Sonnet, Haiku. Extended thinking, artifacts, projects.",[["Claude","https://claude.ai"],["Console","https://console.anthropic.com"]],["#1a1410","#2a1f15","#d4a574"])}
     ${pc("google-gemini","gemini.google.com","Google","Gemini 2.5 Pro/Flash. Multimodal, Deep Research, Gems.",[["Gemini","https://gemini.google.com"],["AI Studio","https://aistudio.google.com"],["NotebookLM","https://notebooklm.google.com"]],["#1a1a2e","#0d1b2a","#4285f4"])}
@@ -2624,8 +2624,8 @@ function renderPlatformsTab(){
     ${pc("brave-leo","brave.com","Brave Leo","Built-in AI assistant in Brave browser. Private, no account needed.",[["Brave Leo","https://brave.com/leo"]])}
   </div>
 
-  <div class="info-section" style="margin-top:28px"><h3>Cloud — Multi-Model Aggregators</h3></div>
-  <div class="info-cards">
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-agg')"><h3><span id="ps-agg-arrow">▼</span> Cloud — Multi-Model Aggregators</h3></div>
+  <div class="info-cards" id="ps-agg">
     ${pc("poe","poe.com","Poe","Access GPT-4o, Claude, Gemini, Llama and more in one place. Create custom bots.",[["Poe","https://poe.com"]],["#0d1a0d","#1a2e1a","#34d399"])}
     ${pc("openrouter","openrouter.ai","OpenRouter","Unified API for 349+ models. Automatic fallback, usage-based pricing.",[["OpenRouter","https://openrouter.ai"]])}
     ${pc("typingmind","typingmind.com","TypingMind","Premium chat UI for multiple AI models. Plugins, personas, prompt library.",[["TypingMind","https://typingmind.com"]],["#0d0d1a","#1a1a2e","#6b8aff"])}
@@ -2635,8 +2635,8 @@ function renderPlatformsTab(){
     ${pc("fal","fal.ai","fal.ai","Serverless GPU inference. Fast image/video generation APIs.",[["fal.ai","https://fal.ai"]])}
   </div>
 
-  <div class="info-section" style="margin-top:28px"><h3>Cloud — Media / Generative</h3></div>
-  <div class="info-cards">
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-media')"><h3><span id="ps-media-arrow">▼</span> Cloud — Media / Generative</h3></div>
+  <div class="info-cards" id="ps-media">
     ${pc("runway","runwayml.com","Runway ML","Gen-3 Alpha video generation. Text/image to video, motion brush.",[["Runway","https://runwayml.com"],["App","https://app.runwayml.com"]],["#0a0a14","#14142a","#e2e2e2"])}
     ${pc("pika","pika.art","Pika Labs","AI video generation and editing. Text-to-video, image-to-video.",[["Pika","https://pika.art"]])}
     ${pc("midjourney","midjourney.com","Midjourney","Premium AI image generation. V7, photorealistic, artistic styles.",[["Midjourney","https://midjourney.com"],["Alpha","https://alpha.midjourney.com"]],["#0d0d1a","#1a1a30","#e2e2e2"])}
@@ -2657,8 +2657,8 @@ function renderPlatformsTab(){
     ${pc("recraft","recraft.ai","Recraft","AI design tool. Vector graphics, icons, illustrations from text.",[["Recraft","https://recraft.ai"]])}
   </div>
 
-  <div class="info-section" style="margin-top:28px"><h3>Local — LLM Inference & GUI</h3></div>
-  <div class="info-cards">
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-local')"><h3><span id="ps-local-arrow">▼</span> Local — LLM Inference & GUI</h3></div>
+  <div class="info-cards" id="ps-local">
     ${pc("ollama","ollama.com","Ollama","Run LLMs locally. Simple CLI, model library, OpenAI-compatible API.",[["Ollama","https://ollama.com"],["GitHub","https://github.com/ollama/ollama"]])}
     ${pc("lmstudio","lmstudio.ai","LM Studio","Desktop app for local LLMs. GGUF support, chat UI, local server.",[["LM Studio","https://lmstudio.ai"]])}
     ${pc("vllm","docs.vllm.ai","vLLM","High-throughput LLM inference engine. PagedAttention, continuous batching.",[["Docs","https://docs.vllm.ai"],["GitHub","https://github.com/vllm-project/vllm"]])}
@@ -2677,8 +2677,8 @@ function renderPlatformsTab(){
     ${pc("lobechat","lobehub.com","LobeChat","Modern AI chat framework. Plugins, TTS, knowledge base, multi-model.",[["LobeChat","https://lobehub.com"],["App","https://app.lobehub.com"]],["#0d1a2e","#1a2a40","#38bdf8"])}
   </div>
 
-  <div class="info-section" style="margin-top:28px"><h3>Local — Coding Agents / CLI</h3></div>
-  <div class="info-cards">
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-code')"><h3><span id="ps-code-arrow">▼</span> Local — Coding Agents / CLI</h3></div>
+  <div class="info-cards" id="ps-code">
     ${pc("claudecode","docs.anthropic.com","Claude Code","Anthropic's agentic CLI. Terminal-native coding agent with full repo context.",[["Docs","https://docs.anthropic.com/en/docs/claude-code"],["GitHub","https://github.com/anthropics/claude-code"]])}
     ${pc("codex","github.com","Codex (OpenAI)","OpenAI's open-source coding agent. Terminal-based, sandboxed execution.",[["GitHub","https://github.com/openai/codex"]])}
     ${pc("opencode","github.com","OpenCode","Open-source terminal AI coding assistant. Multi-provider support.",[["GitHub","https://github.com/opencode-ai/opencode"]])}
@@ -2688,6 +2688,27 @@ function renderPlatformsTab(){
     ${pc("aider","aider.chat","Aider","AI pair programming in terminal. Git-aware, multi-file edits, multi-model.",[["Aider","https://aider.chat"],["GitHub","https://github.com/Aider-AI/aider"]])}
   </div>
 </div>`;
+  // Restore collapsed state from localStorage
+  const platState=JSON.parse(localStorage.getItem('platSections')||'{}');
+  ['ps-cloud','ps-agg','ps-media','ps-local','ps-code'].forEach(id=>{
+    if(platState[id]===false){
+      const el=document.getElementById(id);
+      const arrow=document.getElementById(id+'-arrow');
+      if(el){el.style.display='none';}
+      if(arrow){arrow.textContent='►';}
+    }
+  });
+}
+function togglePlatSec(id){
+  const el=document.getElementById(id);
+  const arrow=document.getElementById(id+'-arrow');
+  if(!el)return;
+  const isOpen=el.style.display!=='none';
+  el.style.display=isOpen?'none':'grid';
+  if(arrow)arrow.textContent=isOpen?'►':'▼';
+  const platState=JSON.parse(localStorage.getItem('platSections')||'{}');
+  platState[id]=!isOpen;
+  localStorage.setItem('platSections',JSON.stringify(platState));
 }
 
 // --- Render API tab ---
