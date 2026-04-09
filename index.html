@@ -540,7 +540,6 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   <div class="tab-nav">
     <button class="tab-btn active" data-tab="tab-models">AI Models</button>
     <button class="tab-btn" data-tab="tab-arc">ARC-AGI Benchmarks</button>
-    <button class="tab-btn" data-tab="tab-metaculus">Metaculus Forecasts</button>
     <button class="tab-btn" data-tab="tab-countdown">Countdown</button>
     <button class="tab-btn" data-tab="tab-platforms">Platforms</button>
     <button class="tab-btn" data-tab="tab-api">API</button>
@@ -570,8 +569,6 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
 <div class="tab-panel" id="tab-arc"></div>
 
 <!-- ==================== METACULUS TAB ==================== -->
-<div class="tab-panel" id="tab-metaculus"></div>
-
 <!-- ==================== COUNTDOWN TAB ==================== -->
 <div class="tab-panel" id="tab-countdown">
 <div class="info-page">
@@ -603,6 +600,9 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   <div style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);border-radius:8px;padding:12px 16px;margin-bottom:24px;font-family:'IBM Plex Mono';font-size:10px;color:#ef4444;line-height:1.7" id="countdownDisclaimer">
     <b>⚠ Disclaimer:</b> <span id="cdDisclaimerText">All of these pages are made by independent individuals or small groups, using speculative methods and subjective estimates. Their predictions may be inaccurate and should not be taken as reliable forecasts. Any of these sites may stop working or be taken down at any time.</span>
   </div>
+
+  <!-- Metaculus content inserted here -->
+  <div id="metaculus-content"></div>
 
   <!-- Similar Projects Header -->
   <div class="info-section"><h3 id="similarHeader">Similar Projects</h3></div>
@@ -2494,9 +2494,9 @@ function renderArcTab(){
 // --- Render Metaculus tab ---
 function renderMetaTab(){
   const m=t('meta');
-  document.getElementById('tab-metaculus').innerHTML=`<div class="info-page">
-  <h2>${m.title}</h2>
-  <p class="info-subtitle">${m.sub}</p>
+  document.getElementById('metaculus-content').innerHTML=`<div style="margin-bottom:24px">
+  <div class="info-section"><h3>${m.title}</h3></div>
+  <p class="info-subtitle" style="margin-bottom:16px">${m.sub}</p>
 
   <div class="forecast-card">
     <div class="fc-accent" style="background:linear-gradient(90deg,#6b8aff,#c084fc)"></div>
@@ -2820,7 +2820,6 @@ function applyLang(){
   const tabs=t('tabs');
   document.querySelector('[data-tab="tab-models"]').textContent=tabs.models;
   document.querySelector('[data-tab="tab-arc"]').textContent=tabs.arc;
-  document.querySelector('[data-tab="tab-metaculus"]').textContent=tabs.meta;
   document.querySelector('[data-tab="tab-countdown"]').textContent=tabs.countdown||'Countdown';
   document.querySelector('[data-tab="tab-platforms"]').textContent=tabs.platforms||'Platforms';
   document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
