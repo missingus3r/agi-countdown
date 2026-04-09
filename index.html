@@ -2711,6 +2711,32 @@ function renderPlatformsTab(){
     }
   });
 }
+function makeCollapsible(containerEl,storageKey){
+  if(!containerEl)return;
+  const state=JSON.parse(localStorage.getItem(storageKey)||'{}');
+  containerEl.querySelectorAll('.info-section').forEach((sec,i)=>{
+    const h3=sec.querySelector('h3');
+    if(!h3||sec.dataset.collapsible)return;
+    sec.dataset.collapsible='1';
+    const key=h3.textContent.trim().substring(0,30);
+    const nextEl=sec.nextElementSibling;
+    if(!nextEl||nextEl.classList.contains('info-section'))return;
+    sec.style.cursor='pointer';
+    const arrow=document.createElement('span');
+    arrow.style.cssText='margin-right:4px;font-size:12px';
+    arrow.textContent=state[key]===false?'►':'▼';
+    h3.insertBefore(arrow,h3.firstChild);
+    if(state[key]===false)nextEl.style.display='none';
+    sec.addEventListener('click',()=>{
+      const open=nextEl.style.display!=='none';
+      nextEl.style.display=open?'none':'';
+      arrow.textContent=open?'►':'▼';
+      const s=JSON.parse(localStorage.getItem(storageKey)||'{}');
+      s[key]=!open;
+      localStorage.setItem(storageKey,JSON.stringify(s));
+    });
+  });
+}
 function togglePlatSec(id){
   const el=document.getElementById(id);
   const arrow=document.getElementById(id+'-arrow');
@@ -2887,6 +2913,9 @@ function applyLang(){
   renderMetaTab();
   renderPlatformsTab();
   renderApiTab();
+  makeCollapsible(document.getElementById('tab-arc'),'colArc');
+  makeCollapsible(document.getElementById('tab-countdown'),'colCountdown');
+  makeCollapsible(document.getElementById('tab-api'),'colApi');
   render();
 }
 function setLang(lang){
