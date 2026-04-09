@@ -2719,17 +2719,23 @@ function makeCollapsible(containerEl,storageKey){
     if(!h3||sec.dataset.collapsible)return;
     sec.dataset.collapsible='1';
     const key=h3.textContent.trim().substring(0,30);
-    const nextEl=sec.nextElementSibling;
-    if(!nextEl||nextEl.classList.contains('info-section'))return;
+    // Collect all siblings until next .info-section or end
+    const siblings=[];
+    let el=sec.nextElementSibling;
+    while(el&&!el.classList.contains('info-section')){
+      siblings.push(el);
+      el=el.nextElementSibling;
+    }
+    if(siblings.length===0)return;
     sec.style.cursor='pointer';
     const arrow=document.createElement('span');
     arrow.style.cssText='margin-right:4px;font-size:12px';
     arrow.textContent=state[key]===false?'►':'▼';
     h3.insertBefore(arrow,h3.firstChild);
-    if(state[key]===false)nextEl.style.display='none';
+    if(state[key]===false)siblings.forEach(s=>s.style.display='none');
     sec.addEventListener('click',()=>{
-      const open=nextEl.style.display!=='none';
-      nextEl.style.display=open?'none':'';
+      const open=siblings[0].style.display!=='none';
+      siblings.forEach(s=>s.style.display=open?'none':'');
       arrow.textContent=open?'►':'▼';
       const s=JSON.parse(localStorage.getItem(storageKey)||'{}');
       s[key]=!open;
