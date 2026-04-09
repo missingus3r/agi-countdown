@@ -2583,15 +2583,15 @@ function renderMetaTab(){
 // --- Render Platforms tab ---
 function renderPlatformsTab(){
   function pc(img,fav,title,desc,links){
-    const linksHtml=links.map(l=>`<a class="ic-link" href="${l[1]}" target="_blank" style="margin-right:12px">${l[0]} →</a>`).join('');
-    return `<div class="info-card">
+    const linksHtml=links.map(l=>`<a class="ic-link" href="${l[1]}" target="_blank" style="margin-right:12px" onclick="event.stopPropagation()">${l[0]} →</a>`).join('');
+    return `<div class="info-card" style="cursor:pointer" onclick="window.open('${links[0][1]}','_blank')">
       <img src="img/platforms/${img}.png" style="width:100%;border-radius:6px;margin-bottom:10px;opacity:0.85">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
         <img src="https://www.google.com/s2/favicons?domain=${fav}&sz=32" width="20" height="20" style="border-radius:3px">
         <div class="ic-title">${title}</div>
       </div>
       <div class="ic-desc">${desc}</div>
-      <div style="display:flex;flex-wrap:wrap;gap:4px 0">${linksHtml}</div>
+      <div style="display:flex;flex-wrap:wrap;gap:4px 0" onclick="event.stopPropagation()">${linksHtml}</div>
     </div>`;
   }
   document.getElementById('tab-platforms').innerHTML=`<div class="info-page">
@@ -2649,7 +2649,6 @@ function renderPlatformsTab(){
     ${pc("kling","klingai.com","Kling","Kuaishou's AI video generator. Text/image to video, motion transfer.",[["Kling","https://klingai.com"]])}
     ${pc("stability","stability.ai","Stability AI","Stable Diffusion, SVD, Stable Audio. Pioneer of open image generation.",[["Stability AI","https://stability.ai"],["Platform","https://platform.stability.ai"]])}
     ${pc("ideogram","ideogram.ai","Ideogram","AI image generation with strong text rendering in images.",[["Ideogram","https://ideogram.ai"]])}
-    ${pc("sora","sora.com","Sora","OpenAI video generation model. Realistic scenes from text prompts.",[["Sora","https://sora.com"]])}
     ${pc("firefly","firefly.adobe.com","Adobe Firefly","Adobe's generative AI. Commercially safe, integrated with Creative Cloud.",[["Firefly","https://firefly.adobe.com"]])}
     ${pc("krea","krea.ai","Krea","Real-time AI image generation. Enhance, upscale, style transfer.",[["Krea","https://krea.ai"]])}
     ${pc("leonardo","leonardo.ai","Leonardo AI","AI image generation platform. Fine-tuned models, consistency tools.",[["Leonardo","https://leonardo.ai"]])}
