@@ -2584,8 +2584,7 @@ function renderMetaTab(){
 function renderPlatformsTab(){
   function pc(img,fav,title,desc,links){
     const linksHtml=links.map(l=>`<a class="ic-link" href="${l[1]}" target="_blank" style="margin-right:12px">${l[0]} →</a>`).join('');
-    return `<a href="${links[0][1]}" target="_blank" rel="noopener" style="text-decoration:none">
-    <div class="info-card">
+    return `<div class="info-card">
       <img src="img/platforms/${img}.png" style="width:100%;border-radius:6px;margin-bottom:10px;opacity:0.85">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
         <img src="https://www.google.com/s2/favicons?domain=${fav}&sz=32" width="20" height="20" style="border-radius:3px">
@@ -2593,7 +2592,7 @@ function renderPlatformsTab(){
       </div>
       <div class="ic-desc">${desc}</div>
       <div style="display:flex;flex-wrap:wrap;gap:4px 0">${linksHtml}</div>
-    </div></a>`;
+    </div>`;
   }
   document.getElementById('tab-platforms').innerHTML=`<div class="info-page">
   <h2 id="platformsTitle">Platforms, Tools & Aggregators</h2>
