@@ -2582,10 +2582,11 @@ function renderMetaTab(){
 
 // --- Render Platforms tab ---
 function renderPlatformsTab(){
-  function pc(img,fav,title,desc,links){
+  function pc(img,fav,title,desc,links,clr){
     const linksHtml=links.map(l=>`<a class="ic-link" href="${l[1]}" target="_blank" style="margin-right:12px" onclick="event.stopPropagation()">${l[0]} →</a>`).join('');
+    const thumb=clr?`<div style="width:100%;border-radius:6px;margin-bottom:10px;height:120px;background:linear-gradient(135deg,${clr[0]},${clr[1]});display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono';font-size:16px;font-weight:700;color:${clr[2]};letter-spacing:1px">${fav}</div>`:`<img src="img/platforms/${img}.png" style="width:100%;border-radius:6px;margin-bottom:10px;opacity:0.85">`;
     return `<div class="info-card" style="cursor:pointer" onclick="window.open('${links[0][1]}','_blank')">
-      <img src="img/platforms/${img}.png" style="width:100%;border-radius:6px;margin-bottom:10px;opacity:0.85">
+      ${thumb}
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
         <img src="https://www.google.com/s2/favicons?domain=${fav}&sz=32" width="20" height="20" style="border-radius:3px">
         <div class="ic-title">${title}</div>
@@ -2600,22 +2601,23 @@ function renderPlatformsTab(){
 
   <div class="info-section"><h3>Cloud — Providers / Chat</h3></div>
   <div class="info-cards">
-    ${pc("openai","chatgpt.com","OpenAI","GPT-4o, o3, o4-mini. Chat, image generation, code interpreter, plugins.",[["Chat","https://chatgpt.com"],["Platform","https://platform.openai.com"]])}
-    ${pc("anthropic","claude.ai","Anthropic","Claude Opus, Sonnet, Haiku. Extended thinking, artifacts, projects.",[["Claude","https://claude.ai"],["Console","https://console.anthropic.com"]])}
-    ${pc("google-gemini","gemini.google.com","Google","Gemini 2.5 Pro/Flash. Multimodal, Deep Research, Gems.",[["Gemini","https://gemini.google.com"],["AI Studio","https://aistudio.google.com"],["NotebookLM","https://notebooklm.google.com"]])}
+    ${pc("openai","chatgpt.com","OpenAI","GPT-4o, o3, o4-mini. Chat, image generation, code interpreter, plugins.",[["Chat","https://chatgpt.com"],["Platform","https://platform.openai.com"]],["#1a1a2e","#0d0d1a","#10a37f"])}
+    ${pc("anthropic","claude.ai","Anthropic","Claude Opus, Sonnet, Haiku. Extended thinking, artifacts, projects.",[["Claude","https://claude.ai"],["Console","https://console.anthropic.com"]],["#1a1410","#2a1f15","#d4a574"])}
+    ${pc("google-gemini","gemini.google.com","Google","Gemini 2.5 Pro/Flash. Multimodal, Deep Research, Gems.",[["Gemini","https://gemini.google.com"],["AI Studio","https://aistudio.google.com"],["NotebookLM","https://notebooklm.google.com"]],["#1a1a2e","#0d1b2a","#4285f4"])}
+    ${pc("google-labs","labs.google","Google Labs","Experimental AI tools and prototypes. Try new Google AI features early.",[["Labs","https://labs.google/"]],["#1a1a2e","#0d1b2a","#34a853"])}
     ${pc("groq","groq.com","Groq","Ultra-fast LPU inference. Llama, Mixtral, Gemma at lightning speed.",[["Groq","https://groq.com"],["Playground","https://console.groq.com/playground"]])}
     ${pc("xai","grok.com","xAI","Grok models. Real-time X/Twitter data, image generation, reasoning.",[["Grok","https://grok.com"],["Console","https://console.x.ai"]])}
-    ${pc("cerebras-chat","cerebras.ai","Cerebras","Wafer-scale chip inference. Fastest token generation for open models.",[["Chat","https://chat.cerebras.ai"],["Cerebras","https://cerebras.ai"]])}
+    ${pc("cerebras-chat","cerebras.ai","Cerebras","Wafer-scale chip inference. Fastest token generation for open models.",[["Chat","https://chat.cerebras.ai"],["Cerebras","https://cerebras.ai"]],["#0a0a14","#141428","#f97316"])}
     ${pc("microsoft-copilot","copilot.microsoft.com","Microsoft","Copilot across Windows, Office, Azure. GitHub Copilot for code.",[["Copilot","https://copilot.microsoft.com"],["Azure AI","https://ai.azure.com"],["GitHub Copilot","https://github.com/features/copilot"]])}
-    ${pc("meta-ai","meta.ai","Meta","Meta AI assistant powered by Llama. Free, multimodal, integrated with social apps.",[["Meta AI","https://meta.ai"],["Llama","https://llama.meta.com"]])}
-    ${pc("perplexity","perplexity.ai","Perplexity","AI-powered search engine. Real-time citations, Pro Search with reasoning.",[["Perplexity","https://perplexity.ai"]])}
-    ${pc("deepseek","deepseek.com","DeepSeek","DeepSeek-V3, R1. Open-weight reasoning models, competitive with frontier.",[["Chat","https://chat.deepseek.com"],["Platform","https://platform.deepseek.com"]])}
-    ${pc("mistral","chat.mistral.ai","Mistral AI","Mistral Large, Small, Codestral. European AI lab, strong open models.",[["Le Chat","https://chat.mistral.ai"],["Console","https://console.mistral.ai"]])}
+    ${pc("meta-ai","meta.ai","Meta","Meta AI assistant powered by Llama. Free, multimodal, integrated with social apps.",[["Meta AI","https://meta.ai"],["Llama","https://llama.meta.com"]],["#0a1628","#1a2a4a","#0668e1"])}
+    ${pc("perplexity","perplexity.ai","Perplexity","AI-powered search engine. Real-time citations, Pro Search with reasoning.",[["Perplexity","https://perplexity.ai"]],["#0f1923","#1a2a3a","#22b8cf"])}
+    ${pc("deepseek","deepseek.com","DeepSeek","DeepSeek-V3, R1. Open-weight reasoning models, competitive with frontier.",[["Chat","https://chat.deepseek.com"],["Platform","https://platform.deepseek.com"]],["#0a1628","#0d2040","#4a9eff"])}
+    ${pc("mistral","chat.mistral.ai","Mistral AI","Mistral Large, Small, Codestral. European AI lab, strong open models.",[["Le Chat","https://chat.mistral.ai"],["Console","https://console.mistral.ai"]],["#0f0f1a","#1a1a30","#ff7000"])}
     ${pc("cohere","coral.cohere.com","Cohere","Command R+, Aya. Enterprise RAG, multilingual, embeddings.",[["Coral","https://coral.cohere.com"],["Dashboard","https://dashboard.cohere.com"]])}
     ${pc("qwen","qwen.ai","Alibaba / Qwen","Qwen 3.6, Qwen-VL, Wan video. Strong multilingual open models.",[["Qwen","https://qwen.ai"],["Chat","https://chat.qwen.ai"],["HuggingFace","https://huggingface.co/Qwen"]])}
     ${pc("kimi","kimi.com","Moonshot AI","Kimi. Long-context specialist (128K+), popular in China.",[["Kimi","https://kimi.com"]])}
-    ${pc("hailuo","hailuo.ai","MiniMax / Hailuo","Hailuo AI video generation. High-quality text-to-video.",[["Hailuo","https://hailuo.ai"]])}
-    ${pc("venice","venice.ai","Venice.ai","Privacy-focused AI. Uncensored models, no data retention.",[["Venice","https://venice.ai"]])}
+    ${pc("hailuo","hailuo.ai","MiniMax / Hailuo","Hailuo AI video generation. High-quality text-to-video.",[["Hailuo","https://hailuo.ai"]],["#0d0d1a","#1a1a2e","#a78bfa"])}
+    ${pc("venice","venice.ai","Venice.ai","Privacy-focused AI. Uncensored models, no data retention.",[["Venice","https://venice.ai"]],["#1a0a1e","#2a1030","#c084fc"])}
     ${pc("inception","chat.inceptionlabs.ai","Inception","Mercury diffusion LLM. Ultra-fast text generation via diffusion.",[["Chat","https://chat.inceptionlabs.ai"]])}
     ${pc("amazon-bedrock","aws.amazon.com","Amazon","AWS Bedrock. Multi-model API: Claude, Llama, Titan, Mistral.",[["Bedrock","https://aws.amazon.com/bedrock"],["PartyRock","https://partyrock.aws"]])}
     ${pc("you","you.com","You.com","AI search + chat with multiple models. Smart mode, Research mode.",[["You.com","https://you.com"]])}
@@ -2624,9 +2626,9 @@ function renderPlatformsTab(){
 
   <div class="info-section" style="margin-top:28px"><h3>Cloud — Multi-Model Aggregators</h3></div>
   <div class="info-cards">
-    ${pc("poe","poe.com","Poe","Access GPT-4o, Claude, Gemini, Llama and more in one place. Create custom bots.",[["Poe","https://poe.com"]])}
+    ${pc("poe","poe.com","Poe","Access GPT-4o, Claude, Gemini, Llama and more in one place. Create custom bots.",[["Poe","https://poe.com"]],["#0d1a0d","#1a2e1a","#34d399"])}
     ${pc("openrouter","openrouter.ai","OpenRouter","Unified API for 349+ models. Automatic fallback, usage-based pricing.",[["OpenRouter","https://openrouter.ai"]])}
-    ${pc("typingmind","typingmind.com","TypingMind","Premium chat UI for multiple AI models. Plugins, personas, prompt library.",[["TypingMind","https://typingmind.com"]])}
+    ${pc("typingmind","typingmind.com","TypingMind","Premium chat UI for multiple AI models. Plugins, personas, prompt library.",[["TypingMind","https://typingmind.com"]],["#0d0d1a","#1a1a2e","#6b8aff"])}
     ${pc("together","together.ai","Together AI","Open-source model hosting. Fine-tuning, inference API, serverless.",[["Together","https://together.ai"],["API","https://api.together.ai"]])}
     ${pc("fireworks","fireworks.ai","Fireworks AI","Fast inference platform. Optimized serving for open models.",[["Fireworks","https://fireworks.ai"]])}
     ${pc("replicate","replicate.com","Replicate","Run ML models in the cloud. One-line API for thousands of models.",[["Replicate","https://replicate.com"]])}
@@ -2635,23 +2637,23 @@ function renderPlatformsTab(){
 
   <div class="info-section" style="margin-top:28px"><h3>Cloud — Media / Generative</h3></div>
   <div class="info-cards">
-    ${pc("runway","runwayml.com","Runway ML","Gen-3 Alpha video generation. Text/image to video, motion brush.",[["Runway","https://runwayml.com"],["App","https://app.runwayml.com"]])}
+    ${pc("runway","runwayml.com","Runway ML","Gen-3 Alpha video generation. Text/image to video, motion brush.",[["Runway","https://runwayml.com"],["App","https://app.runwayml.com"]],["#0a0a14","#14142a","#e2e2e2"])}
     ${pc("pika","pika.art","Pika Labs","AI video generation and editing. Text-to-video, image-to-video.",[["Pika","https://pika.art"]])}
-    ${pc("midjourney","midjourney.com","Midjourney","Premium AI image generation. V7, photorealistic, artistic styles.",[["Midjourney","https://midjourney.com"],["Alpha","https://alpha.midjourney.com"]])}
+    ${pc("midjourney","midjourney.com","Midjourney","Premium AI image generation. V7, photorealistic, artistic styles.",[["Midjourney","https://midjourney.com"],["Alpha","https://alpha.midjourney.com"]],["#0d0d1a","#1a1a30","#e2e2e2"])}
     ${pc("bfl","bfl.ai","Black Forest Labs","FLUX image models. Open-weight, high-quality text-to-image.",[["BFL","https://bfl.ai"]])}
-    ${pc("freepik","freepik.com","Freepik","AI image generator + massive stock library. Commercial-ready assets.",[["Freepik","https://freepik.com"],["AI Generator","https://freepik.com/ai/image-generator"]])}
+    ${pc("freepik","freepik.com","Freepik","AI image generator + massive stock library. Commercial-ready assets.",[["Freepik","https://freepik.com"],["AI Generator","https://freepik.com/ai/image-generator"]],["#00284d","#003d73","#0dd2ff"])}
     ${pc("elevenlabs","elevenlabs.io","ElevenLabs","State-of-the-art TTS, voice cloning, dubbing, sound effects.",[["ElevenLabs","https://elevenlabs.io"],["App","https://elevenlabs.io/app"]])}
     ${pc("hyper3d","hyper3d.ai","Hyper3D","AI-powered 3D model generation from text and images.",[["Hyper3D","https://hyper3d.ai"]])}
     ${pc("lumalabs","lumalabs.ai","Luma Labs","Dream Machine video generation. 3D capture, NeRF technology.",[["Luma Labs","https://lumalabs.ai"]])}
     ${pc("huggingface","huggingface.co","Hugging Face","The GitHub of ML. Models, datasets, Spaces, inference API, chat.",[["Models","https://huggingface.co/models"],["Spaces","https://huggingface.co/spaces"],["Chat","https://huggingface.co/chat"]])}
     ${pc("suno","suno.com","Suno","AI music generation. Full songs from text prompts with vocals.",[["Suno","https://suno.com"]])}
-    ${pc("udio","udio.com","Udio","AI music creation. High-fidelity audio, multiple genres and styles.",[["Udio","https://udio.com"]])}
+    ${pc("udio","udio.com","Udio","AI music creation. High-fidelity audio, multiple genres and styles.",[["Udio","https://udio.com"]],["#0d0d1a","#1a1a2e","#f472b6"])}
     ${pc("kling","klingai.com","Kling","Kuaishou's AI video generator. Text/image to video, motion transfer.",[["Kling","https://klingai.com"]])}
     ${pc("stability","stability.ai","Stability AI","Stable Diffusion, SVD, Stable Audio. Pioneer of open image generation.",[["Stability AI","https://stability.ai"],["Platform","https://platform.stability.ai"]])}
-    ${pc("ideogram","ideogram.ai","Ideogram","AI image generation with strong text rendering in images.",[["Ideogram","https://ideogram.ai"]])}
+    ${pc("ideogram","ideogram.ai","Ideogram","AI image generation with strong text rendering in images.",[["Ideogram","https://ideogram.ai"]],["#0d0d1a","#1a1a2e","#a78bfa"])}
     ${pc("firefly","firefly.adobe.com","Adobe Firefly","Adobe's generative AI. Commercially safe, integrated with Creative Cloud.",[["Firefly","https://firefly.adobe.com"]])}
     ${pc("krea","krea.ai","Krea","Real-time AI image generation. Enhance, upscale, style transfer.",[["Krea","https://krea.ai"]])}
-    ${pc("leonardo","leonardo.ai","Leonardo AI","AI image generation platform. Fine-tuned models, consistency tools.",[["Leonardo","https://leonardo.ai"]])}
+    ${pc("leonardo","leonardo.ai","Leonardo AI","AI image generation platform. Fine-tuned models, consistency tools.",[["Leonardo","https://leonardo.ai"]],["#1a0a2e","#2a1040","#c084fc"])}
     ${pc("recraft","recraft.ai","Recraft","AI design tool. Vector graphics, icons, illustrations from text.",[["Recraft","https://recraft.ai"]])}
   </div>
 
@@ -2672,7 +2674,7 @@ function renderPlatformsTab(){
     ${pc("textgenwebui","github.com","text-generation-webui","Gradio web UI for LLMs. Supports GGUF, GPTQ, AWQ, ExLlamaV2.",[["GitHub","https://github.com/oobabooga/text-generation-webui"]])}
     ${pc("librechat","librechat.ai","LibreChat","Self-hosted multi-model AI chat. OpenAI, Anthropic, local models.",[["LibreChat","https://librechat.ai"]])}
     ${pc("bigagi","big-agi.com","big-AGI","Open-source AI suite. Multi-model chat, personas, code interpreter.",[["big-AGI","https://big-agi.com"]])}
-    ${pc("lobechat","lobehub.com","LobeChat","Modern AI chat framework. Plugins, TTS, knowledge base, multi-model.",[["LobeChat","https://lobehub.com"],["App","https://app.lobehub.com"]])}
+    ${pc("lobechat","lobehub.com","LobeChat","Modern AI chat framework. Plugins, TTS, knowledge base, multi-model.",[["LobeChat","https://lobehub.com"],["App","https://app.lobehub.com"]],["#0d1a2e","#1a2a40","#38bdf8"])}
   </div>
 
   <div class="info-section" style="margin-top:28px"><h3>Local — Coding Agents / CLI</h3></div>
