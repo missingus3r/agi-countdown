@@ -2274,14 +2274,25 @@ function render(){
     allYears.forEach(y=>byYear[y]=[]);
     filtered.forEach(m=>{const y=m.date.substring(0,4);if(byYear[y])byYear[y].push(m)});
 
+    const yearColState=JSON.parse(localStorage.getItem('yearCollapsed')||'{}');
     [...allYears].reverse().forEach(year=>{
       const ym=byYear[year];
       if(!ym||ym.length===0)return;
       const section=document.createElement("div");
       section.className="year-section";
-      section.innerHTML=`<div class="year-header"><span class="year-title">${year}</span><span class="year-count">${ym.length} ${t('models')}</span><div class="year-line"></div></div>`;
+      const isCollapsed=yearColState[year]===true;
+      section.innerHTML=`<div class="year-header" style="cursor:pointer"><span class="year-arrow">${isCollapsed?'►':'▼'}</span> <span class="year-title">${year}</span><span class="year-count">${ym.length} ${t('models')}</span><div class="year-line"></div></div>`;
       const grid=document.createElement("div");
       grid.className="cards-grid";
+      if(isCollapsed)grid.style.display='none';
+      section.querySelector('.year-header').addEventListener('click',()=>{
+        const open=grid.style.display!=='none';
+        grid.style.display=open?'none':'grid';
+        section.querySelector('.year-arrow').textContent=open?'►':'▼';
+        const st=JSON.parse(localStorage.getItem('yearCollapsed')||'{}');
+        st[year]=open;
+        localStorage.setItem('yearCollapsed',JSON.stringify(st));
+      });
       ym.forEach((m,i)=>{
         const card=document.createElement("div");
         card.className="card";
