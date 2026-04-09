@@ -1122,6 +1122,16 @@ const models = [
 {name:"GLM-5.1",date:"2026-04-07",company:"Zhipu AI",open:true,intelligence:86,type:"LLM",cat:"text"},
 {name:"Gemini Embedding 2",date:"2026-03-10",company:"Google",open:false,intelligence:55,type:"LLM",cat:"multi"},
 {name:"Muse Spark",date:"2026-04-08",company:"Meta",open:false,intelligence:88,type:"LLM",cat:"text"},
+{name:"Parakeet-Unified-EN-0.6b",date:"2026-04-09",company:"NVIDIA",open:true,intelligence:48,type:"ASR",cat:"audio"},
+{name:"NV-Generate-CT",date:"2026-04-08",company:"NVIDIA",open:true,intelligence:45,type:"Diffusion",cat:"image"},
+{name:"NV-Generate-MR-Brain",date:"2026-04-08",company:"NVIDIA",open:true,intelligence:45,type:"Diffusion",cat:"image"},
+{name:"WildDet3D",date:"2026-04-07",company:"AllenAI",open:true,intelligence:50,type:"Multimodal",cat:"multi"},
+{name:"Timer-S1",date:"2026-04-09",company:"ByteDance",open:true,intelligence:55,type:"LLM",cat:"reasoning"},
+{name:"MotionCrafter",date:"2026-04-09",company:"TencentARC",open:true,intelligence:52,type:"Diffusion",cat:"video"},
+{name:"VoxCPM2",date:"2026-04-08",company:"OpenBMB",open:true,intelligence:48,type:"TTS",cat:"audio"},
+{name:"INSPATIO-WORLD",date:"2026-04-08",company:"Academic",open:true,intelligence:55,type:"World Model",cat:"world"},
+{name:"Generative World Renderer",date:"2026-04-06",company:"Shanda AI",open:true,intelligence:50,type:"Diffusion",cat:"world"},
+{name:"Void Model",date:"2026-04-06",company:"Netflix",open:false,intelligence:52,type:"Diffusion",cat:"video"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1552,7 +1562,17 @@ const modelUrls={
 "Midjourney V8 Alpha":"https://updates.midjourney.com/v8-alpha/",
 "MiMo-V2-Pro":"https://mimo.xiaomi.com/mimo-v2-pro",
 "MiMo-V2-Omni":"https://mimo.xiaomi.com/mimo-v2-omni",
-"MiniMax M2.7":"https://www.minimax.io/news/minimax-m27-en"
+"MiniMax M2.7":"https://www.minimax.io/news/minimax-m27-en",
+"Parakeet-Unified-EN-0.6b":"https://huggingface.co/nvidia/parakeet-unified-en-0.6b",
+"NV-Generate-CT":"https://huggingface.co/nvidia/NV-Generate-CT",
+"NV-Generate-MR-Brain":"https://huggingface.co/nvidia/NV-Generate-MR-Brain",
+"WildDet3D":"https://huggingface.co/allenai/WildDet3D",
+"Timer-S1":"https://huggingface.co/bytedance-research/Timer-S1",
+"MotionCrafter":"https://huggingface.co/TencentARC/MotionCrafter",
+"VoxCPM2":"https://github.com/OpenBMB/VoxCPM2",
+"INSPATIO-WORLD":"https://arxiv.org/abs/2604.07209",
+"Generative World Renderer":"https://arxiv.org/abs/2604.02329",
+"Void Model":"https://research.netflix.com/"
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
