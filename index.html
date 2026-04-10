@@ -2660,7 +2660,7 @@ function renderPlatformsTab(){
   <h2 id="platformsTitle">${p.title}</h2>
   <p class="info-subtitle" id="platformsSub">${p.sub}</p>
 
-  <div class="info-section" style="cursor:pointer" onclick="togglePlatSec('ps-cloud')"><h3><span id="ps-cloud-arrow">▼</span> ${p.cloud}</h3></div>
+  <div class="info-section" style="cursor:pointer" onclick="togglePlatSec('ps-cloud')"><h3><span id="ps-cloud-arrow">▼</span> ${p.cloud} <span id="ps-cloud-count" style="font-size:11px;color:#555;font-weight:400"></span></h3></div>
   <div class="info-cards" id="ps-cloud">
     ${pc("openai","chatgpt.com","OpenAI","GPT-4o, o3, o4-mini. Chat, image generation, code interpreter, plugins.",[["Chat","https://chatgpt.com"],["Platform","https://platform.openai.com"]],["#1a1a2e","#0d0d1a","#10a37f"])}
     ${pc("anthropic","claude.ai","Anthropic","Claude Opus, Sonnet, Haiku. Extended thinking, artifacts, projects.",[["Claude","https://claude.ai"],["Console","https://console.anthropic.com"]],["#1a1410","#2a1f15","#d4a574"])}
@@ -2686,7 +2686,7 @@ function renderPlatformsTab(){
     ${pc("brave-leo","brave.com","Brave Leo","Built-in AI assistant in Brave browser. Private, no account needed.",[["Brave Leo","https://brave.com/leo"]])}
   </div>
 
-  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-agg')"><h3><span id="ps-agg-arrow">▼</span> ${p.agg}</h3></div>
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-agg')"><h3><span id="ps-agg-arrow">▼</span> ${p.agg} <span id="ps-agg-count" style="font-size:11px;color:#555;font-weight:400"></span></h3></div>
   <div class="info-cards" id="ps-agg">
     ${pc("poe","poe.com","Poe","Access GPT-4o, Claude, Gemini, Llama and more in one place. Create custom bots.",[["Poe","https://poe.com"]],["#0d1a0d","#1a2e1a","#34d399"])}
     ${pc("openrouter","openrouter.ai","OpenRouter","Unified API for 349+ models. Automatic fallback, usage-based pricing.",[["OpenRouter","https://openrouter.ai"]])}
@@ -2697,7 +2697,7 @@ function renderPlatformsTab(){
     ${pc("fal","fal.ai","fal.ai","Serverless GPU inference. Fast image/video generation APIs.",[["fal.ai","https://fal.ai"]])}
   </div>
 
-  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-media')"><h3><span id="ps-media-arrow">▼</span> ${p.media}</h3></div>
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-media')"><h3><span id="ps-media-arrow">▼</span> ${p.media} <span id="ps-media-count" style="font-size:11px;color:#555;font-weight:400"></span></h3></div>
   <div class="info-cards" id="ps-media">
     ${pc("runway","runwayml.com","Runway ML","Gen-3 Alpha video generation. Text/image to video, motion brush.",[["Runway","https://runwayml.com"],["App","https://app.runwayml.com"]],["#0a0a14","#14142a","#e2e2e2"])}
     ${pc("pika","pika.art","Pika Labs","AI video generation and editing. Text-to-video, image-to-video.",[["Pika","https://pika.art"]])}
@@ -2719,7 +2719,7 @@ function renderPlatformsTab(){
     ${pc("recraft","recraft.ai","Recraft","AI design tool. Vector graphics, icons, illustrations from text.",[["Recraft","https://recraft.ai"]])}
   </div>
 
-  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-local')"><h3><span id="ps-local-arrow">▼</span> ${p.local}</h3></div>
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-local')"><h3><span id="ps-local-arrow">▼</span> ${p.local} <span id="ps-local-count" style="font-size:11px;color:#555;font-weight:400"></span></h3></div>
   <div class="info-cards" id="ps-local">
     ${pc("ollama","ollama.com","Ollama","Run LLMs locally. Simple CLI, model library, OpenAI-compatible API.",[["Ollama","https://ollama.com"],["GitHub","https://github.com/ollama/ollama"]])}
     ${pc("lmstudio","lmstudio.ai","LM Studio","Desktop app for local LLMs. GGUF support, chat UI, local server.",[["LM Studio","https://lmstudio.ai"]])}
@@ -2739,7 +2739,7 @@ function renderPlatformsTab(){
     ${pc("lobechat","lobehub.com","LobeChat","Modern AI chat framework. Plugins, TTS, knowledge base, multi-model.",[["LobeChat","https://lobehub.com"],["App","https://app.lobehub.com"]],["#0d1a2e","#1a2a40","#38bdf8"])}
   </div>
 
-  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-code')"><h3><span id="ps-code-arrow">▼</span> ${p.code}</h3></div>
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-code')"><h3><span id="ps-code-arrow">▼</span> ${p.code} <span id="ps-code-count" style="font-size:11px;color:#555;font-weight:400"></span></h3></div>
   <div class="info-cards" id="ps-code">
     ${pc("claudecode","docs.anthropic.com","Claude Code","Anthropic's agentic CLI. Terminal-native coding agent with full repo context.",[["Docs","https://docs.anthropic.com/en/docs/claude-code"],["GitHub","https://github.com/anthropics/claude-code"]])}
     ${pc("codex","github.com","Codex (OpenAI)","OpenAI's open-source coding agent. Terminal-based, sandboxed execution.",[["GitHub","https://github.com/openai/codex"]])}
@@ -2751,6 +2751,12 @@ function renderPlatformsTab(){
     ${pc("nemoclaw","nvidia.com","NVIDIA NemoClaw","OpenClaw + NVIDIA OpenShell. Secure sandboxed agents, local Nemotron models, privacy router.",[["NemoClaw","https://www.nvidia.com/en-us/ai/nemoclaw/"],["GitHub","https://github.com/NVIDIA/NemoClaw"]])}
   </div>
 </div>`;
+  // Set card counts per section
+  ['ps-cloud','ps-agg','ps-media','ps-local','ps-code'].forEach(id=>{
+    const sec=document.getElementById(id);
+    const cnt=document.getElementById(id+'-count');
+    if(sec&&cnt)cnt.textContent=sec.querySelectorAll('.info-card').length;
+  });
   // Restore collapsed state from localStorage (default: collapsed)
   const platState=JSON.parse(localStorage.getItem('platSections')||'{}');
   ['ps-cloud','ps-agg','ps-media','ps-local','ps-code'].forEach(id=>{
