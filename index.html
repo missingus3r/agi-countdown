@@ -626,7 +626,7 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   <div id="metaculus-content"></div>
 
   <!-- Similar Projects Header -->
-  <div class="info-section"><h3 id="similarHeader">Similar Projects</h3></div>
+  <div class="info-section"><h3 id="similarHeader">Similar Projects <span id="similarCount" style="font-size:11px;color:#555;font-weight:400"></span></h3></div>
   <div class="info-cards">
     <a href="https://aicountdown.com/" target="_blank" rel="noopener" style="text-decoration:none">
     <div class="info-card">
@@ -1681,8 +1681,116 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
     const openC=models.filter(m=>m.open).length;
     const dates=models.map(m=>m.date).sort();
     result={ok:true,endpoint:'v1/stats',data:{total_models:models.length,total_companies:companies.size,open_source:openC,closed_source:models.length-openC,open_pct:Math.round(openC/models.length*100),types,categories:cats,date_range:{earliest:dates[0],latest:dates[dates.length-1]},avg_intelligence:Math.round(models.reduce((s,m)=>s+m.intelligence,0)/models.length)}};
+  } else if(api==='v1/platforms'||api==='v1/platforms/'){
+    const platforms=[
+      {name:"OpenAI",category:"cloud",url:"https://chatgpt.com",description:"Frontier LLMs. Chat, image generation, code interpreter, plugins."},
+      {name:"Anthropic",category:"cloud",url:"https://claude.ai",description:"Frontier LLMs. Extended thinking, artifacts, projects, Claude Code."},
+      {name:"Google",category:"cloud",url:"https://gemini.google.com",description:"Gemini models. Multimodal, Deep Research, Gems, AI Studio."},
+      {name:"Google Labs",category:"cloud",url:"https://labs.google/",description:"Experimental AI tools and prototypes. Try new Google AI features early."},
+      {name:"Groq",category:"cloud",url:"https://groq.com",description:"Ultra-fast LPU inference. Fastest token generation for open models."},
+      {name:"xAI",category:"cloud",url:"https://grok.com",description:"Grok models. Real-time X/Twitter data, image generation, reasoning."},
+      {name:"Cerebras",category:"cloud",url:"https://chat.cerebras.ai",description:"Wafer-scale chip inference. Fastest token generation for open models."},
+      {name:"Microsoft Copilot",category:"cloud",url:"https://copilot.microsoft.com",description:"Copilot across Windows, Office, Azure. GitHub Copilot for code."},
+      {name:"Microsoft MAI",category:"cloud",url:"https://playground.microsoft.ai/chat",description:"Microsoft AI Playground. Test MAI models for transcription, voice, and image generation."},
+      {name:"Meta AI",category:"cloud",url:"https://meta.ai",description:"Meta AI assistant powered by Llama. Free, multimodal, integrated with social apps."},
+      {name:"Perplexity",category:"cloud",url:"https://perplexity.ai",description:"AI-powered search engine. Real-time citations, Pro Search with reasoning."},
+      {name:"DeepSeek",category:"cloud",url:"https://chat.deepseek.com",description:"Open-weight reasoning models, competitive with frontier labs."},
+      {name:"Mistral AI",category:"cloud",url:"https://chat.mistral.ai",description:"European AI lab. Strong open and commercial models for chat and code."},
+      {name:"Cohere",category:"cloud",url:"https://coral.cohere.com",description:"Enterprise RAG, multilingual models, embeddings."},
+      {name:"Alibaba / Qwen",category:"cloud",url:"https://qwen.ai",description:"Strong multilingual open models for text, vision, and video."},
+      {name:"Moonshot AI",category:"cloud",url:"https://kimi.com",description:"Kimi. Long-context specialist (128K+), popular in China."},
+      {name:"MiniMax / Hailuo",category:"cloud",url:"https://hailuo.ai",description:"Hailuo AI video generation. High-quality text-to-video."},
+      {name:"Venice.ai",category:"cloud",url:"https://venice.ai",description:"Privacy-focused AI. Uncensored models, no data retention."},
+      {name:"Inception",category:"cloud",url:"https://chat.inceptionlabs.ai",description:"Mercury diffusion LLM. Ultra-fast text generation via diffusion."},
+      {name:"Amazon Bedrock",category:"cloud",url:"https://aws.amazon.com/bedrock",description:"AWS Bedrock. Multi-model API with frontier and open models."},
+      {name:"You.com",category:"cloud",url:"https://you.com",description:"AI search + chat with multiple models. Smart mode, Research mode."},
+      {name:"Brave Leo",category:"cloud",url:"https://brave.com/leo",description:"Built-in AI assistant in Brave browser. Private, no account needed."},
+      {name:"Poe",category:"aggregator",url:"https://poe.com",description:"Access multiple frontier models in one place. Create custom bots."},
+      {name:"OpenRouter",category:"aggregator",url:"https://openrouter.ai",description:"Unified API for hundreds of models. Automatic fallback, usage-based pricing."},
+      {name:"TypingMind",category:"aggregator",url:"https://typingmind.com",description:"Premium chat UI for multiple AI models. Plugins, personas, prompt library."},
+      {name:"Together AI",category:"aggregator",url:"https://together.ai",description:"Open-source model hosting. Fine-tuning, inference API, serverless."},
+      {name:"Fireworks AI",category:"aggregator",url:"https://fireworks.ai",description:"Fast inference platform. Optimized serving for open models."},
+      {name:"Replicate",category:"aggregator",url:"https://replicate.com",description:"Run ML models in the cloud. One-line API for thousands of models."},
+      {name:"fal.ai",category:"aggregator",url:"https://fal.ai",description:"Serverless GPU inference. Fast image/video generation APIs."},
+      {name:"Runway ML",category:"media",url:"https://runwayml.com",description:"AI video generation. Text/image to video, motion brush, editing tools."},
+      {name:"Pika Labs",category:"media",url:"https://pika.art",description:"AI video generation and editing. Text-to-video, image-to-video."},
+      {name:"Midjourney",category:"media",url:"https://midjourney.com",description:"Premium AI image generation. Photorealistic, artistic styles."},
+      {name:"Black Forest Labs",category:"media",url:"https://bfl.ai",description:"FLUX image models. Open-weight, high-quality text-to-image."},
+      {name:"Freepik",category:"media",url:"https://freepik.com",description:"AI image generator + massive stock library. Commercial-ready assets."},
+      {name:"ElevenLabs",category:"media",url:"https://elevenlabs.io",description:"State-of-the-art TTS, voice cloning, dubbing, sound effects."},
+      {name:"Hyper3D",category:"media",url:"https://hyper3d.ai",description:"AI-powered 3D model generation from text and images."},
+      {name:"Luma Labs",category:"media",url:"https://lumalabs.ai",description:"Dream Machine video generation. 3D capture, NeRF technology."},
+      {name:"Hugging Face",category:"media",url:"https://huggingface.co",description:"The GitHub of ML. Models, datasets, Spaces, inference API, chat."},
+      {name:"Suno",category:"media",url:"https://suno.com",description:"AI music generation. Full songs from text prompts with vocals."},
+      {name:"Udio",category:"media",url:"https://udio.com",description:"AI music creation. High-fidelity audio, multiple genres and styles."},
+      {name:"Kling",category:"media",url:"https://klingai.com",description:"Kuaishou's AI video generator. Text/image to video, motion transfer."},
+      {name:"Stability AI",category:"media",url:"https://stability.ai",description:"Stable Diffusion, SVD, Stable Audio. Pioneer of open image generation."},
+      {name:"Ideogram",category:"media",url:"https://ideogram.ai",description:"AI image generation with strong text rendering in images."},
+      {name:"Adobe Firefly",category:"media",url:"https://firefly.adobe.com",description:"Adobe's generative AI. Commercially safe, integrated with Creative Cloud."},
+      {name:"Krea",category:"media",url:"https://krea.ai",description:"Real-time AI image generation. Enhance, upscale, style transfer."},
+      {name:"Leonardo AI",category:"media",url:"https://leonardo.ai",description:"AI image generation platform. Fine-tuned models, consistency tools."},
+      {name:"Recraft",category:"media",url:"https://recraft.ai",description:"AI design tool. Vector graphics, icons, illustrations from text."},
+      {name:"Ollama",category:"local",url:"https://ollama.com",description:"Run LLMs locally. Simple CLI, model library, OpenAI-compatible API."},
+      {name:"LM Studio",category:"local",url:"https://lmstudio.ai",description:"Desktop app for local LLMs. GGUF support, chat UI, local server."},
+      {name:"vLLM",category:"local",url:"https://docs.vllm.ai",description:"High-throughput LLM inference engine. PagedAttention, continuous batching."},
+      {name:"t3chat",category:"local",url:"https://t3chat.com",description:"Fast, minimal AI chat interface. Multi-model support."},
+      {name:"Jan",category:"local",url:"https://jan.ai",description:"Open-source ChatGPT alternative. Runs 100% offline, extensible."},
+      {name:"Open WebUI",category:"local",url:"https://openwebui.com",description:"Self-hosted AI interface. Ollama/OpenAI compatible, RAG, multi-user."},
+      {name:"Msty",category:"local",url:"https://msty.app",description:"Desktop AI chat app. Local + cloud models, knowledge base, offline."},
+      {name:"AnythingLLM",category:"local",url:"https://anythingllm.com",description:"All-in-one AI desktop app. RAG, agents, multi-model, local or cloud."},
+      {name:"GPT4All",category:"local",url:"https://gpt4all.io",description:"Free local AI chat. One-click install, private, no GPU required."},
+      {name:"KoboldCpp",category:"local",url:"https://github.com/LostRuins/koboldcpp",description:"GGUF inference with built-in web UI. Optimized for creative writing/RP."},
+      {name:"LocalAI",category:"local",url:"https://localai.io",description:"Drop-in OpenAI replacement. Run LLMs, image, audio, embeddings locally."},
+      {name:"llamafile",category:"local",url:"https://github.com/Mozilla-Ocho/llamafile",description:"Single-file LLM executables. Download and run, no install needed."},
+      {name:"text-generation-webui",category:"local",url:"https://github.com/oobabooga/text-generation-webui",description:"Gradio web UI for LLMs. Supports GGUF, GPTQ, AWQ, ExLlamaV2."},
+      {name:"LibreChat",category:"local",url:"https://librechat.ai",description:"Self-hosted multi-model AI chat. OpenAI, Anthropic, local models."},
+      {name:"big-AGI",category:"local",url:"https://big-agi.com",description:"Open-source AI suite. Multi-model chat, personas, code interpreter."},
+      {name:"LobeChat",category:"local",url:"https://lobehub.com",description:"Modern AI chat framework. Plugins, TTS, knowledge base, multi-model."},
+      {name:"Claude Code",category:"coding",url:"https://docs.anthropic.com/en/docs/claude-code",description:"Anthropic's agentic CLI. Terminal-native coding agent with full repo context."},
+      {name:"Codex (OpenAI)",category:"coding",url:"https://github.com/openai/codex",description:"OpenAI's open-source coding agent. Terminal-based, sandboxed execution."},
+      {name:"OpenCode",category:"coding",url:"https://github.com/opencode-ai/opencode",description:"Open-source terminal AI coding assistant. Multi-provider support."},
+      {name:"OpenClaw",category:"coding",url:"https://github.com/openclaw/openclaw",description:"Local AI assistant across WhatsApp, Telegram, Slack, Discord. Unified gateway control plane."},
+      {name:"NanoClaw",category:"coding",url:"https://github.com/qwibitai/nanoclaw",description:"AI assistant running agents in secure containers. Messaging, memory, and scheduled tasks."},
+      {name:"Gemini CLI",category:"coding",url:"https://github.com/google-gemini/gemini-cli",description:"Google's terminal AI agent. Gemini-powered coding assistant."},
+      {name:"Aider",category:"coding",url:"https://aider.chat",description:"AI pair programming in terminal. Git-aware, multi-file edits, multi-model."},
+      {name:"NVIDIA NemoClaw",category:"coding",url:"https://www.nvidia.com/en-us/ai/nemoclaw/",description:"OpenClaw + NVIDIA OpenShell. Secure sandboxed agents, local Nemotron models, privacy router."}
+    ];
+    let data=platforms;
+    const catFilter=params.get('category');
+    if(catFilter) data=data.filter(p=>p.category===catFilter.toLowerCase());
+    const searchQ=params.get('search');
+    if(searchQ){const q=searchQ.toLowerCase();data=data.filter(p=>p.name.toLowerCase().includes(q)||p.description.toLowerCase().includes(q));}
+    result={ok:true,endpoint:'v1/platforms',total:data.length,categories:{cloud:platforms.filter(p=>p.category==='cloud').length,aggregator:platforms.filter(p=>p.category==='aggregator').length,media:platforms.filter(p=>p.category==='media').length,local:platforms.filter(p=>p.category==='local').length,coding:platforms.filter(p=>p.category==='coding').length},data};
+  } else if(api==='v1/benchmarks'||api==='v1/benchmarks/'){
+    const data=[
+      {name:"Artificial Analysis",url:"https://artificialanalysis.ai/leaderboards/models",description:"Independent benchmarks of AI models. Speed, quality, pricing comparisons across providers."},
+      {name:"Epoch AI Benchmarks",url:"https://epoch.ai/benchmarks/",description:"Research-driven AI benchmarks tracking. Historical trends and frontier model performance."},
+      {name:"Arena AI Leaderboard",url:"https://arena.ai/leaderboard/",description:"Human preference-based model rankings. Elo ratings from blind comparisons by real users."},
+      {name:"LLM Stats",url:"https://llm-stats.com/",description:"Daily AI model releases, news, and performance statistics. Real-time tracking of the LLM landscape."},
+      {name:"Vellum LLM Leaderboard",url:"https://www.vellum.ai/llm-leaderboard",description:"Comprehensive LLM comparison across benchmarks. MMLU, HumanEval, GSM8K, and more."},
+      {name:"LiveBench",url:"https://livebench.ai/",description:"Live, contamination-free benchmark. New questions monthly to prevent data leakage in evaluations."},
+      {name:"OpenRouter Rankings",url:"https://openrouter.ai/rankings",description:"Model rankings by real-world usage across hundreds of models. Pricing, speed, and popularity metrics."},
+      {name:"Humanity's Last Exam",url:"https://agi.safe.ai/",description:"2,500 expert-level questions across 100+ subjects. The hardest AI benchmark designed to test frontier model knowledge limits."},
+      {name:"Scale AI Leaderboard",url:"https://labs.scale.com/leaderboard",description:"Enterprise-grade AI evaluation by Scale AI. Comprehensive model comparisons across safety, accuracy, and reasoning."},
+      {name:"EQ-Bench",url:"https://eqbench.com/",description:"Emotional intelligence benchmark for LLMs. Tests nuanced understanding of emotions and social dynamics."},
+      {name:"UGI Leaderboard",url:"https://ugi-leaderboard.hf.space/",description:"Uncensored General Intelligence leaderboard. Tests model capabilities without safety guardrail constraints."},
+      {name:"LA Leaderboard",url:"https://la-leaderboard.llmservice.net/",description:"LiveArena dynamic leaderboard. Continuously updated model rankings from real-time evaluations."}
+    ];
+    result={ok:true,endpoint:'v1/benchmarks',total:data.length,data};
+  } else if(api==='v1/projects'||api==='v1/projects/'){
+    const data=[
+      {name:"AI Countdown",url:"https://aicountdown.com/",tag:"COUNTDOWN",description:"Countdown timer estimating when AGI might arrive, based on speculative timelines and community predictions."},
+      {name:"ASI Countdown",url:"https://asi-countdown.com/",tag:"COUNTDOWN",description:"Countdown to Artificial Superintelligence (ASI) — speculative estimates for when AI surpasses all human cognitive abilities."},
+      {name:"AI 2027 — The Race",url:"https://ai-2027.com/race",tag:"SCENARIO",description:"Speculative scenario exploring the AI race toward 2027, depicting how geopolitical competition and rapid capability gains could unfold."},
+      {name:"AI Timeline",url:"https://ai-timeline.org/",tag:"TIMELINE",description:"Collaborative timeline of AI milestones and predictions, tracking progress toward artificial general intelligence."},
+      {name:"AI Doomsday Countdown",url:"https://www.aidoomsdaycountdown.com/",tag:"RISK",description:"A pessimistic take on AI risk, estimating when AI could pose existential threats. Uses speculative risk models and expert survey data."},
+      {name:"Life Architect — AGI",url:"https://lifearchitect.ai/agi/",tag:"TRACKER",description:"Dr. Alan D. Thompson's comprehensive AGI tracking page with model comparisons, benchmarks, and progress estimates toward general intelligence."},
+      {name:"Countdown to ASI",url:"https://countdowntoasi.com/",tag:"COUNTDOWN",description:"Another community-driven countdown to Artificial Superintelligence with estimated timelines and milestone tracking."},
+      {name:"AGI Timelines Dashboard",url:"https://agi.goodheartlabs.com/",tag:"FORECAST",description:"Aggregated AGI forecasts from Metaculus, Manifold Markets, and Kalshi. Central estimate with confidence intervals, updated in real-time."}
+    ];
+    result={ok:true,endpoint:'v1/projects',total:data.length,data};
   } else {
-    result={ok:false,error:'Unknown endpoint',available:['v1/models','v1/companies','v1/stats'],docs:'Add ?api=v1/models to the page URL. See the API tab for full documentation.'};
+    result={ok:false,error:'Unknown endpoint',available:['v1/models','v1/companies','v1/stats','v1/platforms','v1/benchmarks','v1/projects'],docs:'Add ?api=v1/models to the page URL. See the API tab for full documentation.'};
   }
 
   // Render JSON response and stop page
@@ -2424,7 +2532,7 @@ function renderArcTab(){
   </div>
   <div style="font-family:'IBM Plex Mono';font-size:8px;color:#555;line-height:1.7;border-top:1px solid #1a1a22;padding-top:12px">${a.arcFooter}</div>
 
-  <div class="info-section" style="margin-top:28px"><h3>${a.benchSitesTitle||'Benchmark & Leaderboard Sites'}</h3>
+  <div class="info-section" style="margin-top:28px"><h3>${a.benchSitesTitle||'Benchmark & Leaderboard Sites'} <span id="benchSitesCount" style="font-size:11px;color:#555;font-weight:400"></span></h3>
     <div class="info-cards">
       <a href="https://artificialanalysis.ai/leaderboards/models" target="_blank" rel="noopener" style="text-decoration:none">
       <div class="info-card">
@@ -2528,7 +2636,7 @@ function renderArcTab(){
       </div></a>
       <a href="https://huggingface.co/spaces/DontPlanToEnd/UGI-Leaderboard" target="_blank" rel="noopener" style="text-decoration:none">
       <div class="info-card">
-        <img src="img/ugi-leaderboard.png" style="width:100%;border-radius:6px;margin-bottom:10px;opacity:0.85">
+        <div style="width:100%;border-radius:6px;margin-bottom:10px;height:120px;background:linear-gradient(135deg,#1a0a2e,#2a1040);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono';font-size:16px;font-weight:700;color:#c084fc;letter-spacing:1px">UGI Leaderboard</div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
           <img src="https://www.google.com/s2/favicons?domain=huggingface.co&sz=32" width="20" height="20" style="border-radius:3px">
           <div class="ic-title">UGI Leaderboard</div>
@@ -2538,7 +2646,7 @@ function renderArcTab(){
       </div></a>
       <a href="https://huggingface.co/spaces/la-leaderboard/la-leaderboard" target="_blank" rel="noopener" style="text-decoration:none">
       <div class="info-card">
-        <img src="img/la-leaderboard.png" style="width:100%;border-radius:6px;margin-bottom:10px;opacity:0.85">
+        <div style="width:100%;border-radius:6px;margin-bottom:10px;height:120px;background:linear-gradient(135deg,#0d1a2e,#1a2a40);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono';font-size:16px;font-weight:700;color:#38bdf8;letter-spacing:1px">LA Leaderboard</div>
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
           <img src="https://www.google.com/s2/favicons?domain=huggingface.co&sz=32" width="20" height="20" style="border-radius:3px">
           <div class="ic-title">LA Leaderboard</div>
@@ -2853,6 +2961,26 @@ function renderApiTab(){
         <div style="font-family:'IBM Plex Mono';font-size:10px;color:#888">Returns aggregate statistics: total models, companies, open/closed ratio, type breakdown, date range, avg intelligence.</div>
       </div>
 
+      <div style="background:#0e0e14;border:1px solid #1a1a22;border-radius:6px;padding:12px">
+        <div style="font-family:'IBM Plex Mono';font-size:12px;font-weight:600;color:#34d399;margin-bottom:6px">GET <span style="color:#ddd">?api=v1/platforms</span></div>
+        <div style="font-family:'IBM Plex Mono';font-size:10px;color:#888;margin-bottom:8px">Returns all platforms, tools, and aggregators with category, URL, and description.</div>
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#666;margin-bottom:4px">FILTERS (optional):</div>
+        <table style="font-family:'IBM Plex Mono';font-size:10px;color:#aaa;border-collapse:collapse;width:100%">
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">category=</td><td style="padding:3px 0">cloud, aggregator, media, local, or coding</td></tr>
+          <tr><td style="padding:3px 8px 3px 0;color:#c084fc;white-space:nowrap">search=</td><td style="padding:3px 0">Search in name and description</td></tr>
+        </table>
+      </div>
+
+      <div style="background:#0e0e14;border:1px solid #1a1a22;border-radius:6px;padding:12px">
+        <div style="font-family:'IBM Plex Mono';font-size:12px;font-weight:600;color:#34d399;margin-bottom:6px">GET <span style="color:#ddd">?api=v1/benchmarks</span></div>
+        <div style="font-family:'IBM Plex Mono';font-size:10px;color:#888">Returns all benchmark and leaderboard sites with URL and description.</div>
+      </div>
+
+      <div style="background:#0e0e14;border:1px solid #1a1a22;border-radius:6px;padding:12px">
+        <div style="font-family:'IBM Plex Mono';font-size:12px;font-weight:600;color:#34d399;margin-bottom:6px">GET <span style="color:#ddd">?api=v1/projects</span></div>
+        <div style="font-family:'IBM Plex Mono';font-size:10px;color:#888">Returns similar AGI countdown and forecast projects with URL, tag, and description.</div>
+      </div>
+
     </div>
   </div>
 
@@ -2889,6 +3017,22 @@ function renderApiTab(){
       <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
         <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">Aggregate stats</div>
         <a href="?api=v1/stats" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/stats</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">All platforms</div>
+        <a href="?api=v1/platforms" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/platforms</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">Coding agents only</div>
+        <a href="?api=v1/platforms&category=coding" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/platforms&category=coding</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">Benchmark sites</div>
+        <a href="?api=v1/benchmarks" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/benchmarks</a>
+      </div>
+      <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
+        <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">Similar projects</div>
+        <a href="?api=v1/projects" style="font-family:'IBM Plex Mono';font-size:10px;color:#6b8aff;text-decoration:none;word-break:break-all">${base}?api=v1/projects</a>
       </div>
     </div>
   </div>
@@ -2964,7 +3108,7 @@ function applyLang(){
     if(el('countdownTitle'))el('countdownTitle').textContent=cd.title;
     if(el('countdownSub'))el('countdownSub').textContent=cd.sub;
     if(el('cdDisclaimerText'))el('cdDisclaimerText').textContent=cd.disclaimer;
-    if(el('similarHeader')){const sh=el('similarHeader');const ar=sh.querySelector('span');if(ar){[...sh.childNodes].filter(n=>n!==ar).forEach(n=>n.remove());sh.append(cd.similarTitle)}else{sh.textContent=cd.similarTitle}}
+    if(el('similarHeader')){const sh=el('similarHeader');const spans=[...sh.querySelectorAll('span')];if(spans.length){[...sh.childNodes].filter(n=>!spans.includes(n)).forEach(n=>n.remove());spans[0].after(' '+cd.similarTitle+' ')}else{sh.textContent=cd.similarTitle}}
     if(el('cdUntil'))el('cdUntil').textContent=cd.untilAGI;
     if(el('cdBasedOn'))el('cdBasedOn').textContent=cd.basedOn;
     document.querySelectorAll('.cd-label').forEach(l=>{if(cd[l.dataset.cd])l.textContent=cd[l.dataset.cd]});
@@ -2972,9 +3116,12 @@ function applyLang(){
     if(laEl){const d=laEl.textContent.match(/\d{4}-\d{2}-\d{2}/);if(d)laEl.textContent=cd.lastAdjust+': '+d[0]}
     const shEl=document.getElementById('cdShift');
     if(shEl&&!shEl.dataset.shifted)shEl.textContent=cd.noChange;
+    const scEl=document.getElementById('similarCount');
+    if(scEl){const cards=document.getElementById('tab-countdown');if(cards)scEl.textContent=cards.querySelectorAll('.info-cards .info-card').length;}
   }
   // Render info tabs
   renderArcTab();
+  const bsc=document.getElementById('benchSitesCount');if(bsc){const bp=bsc.closest('.info-section');if(bp){const cards=bp.querySelectorAll('.info-card');bsc.textContent=cards.length;}}
   renderMetaTab();
   renderPlatformsTab();
   renderApiTab();
