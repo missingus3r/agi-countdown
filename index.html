@@ -6,17 +6,18 @@
 <title>ROAD TO AGI · Every AI Model Since Transformers</title>
 
 <!-- SEO core -->
-<meta name="description" content="Interactive timeline of every major AI model since the Transformer (2017). 400+ models from 85+ companies: LLMs, diffusion, reasoning, multimodal, video, audio. AGI countdown timer, ARC-AGI benchmarks, Metaculus forecasts. Open-source API included."/>
-<meta name="keywords" content="AI models, LLM, artificial intelligence, AGI, AGI countdown, ASI countdown, AI timeline, AI forecast, GPT, Claude, Gemini, Llama, Stable Diffusion, DALL-E, Midjourney, deep learning, transformer, open source AI, AI benchmark, AI history, ARC-AGI, Metaculus"/>
+<meta name="description" content="Interactive timeline of every major AI model since the Transformer (2017). 440+ models from 85+ companies: LLMs, diffusion, reasoning, multimodal, video, audio. AGI countdown timer, ARC-AGI benchmarks, Metaculus forecasts, 70+ AI platforms & tools directory, 12 benchmark leaderboards. Open-source API included."/>
+<meta name="keywords" content="AI models, LLM, artificial intelligence, AGI, AGI countdown, ASI countdown, AI timeline, AI forecast, GPT, Claude, Gemini, Llama, Stable Diffusion, DALL-E, Midjourney, deep learning, transformer, open source AI, AI benchmark, AI history, ARC-AGI, Metaculus, AI platforms, AI tools, ChatGPT, Anthropic, Groq, Perplexity, DeepSeek, Ollama, LM Studio, vLLM, Claude Code, Aider, OpenRouter, ElevenLabs, Runway, Pika, HuggingFace, AI leaderboard, EQ-Bench, Scale AI, coding agents, local LLM, AI aggregator"/>
 <meta name="author" content="missingus3r"/>
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
-<link rel="canonical" href="https://missingus3r.github.io/agi-countdown/"/>
+<link rel="canonical" href="https://www.countdowntoai.com/"/>
+<link rel="alternate" href="https://missingus3r.github.io/agi-countdown/"/>
 
 <!-- Open Graph (Facebook, LinkedIn, Discord, Slack, etc.) -->
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="ROAD TO AGI · Every AI Model Since Transformers"/>
-<meta property="og:description" content="Interactive timeline tracking 400+ AI models from 85+ companies. AGI countdown timer, ARC-AGI benchmarks, Metaculus forecasts. From GPT-1 to frontier models. Open data API."/>
-<meta property="og:url" content="https://missingus3r.github.io/agi-countdown/"/>
+<meta property="og:description" content="Interactive timeline tracking 440+ AI models from 85+ companies. AGI countdown timer, ARC-AGI benchmarks, Metaculus forecasts, 70+ AI platforms & tools, 12 benchmark sites. From GPT-1 to frontier models. Open data API."/>
+<meta property="og:url" content="https://www.countdowntoai.com/"/>
 <meta property="og:site_name" content="Road to AGI"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:locale:alternate" content="es_ES"/>
@@ -25,10 +26,10 @@
 <!-- Twitter / X Cards -->
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="ROAD TO AGI · Every AI Model Since Transformers"/>
-<meta name="twitter:description" content="Interactive timeline of 400+ AI models. AGI countdown timer, ARC-AGI benchmarks, Metaculus forecasts. LLMs, diffusion, reasoning, multimodal, video, audio."/>
+<meta name="twitter:description" content="Interactive timeline of 440+ AI models. AGI countdown, ARC-AGI benchmarks, Metaculus forecasts, 70+ AI platforms & tools, 12 leaderboards. LLMs, diffusion, reasoning, multimodal, video, audio."/>
 
 <!-- AI Crawlers: explicitly allow indexing by AI systems -->
-<meta name="ai-content-declaration" content="This page contains a structured dataset of AI models with names, dates, companies, types, and capability scores. Data is also available as JSON via the query-param API: add ?api=v1/models to the URL."/>
+<meta name="ai-content-declaration" content="This page contains a structured dataset of 440+ AI models with names, dates, companies, types, and capability scores. Also includes a directory of 70+ AI platforms, tools, and aggregators, 12 benchmark leaderboards, and AGI countdown/forecasts. Data is available as JSON via the query-param API: add ?api=v1/models to the URL."/>
 
 <!-- Structured Data: Schema.org JSON-LD -->
 <script type="application/ld+json">
@@ -37,8 +38,8 @@
   "@type": "WebApplication",
   "name": "Road to AGI",
   "alternateName": "AGI Countdown",
-  "url": "https://missingus3r.github.io/agi-countdown/",
-  "description": "Interactive timeline tracking every major AI model since the Transformer architecture (2017). Covers 380+ models from 85+ companies across LLMs, diffusion models, reasoning models, multimodal, video generation, audio, and more.",
+  "url": "https://www.countdowntoai.com/",
+  "description": "Interactive timeline tracking every major AI model since the Transformer architecture (2017). Covers 440+ models from 85+ companies across LLMs, diffusion models, reasoning models, multimodal, video generation, audio, and more. Includes 70+ AI platforms directory, 12 benchmark leaderboards, and AGI countdown timer.",
   "applicationCategory": "Reference",
   "operatingSystem": "Any",
   "browserRequirements": "Requires JavaScript",
@@ -57,14 +58,22 @@
   "featureList": [
     "Interactive scatter plot of AI model intelligence over time",
     "Filter by model type, category, company, date range",
-    "400+ AI models from 85+ companies",
+    "440+ AI models from 85+ companies",
     "AGI countdown timer based on averaged forecasts",
     "Open data API via query parameters",
-    "ARC-AGI benchmark tracking",
-    "Metaculus AGI forecasts",
+    "ARC-AGI benchmark tracking (ARC-AGI-1, ARC-AGI-2, ARC-AGI-3)",
+    "Metaculus AGI forecasts (Weak AGI & Full AGI)",
+    "12 benchmark and leaderboard sites directory",
+    "70+ AI platforms, tools, and aggregators directory",
+    "Cloud AI providers: OpenAI, Anthropic, Google, Groq, xAI, Meta, DeepSeek, Mistral",
+    "Multi-model aggregators: OpenRouter, Poe, Together AI, Replicate",
+    "Media/Generative: Runway, Midjourney, ElevenLabs, Suno, Stability AI",
+    "Local LLM tools: Ollama, LM Studio, vLLM, Open WebUI, Jan",
+    "Coding agents: Claude Code, Codex, Aider, Gemini CLI, NemoClaw",
     "Similar AGI countdown projects directory",
+    "Collapsible sections with localStorage persistence",
     "Multi-language support (EN/ES/PT)",
-    "Light and dark theme"
+    "Light and dark theme with animated circular reveal transition"
   ]
 }
 </script>
@@ -73,14 +82,14 @@
   "@context": "https://schema.org",
   "@type": "Dataset",
   "name": "AI Models Timeline Dataset",
-  "description": "Structured dataset of 400+ AI models with release dates, companies, open-source status, intelligence ratings, model types, and categories. Spans from the original Transformer (2017) to current frontier models. Includes AGI countdown timer.",
+  "description": "Structured dataset of 440+ AI models with release dates, companies, open-source status, intelligence ratings, model types, and categories. Spans from the original Transformer (2017) to current frontier models.",
   "url": "https://missingus3r.github.io/agi-countdown/?api=v1/models",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "creator": {"@type": "Person", "name": "missingus3r"},
   "distribution": {
     "@type": "DataDownload",
     "encodingFormat": "application/json",
-    "contentUrl": "https://missingus3r.github.io/agi-countdown/?api=v1/models"
+    "contentUrl": "https://www.countdowntoai.com/?api=v1/models"
   },
   "variableMeasured": [
     {"@type": "PropertyValue", "name": "name", "description": "Official model name"},
@@ -92,7 +101,7 @@
     {"@type": "PropertyValue", "name": "cat", "description": "Primary output category: text, image, video, audio, multi, code, reasoning, world"}
   ],
   "temporalCoverage": "2017/2026",
-  "keywords": ["AI models", "LLM", "artificial intelligence", "machine learning", "deep learning", "transformer", "diffusion models", "AGI timeline", "AGI countdown", "ASI countdown", "AI forecast"]
+  "keywords": ["AI models", "LLM", "artificial intelligence", "machine learning", "deep learning", "transformer", "diffusion models", "AGI timeline", "AGI countdown", "ASI countdown", "AI forecast", "AI platforms", "AI tools", "AI benchmarks", "AI leaderboard", "coding agents", "local LLM", "ChatGPT", "Claude", "Gemini", "Ollama", "HuggingFace"]
 }
 </script>
 
