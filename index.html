@@ -1600,7 +1600,7 @@ const modelUrls={
 "UniRelight":"https://huggingface.co/nvidia/UniRelight",
 "GLM-5.1":"https://aiproductivity.ai/news/zhipu-ai-glm-5-1-open-source-weights-april/",
 "Gemini Embedding 2":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-embedding-2/",
-"Muse Spark":"https://www.bloomberg.com/news/articles/2026-04-08/meta-debuts-first-ai-model-from-prized-superintelligence-group",
+"Muse Spark":"https://ai.meta.com/blog/introducing-muse-spark-msl/",
 "Grok 4.20":"https://docs.x.ai/developers/models/grok-4.20-0309-reasoning",
 "Seed 2.0 Pro":"https://seed.bytedance.com/en/blog/seed-2-0-official-launch",
 "Seed 2.0 Lite":"https://seed.bytedance.com/en/blog/seed-2-0-official-launch",
@@ -2306,17 +2306,17 @@ function render(){
       if(!ym||ym.length===0)return;
       const section=document.createElement("div");
       section.className="year-section";
-      const isCollapsed=yearColState[year]===true;
-      section.innerHTML=`<div class="year-header" style="cursor:pointer"><span class="year-arrow">${isCollapsed?'►':'▼'}</span> <span class="year-title">${year}</span><span class="year-count">${ym.length} ${t('models')}</span><div class="year-line"></div></div>`;
+      const isOpen=yearColState[year]===true;
+      section.innerHTML=`<div class="year-header" style="cursor:pointer"><span class="year-arrow">${isOpen?'▼':'►'}</span> <span class="year-title">${year}</span><span class="year-count">${ym.length} ${t('models')}</span><div class="year-line"></div></div>`;
       const grid=document.createElement("div");
       grid.className="cards-grid";
-      if(isCollapsed)grid.style.display='none';
+      if(!isOpen)grid.style.display='none';
       section.querySelector('.year-header').addEventListener('click',()=>{
         const open=grid.style.display!=='none';
         grid.style.display=open?'none':'grid';
         section.querySelector('.year-arrow').textContent=open?'►':'▼';
         const st=JSON.parse(localStorage.getItem('yearCollapsed')||'{}');
-        st[year]=open;
+        st[year]=!open;
         localStorage.setItem('yearCollapsed',JSON.stringify(st));
       });
       ym.forEach((m,i)=>{
@@ -2646,6 +2646,7 @@ function renderPlatformsTab(){
     ${pc("xai","grok.com","xAI","Grok models. Real-time X/Twitter data, image generation, reasoning.",[["Grok","https://grok.com"],["Console","https://console.x.ai"]])}
     ${pc("cerebras-chat","cerebras.ai","Cerebras","Wafer-scale chip inference. Fastest token generation for open models.",[["Chat","https://chat.cerebras.ai"],["Cerebras","https://cerebras.ai"]],["#0a0a14","#141428","#f97316"])}
     ${pc("microsoft-copilot","copilot.microsoft.com","Microsoft","Copilot across Windows, Office, Azure. GitHub Copilot for code.",[["Copilot","https://copilot.microsoft.com"],["Azure AI","https://ai.azure.com"],["GitHub Copilot","https://github.com/features/copilot"]])}
+    ${pc("mai","playground.microsoft.ai","Microsoft MAI","Playground to test Microsoft's new MAI models: MAI-Transcribe-1, MAI-Voice-1, and MAI-Image-2.",[["Playground","https://playground.microsoft.ai/chat"]],["#0d0d1a","#1a1a2e","#00a4ef"])}
     ${pc("meta-ai","meta.ai","Meta","Meta AI assistant powered by Llama. Free, multimodal, integrated with social apps.",[["Meta AI","https://meta.ai"],["Llama","https://llama.meta.com"]],["#0a1628","#1a2a4a","#0668e1"])}
     ${pc("perplexity","perplexity.ai","Perplexity","AI-powered search engine. Real-time citations, Pro Search with reasoning.",[["Perplexity","https://perplexity.ai"]],["#0f1923","#1a2a3a","#22b8cf"])}
     ${pc("deepseek","deepseek.com","DeepSeek","DeepSeek-V3, R1. Open-weight reasoning models, competitive with frontier.",[["Chat","https://chat.deepseek.com"],["Platform","https://platform.deepseek.com"]],["#0a1628","#0d2040","#4a9eff"])}
@@ -2726,15 +2727,14 @@ function renderPlatformsTab(){
     ${pc("nemoclaw","nvidia.com","NVIDIA NemoClaw","OpenClaw + NVIDIA OpenShell. Secure sandboxed agents, local Nemotron models, privacy router.",[["NemoClaw","https://www.nvidia.com/en-us/ai/nemoclaw/"],["GitHub","https://github.com/NVIDIA/NemoClaw"]])}
   </div>
 </div>`;
-  // Restore collapsed state from localStorage
+  // Restore collapsed state from localStorage (default: collapsed)
   const platState=JSON.parse(localStorage.getItem('platSections')||'{}');
   ['ps-cloud','ps-agg','ps-media','ps-local','ps-code'].forEach(id=>{
-    if(platState[id]===false){
-      const el=document.getElementById(id);
-      const arrow=document.getElementById(id+'-arrow');
-      if(el){el.style.display='none';}
-      if(arrow){arrow.textContent='►';}
-    }
+    const el=document.getElementById(id);
+    const arrow=document.getElementById(id+'-arrow');
+    if(platState[id]===true){return;}
+    if(el){el.style.display='none';}
+    if(arrow){arrow.textContent='►';}
   });
 }
 function makeCollapsible(containerEl,storageKey){
@@ -2745,8 +2745,10 @@ function makeCollapsible(containerEl,storageKey){
     if(!h3||sec.dataset.collapsible)return;
     sec.dataset.collapsible='1';
     const key=h3.textContent.trim().substring(0,30);
-    // Collect all siblings until next .info-section or end
+    // Collect children after h3 inside the section + siblings until next .info-section
     const siblings=[];
+    let child=h3.nextElementSibling;
+    while(child){siblings.push(child);child=child.nextElementSibling;}
     let el=sec.nextElementSibling;
     while(el&&!el.classList.contains('info-section')){
       siblings.push(el);
@@ -2756,9 +2758,9 @@ function makeCollapsible(containerEl,storageKey){
     sec.style.cursor='pointer';
     const arrow=document.createElement('span');
     arrow.style.cssText='margin-right:4px;font-size:12px';
-    arrow.textContent=state[key]===false?'►':'▼';
+    arrow.textContent=state[key]===true?'▼':'►';
     h3.insertBefore(arrow,h3.firstChild);
-    if(state[key]===false)siblings.forEach(s=>s.style.display='none');
+    if(state[key]!==true)siblings.forEach(s=>s.style.display='none');
     sec.addEventListener('click',()=>{
       const open=siblings[0].style.display!=='none';
       siblings.forEach(s=>s.style.display=open?'none':'');
@@ -2879,7 +2881,7 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
     <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-top:8px">Note: This is a client-side API. The response is an HTML page containing JSON in a &lt;pre&gt; tag. For programmatic use, extract the text content from the &lt;pre&gt; element or use the browser console.</div>
   </div>
 
-  <div style="font-family:'IBM Plex Mono';font-size:9px;color:#444;margin-top:16px;padding-top:12px;border-top:1px solid #1a1a22">
+  <div class="info-section" style="font-family:'IBM Plex Mono';font-size:9px;color:#444;margin-top:16px;padding-top:12px;border-top:1px solid #1a1a22">
     Response format: <code style="background:#1a1a24;padding:2px 6px;border-radius:4px;color:#888">{ ok, endpoint, total, count, limit, offset, data[] }</code><br>
     All endpoints are read-only. No authentication required. Data updates with every page deploy.
   </div>
