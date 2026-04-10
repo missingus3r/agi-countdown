@@ -3108,7 +3108,7 @@ function applyLang(){
     if(el('countdownTitle'))el('countdownTitle').textContent=cd.title;
     if(el('countdownSub'))el('countdownSub').textContent=cd.sub;
     if(el('cdDisclaimerText'))el('cdDisclaimerText').textContent=cd.disclaimer;
-    if(el('similarHeader')){const sh=el('similarHeader');const spans=[...sh.querySelectorAll('span')];if(spans.length){[...sh.childNodes].filter(n=>!spans.includes(n)).forEach(n=>n.remove());spans[0].after(' '+cd.similarTitle+' ')}else{sh.textContent=cd.similarTitle}}
+    if(el('similarHeader')){const sh=el('similarHeader');const spans=[...sh.querySelectorAll('span')];if(spans.length){[...sh.childNodes].filter(n=>n.nodeType===3).forEach(n=>n.remove());const countSpan=document.getElementById('similarCount');if(countSpan){countSpan.before(' '+cd.similarTitle+' ')}else{spans[0].after(' '+cd.similarTitle+' ')}}else{sh.textContent=cd.similarTitle}}
     if(el('cdUntil'))el('cdUntil').textContent=cd.untilAGI;
     if(el('cdBasedOn'))el('cdBasedOn').textContent=cd.basedOn;
     document.querySelectorAll('.cd-label').forEach(l=>{if(cd[l.dataset.cd])l.textContent=cd[l.dataset.cd]});
