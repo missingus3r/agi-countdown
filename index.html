@@ -2958,7 +2958,7 @@ function applyLang(){
     if(el('countdownTitle'))el('countdownTitle').textContent=cd.title;
     if(el('countdownSub'))el('countdownSub').textContent=cd.sub;
     if(el('cdDisclaimerText'))el('cdDisclaimerText').textContent=cd.disclaimer;
-    if(el('similarHeader'))el('similarHeader').textContent=cd.similarTitle;
+    if(el('similarHeader')){const sh=el('similarHeader');const ar=sh.querySelector('span');if(ar){[...sh.childNodes].filter(n=>n!==ar).forEach(n=>n.remove());sh.append(cd.similarTitle)}else{sh.textContent=cd.similarTitle}}
     if(el('cdUntil'))el('cdUntil').textContent=cd.untilAGI;
     if(el('cdBasedOn'))el('cdBasedOn').textContent=cd.basedOn;
     document.querySelectorAll('.cd-label').forEach(l=>{if(cd[l.dataset.cd])l.textContent=cd[l.dataset.cd]});
