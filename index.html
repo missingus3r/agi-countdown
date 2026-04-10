@@ -2662,33 +2662,33 @@ function renderPlatformsTab(){
 
   <div class="info-section" style="cursor:pointer" onclick="togglePlatSec('ps-cloud')"><h3><span id="ps-cloud-arrow">▼</span> ${p.cloud} <span id="ps-cloud-count" style="font-size:11px;color:#555;font-weight:400"></span></h3></div>
   <div class="info-cards" id="ps-cloud">
-    ${pc("openai","chatgpt.com","OpenAI","GPT-4o, o3, o4-mini. Chat, image generation, code interpreter, plugins.",[["Chat","https://chatgpt.com"],["Platform","https://platform.openai.com"]],["#1a1a2e","#0d0d1a","#10a37f"])}
-    ${pc("anthropic","claude.ai","Anthropic","Claude Opus, Sonnet, Haiku. Extended thinking, artifacts, projects.",[["Claude","https://claude.ai"],["Console","https://console.anthropic.com"]],["#1a1410","#2a1f15","#d4a574"])}
-    ${pc("google-gemini","gemini.google.com","Google","Gemini 2.5 Pro/Flash. Multimodal, Deep Research, Gems.",[["Gemini","https://gemini.google.com"],["AI Studio","https://aistudio.google.com"],["NotebookLM","https://notebooklm.google.com"]],["#1a1a2e","#0d1b2a","#4285f4"])}
+    ${pc("openai","chatgpt.com","OpenAI","Frontier LLMs. Chat, image generation, code interpreter, plugins.",[["Chat","https://chatgpt.com"],["Platform","https://platform.openai.com"]],["#1a1a2e","#0d0d1a","#10a37f"])}
+    ${pc("anthropic","claude.ai","Anthropic","Frontier LLMs. Extended thinking, artifacts, projects, Claude Code.",[["Claude","https://claude.ai"],["Console","https://console.anthropic.com"]],["#1a1410","#2a1f15","#d4a574"])}
+    ${pc("google-gemini","gemini.google.com","Google","Gemini models. Multimodal, Deep Research, Gems, AI Studio.",[["Gemini","https://gemini.google.com"],["AI Studio","https://aistudio.google.com"],["NotebookLM","https://notebooklm.google.com"]],["#1a1a2e","#0d1b2a","#4285f4"])}
     ${pc("google-labs","labs.google","Google Labs","Experimental AI tools and prototypes. Try new Google AI features early.",[["Labs","https://labs.google/"]],["#1a1a2e","#0d1b2a","#34a853"])}
-    ${pc("groq","groq.com","Groq","Ultra-fast LPU inference. Llama, Mixtral, Gemma at lightning speed.",[["Groq","https://groq.com"],["Playground","https://console.groq.com/playground"]])}
+    ${pc("groq","groq.com","Groq","Ultra-fast LPU inference. Fastest token generation for open models.",[["Groq","https://groq.com"],["Playground","https://console.groq.com/playground"]])}
     ${pc("xai","grok.com","xAI","Grok models. Real-time X/Twitter data, image generation, reasoning.",[["Grok","https://grok.com"],["Console","https://console.x.ai"]])}
     ${pc("cerebras-chat","cerebras.ai","Cerebras","Wafer-scale chip inference. Fastest token generation for open models.",[["Chat","https://chat.cerebras.ai"],["Cerebras","https://cerebras.ai"]],["#0a0a14","#141428","#f97316"])}
     ${pc("microsoft-copilot","copilot.microsoft.com","Microsoft","Copilot across Windows, Office, Azure. GitHub Copilot for code.",[["Copilot","https://copilot.microsoft.com"],["Azure AI","https://ai.azure.com"],["GitHub Copilot","https://github.com/features/copilot"]])}
-    ${pc("mai","playground.microsoft.ai","Microsoft MAI","Playground to test Microsoft's new MAI models: MAI-Transcribe-1, MAI-Voice-1, and MAI-Image-2.",[["Playground","https://playground.microsoft.ai/chat"]],["#0d0d1a","#1a1a2e","#00a4ef"])}
+    ${pc("mai","playground.microsoft.ai","Microsoft MAI","Microsoft AI Playground. Test MAI models for transcription, voice, and image generation.",[["Playground","https://playground.microsoft.ai/chat"]],["#0d0d1a","#1a1a2e","#00a4ef"])}
     ${pc("meta-ai","meta.ai","Meta","Meta AI assistant powered by Llama. Free, multimodal, integrated with social apps.",[["Meta AI","https://meta.ai"],["Llama","https://llama.meta.com"]],["#0a1628","#1a2a4a","#0668e1"])}
     ${pc("perplexity","perplexity.ai","Perplexity","AI-powered search engine. Real-time citations, Pro Search with reasoning.",[["Perplexity","https://perplexity.ai"]],["#0f1923","#1a2a3a","#22b8cf"])}
-    ${pc("deepseek","deepseek.com","DeepSeek","DeepSeek-V3, R1. Open-weight reasoning models, competitive with frontier.",[["Chat","https://chat.deepseek.com"],["Platform","https://platform.deepseek.com"]],["#0a1628","#0d2040","#4a9eff"])}
-    ${pc("mistral","chat.mistral.ai","Mistral AI","Mistral Large, Small, Codestral. European AI lab, strong open models.",[["Le Chat","https://chat.mistral.ai"],["Console","https://console.mistral.ai"]],["#0f0f1a","#1a1a30","#ff7000"])}
-    ${pc("cohere","coral.cohere.com","Cohere","Command R+, Aya. Enterprise RAG, multilingual, embeddings.",[["Coral","https://coral.cohere.com"],["Dashboard","https://dashboard.cohere.com"]])}
-    ${pc("qwen","qwen.ai","Alibaba / Qwen","Qwen 3.6, Qwen-VL, Wan video. Strong multilingual open models.",[["Qwen","https://qwen.ai"],["Chat","https://chat.qwen.ai"],["HuggingFace","https://huggingface.co/Qwen"]])}
+    ${pc("deepseek","deepseek.com","DeepSeek","Open-weight reasoning models, competitive with frontier labs.",[["Chat","https://chat.deepseek.com"],["Platform","https://platform.deepseek.com"]],["#0a1628","#0d2040","#4a9eff"])}
+    ${pc("mistral","chat.mistral.ai","Mistral AI","European AI lab. Strong open and commercial models for chat and code.",[["Le Chat","https://chat.mistral.ai"],["Console","https://console.mistral.ai"]],["#0f0f1a","#1a1a30","#ff7000"])}
+    ${pc("cohere","coral.cohere.com","Cohere","Enterprise RAG, multilingual models, embeddings.",[["Coral","https://coral.cohere.com"],["Dashboard","https://dashboard.cohere.com"]])}
+    ${pc("qwen","qwen.ai","Alibaba / Qwen","Strong multilingual open models for text, vision, and video.",[["Qwen","https://qwen.ai"],["Chat","https://chat.qwen.ai"],["HuggingFace","https://huggingface.co/Qwen"]])}
     ${pc("kimi","kimi.com","Moonshot AI","Kimi. Long-context specialist (128K+), popular in China.",[["Kimi","https://kimi.com"]])}
     ${pc("hailuo","hailuo.ai","MiniMax / Hailuo","Hailuo AI video generation. High-quality text-to-video.",[["Hailuo","https://hailuo.ai"]],["#0d0d1a","#1a1a2e","#a78bfa"])}
     ${pc("venice","venice.ai","Venice.ai","Privacy-focused AI. Uncensored models, no data retention.",[["Venice","https://venice.ai"]],["#1a0a1e","#2a1030","#c084fc"])}
     ${pc("inception","chat.inceptionlabs.ai","Inception","Mercury diffusion LLM. Ultra-fast text generation via diffusion.",[["Chat","https://chat.inceptionlabs.ai"]])}
-    ${pc("amazon-bedrock","aws.amazon.com","Amazon","AWS Bedrock. Multi-model API: Claude, Llama, Titan, Mistral.",[["Bedrock","https://aws.amazon.com/bedrock"],["PartyRock","https://partyrock.aws"]])}
+    ${pc("amazon-bedrock","aws.amazon.com","Amazon","AWS Bedrock. Multi-model API with frontier and open models.",[["Bedrock","https://aws.amazon.com/bedrock"],["PartyRock","https://partyrock.aws"]])}
     ${pc("you","you.com","You.com","AI search + chat with multiple models. Smart mode, Research mode.",[["You.com","https://you.com"]])}
     ${pc("brave-leo","brave.com","Brave Leo","Built-in AI assistant in Brave browser. Private, no account needed.",[["Brave Leo","https://brave.com/leo"]])}
   </div>
 
   <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-agg')"><h3><span id="ps-agg-arrow">▼</span> ${p.agg} <span id="ps-agg-count" style="font-size:11px;color:#555;font-weight:400"></span></h3></div>
   <div class="info-cards" id="ps-agg">
-    ${pc("poe","poe.com","Poe","Access GPT-4o, Claude, Gemini, Llama and more in one place. Create custom bots.",[["Poe","https://poe.com"]],["#0d1a0d","#1a2e1a","#34d399"])}
+    ${pc("poe","poe.com","Poe","Access multiple frontier models in one place. Create custom bots.",[["Poe","https://poe.com"]],["#0d1a0d","#1a2e1a","#34d399"])}
     ${pc("openrouter","openrouter.ai","OpenRouter","Unified API for 349+ models. Automatic fallback, usage-based pricing.",[["OpenRouter","https://openrouter.ai"]])}
     ${pc("typingmind","typingmind.com","TypingMind","Premium chat UI for multiple AI models. Plugins, personas, prompt library.",[["TypingMind","https://typingmind.com"]],["#0d0d1a","#1a1a2e","#6b8aff"])}
     ${pc("together","together.ai","Together AI","Open-source model hosting. Fine-tuning, inference API, serverless.",[["Together","https://together.ai"],["API","https://api.together.ai"]])}
@@ -2699,9 +2699,9 @@ function renderPlatformsTab(){
 
   <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-media')"><h3><span id="ps-media-arrow">▼</span> ${p.media} <span id="ps-media-count" style="font-size:11px;color:#555;font-weight:400"></span></h3></div>
   <div class="info-cards" id="ps-media">
-    ${pc("runway","runwayml.com","Runway ML","Gen-3 Alpha video generation. Text/image to video, motion brush.",[["Runway","https://runwayml.com"],["App","https://app.runwayml.com"]],["#0a0a14","#14142a","#e2e2e2"])}
+    ${pc("runway","runwayml.com","Runway ML","AI video generation. Text/image to video, motion brush, editing tools.",[["Runway","https://runwayml.com"],["App","https://app.runwayml.com"]],["#0a0a14","#14142a","#e2e2e2"])}
     ${pc("pika","pika.art","Pika Labs","AI video generation and editing. Text-to-video, image-to-video.",[["Pika","https://pika.art"]])}
-    ${pc("midjourney","midjourney.com","Midjourney","Premium AI image generation. V7, photorealistic, artistic styles.",[["Midjourney","https://midjourney.com"],["Alpha","https://alpha.midjourney.com"]],["#0d0d1a","#1a1a30","#e2e2e2"])}
+    ${pc("midjourney","midjourney.com","Midjourney","Premium AI image generation. Photorealistic, artistic styles.",[["Midjourney","https://midjourney.com"],["Alpha","https://alpha.midjourney.com"]],["#0d0d1a","#1a1a30","#e2e2e2"])}
     ${pc("bfl","bfl.ai","Black Forest Labs","FLUX image models. Open-weight, high-quality text-to-image.",[["BFL","https://bfl.ai"]])}
     ${pc("freepik","freepik.com","Freepik","AI image generator + massive stock library. Commercial-ready assets.",[["Freepik","https://freepik.com"],["AI Generator","https://freepik.com/ai/image-generator"]],["#00284d","#003d73","#0dd2ff"])}
     ${pc("elevenlabs","elevenlabs.io","ElevenLabs","State-of-the-art TTS, voice cloning, dubbing, sound effects.",[["ElevenLabs","https://elevenlabs.io"],["App","https://elevenlabs.io/app"]])}
