@@ -389,6 +389,8 @@ html.light .scroll-top:hover{border-color:#6b8aff;color:#6b8aff}
 
 /* Hamburger menu button (hidden on desktop) */
 .menu-toggle{display:none;padding:6px 12px;border-radius:8px;font-size:11px;font-family:'IBM Plex Mono';cursor:pointer;border:1px solid #333;background:#16161e;color:#aaa;transition:all 0.15s}
+.mobile-only{display:none}
+.mobile-top-row{display:contents}
 .menu-toggle:hover{border-color:#6b8aff;color:#ccc}
 .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
 html.light .menu-toggle{border-color:#bbb;background:#f0f0f5;color:#666}
@@ -400,8 +402,11 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   .header h1{font-size:14px}
   .header .subtitle{font-size:10px;margin:2px 0 8px}
 
-  /* Show hamburger, hide filters by default */
+  /* Show hamburger + mobile controls, hide filters by default */
   .menu-toggle{display:inline-block}
+  .mobile-top-row{display:flex;gap:6px;align-items:center}
+  .mobile-only{display:inline-block!important}
+  .filters .play-btn,.filters .theme-btn{display:none}
   .filters{display:none;flex-direction:column;gap:8px;align-items:stretch;padding-top:10px;border-top:1px solid #1a1a22}
   .filters.mobile-open{display:flex}
 
@@ -507,7 +512,11 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   <div class="header-inner">
     <h1><svg viewBox="0 0 64 64" width="22" height="22" style="vertical-align:-3px;margin-right:6px"><defs><linearGradient id="logo-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#5e9de5"/><stop offset="40%" stop-color="#a878d4"/><stop offset="70%" stop-color="#d4729a"/><stop offset="100%" stop-color="#e0a54c"/></linearGradient></defs><circle cx="18" cy="44" r="4" fill="url(#logo-g)" opacity=".6"/><circle cx="28" cy="36" r="4.5" fill="url(#logo-g)" opacity=".7"/><circle cx="38" cy="28" r="5" fill="url(#logo-g)" opacity=".8"/><circle cx="48" cy="18" r="6" fill="url(#logo-g)"/><line x1="18" y1="44" x2="28" y2="36" stroke="url(#logo-g)" stroke-width="1.5" opacity=".4"/><line x1="28" y1="36" x2="38" y2="28" stroke="url(#logo-g)" stroke-width="1.5" opacity=".5"/><line x1="38" y1="28" x2="48" y2="18" stroke="url(#logo-g)" stroke-width="1.5" opacity=".6"/></svg>ROAD TO AGI · Every AI Model Since Transformers</h1>
     <p class="subtitle" id="pageSubtitle"></p>
-    <button class="menu-toggle" id="menuToggle" onclick="this.classList.toggle('open');document.querySelector('.filters').classList.toggle('mobile-open')">☰ Filters</button>
+    <div class="mobile-top-row">
+      <button class="menu-toggle" id="menuToggle" onclick="this.classList.toggle('open');document.querySelector('.filters').classList.toggle('mobile-open')">☰ Filters</button>
+      <button class="play-btn mobile-only" id="playBtnMobile">▶ Play</button>
+      <button class="theme-btn mobile-only" id="themeBtnMobile">Light</button>
+    </div>
     <div class="filters">
       <input type="text" class="search-input" id="searchInput" placeholder="Buscar modelo, empresa..."/>
       <span class="sep"></span>
@@ -1970,12 +1979,16 @@ document.getElementById("searchInput").addEventListener("input",e=>{searchQuery=
 document.getElementById("playBtn").addEventListener("click",()=>{
   if(playingTimeline){stopTimeline()}else{playTimeline()}
 });
+document.getElementById("playBtnMobile").addEventListener("click",()=>{
+  if(playingTimeline){stopTimeline()}else{playTimeline()}
+});
 
 function playTimeline(){
   playingTimeline=true;
   const btn=document.getElementById("playBtn");
-  btn.textContent="⏹ Stop";
-  btn.classList.add("playing");
+  const btnM=document.getElementById("playBtnMobile");
+  btn.textContent="⏹ Stop";btnM.textContent="⏹ Stop";
+  btn.classList.add("playing");btnM.classList.add("playing");
   const points=[...document.querySelectorAll("#chart .point")].reverse();
   // Get model data index from each point to sort by date
   const filtered=getFiltered();
@@ -1990,8 +2003,8 @@ function playTimeline(){
   });
   const endTid=setTimeout(()=>{
     playingTimeline=false;
-    btn.textContent="▶ Play";
-    btn.classList.remove("playing");
+    btn.textContent="▶ Play";btnM.textContent="▶ Play";
+    btn.classList.remove("playing");btnM.classList.remove("playing");
     playTimeouts=[];
   },delay*points.length+400);
   playTimeouts.push(endTid);
@@ -2002,8 +2015,9 @@ function stopTimeline(){
   playTimeouts=[];
   playingTimeline=false;
   const btn=document.getElementById("playBtn");
-  btn.textContent="▶ Play";
-  btn.classList.remove("playing");
+  const btnM=document.getElementById("playBtnMobile");
+  btn.textContent="▶ Play";btnM.textContent="▶ Play";
+  btn.classList.remove("playing");btnM.classList.remove("playing");
   document.querySelectorAll("#chart .point").forEach(p=>{
     p.classList.remove("hidden-point","appear");
   });
@@ -3043,14 +3057,16 @@ renderUpcoming();
 // --- Dark / Light theme toggle with View Transitions ---
 (function(){
   const btn=document.getElementById("themeBtn");
+  const btnM=document.getElementById("themeBtnMobile");
   const saved=localStorage.getItem("theme");
-  if(saved==="light"){document.documentElement.classList.add("light");btn.textContent="Dark"}
+  if(saved==="light"){document.documentElement.classList.add("light");btn.textContent="Dark";btnM.textContent="Dark"}
   function switchTheme(){
     const isLight=document.documentElement.classList.toggle("light");
     btn.textContent=isLight?"Dark":"Light";
+    btnM.textContent=isLight?"Dark":"Light";
     localStorage.setItem("theme",isLight?"light":"dark");
   }
-  btn.addEventListener("click",(e)=>{
+  function handleClick(e){
     if(!document.startViewTransition){switchTheme();return}
     const x=e.clientX,y=e.clientY;
     const endRadius=Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight-y));
@@ -3061,7 +3077,9 @@ renderUpcoming();
         {duration:500,easing:'ease-in-out',pseudoElement:'::view-transition-new(root)'}
       );
     });
-  });
+  }
+  btn.addEventListener("click",handleClick);
+  btnM.addEventListener("click",handleClick);
 })();
 
 // --- Tab switching ---
