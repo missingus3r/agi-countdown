@@ -1181,6 +1181,13 @@ const models = [
 {name:"OmniVoice",date:"2026-04-09",company:"Xiaomi",open:true,intelligence:50,type:"Multimodal",cat:"audio"},
 {name:"INSPATIO-WORLD",date:"2026-04-08",company:"Academic",open:true,intelligence:55,type:"World Model",cat:"world"},
 {name:"Generative World Renderer",date:"2026-04-06",company:"Shanda AI",open:true,intelligence:50,type:"Diffusion",cat:"world"},
+{name:"MolmoWeb",date:"2026-04-10",company:"AllenAI",open:true,intelligence:55,type:"Multimodal",cat:"multi"},
+{name:"SimpleSD (4B/30B)",date:"2026-04-07",company:"Apple",open:true,intelligence:58,type:"LLM",cat:"text"},
+{name:"Siglino",date:"2026-04-09",company:"TII",open:true,intelligence:45,type:"Multimodal",cat:"multi"},
+{name:"LFM2.5-VL-450M",date:"2026-04-09",company:"Liquid AI",open:true,intelligence:42,type:"Multimodal",cat:"multi"},
+{name:"PSIRNet",date:"2026-04-09",company:"Microsoft",open:true,intelligence:45,type:"Diffusion",cat:"image"},
+{name:"Llama Nemotron Rerank 1B v2",date:"2026-04-10",company:"NVIDIA",open:true,intelligence:48,type:"LLM",cat:"text"},
+{name:"LPM 1.0",date:"2026-04-09",company:"Academic",open:true,intelligence:55,type:"Diffusion",cat:"video"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1622,6 +1629,13 @@ const modelUrls={
 "OmniVoice":"https://github.com/k2-fsa/OmniVoice",
 "INSPATIO-WORLD":"https://arxiv.org/abs/2604.07209",
 "Generative World Renderer":"https://arxiv.org/abs/2604.02329",
+"MolmoWeb":"https://huggingface.co/allenai/MolmoWeb-Pretrained-4B",
+"SimpleSD (4B/30B)":"https://huggingface.co/apple/SimpleSD-4B-instruct",
+"Siglino":"https://huggingface.co/tiiuae/siglino-0.6B",
+"LFM2.5-VL-450M":"https://huggingface.co/LiquidAI/LFM2.5-VL-450M-ONNX",
+"PSIRNet":"https://huggingface.co/microsoft/PSIRNet",
+"Llama Nemotron Rerank 1B v2":"https://huggingface.co/nvidia/llama-nemotron-rerank-1b-v2",
+"LPM 1.0":"https://arxiv.org/abs/2604.07823",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
