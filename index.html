@@ -497,6 +497,9 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
   .info-page h2{font-size:16px}
   .forecast-card .fc-pred-date{font-size:20px}
 }
+::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-old(root){z-index:1}
+::view-transition-new(root){z-index:9999}
 </style>
 </head>
 <body>
@@ -3037,17 +3040,28 @@ renderUpcoming();
   });
 })();
 
-// --- Dark / Light theme toggle ---
+// --- Dark / Light theme toggle with View Transitions ---
 (function(){
   const btn=document.getElementById("themeBtn");
   const saved=localStorage.getItem("theme");
   if(saved==="light"){document.documentElement.classList.add("light");btn.textContent="Dark"}
-  function toggle(){
+  function switchTheme(){
     const isLight=document.documentElement.classList.toggle("light");
     btn.textContent=isLight?"Dark":"Light";
     localStorage.setItem("theme",isLight?"light":"dark");
   }
-  btn.addEventListener("click",toggle);
+  btn.addEventListener("click",(e)=>{
+    if(!document.startViewTransition){switchTheme();return}
+    const x=e.clientX,y=e.clientY;
+    const endRadius=Math.hypot(Math.max(x,innerWidth-x),Math.max(y,innerHeight-y));
+    const t=document.startViewTransition(switchTheme);
+    t.ready.then(()=>{
+      document.documentElement.animate(
+        {clipPath:[`circle(0px at ${x}px ${y}px)`,`circle(${endRadius}px at ${x}px ${y}px)`]},
+        {duration:500,easing:'ease-in-out',pseudoElement:'::view-transition-new(root)'}
+      );
+    });
+  });
 })();
 
 // --- Tab switching ---
