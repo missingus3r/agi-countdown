@@ -1,7 +1,22 @@
 {
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "mcp__plugin_telegram_telegram__reply",
+      "Bash(claude usage:*)",
+      "Bash(claude -p \"What is my current usage/spend?\")",
+      "Bash(claude config:*)",
+      "Bash(claude mcp:*)",
+      "mcp__agentmail-mcp__list_inboxes",
+      "mcp__agentmail-mcp__create_inbox",
+      "mcp__agentmail-mcp__get_inbox",
+      "mcp__agentmail-mcp__get_message",
+      "mcp__agentmail-mcp__get_thread",
+      "mcp__agentmail-mcp__list_messages",
+      "mcp__agentmail-mcp__list_threads",
+      "mcp__agentmail-mcp__reply_to_message",
+      "mcp__agentmail-mcp__send_message",
+      "Bash(rm:*)"
     ]
   }
 }
