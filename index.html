@@ -577,7 +577,7 @@ html.light .menu-toggle.open{border-color:#6b8aff;color:#6b8aff}
     <span><span class="trend-line">t(x)</span> = Σ(intel³) / Σ(intel²) — ventana ±8%, peso = intel², frontier domina</span>
   </div>
   <div id="upcomingSection" style="margin:16px 0;padding:16px 0;border-top:1px solid var(--bd-sub);border-bottom:1px solid var(--bd-sub)">
-    <h3 style="font-family:'IBM Plex Mono';font-size:13px;font-weight:700;color:var(--t-dim);margin-bottom:12px;display:flex;align-items:center;gap:8px;letter-spacing:0.5px"><span style="color:#fbbf24">⚡</span> PRÓXIMAMENTE</h3>
+    <h3 style="font-family:'IBM Plex Mono';font-size:13px;font-weight:700;color:var(--t-dim);margin-bottom:12px;display:flex;align-items:center;gap:8px;letter-spacing:0.5px"><span style="color:#fbbf24">⚡</span> <span id="upcomingLabel">UPCOMING</span></h3>
     <div id="upcomingCards" style="display:flex;gap:10px;flex-wrap:wrap"></div>
   </div>
   <div class="stats-bar" id="statsBar"></div>
@@ -1706,7 +1706,10 @@ const i18n={
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
     tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",api:"API",contact:"Contact"},
+    upcoming:"UPCOMING",
     contact:{title:"Contact",sub:"Get in touch",ghDesc:"Source code, issues, and contributions.",emailDesc:"Questions, suggestions, or feedback."},
+    platforms:{title:"Platforms, Tools & Aggregators",sub:"AI platforms, cloud providers, local tools, and coding agents",cloud:"Cloud — Providers / Chat",agg:"Cloud — Multi-Model Aggregators",media:"Cloud — Media / Generative",local:"Local — LLM Inference & GUI",code:"Local — Coding Agents / CLI"},
+    apiTab:{intro:"Self-contained REST-like API. Add <code style=\"background:#1a1a24;padding:2px 6px;border-radius:4px;color:#c084fc\">?api=ENDPOINT</code> to the page URL. Returns JSON.",endpoints:"Endpoints",examples:"Examples",usage:"Usage with fetch / curl",note:"Note: This is a client-side API. The response is an HTML page containing JSON in a &lt;pre&gt; tag. For programmatic use, extract the text content from the &lt;pre&gt; element or use the browser console.",footer:'Response format: <code style="background:#1a1a24;padding:2px 6px;border-radius:4px;color:#888">{ ok, endpoint, total, count, limit, offset, data[] }</code><br>All endpoints are read-only. No authentication required. Data updates with every page deploy.'},
     countdown:{
       title:"AGI Countdown",
       sub:"Average estimate across Metaculus forecasts and community predictions",
@@ -1788,7 +1791,10 @@ const i18n={
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tendencia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 ventana \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"es-UY",
     tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",api:"API",contact:"Contacto"},
+    upcoming:"PRÓXIMAMENTE",
     contact:{title:"Contacto",sub:"Ponete en contacto",ghDesc:"Código fuente, issues y contribuciones.",emailDesc:"Preguntas, sugerencias o feedback."},
+    platforms:{title:"Plataformas, Herramientas y Agregadores",sub:"Plataformas de IA, proveedores cloud, herramientas locales y agentes de código",cloud:"Cloud — Proveedores / Chat",agg:"Cloud — Agregadores Multi-Modelo",media:"Cloud — Media / Generativa",local:"Local — Inferencia LLM y GUI",code:"Local — Agentes de Código / CLI"},
+    apiTab:{intro:"API REST autocontenida. Agregá <code style=\"background:#1a1a24;padding:2px 6px;border-radius:4px;color:#c084fc\">?api=ENDPOINT</code> a la URL de la página. Devuelve JSON.",endpoints:"Endpoints",examples:"Ejemplos",usage:"Uso con fetch / curl",note:"Nota: Esta es una API del lado del cliente. La respuesta es una página HTML con JSON en una etiqueta &lt;pre&gt;. Para uso programático, extraé el contenido de texto del elemento &lt;pre&gt; o usá la consola del navegador.",footer:'Formato de respuesta: <code style="background:#1a1a24;padding:2px 6px;border-radius:4px;color:#888">{ ok, endpoint, total, count, limit, offset, data[] }</code><br>Todos los endpoints son de solo lectura. No se requiere autenticación. Los datos se actualizan con cada deploy.'},
     countdown:{
       title:"Cuenta Regresiva AGI",
       sub:"Estimación promedio de los pronósticos de Metaculus y predicciones comunitarias",
@@ -1870,7 +1876,10 @@ const i18n={
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tend\u00eancia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 janela \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"pt-BR",
     tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",api:"API",contact:"Contato"},
+    upcoming:"EM BREVE",
     contact:{title:"Contato",sub:"Entre em contato",ghDesc:"Código fonte, issues e contribuições.",emailDesc:"Perguntas, sugestões ou feedback."},
+    platforms:{title:"Plataformas, Ferramentas e Agregadores",sub:"Plataformas de IA, provedores cloud, ferramentas locais e agentes de código",cloud:"Cloud — Provedores / Chat",agg:"Cloud — Agregadores Multi-Modelo",media:"Cloud — Mídia / Generativa",local:"Local — Inferência LLM e GUI",code:"Local — Agentes de Código / CLI"},
+    apiTab:{intro:"API REST autocontida. Adicione <code style=\"background:#1a1a24;padding:2px 6px;border-radius:4px;color:#c084fc\">?api=ENDPOINT</code> à URL da página. Retorna JSON.",endpoints:"Endpoints",examples:"Exemplos",usage:"Uso com fetch / curl",note:"Nota: Esta é uma API do lado do cliente. A resposta é uma página HTML com JSON em uma tag &lt;pre&gt;. Para uso programático, extraia o conteúdo de texto do elemento &lt;pre&gt; ou use o console do navegador.",footer:'Formato de resposta: <code style="background:#1a1a24;padding:2px 6px;border-radius:4px;color:#888">{ ok, endpoint, total, count, limit, offset, data[] }</code><br>Todos os endpoints são somente leitura. Autenticação não é necessária. Os dados são atualizados a cada deploy.'},
     countdown:{
       title:"Contagem Regressiva AGI",
       sub:"Estimativa média das previsões do Metaculus e predições comunitárias",
@@ -2646,11 +2655,12 @@ function renderPlatformsTab(){
       <div style="display:flex;flex-wrap:wrap;gap:4px 0" onclick="event.stopPropagation()">${linksHtml}</div>
     </div>`;
   }
+  const p=t('platforms');
   document.getElementById('tab-platforms').innerHTML=`<div class="info-page">
-  <h2 id="platformsTitle">Platforms, Tools & Aggregators</h2>
-  <p class="info-subtitle" id="platformsSub">AI platforms, cloud providers, local tools, and coding agents</p>
+  <h2 id="platformsTitle">${p.title}</h2>
+  <p class="info-subtitle" id="platformsSub">${p.sub}</p>
 
-  <div class="info-section" style="cursor:pointer" onclick="togglePlatSec('ps-cloud')"><h3><span id="ps-cloud-arrow">▼</span> Cloud — Providers / Chat</h3></div>
+  <div class="info-section" style="cursor:pointer" onclick="togglePlatSec('ps-cloud')"><h3><span id="ps-cloud-arrow">▼</span> ${p.cloud}</h3></div>
   <div class="info-cards" id="ps-cloud">
     ${pc("openai","chatgpt.com","OpenAI","GPT-4o, o3, o4-mini. Chat, image generation, code interpreter, plugins.",[["Chat","https://chatgpt.com"],["Platform","https://platform.openai.com"]],["#1a1a2e","#0d0d1a","#10a37f"])}
     ${pc("anthropic","claude.ai","Anthropic","Claude Opus, Sonnet, Haiku. Extended thinking, artifacts, projects.",[["Claude","https://claude.ai"],["Console","https://console.anthropic.com"]],["#1a1410","#2a1f15","#d4a574"])}
@@ -2676,7 +2686,7 @@ function renderPlatformsTab(){
     ${pc("brave-leo","brave.com","Brave Leo","Built-in AI assistant in Brave browser. Private, no account needed.",[["Brave Leo","https://brave.com/leo"]])}
   </div>
 
-  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-agg')"><h3><span id="ps-agg-arrow">▼</span> Cloud — Multi-Model Aggregators</h3></div>
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-agg')"><h3><span id="ps-agg-arrow">▼</span> ${p.agg}</h3></div>
   <div class="info-cards" id="ps-agg">
     ${pc("poe","poe.com","Poe","Access GPT-4o, Claude, Gemini, Llama and more in one place. Create custom bots.",[["Poe","https://poe.com"]],["#0d1a0d","#1a2e1a","#34d399"])}
     ${pc("openrouter","openrouter.ai","OpenRouter","Unified API for 349+ models. Automatic fallback, usage-based pricing.",[["OpenRouter","https://openrouter.ai"]])}
@@ -2687,7 +2697,7 @@ function renderPlatformsTab(){
     ${pc("fal","fal.ai","fal.ai","Serverless GPU inference. Fast image/video generation APIs.",[["fal.ai","https://fal.ai"]])}
   </div>
 
-  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-media')"><h3><span id="ps-media-arrow">▼</span> Cloud — Media / Generative</h3></div>
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-media')"><h3><span id="ps-media-arrow">▼</span> ${p.media}</h3></div>
   <div class="info-cards" id="ps-media">
     ${pc("runway","runwayml.com","Runway ML","Gen-3 Alpha video generation. Text/image to video, motion brush.",[["Runway","https://runwayml.com"],["App","https://app.runwayml.com"]],["#0a0a14","#14142a","#e2e2e2"])}
     ${pc("pika","pika.art","Pika Labs","AI video generation and editing. Text-to-video, image-to-video.",[["Pika","https://pika.art"]])}
@@ -2709,7 +2719,7 @@ function renderPlatformsTab(){
     ${pc("recraft","recraft.ai","Recraft","AI design tool. Vector graphics, icons, illustrations from text.",[["Recraft","https://recraft.ai"]])}
   </div>
 
-  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-local')"><h3><span id="ps-local-arrow">▼</span> Local — LLM Inference & GUI</h3></div>
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-local')"><h3><span id="ps-local-arrow">▼</span> ${p.local}</h3></div>
   <div class="info-cards" id="ps-local">
     ${pc("ollama","ollama.com","Ollama","Run LLMs locally. Simple CLI, model library, OpenAI-compatible API.",[["Ollama","https://ollama.com"],["GitHub","https://github.com/ollama/ollama"]])}
     ${pc("lmstudio","lmstudio.ai","LM Studio","Desktop app for local LLMs. GGUF support, chat UI, local server.",[["LM Studio","https://lmstudio.ai"]])}
@@ -2729,7 +2739,7 @@ function renderPlatformsTab(){
     ${pc("lobechat","lobehub.com","LobeChat","Modern AI chat framework. Plugins, TTS, knowledge base, multi-model.",[["LobeChat","https://lobehub.com"],["App","https://app.lobehub.com"]],["#0d1a2e","#1a2a40","#38bdf8"])}
   </div>
 
-  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-code')"><h3><span id="ps-code-arrow">▼</span> Local — Coding Agents / CLI</h3></div>
+  <div class="info-section" style="margin-top:28px;cursor:pointer" onclick="togglePlatSec('ps-code')"><h3><span id="ps-code-arrow">▼</span> ${p.code}</h3></div>
   <div class="info-cards" id="ps-code">
     ${pc("claudecode","docs.anthropic.com","Claude Code","Anthropic's agentic CLI. Terminal-native coding agent with full repo context.",[["Docs","https://docs.anthropic.com/en/docs/claude-code"],["GitHub","https://github.com/anthropics/claude-code"]])}
     ${pc("codex","github.com","Codex (OpenAI)","OpenAI's open-source coding agent. Terminal-based, sandboxed execution.",[["GitHub","https://github.com/openai/codex"]])}
@@ -2800,11 +2810,12 @@ function togglePlatSec(id){
 // --- Render API tab ---
 function renderApiTab(){
   const base=window.location.origin+window.location.pathname;
+  const ap=t('apiTab');
   document.getElementById('tab-api').innerHTML=`<div class="info-page">
   <h2 style="font-family:'IBM Plex Mono';font-size:18px;font-weight:700;color:#6b8aff;margin-bottom:4px">API v1</h2>
-  <p style="font-family:'IBM Plex Mono';font-size:11px;color:#888;margin-bottom:20px">Self-contained REST-like API. Add <code style="background:#1a1a24;padding:2px 6px;border-radius:4px;color:#c084fc">?api=ENDPOINT</code> to the page URL. Returns JSON.</p>
+  <p style="font-family:'IBM Plex Mono';font-size:11px;color:#888;margin-bottom:20px">${ap.intro}</p>
 
-  <div class="info-section"><h3 style="font-family:'IBM Plex Mono';font-size:13px;color:#ddd;margin-bottom:10px">Endpoints</h3>
+  <div class="info-section"><h3 style="font-family:'IBM Plex Mono';font-size:13px;color:#ddd;margin-bottom:10px">${ap.endpoints}</h3>
     <div style="display:flex;flex-direction:column;gap:12px">
 
       <div style="background:#0e0e14;border:1px solid #1a1a22;border-radius:6px;padding:12px">
@@ -2839,7 +2850,7 @@ function renderApiTab(){
     </div>
   </div>
 
-  <div class="info-section" style="margin-top:20px"><h3 style="font-family:'IBM Plex Mono';font-size:13px;color:#ddd;margin-bottom:10px">Examples</h3>
+  <div class="info-section" style="margin-top:20px"><h3 style="font-family:'IBM Plex Mono';font-size:13px;color:#ddd;margin-bottom:10px">${ap.examples}</h3>
     <div style="display:flex;flex-direction:column;gap:8px">
       <div style="background:#0a0a10;border-radius:4px;padding:8px 10px;border-left:2px solid #6b8aff">
         <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-bottom:3px">All models (full list)</div>
@@ -2876,7 +2887,7 @@ function renderApiTab(){
     </div>
   </div>
 
-  <div class="info-section" style="margin-top:20px"><h3 style="font-family:'IBM Plex Mono';font-size:13px;color:#ddd;margin-bottom:10px">Usage with fetch / curl</h3>
+  <div class="info-section" style="margin-top:20px"><h3 style="font-family:'IBM Plex Mono';font-size:13px;color:#ddd;margin-bottom:10px">${ap.usage}</h3>
     <div style="background:#0a0a10;border-radius:4px;padding:10px 12px;border-left:2px solid #34d399">
       <pre style="font-family:'IBM Plex Mono';font-size:10px;color:#aaa;margin:0;white-space:pre-wrap">// JavaScript (same-origin)
 const res = await fetch('${base}?api=v1/models&company=Meta');
@@ -2892,12 +2903,11 @@ console.log(json.data);
 # curl + extract JSON
 curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&gt;.*//p'</pre>
     </div>
-    <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-top:8px">Note: This is a client-side API. The response is an HTML page containing JSON in a &lt;pre&gt; tag. For programmatic use, extract the text content from the &lt;pre&gt; element or use the browser console.</div>
+    <div style="font-family:'IBM Plex Mono';font-size:9px;color:#555;margin-top:8px">${ap.note}</div>
   </div>
 
   <div class="info-section" style="font-family:'IBM Plex Mono';font-size:9px;color:#444;margin-top:16px;padding-top:12px;border-top:1px solid #1a1a22">
-    Response format: <code style="background:#1a1a24;padding:2px 6px;border-radius:4px;color:#888">{ ok, endpoint, total, count, limit, offset, data[] }</code><br>
-    All endpoints are read-only. No authentication required. Data updates with every page deploy.
+    ${ap.footer}
   </div>
 </div>`;
 }
@@ -2913,6 +2923,7 @@ function applyLang(){
   document.getElementById('sortIntel').textContent=t('intel');
   document.getElementById('chartFooter').innerHTML=t('cfoot');
   document.getElementById('pageFooter').textContent=t('footer');
+  const upEl=document.getElementById('upcomingLabel');if(upEl)upEl.textContent=t('upcoming');
   document.querySelectorAll('#typeButtons .type-btn').forEach(b=>{
     const tp=b.dataset.type;
     b.textContent=tp==='all'?t('all'):tp==='Non-Reasoning'?t('noR'):tp;
