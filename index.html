@@ -365,7 +365,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
   .menu-toggle{display:inline-flex;align-items:center;gap:4px}
   .mobile-top-row{display:flex;gap:8px;align-items:center}
   .mobile-only{display:inline-flex!important}
-  .filters .play-btn,.filters .theme-btn{display:none}
+  .filters .play-btn,.filters .theme-btn,.filters .lang-btn{display:none}
   .filters{display:none;flex-direction:column;gap:12px;align-items:stretch;padding-top:12px;border-top:1px solid var(--bd-sub)}
   .filters.mobile-open{display:flex}
 
@@ -479,6 +479,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
       <button class="menu-toggle" id="menuToggle" onclick="this.classList.toggle('open');document.querySelector('.filters').classList.toggle('mobile-open')">☰ Filters</button>
       <button class="play-btn mobile-only" id="playBtnMobile">▶ Play</button>
       <button class="theme-btn mobile-only" id="themeBtnMobile">Light</button>
+      <span class="mobile-only" style="display:none;gap:4px"><button class="lang-btn" data-lang="en">EN</button><button class="lang-btn" data-lang="es">ES</button><button class="lang-btn" data-lang="pt">PT</button></span>
     </div>
     <div class="filters">
       <label class="filter-label"><input type="checkbox" id="chkClosed" checked/><span class="dot-closed"></span>Closed</label>
