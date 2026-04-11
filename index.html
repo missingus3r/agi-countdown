@@ -1142,6 +1142,10 @@ const models = [
 {name:"PSIRNet",date:"2026-04-09",company:"Microsoft",open:true,intelligence:45,type:"Diffusion",cat:"image"},
 {name:"Llama Nemotron Rerank 1B v2",date:"2026-04-10",company:"NVIDIA",open:true,intelligence:48,type:"LLM",cat:"text"},
 {name:"LPM 1.0",date:"2026-04-09",company:"Academic",open:true,intelligence:55,type:"Diffusion",cat:"video"},
+{name:"TIPSv2-B14",date:"2026-04-09",company:"Google",open:true,intelligence:50,type:"Multimodal",cat:"multi"},
+{name:"TIPSv2-B14-DPT",date:"2026-04-09",company:"Google",open:true,intelligence:52,type:"Multimodal",cat:"multi"},
+{name:"EXAONE 4.5",date:"2026-04-09",company:"LG AI Research",open:true,intelligence:75,type:"Multimodal",cat:"multi"},
+{name:"HY-Embodied-0.5",date:"2026-04-08",company:"Tencent",open:true,intelligence:58,type:"LLM",cat:"world"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1590,6 +1594,10 @@ const modelUrls={
 "PSIRNet":"https://huggingface.co/microsoft/PSIRNet",
 "Llama Nemotron Rerank 1B v2":"https://huggingface.co/nvidia/llama-nemotron-rerank-1b-v2",
 "LPM 1.0":"https://arxiv.org/abs/2604.07823",
+"TIPSv2-B14":"https://huggingface.co/google/tipsv2-b14",
+"TIPSv2-B14-DPT":"https://huggingface.co/google/tipsv2-b14-dpt",
+"EXAONE 4.5":"https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-32B-Instruct",
+"HY-Embodied-0.5":"https://huggingface.co/tencent/HY-Embodied-0.5",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
