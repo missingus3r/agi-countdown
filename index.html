@@ -432,6 +432,11 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
   .forecast-card .fc-title{font-size:16px}
   .forecast-card .fc-pred-date{font-size:24px}
   .forecast-card .fc-range{flex-wrap:wrap;gap:14px}
+  .cd-flex{gap:4px}
+  .cd-unit{min-width:auto}
+  .cd-digit{font-size:clamp(20px,4.5vw,32px)}
+  .cd-sep{font-size:clamp(16px,3.5vw,28px)}
+  .cd-label-text{font-size:7px;letter-spacing:0.5px}
 
   /* Year headers */
   .year-header .year-title{font-size:16px}
@@ -455,7 +460,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
 }
 /* ===== Countdown Clock ===== */
 .cd-container{background:var(--bg-inset);border:1px solid var(--bd-sub);border-radius:var(--radius-lg);padding:36px 24px;margin-bottom:32px;text-align:center;box-shadow:var(--shadow-md)}
-.cd-flex{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;align-items:baseline}
+.cd-flex{display:flex;justify-content:center;gap:12px;flex-wrap:nowrap;align-items:baseline}
 .cd-unit{min-width:80px}
 .cd-digit{font-family:'IBM Plex Mono',monospace;font-size:clamp(28px,5vw,40px);font-weight:700;letter-spacing:-1px;line-height:1}
 .cd-sep{font-family:'IBM Plex Mono',monospace;font-size:clamp(24px,4vw,36px);color:var(--t-xghost);font-weight:300}
