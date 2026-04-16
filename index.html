@@ -858,6 +858,7 @@ const models = [
   {name:"GPT-5.4 mini",date:"2026-03-17",company:"OpenAI",open:false,intelligence:78,type:"LLM",cat:"multi"},
   {name:"GPT-5.4 nano",date:"2026-03-17",company:"OpenAI",open:false,intelligence:68,type:"LLM",cat:"multi"},
   {name:"Gemini 3.1 Ultra",date:"2026-03-18",company:"Google",open:false,intelligence:92,type:"LLM",cat:"multi"},
+  {name:"Qwen 3.6-Plus",date:"2026-04-02",company:"Alibaba",open:false,intelligence:89,type:"LLM",cat:"multi"},
   {name:"Claude Opus 4.7",date:"2026-04-16",company:"Anthropic",open:false,intelligence:94,type:"LLM",cat:"multi"},
   {name:"Grok 3 Mini",date:"2025-06-10",company:"xAI",open:false,intelligence:52,type:"LLM",cat:"text"},
   {name:"Gemini 2.5 Flash Lite",date:"2025-07-22",company:"Google",open:false,intelligence:55,type:"LLM",cat:"multi"},
@@ -1513,6 +1514,7 @@ const modelUrls={
 "Claude Opus 4.5":"https://www.anthropic.com/news/claude-opus-4-5",
 "Claude Opus 4.6":"https://www.anthropic.com/news/claude-opus-4-6",
 "Claude Opus 4.7":"https://www.anthropic.com/news/claude-opus-4-7",
+"Qwen 3.6-Plus":"https://qwenlm.github.io/blog/qwen3.6-plus/",
 "Claude Sonnet 4.6":"https://www.anthropic.com/news/claude-sonnet-4-6",
 "MiniMax Music 2.6":"https://www.minimax.io/news/music-26",
 "Cohere Transcribe":"https://cohere.com/blog/transcribe",
@@ -1738,7 +1740,8 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
       {name:"NanoClaw",category:"coding",url:"https://github.com/qwibitai/nanoclaw",description:"AI assistant running agents in secure containers. Messaging, memory, and scheduled tasks."},
       {name:"Gemini CLI",category:"coding",url:"https://github.com/google-gemini/gemini-cli",description:"Google's terminal AI agent. Gemini-powered coding assistant."},
       {name:"Aider",category:"coding",url:"https://aider.chat",description:"AI pair programming in terminal. Git-aware, multi-file edits, multi-model."},
-      {name:"NVIDIA NemoClaw",category:"coding",url:"https://www.nvidia.com/en-us/ai/nemoclaw/",description:"OpenClaw + NVIDIA OpenShell. Secure sandboxed agents, local Nemotron models, privacy router."}
+      {name:"NVIDIA NemoClaw",category:"coding",url:"https://www.nvidia.com/en-us/ai/nemoclaw/",description:"OpenClaw + NVIDIA OpenShell. Secure sandboxed agents, local Nemotron models, privacy router."},
+      {name:"Qwen Code",category:"coding",url:"https://github.com/QwenLM/qwen-code",description:"Alibaba's agentic CLI coding assistant. Qwen-powered, terminal-native, multi-language."}
     ];
     let data=platforms;
     const catFilter=params.get('category');
