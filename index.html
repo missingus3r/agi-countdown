@@ -907,6 +907,8 @@ const models = [
   {name:"MiMo-V2.5",date:"2026-04-22",company:"Xiaomi",open:false,intelligence:80,type:"Multimodal",cat:"multi"},
   {name:"MiMo-V2.5-Pro",date:"2026-04-22",company:"Xiaomi",open:false,intelligence:88,type:"Multimodal",cat:"multi"},
   {name:"Kling 3.0 · 4K Update",date:"2026-04-23",company:"Kuaishou",open:false,intelligence:66,type:"Diffusion",cat:"video"},
+  {name:"GPT-5.5",date:"2026-04-23",company:"OpenAI",open:false,intelligence:94,type:"LLM",cat:"multi"},
+  {name:"GPT-5.5 Pro",date:"2026-04-23",company:"OpenAI",open:false,intelligence:96,type:"LLM",cat:"multi"},
   {name:"Grok 3 Mini",date:"2025-06-10",company:"xAI",open:false,intelligence:52,type:"LLM",cat:"text"},
   {name:"Gemini 2.5 Flash Lite",date:"2025-07-22",company:"Google",open:false,intelligence:55,type:"LLM",cat:"multi"},
   {name:"Grok-4 Fast",date:"2025-09-01",company:"xAI",open:false,intelligence:72,type:"LLM",cat:"text"},
@@ -1765,6 +1767,8 @@ const modelUrls={
 "MiMo-V2.5":"https://mimo.xiaomi.com/mimo-v2-5",
 "MiMo-V2.5-Pro":"https://mimo.xiaomi.com/mimo-v2-5-pro",
 "Kling 3.0 · 4K Update":"https://youtu.be/I7tMTopo6xk",
+"GPT-5.5":"https://openai.com/index/introducing-gpt-5-5/",
+"GPT-5.5 Pro":"https://openai.com/index/introducing-gpt-5-5/",
 "MiniMax M2.7":"https://www.minimax.io/news/minimax-m27-en",
 "Parakeet-Unified-EN-0.6b":"https://huggingface.co/nvidia/parakeet-unified-en-0.6b",
 "NV-Generate-CT/maisi":"https://huggingface.co/nvidia/NV-Generate-CT",
@@ -3312,7 +3316,7 @@ applyLang();
 
 // --- Upcoming models ---
 const upcomingModels = [
-  {name:"GPT-5.5 / Spud",company:"OpenAI",expected:"Abr-May 2026",type:"LLM",status:"Pretraining completado (24/03), nativamente multimodal",color:"#34d399"},
+  // GPT-5.5 / Spud released 2026-04-23 → moved to models array
   {name:"Claude Sonnet 4.8",company:"Anthropic",expected:"May 2026",type:"LLM",status:"Esperado tras Opus 4.7",color:"#c084fc"},
   {name:"DeepSeek-V4",company:"DeepSeek",expected:"Q2 2026",type:"LLM",status:"1T params / 32B active, corre en Huawei Ascend 950PR",color:"#60a5fa"},
   {name:"Grok 5",company:"xAI",expected:"Q2 2026",type:"LLM",status:"6T MoE en training (doble de Grok 4)",color:"#f472b6"},
