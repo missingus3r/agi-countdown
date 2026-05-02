@@ -3206,7 +3206,7 @@ const companyMeta = {
   "Xiaomi":{d:"mi.com",u:"https://www.mi.com/global/"},
   "Yandex":{d:"yandex.com",u:"https://yandex.com"},
   "Zhipu AI":{d:"zhipuai.cn",u:"https://zhipuai.cn"},
-  "fast.ai":{d:"fast.ai",u:"https://www.fast.ai"},
+  "fast.ai":{d:"fast.ai",u:"https://www.fast.ai",letter:"F"},
   "xAI":{d:"x.ai",u:"https://x.ai"}
 };
 const companySkip = new Set(["Academic","Community"]);
@@ -3221,8 +3221,9 @@ function renderCompaniesTab(){
   const cardHtml = list.map(name => {
     const meta = companyMeta[name];
     const url = meta ? meta.u : `https://www.google.com/search?q=${encodeURIComponent(name+" AI")}`;
-    const favSrc = meta ? (meta.logo || `https://www.google.com/s2/favicons?domain=${meta.d}&sz=64`) : null;
-    const fav = favSrc ? `<img src="${favSrc}" width="32" height="32" style="border-radius:6px;flex-shrink:0;object-fit:contain;background:rgba(255,255,255,0.04)" loading="lazy" onerror="this.style.display='none'">` : `<div style="width:32px;height:32px;border-radius:6px;background:linear-gradient(135deg,#3a3a5a,#2a2a4a);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;color:var(--t-soft);flex-shrink:0">${name.charAt(0)}</div>`;
+    const letterChar = (meta && meta.letter) ? meta.letter : (meta ? null : name.charAt(0).toUpperCase());
+    const favSrc = (meta && !meta.letter) ? (meta.logo || `https://www.google.com/s2/favicons?domain=${meta.d}&sz=64`) : null;
+    const fav = favSrc ? `<img src="${favSrc}" width="32" height="32" style="border-radius:6px;flex-shrink:0;object-fit:contain;background:rgba(255,255,255,0.04)" loading="lazy" onerror="this.style.display='none'">` : `<div style="width:32px;height:32px;border-radius:6px;background:linear-gradient(135deg,#3a3a5a,#2a2a4a);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;color:var(--t-soft);flex-shrink:0">${letterChar}</div>`;
     const n = counts[name];
     return `<a href="${url}" target="_blank" rel="noopener" class="company-card" data-name="${name.toLowerCase()}" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-elev);border:1px solid var(--bd-sub);border-radius:var(--radius-md);text-decoration:none;color:inherit;transition:all var(--transition-fast)">
       ${fav}
