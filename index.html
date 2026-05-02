@@ -519,6 +519,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
     <button class="tab-btn" data-tab="tab-arc">ARC-AGI Benchmarks</button>
     <button class="tab-btn" data-tab="tab-countdown">Countdown</button>
     <button class="tab-btn" data-tab="tab-platforms">Platforms</button>
+    <button class="tab-btn" data-tab="tab-companies">Companies</button>
     <button class="tab-btn" data-tab="tab-api">API</button>
     <button class="tab-btn" data-tab="tab-contact">Contact</button>
   </div>
@@ -670,6 +671,9 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
 
 <!-- ==================== PLATFORMS TAB ==================== -->
 <div class="tab-panel" id="tab-platforms"></div>
+
+<!-- ==================== COMPANIES TAB ==================== -->
+<div class="tab-panel" id="tab-companies"></div>
 
 <!-- ==================== API TAB ==================== -->
 <div class="tab-panel" id="tab-api"></div>
@@ -1979,7 +1983,7 @@ const i18n={
     footer:"* Estimated intelligence (0\u2013100), relative to state of the art in March 2026. Based on public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Diffusion models rated by generation quality and prompt adherence. Not absolute metrics.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
-    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",api:"API",contact:"Contact"},
+    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",api:"API",contact:"Contact"},
     upcoming:"UPCOMING",
     contact:{title:"Contact",sub:"Get in touch",ghDesc:"Source code, issues, and contributions.",emailDesc:"Questions, suggestions, or feedback."},
     platforms:{title:"Platforms, Tools & Aggregators",sub:"AI platforms, cloud providers, local tools, and coding agents",cloud:"Cloud — Providers / Chat",agg:"Cloud — Multi-Model Aggregators",media:"Cloud — Media / Generative",local:"Local — LLM Inference & GUI",code:"Local — Coding Agents / CLI",
@@ -2066,7 +2070,7 @@ const i18n={
     footer:"* Inteligencia estimada (0\u2013100), relativa al estado del arte en marzo 2026. Basado en benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opiniones de expertos y posicionamiento de mercado. Modelos de difusi\u00f3n evaluados por calidad de generaci\u00f3n y adherencia a prompts. No son m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tendencia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 ventana \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"es-UY",
-    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",api:"API",contact:"Contacto"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",api:"API",contact:"Contacto"},
     upcoming:"PRÓXIMAMENTE",
     contact:{title:"Contacto",sub:"Ponete en contacto",ghDesc:"Código fuente, issues y contribuciones.",emailDesc:"Preguntas, sugerencias o feedback."},
     platforms:{title:"Plataformas, Herramientas y Agregadores",sub:"Plataformas de IA, proveedores cloud, herramientas locales y agentes de código",cloud:"Cloud — Proveedores / Chat",agg:"Cloud — Agregadores Multi-Modelo",media:"Cloud — Media / Generativa",local:"Local — Inferencia LLM y GUI",code:"Local — Agentes de Código / CLI",
@@ -2153,7 +2157,7 @@ const i18n={
     footer:"* Intelig\u00eancia estimada (0\u2013100), relativa ao estado da arte em mar\u00e7o de 2026. Baseado em benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opini\u00f5es de especialistas e posicionamento de mercado. Modelos de difus\u00e3o avaliados por qualidade de gera\u00e7\u00e3o e ader\u00eancia a prompts. N\u00e3o s\u00e3o m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tend\u00eancia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 janela \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"pt-BR",
-    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",api:"API",contact:"Contato"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",api:"API",contact:"Contato"},
     upcoming:"EM BREVE",
     contact:{title:"Contato",sub:"Entre em contato",ghDesc:"Código fonte, issues e contribuições.",emailDesc:"Perguntas, sugestões ou feedback."},
     platforms:{title:"Plataformas, Ferramentas e Agregadores",sub:"Plataformas de IA, provedores cloud, ferramentas locais e agentes de código",cloud:"Cloud — Provedores / Chat",agg:"Cloud — Agregadores Multi-Modelo",media:"Cloud — Mídia / Generativa",local:"Local — Inferência LLM e GUI",code:"Local — Agentes de Código / CLI",
@@ -3104,6 +3108,157 @@ function togglePlatSec(id){
   localStorage.setItem('platSections',JSON.stringify(platState));
 }
 
+// --- Render Companies tab ---
+const companyMeta = {
+  "01.AI":{d:"01.ai",u:"https://01.ai"},
+  "ACE Studio/StepFun":{d:"stepfun.com",u:"https://stepfun.com"},
+  "AI2":{d:"allenai.org",u:"https://allenai.org"},
+  "AI21 Labs":{d:"ai21.com",u:"https://www.ai21.com"},
+  "AIVA":{d:"aiva.ai",u:"https://aiva.ai"},
+  "Adobe":{d:"adobe.com",u:"https://www.adobe.com/products/firefly.html"},
+  "Alibaba":{d:"qwen.ai",u:"https://qwen.ai"},
+  "AllenAI":{d:"allenai.org",u:"https://allenai.org"},
+  "AllenNLP":{d:"allenai.org",u:"https://allenai.org"},
+  "Amazon":{d:"aws.amazon.com",u:"https://aws.amazon.com/ai/"},
+  "Anthropic":{d:"anthropic.com",u:"https://www.anthropic.com"},
+  "Apple":{d:"apple.com",u:"https://machinelearning.apple.com"},
+  "BAAI":{d:"baai.ac.cn",u:"https://www.baai.ac.cn/english.html"},
+  "Baidu":{d:"baidu.com",u:"https://www.baidu.com"},
+  "Berkeley":{d:"berkeley.edu",u:"https://bair.berkeley.edu"},
+  "BharatGen":{d:"bharatgen.com",u:"https://bharatgen.com"},
+  "BigScience":{d:"huggingface.co",u:"https://bigscience.huggingface.co"},
+  "Black Forest Labs":{d:"bfl.ai",u:"https://bfl.ai"},
+  "Bloomberg":{d:"bloomberg.com",u:"https://www.bloomberg.com/company/values/tech-at-bloomberg/"},
+  "Boomy":{d:"boomy.com",u:"https://boomy.com"},
+  "ByteDance":{d:"bytedance.com",u:"https://www.bytedance.com"},
+  "Cerebras":{d:"cerebras.ai",u:"https://cerebras.ai"},
+  "Cohere":{d:"cohere.com",u:"https://cohere.com"},
+  "Databricks":{d:"databricks.com",u:"https://www.databricks.com"},
+  "Decart":{d:"decart.ai",u:"https://decart.ai"},
+  "DeepMind":{d:"deepmind.google",u:"https://deepmind.google"},
+  "DeepSeek":{d:"deepseek.com",u:"https://www.deepseek.com"},
+  "Deepgram":{d:"deepgram.com",u:"https://deepgram.com"},
+  "Dynamic Labs":{d:"dynamicslab.ai",u:"https://blog.dynamicslab.ai"},
+  "ETH Zurich / EPFL":{d:"ethz.ch",u:"https://ethz.ch"},
+  "EleutherAI":{d:"eleuther.ai",u:"https://www.eleuther.ai"},
+  "ElevenLabs":{d:"elevenlabs.io",u:"https://elevenlabs.io"},
+  "Essential AI":{d:"essential.ai",u:"https://www.essential.ai"},
+  "Fujitsu":{d:"fujitsu.com",u:"https://www.fujitsu.com/global/about/research/ai/"},
+  "Genmo":{d:"genmo.ai",u:"https://www.genmo.ai"},
+  "Google DeepMind":{d:"deepmind.google",u:"https://deepmind.google"},
+  "Google":{d:"google.com",u:"https://ai.google"},
+  "Huawei":{d:"huawei.com",u:"https://www.huawei.com"},
+  "HuggingFace":{d:"huggingface.co",u:"https://huggingface.co"},
+  "IBM":{d:"ibm.com",u:"https://www.ibm.com/artificial-intelligence"},
+  "Ideogram":{d:"ideogram.ai",u:"https://ideogram.ai"},
+  "Inception":{d:"inceptionlabs.ai",u:"https://www.inceptionlabs.ai"},
+  "Kuaishou":{d:"kuaishou.com",u:"https://www.kuaishou.com"},
+  "Kyutai":{d:"kyutai.org",u:"https://kyutai.org"},
+  "LAION":{d:"laion.ai",u:"https://laion.ai"},
+  "LG AI Research":{d:"lgresearch.ai",u:"https://www.lgresearch.ai"},
+  "LG AI":{d:"lgresearch.ai",u:"https://www.lgresearch.ai"},
+  "Lightricks":{d:"lightricks.com",u:"https://www.lightricks.com"},
+  "Liquid AI":{d:"liquid.ai",u:"https://www.liquid.ai"},
+  "Luma AI":{d:"lumalabs.ai",u:"https://lumalabs.ai"},
+  "Meta":{d:"ai.meta.com",u:"https://ai.meta.com"},
+  "Microsoft Research":{d:"microsoft.com",u:"https://www.microsoft.com/en-us/research/"},
+  "Microsoft":{d:"microsoft.com",u:"https://www.microsoft.com/en-us/ai"},
+  "Midjourney":{d:"midjourney.com",u:"https://www.midjourney.com"},
+  "MiniMax":{d:"minimax.io",u:"https://www.minimax.io"},
+  "Mistral AI":{d:"mistral.ai",u:"https://mistral.ai"},
+  "Moonshot AI":{d:"moonshot.cn",u:"https://www.moonshot.cn"},
+  "MosaicML":{d:"databricks.com",u:"https://www.databricks.com/research/mosaic"},
+  "Mureka":{d:"mureka.ai",u:"https://www.mureka.ai"},
+  "NVIDIA":{d:"nvidia.com",u:"https://www.nvidia.com/en-us/ai/"},
+  "Netflix":{d:"netflix.com",u:"https://research.netflix.com"},
+  "NuMind":{d:"numind.ai",u:"https://numind.ai"},
+  "Odyssey":{d:"odyssey.world",u:"https://odyssey.world"},
+  "OpenAI":{d:"openai.com",u:"https://openai.com"},
+  "OpenBMB":{d:"openbmb.cn",u:"https://www.openbmb.cn"},
+  "Overworld":{d:"over.world",u:"https://over.world"},
+  "Pika":{d:"pika.art",u:"https://pika.art"},
+  "Poolside":{d:"poolside.ai",u:"https://poolside.ai"},
+  "PrismML":{d:"prismml.com",u:"https://prismml.com"},
+  "Recraft":{d:"recraft.ai",u:"https://www.recraft.ai"},
+  "Resemble AI":{d:"resemble.ai",u:"https://www.resemble.ai"},
+  "Riffusion":{d:"riffusion.com",u:"https://www.riffusion.com"},
+  "Robbyant":{d:"robbyant.com",u:"https://robbyant.com"},
+  "Roboflow":{d:"roboflow.com",u:"https://roboflow.com"},
+  "Runway":{d:"runwayml.com",u:"https://runwayml.com"},
+  "Sarvam AI":{d:"sarvam.ai",u:"https://www.sarvam.ai"},
+  "Sesame AI":{d:"sesame.com",u:"https://www.sesame.com"},
+  "Shanda AI":{d:"shanda.com",u:"https://www.shanda.com"},
+  "Stability AI":{d:"stability.ai",u:"https://stability.ai"},
+  "Stanford":{d:"stanford.edu",u:"https://hai.stanford.edu"},
+  "Stellon Labs":{d:"stellonlabs.com",u:"https://stellonlabs.com"},
+  "Suno":{d:"suno.com",u:"https://suno.com"},
+  "TII":{d:"tii.ae",u:"https://www.tii.ae"},
+  "Tavus":{d:"tavus.io",u:"https://www.tavus.io"},
+  "Tencent ARC":{d:"tencent.com",u:"https://github.com/TencentARC"},
+  "Tencent":{d:"tencent.com",u:"https://www.tencent.com"},
+  "TencentARC":{d:"tencent.com",u:"https://github.com/TencentARC"},
+  "Tsinghua/Zhipu":{d:"zhipuai.cn",u:"https://zhipuai.cn"},
+  "UCSD/Berkeley":{d:"ucsd.edu",u:"https://ucsd.edu"},
+  "Udio":{d:"udio.com",u:"https://www.udio.com"},
+  "University of Geneva":{d:"unige.ch",u:"https://www.unige.ch"},
+  "Voyage AI":{d:"voyageai.com",u:"https://www.voyageai.com"},
+  "World Labs":{d:"worldlabs.ai",u:"https://www.worldlabs.ai"},
+  "Xiaomi":{d:"mi.com",u:"https://www.mi.com/global/"},
+  "Yandex":{d:"yandex.com",u:"https://yandex.com"},
+  "Zhipu AI":{d:"zhipuai.cn",u:"https://zhipuai.cn"},
+  "fast.ai":{d:"fast.ai",u:"https://www.fast.ai"},
+  "xAI":{d:"x.ai",u:"https://x.ai"}
+};
+const companySkip = new Set(["Academic","Community"]);
+
+function renderCompaniesTab(){
+  const counts = {};
+  models.forEach(m => {
+    if(companySkip.has(m.company)) return;
+    counts[m.company] = (counts[m.company]||0) + 1;
+  });
+  const list = Object.keys(counts).sort((a,b)=>counts[b]-counts[a] || a.localeCompare(b));
+  const cardHtml = list.map(name => {
+    const meta = companyMeta[name];
+    const url = meta ? meta.u : `https://www.google.com/search?q=${encodeURIComponent(name+" AI")}`;
+    const fav = meta ? `<img src="https://www.google.com/s2/favicons?domain=${meta.d}&sz=64" width="32" height="32" style="border-radius:6px;flex-shrink:0" loading="lazy" onerror="this.style.display='none'">` : `<div style="width:32px;height:32px;border-radius:6px;background:linear-gradient(135deg,#3a3a5a,#2a2a4a);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;color:var(--t-soft);flex-shrink:0">${name.charAt(0)}</div>`;
+    const n = counts[name];
+    return `<a href="${url}" target="_blank" rel="noopener" class="company-card" data-name="${name.toLowerCase()}" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-elev);border:1px solid var(--bd-sub);border-radius:var(--radius-md);text-decoration:none;color:inherit;transition:all var(--transition-fast)">
+      ${fav}
+      <div style="min-width:0;flex:1">
+        <div style="font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--t-max);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${name}</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t-faint);margin-top:2px">${n} ${n===1?'model':'models'}</div>
+      </div>
+    </a>`;
+  }).join('');
+  const placeholder = (currentLang==='es'||currentLang==='pt') ? 'Buscar empresa…' : 'Search company…';
+  const titleTxt = (currentLang==='es') ? 'Empresas' : (currentLang==='pt' ? 'Empresas' : 'Companies');
+  const subTxt = (currentLang==='es') ? `${list.length} empresas con modelos en el index` : (currentLang==='pt' ? `${list.length} empresas com modelos no index` : `${list.length} companies with models in the index`);
+  document.getElementById('tab-companies').innerHTML = `<div class="info-page">
+    <h2>${titleTxt}</h2>
+    <p class="info-subtitle">${subTxt}</p>
+    <input id="companySearch" type="text" placeholder="${placeholder}" style="width:100%;max-width:400px;padding:10px 14px;background:var(--bg-elev);border:1px solid var(--bd-sub);border-radius:var(--radius-md);color:var(--t-max);font-family:'Inter',system-ui,sans-serif;font-size:13px;margin-bottom:20px;outline:none" autocomplete="off">
+    <div id="companyGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">${cardHtml}</div>
+    <div id="companyEmpty" style="display:none;color:var(--t-faint);font-size:13px;margin-top:16px">—</div>
+  </div>`;
+  const search = document.getElementById('companySearch');
+  const empty = document.getElementById('companyEmpty');
+  search.addEventListener('input', () => {
+    const q = search.value.trim().toLowerCase();
+    let visible = 0;
+    document.querySelectorAll('#companyGrid .company-card').forEach(c => {
+      const m = c.dataset.name.includes(q);
+      c.style.display = m ? '' : 'none';
+      if(m) visible++;
+    });
+    empty.style.display = visible===0 ? 'block' : 'none';
+  });
+  document.querySelectorAll('#companyGrid .company-card').forEach(c => {
+    c.addEventListener('mouseenter', () => { c.style.borderColor = 'var(--accent-blue)'; c.style.background = 'rgba(107,138,255,0.05)'; });
+    c.addEventListener('mouseleave', () => { c.style.borderColor = 'var(--bd-sub)'; c.style.background = 'var(--bg-elev)'; });
+  });
+}
+
 // --- Render API tab ---
 function renderApiTab(){
   const base=window.location.origin+window.location.pathname;
@@ -3273,6 +3428,7 @@ function applyLang(){
   document.querySelector('[data-tab="tab-arc"]').textContent=tabs.arc;
   document.querySelector('[data-tab="tab-countdown"]').textContent=tabs.countdown||'Countdown';
   document.querySelector('[data-tab="tab-platforms"]').textContent=tabs.platforms||'Platforms';
+  document.querySelector('[data-tab="tab-companies"]').textContent=tabs.companies||'Companies';
   document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
   document.querySelector('[data-tab="tab-contact"]').textContent=tabs.contact||'Contact';
   // Update contact tab i18n
@@ -3308,6 +3464,7 @@ function applyLang(){
   const bsc=document.getElementById('benchSitesCount');if(bsc){const bp=bsc.closest('.info-section');if(bp){const cards=bp.querySelectorAll('.info-card');bsc.textContent=cards.length;}}
   renderMetaTab();
   renderPlatformsTab();
+  renderCompaniesTab();
   renderApiTab();
   makeCollapsible(document.getElementById('tab-arc'),'colArc');
   makeCollapsible(document.getElementById('tab-countdown'),'colCountdown');
