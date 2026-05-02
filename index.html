@@ -3217,7 +3217,7 @@ function renderCompaniesTab(){
     if(companySkip.has(m.company)) return;
     counts[m.company] = (counts[m.company]||0) + 1;
   });
-  const list = Object.keys(counts).sort((a,b)=>counts[b]-counts[a] || a.localeCompare(b));
+  const list = Object.keys(counts).sort((a,b)=>a.localeCompare(b));
   const cardHtml = list.map(name => {
     const meta = companyMeta[name];
     const url = meta ? meta.u : `https://www.google.com/search?q=${encodeURIComponent(name+" AI")}`;
