@@ -3138,7 +3138,7 @@ const companyMeta = {
   "DeepMind":{d:"deepmind.google",u:"https://deepmind.google"},
   "DeepSeek":{d:"deepseek.com",u:"https://www.deepseek.com"},
   "Deepgram":{d:"deepgram.com",u:"https://deepgram.com"},
-  "Dynamic Labs":{d:"dynamicslab.ai",u:"https://blog.dynamicslab.ai"},
+  "Dynamic Labs":{d:"huggingface.co",u:"https://huggingface.co/dynamicslab",letter:"DL",letterColors:["#0d2a1a","#1a4a2e","#34d399"]},
   "ETH Zurich / EPFL":{d:"ethz.ch",u:"https://ethz.ch"},
   "EleutherAI":{d:"eleuther.ai",u:"https://www.eleuther.ai"},
   "ElevenLabs":{d:"elevenlabs.io",u:"https://elevenlabs.io"},
@@ -3182,7 +3182,7 @@ const companyMeta = {
   "Recraft":{d:"recraft.ai",u:"https://www.recraft.ai"},
   "Resemble AI":{d:"resemble.ai",u:"https://www.resemble.ai"},
   "Riffusion":{d:"riffusion.com",u:"https://www.riffusion.com"},
-  "Robbyant":{d:"robbyant.com",u:"https://robbyant.com"},
+  "Robbyant":{d:"robbyant.com",u:"https://robbyant.com",logo:"https://mdn.alipayobjects.com/huamei_u94ywh/afts/img/xEyrTpmj4LUAAAAAQEAAAAgADkxfAQFr/original"},
   "Roboflow":{d:"roboflow.com",u:"https://roboflow.com"},
   "Runway":{d:"runwayml.com",u:"https://runwayml.com"},
   "Sarvam AI":{d:"sarvam.ai",u:"https://www.sarvam.ai"},
@@ -3222,8 +3222,10 @@ function renderCompaniesTab(){
     const meta = companyMeta[name];
     const url = meta ? meta.u : `https://www.google.com/search?q=${encodeURIComponent(name+" AI")}`;
     const letterChar = (meta && meta.letter) ? meta.letter : (meta ? null : name.charAt(0).toUpperCase());
+    const lc = (meta && meta.letterColors) ? meta.letterColors : ["#3a3a5a","#2a2a4a","var(--t-soft)"];
+    const fontSize = (letterChar && letterChar.length>=2) ? '12px' : '14px';
     const favSrc = (meta && !meta.letter) ? (meta.logo || `https://www.google.com/s2/favicons?domain=${meta.d}&sz=64`) : null;
-    const fav = favSrc ? `<img src="${favSrc}" width="32" height="32" style="border-radius:6px;flex-shrink:0;object-fit:contain;background:rgba(255,255,255,0.04)" loading="lazy" onerror="this.style.display='none'">` : `<div style="width:32px;height:32px;border-radius:6px;background:linear-gradient(135deg,#3a3a5a,#2a2a4a);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;color:var(--t-soft);flex-shrink:0">${letterChar}</div>`;
+    const fav = favSrc ? `<img src="${favSrc}" width="32" height="32" style="border-radius:6px;flex-shrink:0;object-fit:contain;background:rgba(255,255,255,0.04)" loading="lazy" onerror="this.style.display='none'">` : `<div style="width:32px;height:32px;border-radius:6px;background:linear-gradient(135deg,${lc[0]},${lc[1]});display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:${fontSize};font-weight:700;color:${lc[2]};flex-shrink:0;letter-spacing:0.5px">${letterChar}</div>`;
     const n = counts[name];
     return `<a href="${url}" target="_blank" rel="noopener" class="company-card" data-name="${name.toLowerCase()}" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-elev);border:1px solid var(--bd-sub);border-radius:var(--radius-md);text-decoration:none;color:inherit;transition:all var(--transition-fast)">
       ${fav}
