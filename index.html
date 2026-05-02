@@ -3190,7 +3190,7 @@ const companyMeta = {
   "Shanda AI":{d:"shanda.com",u:"https://www.shanda.com"},
   "Stability AI":{d:"stability.ai",u:"https://stability.ai"},
   "Stanford":{d:"stanford.edu",u:"https://hai.stanford.edu"},
-  "Stellon Labs":{d:"stellonlabs.com",u:"https://stellonlabs.com"},
+  "Stellon Labs":{d:"stellonlabs.com",u:"https://stellonlabs.com",logo:"https://stellonlabs.com/minimal.svg"},
   "Suno":{d:"suno.com",u:"https://suno.com"},
   "TII":{d:"tii.ae",u:"https://www.tii.ae"},
   "Tavus":{d:"tavus.io",u:"https://www.tavus.io"},
@@ -3221,7 +3221,8 @@ function renderCompaniesTab(){
   const cardHtml = list.map(name => {
     const meta = companyMeta[name];
     const url = meta ? meta.u : `https://www.google.com/search?q=${encodeURIComponent(name+" AI")}`;
-    const fav = meta ? `<img src="https://www.google.com/s2/favicons?domain=${meta.d}&sz=64" width="32" height="32" style="border-radius:6px;flex-shrink:0" loading="lazy" onerror="this.style.display='none'">` : `<div style="width:32px;height:32px;border-radius:6px;background:linear-gradient(135deg,#3a3a5a,#2a2a4a);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;color:var(--t-soft);flex-shrink:0">${name.charAt(0)}</div>`;
+    const favSrc = meta ? (meta.logo || `https://www.google.com/s2/favicons?domain=${meta.d}&sz=64`) : null;
+    const fav = favSrc ? `<img src="${favSrc}" width="32" height="32" style="border-radius:6px;flex-shrink:0;object-fit:contain;background:rgba(255,255,255,0.04)" loading="lazy" onerror="this.style.display='none'">` : `<div style="width:32px;height:32px;border-radius:6px;background:linear-gradient(135deg,#3a3a5a,#2a2a4a);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;color:var(--t-soft);flex-shrink:0">${name.charAt(0)}</div>`;
     const n = counts[name];
     return `<a href="${url}" target="_blank" rel="noopener" class="company-card" data-name="${name.toLowerCase()}" style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--bg-elev);border:1px solid var(--bd-sub);border-radius:var(--radius-md);text-decoration:none;color:inherit;transition:all var(--transition-fast)">
       ${fav}
