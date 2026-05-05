@@ -1254,6 +1254,11 @@ const models = [
 {name:"RWKV-4",date:"2023-05-22",company:"Community",open:true,intelligence:28,type:"LLM",cat:"text"},
 {name:"Code Llama",date:"2023-08-24",company:"Meta",open:true,intelligence:40,type:"LLM",cat:"code"},
 {name:"Mamba",date:"2023-12-01",company:"Community",open:true,intelligence:35,type:"LLM",cat:"text"},
+{name:"Reve v1.5",date:"2026-02-24",company:"Reve",open:false,intelligence:50,type:"Diffusion",cat:"image"},
+{name:"Gemma 4 MTP Drafters",date:"2026-05-05",company:"Google",open:true,intelligence:55,type:"LLM",cat:"text"},
+{name:"SubQ",date:"2026-05-05",company:"Subquadratic",open:false,intelligence:75,type:"LLM",cat:"text"},
+{name:"Uni-1.1",date:"2026-05-05",company:"Luma AI",open:false,intelligence:70,type:"Multimodal",cat:"image"},
+{name:"GPT-5.5 Instant",date:"2026-05-05",company:"OpenAI",open:false,intelligence:90,type:"LLM",cat:"multi"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1807,6 +1812,11 @@ const modelUrls={
 "TIPSv2-B14-DPT":"https://huggingface.co/google/tipsv2-b14-dpt",
 "EXAONE 4.5":"https://huggingface.co/LGAI-EXAONE/EXAONE-4.5-32B-Instruct",
 "HY-Embodied-0.5":"https://huggingface.co/tencent/HY-Embodied-0.5",
+"Reve v1.5":"https://reve.art/",
+"Gemma 4 MTP Drafters":"https://blog.google/innovation-and-ai/technology/developers-tools/multi-token-prediction-gemma-4/",
+"SubQ":"https://subq.ai/introducing-subq",
+"Uni-1.1":"https://lumalabs.ai/news/uni-1-1-api",
+"GPT-5.5 Instant":"https://openai.com/index/gpt-5-5-instant/",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
