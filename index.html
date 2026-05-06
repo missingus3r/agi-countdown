@@ -1262,6 +1262,9 @@ const models = [
 {name:"SubQ",date:"2026-05-05",company:"Subquadratic",open:false,intelligence:75,type:"LLM",cat:"text"},
 {name:"Uni-1.1",date:"2026-05-05",company:"Luma AI",open:false,intelligence:70,type:"Multimodal",cat:"image"},
 {name:"GPT-5.5 Instant",date:"2026-05-05",company:"OpenAI",open:false,intelligence:90,type:"LLM",cat:"multi"},
+{name:"DeepSeek V4-Pro-Max",date:"2026-04-24",company:"DeepSeek",open:true,intelligence:88,type:"LLM",cat:"reasoning"},
+{name:"DeepSeek V4-Flash-Max",date:"2026-04-24",company:"DeepSeek",open:true,intelligence:80,type:"LLM",cat:"reasoning"},
+{name:"Grok 4.3",date:"2026-04-30",company:"xAI",open:false,intelligence:85,type:"LLM",cat:"multi"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1820,6 +1823,9 @@ const modelUrls={
 "SubQ":"https://subq.ai/introducing-subq",
 "Uni-1.1":"https://lumalabs.ai/news/uni-1-1-api",
 "GPT-5.5 Instant":"https://openai.com/index/gpt-5-5-instant/",
+"DeepSeek V4-Pro-Max":"https://api-docs.deepseek.com/news/news260424",
+"DeepSeek V4-Flash-Max":"https://api-docs.deepseek.com/news/news260424",
+"Grok 4.3":"https://x.ai/news",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
