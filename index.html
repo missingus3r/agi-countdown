@@ -1264,7 +1264,9 @@ const models = [
 {name:"GPT-5.5 Instant",date:"2026-05-05",company:"OpenAI",open:false,intelligence:90,type:"LLM",cat:"multi"},
 {name:"DeepSeek V4-Pro-Max",date:"2026-04-24",company:"DeepSeek",open:true,intelligence:88,type:"LLM",cat:"reasoning"},
 {name:"DeepSeek V4-Flash-Max",date:"2026-04-24",company:"DeepSeek",open:true,intelligence:80,type:"LLM",cat:"reasoning"},
-{name:"Grok 4.3",date:"2026-04-30",company:"xAI",open:false,intelligence:85,type:"LLM",cat:"multi"},
+{name:"Inworld Realtime TTS-2",date:"2026-05-05",company:"Inworld",open:false,intelligence:60,type:"TTS",cat:"audio"},
+{name:"ZAYA1-8B",date:"2026-05-06",company:"Zyphra",open:true,intelligence:78,type:"Reasoning",cat:"reasoning"},
+{name:"Krisp VIVA 2.0",date:"2026-05-06",company:"Krisp",open:false,intelligence:55,type:"ASR",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1826,6 +1828,9 @@ const modelUrls={
 "DeepSeek V4-Pro-Max":"https://api-docs.deepseek.com/news/news260424",
 "DeepSeek V4-Flash-Max":"https://api-docs.deepseek.com/news/news260424",
 "Grok 4.3":"https://x.ai/news",
+"Inworld Realtime TTS-2":"https://inworld.ai/blog/realtime-tts-2",
+"ZAYA1-8B":"https://www.zyphra.com/post/zaya1-8b",
+"Krisp VIVA 2.0":"https://krisp.ai/blog/viva-2-0-ai-infrastructure-for-voice-ai-agents/",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
