@@ -523,7 +523,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
     <button class="tab-btn" data-tab="tab-countdown">Countdown</button>
     <button class="tab-btn" data-tab="tab-platforms">Platforms</button>
     <button class="tab-btn" data-tab="tab-companies">Companies</button>
-    <button class="tab-btn" data-tab="tab-pricing">💰 Pricing</button>
+    <button class="tab-btn" data-tab="tab-pricing">Pricing</button>
     <button class="tab-btn" data-tab="tab-api">API</button>
     <button class="tab-btn" data-tab="tab-contact">Contact</button>
   </div>
@@ -3623,7 +3623,7 @@ function applyLang(){
   document.querySelector('[data-tab="tab-countdown"]').textContent=tabs.countdown||'Countdown';
   document.querySelector('[data-tab="tab-platforms"]').textContent=tabs.platforms||'Platforms';
   document.querySelector('[data-tab="tab-companies"]').textContent=tabs.companies||'Companies';
-  const pricingBtn=document.querySelector('[data-tab="tab-pricing"]');if(pricingBtn)pricingBtn.textContent='💰 '+(tabs.pricing||'Pricing');
+  const pricingBtn=document.querySelector('[data-tab="tab-pricing"]');if(pricingBtn)pricingBtn.textContent=tabs.pricing||'Pricing';
   document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
   document.querySelector('[data-tab="tab-contact"]').textContent=tabs.contact||'Contact';
   // Update contact tab i18n
