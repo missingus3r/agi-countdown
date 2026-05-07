@@ -523,6 +523,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
     <button class="tab-btn" data-tab="tab-countdown">Countdown</button>
     <button class="tab-btn" data-tab="tab-platforms">Platforms</button>
     <button class="tab-btn" data-tab="tab-companies">Companies</button>
+    <button class="tab-btn" data-tab="tab-pricing">💰 Pricing</button>
     <button class="tab-btn" data-tab="tab-api">API</button>
     <button class="tab-btn" data-tab="tab-contact">Contact</button>
   </div>
@@ -679,6 +680,8 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
 <div class="tab-panel" id="tab-companies"></div>
 
 <!-- ==================== API TAB ==================== -->
+<div class="tab-panel" id="tab-pricing"></div>
+
 <div class="tab-panel" id="tab-api"></div>
 
 <!-- ==================== CONTACT TAB ==================== -->
@@ -2009,7 +2012,8 @@ const i18n={
     footer:"* Estimated intelligence (0\u2013100), relative to state of the art in March 2026. Based on public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Diffusion models rated by generation quality and prompt adherence. Not absolute metrics.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
-    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",api:"API",contact:"Contact"},
+    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",pricing:"Pricing",api:"API",contact:"Contact"},
+    pricing:{title:"AI Pricing",sub:"Unified view of token, image, video and audio costs across providers. Sorted from cheapest to most expensive within each category. Click a model name to open its official pricing page.",calc_title:"Cost calculator",calc_in:"Input tokens / call",calc_out:"Output tokens / call",calc_calls:"Calls per month",calc_help:"Estimate ranks LLMs only (per-1M-token models). Other categories (image/video/audio) shown below as-is.",cat_llm:"LLM / Reasoning",cat_embed:"Embeddings",cat_image:"Image generation",cat_video:"Video generation",cat_audio:"Audio / TTS / STT",verified:"verified",approx:"approx",per_image:"img",per_second:"sec",per_chars:"chars",per_minute:"min",plan_based:"plan-based — see provider page",disclaimer:"Prices in USD, last verified May 2026. Rates change frequently — always confirm on the provider page (link on each card). Open-weight models marked free can be self-hosted (Ollama/vLLM) or run via aggregators like Together/Fireworks at the listed rates."},
     upcoming:"UPCOMING",
     contact:{title:"Contact",sub:"Get in touch",ghDesc:"Source code, issues, and contributions.",emailDesc:"Questions, suggestions, or feedback."},
     platforms:{title:"Platforms, Tools & Aggregators",sub:"AI platforms, cloud providers, local tools, and coding agents",cloud:"Cloud — Providers / Chat",agg:"Cloud — Multi-Model Aggregators",media:"Cloud — Media / Generative",local:"Local — LLM Inference & GUI",code:"Local — Coding Agents / CLI",
@@ -2096,7 +2100,8 @@ const i18n={
     footer:"* Inteligencia estimada (0\u2013100), relativa al estado del arte en marzo 2026. Basado en benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opiniones de expertos y posicionamiento de mercado. Modelos de difusi\u00f3n evaluados por calidad de generaci\u00f3n y adherencia a prompts. No son m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tendencia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 ventana \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"es-UY",
-    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",api:"API",contact:"Contacto"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",pricing:"Precios",api:"API",contact:"Contacto"},
+    pricing:{title:"Precios de IA",sub:"Vista unificada de costos de tokens, imagen, video y audio por proveedor. Ordenado de más barato a más caro dentro de cada categoría. Click en el nombre del modelo abre su página oficial de precios.",calc_title:"Calculadora de costos",calc_in:"Tokens entrada / llamada",calc_out:"Tokens salida / llamada",calc_calls:"Llamadas por mes",calc_help:"El ranking compara solo LLMs (precio por 1M tokens). Las otras categorías (imagen/video/audio) se muestran abajo tal cual.",cat_llm:"LLM / Razonamiento",cat_embed:"Embeddings",cat_image:"Generación de imagen",cat_video:"Generación de video",cat_audio:"Audio / TTS / STT",verified:"verificado",approx:"aprox",per_image:"img",per_second:"seg",per_chars:"caracteres",per_minute:"min",plan_based:"basado en plan — ver página del proveedor",disclaimer:"Precios en USD, última verificación mayo 2026. Las tarifas cambian seguido — siempre confirmá en la página del proveedor (link en cada tarjeta). Los modelos open-weight marcados como free pueden auto-hostearse (Ollama/vLLM) o usarse vía agregadores como Together/Fireworks a los precios listados."},
     upcoming:"PRÓXIMAMENTE",
     contact:{title:"Contacto",sub:"Ponete en contacto",ghDesc:"Código fuente, issues y contribuciones.",emailDesc:"Preguntas, sugerencias o feedback."},
     platforms:{title:"Plataformas, Herramientas y Agregadores",sub:"Plataformas de IA, proveedores cloud, herramientas locales y agentes de código",cloud:"Cloud — Proveedores / Chat",agg:"Cloud — Agregadores Multi-Modelo",media:"Cloud — Media / Generativa",local:"Local — Inferencia LLM y GUI",code:"Local — Agentes de Código / CLI",
@@ -2183,7 +2188,8 @@ const i18n={
     footer:"* Intelig\u00eancia estimada (0\u2013100), relativa ao estado da arte em mar\u00e7o de 2026. Baseado em benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opini\u00f5es de especialistas e posicionamento de mercado. Modelos de difus\u00e3o avaliados por qualidade de gera\u00e7\u00e3o e ader\u00eancia a prompts. N\u00e3o s\u00e3o m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tend\u00eancia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 janela \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"pt-BR",
-    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",api:"API",contact:"Contato"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",pricing:"Preços",api:"API",contact:"Contato"},
+    pricing:{title:"Preços de IA",sub:"Visão unificada de custos de tokens, imagem, vídeo e áudio por provedor. Ordenado do mais barato ao mais caro em cada categoria. Clique no nome do modelo para abrir sua página oficial de preços.",calc_title:"Calculadora de custos",calc_in:"Tokens entrada / chamada",calc_out:"Tokens saída / chamada",calc_calls:"Chamadas por mês",calc_help:"O ranking compara apenas LLMs (preço por 1M tokens). As outras categorias (imagem/vídeo/áudio) aparecem abaixo como estão.",cat_llm:"LLM / Raciocínio",cat_embed:"Embeddings",cat_image:"Geração de imagem",cat_video:"Geração de vídeo",cat_audio:"Áudio / TTS / STT",verified:"verificado",approx:"aprox",per_image:"img",per_second:"seg",per_chars:"caracteres",per_minute:"min",plan_based:"baseado em plano — veja a página do provedor",disclaimer:"Preços em USD, última verificação maio 2026. As tarifas mudam frequentemente — sempre confirme na página do provedor (link em cada cartão). Modelos open-weight marcados como free podem ser auto-hospedados (Ollama/vLLM) ou usados via agregadores como Together/Fireworks aos preços listados."},
     upcoming:"EM BREVE",
     contact:{title:"Contato",sub:"Entre em contato",ghDesc:"Código fonte, issues e contribuições.",emailDesc:"Perguntas, sugestões ou feedback."},
     platforms:{title:"Plataformas, Ferramentas e Agregadores",sub:"Plataformas de IA, provedores cloud, ferramentas locais e agentes de código",cloud:"Cloud — Provedores / Chat",agg:"Cloud — Agregadores Multi-Modelo",media:"Cloud — Mídia / Generativa",local:"Local — Inferência LLM e GUI",code:"Local — Agentes de Código / CLI",
@@ -3434,6 +3440,160 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 </div>`;
 }
 
+// --- Pricing data (USD, verified May 2026 where possible) ---
+// units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
+// verified: true = source page checked recently; false = approximate / well-known rate
+const pricingData=[
+  // ===== LLM (text/reasoning) =====
+  {name:"Claude Opus 4.7",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:15,output:75,free:false,url:"https://www.anthropic.com/pricing",note:"Prompt caching ~90% off, batch 50% off",verified:true},
+  {name:"Claude Sonnet 4.6",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:3,output:15,free:false,url:"https://www.anthropic.com/pricing",note:"Prompt caching, batch discount",verified:true},
+  {name:"Claude Haiku 4.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:0.80,output:4,free:false,url:"https://www.anthropic.com/pricing",verified:true},
+  {name:"GPT-5",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1.25,output:10,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"GPT-5 mini",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.25,output:2,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"GPT-5 nano",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.05,output:0.40,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"GPT-4o",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2.50,output:10,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"GPT-4o mini",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.60,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"o1",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:15,output:60,free:false,url:"https://openai.com/api/pricing/",note:"Reasoning model",verified:false},
+  {name:"o1-mini",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:3,output:12,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"Gemini 3.1 Pro",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:2,output:12,free:false,url:"https://ai.google.dev/pricing",note:"≤200k tokens; 2x sobre 200k",verified:true},
+  {name:"Gemini 3 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.50,output:3,free:true,free_note:"AI Studio free tier",url:"https://ai.google.dev/pricing",verified:true},
+  {name:"Gemini 3.1 Flash-Lite",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.25,output:1.50,free:true,url:"https://ai.google.dev/pricing",verified:true},
+  {name:"Gemini 2.5 Pro",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.25,output:10,free:true,url:"https://ai.google.dev/pricing",verified:true},
+  {name:"Gemini 2.5 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.30,output:2.50,free:true,url:"https://ai.google.dev/pricing",verified:true},
+  {name:"Grok 4.3",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:3,output:15,free:false,url:"https://x.ai/api",verified:false},
+  {name:"Grok 4 Fast",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:0.20,output:0.50,free:false,url:"https://x.ai/api",verified:false},
+  {name:"DeepSeek V4-Pro",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:0.435,output:0.87,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"75% descuento hasta 31/05/2026 · cache hit $0.0036",verified:true},
+  {name:"DeepSeek V4-Flash",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:0.14,output:0.28,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Cache hit input $0.0028",verified:true},
+  {name:"Mistral Large 2",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://mistral.ai/pricing",verified:false},
+  {name:"Mistral Medium 3",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:0.40,output:2,free:false,url:"https://mistral.ai/pricing",verified:false},
+  {name:"Mistral Small 3",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:0.10,output:0.30,free:false,url:"https://mistral.ai/pricing",verified:false},
+  {name:"Codestral 25",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:0.30,output:0.90,free:false,url:"https://mistral.ai/pricing",note:"Coding specialist",verified:false},
+  {name:"Llama 3.3 70B",provider:"Meta (Together)",cat:"llm",unit:"per_1m_tokens",input:0.88,output:0.88,free:true,free_note:"Self-host con Ollama/vLLM",url:"https://www.together.ai/pricing",verified:true},
+  {name:"Qwen3.5 397B",provider:"Alibaba (Together)",cat:"llm",unit:"per_1m_tokens",input:0.60,output:3.60,free:true,url:"https://www.together.ai/pricing",verified:true},
+  {name:"Qwen3-Coder 480B",provider:"Alibaba (Together)",cat:"llm",unit:"per_1m_tokens",input:2,output:2,free:true,url:"https://www.together.ai/pricing",verified:true},
+  {name:"Gemma 4 31B",provider:"Google (Together)",cat:"llm",unit:"per_1m_tokens",input:0.20,output:0.50,free:true,free_note:"Open weights",url:"https://www.together.ai/pricing",verified:true},
+  {name:"gpt-oss 120B",provider:"OpenAI (Together)",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.60,free:true,free_note:"Open weights",url:"https://www.together.ai/pricing",verified:true},
+  {name:"ZAYA1-8B",provider:"Zyphra",cat:"llm",unit:"per_1m_tokens",input:0,output:0,free:true,free_note:"Open weights, self-host",url:"https://www.zyphra.com/post/zaya1-8b",verified:false},
+  {name:"Kimi K2.6",provider:"Moonshot",cat:"llm",unit:"per_1m_tokens",input:0.60,output:2.50,free:false,url:"https://moonshot.ai/",verified:false},
+  // ===== Embeddings =====
+  {name:"text-embedding-3-large",provider:"OpenAI",cat:"embed",unit:"per_1m_tokens",input:0.13,output:0,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"text-embedding-3-small",provider:"OpenAI",cat:"embed",unit:"per_1m_tokens",input:0.02,output:0,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"voyage-3-large",provider:"Voyage AI",cat:"embed",unit:"per_1m_tokens",input:0.18,output:0,free:false,url:"https://www.voyageai.com/pricing",verified:false},
+  {name:"embed-v4",provider:"Cohere",cat:"embed",unit:"per_1m_tokens",input:0.12,output:0,free:false,url:"https://cohere.com/pricing",verified:false},
+  // ===== Image =====
+  {name:"DALL-E 3",provider:"OpenAI",cat:"image",unit:"per_image",per_unit:0.04,per_unit_max:0.12,free:false,url:"https://openai.com/api/pricing/",note:"Standard $0.04, HD $0.08, 1024x1792 $0.12",verified:false},
+  {name:"Imagen 4",provider:"Google",cat:"image",unit:"per_image",per_unit:0.02,per_unit_max:0.06,free:false,url:"https://ai.google.dev/pricing",verified:true},
+  {name:"FLUX 1.1 Pro",provider:"Black Forest Labs",cat:"image",unit:"per_image",per_unit:0.04,free:false,url:"https://blackforestlabs.ai/",verified:false},
+  {name:"FLUX 1 Schnell",provider:"Black Forest Labs",cat:"image",unit:"per_image",per_unit:0,free:true,free_note:"Open weights",url:"https://blackforestlabs.ai/",verified:false},
+  {name:"Magnific",provider:"Magnific (ex Freepik)",cat:"image",unit:"plan",per_unit:39,free:false,url:"https://magnific.ai/pricing",note:"Plan-based, $39+/mes",verified:false},
+  {name:"Reve",provider:"Reve",cat:"image",unit:"per_image",per_unit:0.05,free:false,url:"https://reve.art/",verified:false},
+  // ===== Video =====
+  {name:"Sora 2",provider:"OpenAI",cat:"video",unit:"per_second",per_unit:0.10,free:false,url:"https://openai.com/sora",verified:false},
+  {name:"Veo 3.1",provider:"Google",cat:"video",unit:"per_second",per_unit:0.05,per_unit_max:0.60,free:false,url:"https://ai.google.dev/pricing",note:"$0.05-0.60/seg según resolución",verified:true},
+  {name:"Runway Gen-4",provider:"Runway",cat:"video",unit:"per_second",per_unit:0.08,free:false,url:"https://runwayml.com/pricing",verified:false},
+  {name:"Kling 2",provider:"Kuaishou",cat:"video",unit:"per_second",per_unit:0.07,free:false,url:"https://www.klingai.com/",verified:false},
+  // ===== Audio / TTS =====
+  {name:"ElevenLabs Multilingual v2",provider:"ElevenLabs",cat:"audio",unit:"plan",per_unit:0,free:true,free_note:"10k chars/mes free; Starter $6/30k; Creator $11/121k; Pro $99/600k",url:"https://elevenlabs.io/pricing",verified:true},
+  {name:"OpenAI tts-1",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.015,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"OpenAI tts-1-hd",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.030,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"Inworld TTS-2",provider:"Inworld",cat:"audio",unit:"per_1k_chars",per_unit:0.06,free:false,url:"https://inworld.ai/blog/realtime-tts-2",verified:false},
+  {name:"Whisper API",provider:"OpenAI",cat:"audio",unit:"per_minute",per_unit:0.006,free:false,url:"https://openai.com/api/pricing/",note:"STT, $0.006/min",verified:false}
+];
+
+function fmtPrice(p){if(p===0)return'<span style="color:#34d399">free</span>';if(p<0.01)return'$'+p.toFixed(4);if(p<1)return'$'+p.toFixed(2);return'$'+p.toFixed(2);}
+function pricingCardHtml(m,labels){
+  const verifiedBadge=m.verified?`<span style="background:rgba(52,211,153,0.12);color:#34d399;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600;letter-spacing:0.3px">✓ ${labels.verified}</span>`:`<span style="background:rgba(251,191,36,0.12);color:#fbbf24;padding:2px 6px;border-radius:4px;font-size:9px;font-weight:600;letter-spacing:0.3px">~ ${labels.approx}</span>`;
+  const freeBadge=m.free?`<span style="background:rgba(52,211,153,0.18);color:#34d399;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:0.5px;margin-left:6px">FREE</span>`:'';
+  let priceHtml='';
+  if(m.unit==='per_1m_tokens'){
+    if(m.cat==='embed'){priceHtml=`<div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent-blue)">${fmtPrice(m.input)} <span style="color:var(--t-faint);font-size:10px">/ 1M tok</span></div>`;}
+    else priceHtml=`<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent-blue)">in <b>${fmtPrice(m.input)}</b> · out <b style="color:var(--accent-pink)">${fmtPrice(m.output)}</b> <span style="color:var(--t-faint);font-size:10px">/ 1M tok</span></div>`;
+  } else if(m.unit==='per_image'){
+    const range=m.per_unit_max?` – ${fmtPrice(m.per_unit_max)}`:'';
+    priceHtml=`<div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent-blue)">${fmtPrice(m.per_unit)}${range} <span style="color:var(--t-faint);font-size:10px">/ ${labels.per_image}</span></div>`;
+  } else if(m.unit==='per_second'){
+    const range=m.per_unit_max?` – ${fmtPrice(m.per_unit_max)}`:'';
+    priceHtml=`<div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent-blue)">${fmtPrice(m.per_unit)}${range} <span style="color:var(--t-faint);font-size:10px">/ ${labels.per_second}</span></div>`;
+  } else if(m.unit==='per_1k_chars'){
+    priceHtml=`<div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent-blue)">${fmtPrice(m.per_unit)} <span style="color:var(--t-faint);font-size:10px">/ 1k ${labels.per_chars}</span></div>`;
+  } else if(m.unit==='per_minute'){
+    priceHtml=`<div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent-blue)">${fmtPrice(m.per_unit)} <span style="color:var(--t-faint);font-size:10px">/ ${labels.per_minute}</span></div>`;
+  } else if(m.unit==='plan'){
+    priceHtml=`<div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--accent-blue)">${labels.plan_based}</div>`;
+  }
+  return `<div style="background:var(--bg-surface);border:1px solid var(--bd-sub);border-radius:var(--radius-md);padding:12px 14px;display:flex;flex-direction:column;gap:6px">
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <a href="${m.url}" target="_blank" rel="noopener" style="font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:600;color:var(--t-max);text-decoration:none">${m.name}</a>
+      ${freeBadge}
+      ${verifiedBadge}
+    </div>
+    <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--t-faint)">${m.provider}</div>
+    ${priceHtml}
+    ${m.note?`<div style="font-family:'Inter',system-ui,sans-serif;font-size:10px;color:var(--t-ghost);font-style:italic">${m.note}</div>`:''}
+    ${m.free_note?`<div style="font-family:'Inter',system-ui,sans-serif;font-size:10px;color:#34d399">${m.free_note}</div>`:''}
+  </div>`;
+}
+
+function renderPricingTab(){
+  const pt=t('pricing');
+  const labels={verified:pt.verified,approx:pt.approx,per_image:pt.per_image,per_second:pt.per_second,per_chars:pt.per_chars,per_minute:pt.per_minute,plan_based:pt.plan_based};
+  const cats=[
+    {key:'llm',label:pt.cat_llm,icon:'🧠'},
+    {key:'embed',label:pt.cat_embed,icon:'🔢'},
+    {key:'image',label:pt.cat_image,icon:'🎨'},
+    {key:'video',label:pt.cat_video,icon:'🎬'},
+    {key:'audio',label:pt.cat_audio,icon:'🔊'}
+  ];
+  const sections=cats.map(c=>{
+    const items=pricingData.filter(m=>m.cat===c.key).sort((a,b)=>{
+      const ai=(a.input||a.per_unit||0)+(a.output||0)*0.25;
+      const bi=(b.input||b.per_unit||0)+(b.output||0)*0.25;
+      return ai-bi;
+    });
+    return `<div class="info-section"><h3>${c.icon} ${c.label} <span style="font-size:11px;color:var(--t-faint);font-weight:400">${items.length}</span></h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">
+        ${items.map(m=>pricingCardHtml(m,labels)).join('')}
+      </div></div>`;
+  }).join('');
+  document.getElementById('tab-pricing').innerHTML=`<div class="info-page">
+    <h2 style="font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:700;color:var(--accent-gold);margin-bottom:6px">💰 ${pt.title}</h2>
+    <p style="font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--t-soft);margin-bottom:18px">${pt.sub}</p>
+    <div style="background:var(--bg-surface);border:1px solid var(--bd-sub);border-radius:var(--radius-md);padding:18px;margin-bottom:24px">
+      <h3 style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--accent-blue);margin-bottom:12px;letter-spacing:0.3px">🧮 ${pt.calc_title}</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:12px">
+        <div><label style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--t-faint);display:block;margin-bottom:4px">${pt.calc_in}</label><input type="number" id="pcInTok" value="1000" min="0" step="100" style="width:100%;padding:8px 10px;background:var(--bg-inset);border:1px solid var(--bd-sub);border-radius:var(--radius-sm);color:var(--t-max);font-family:'IBM Plex Mono',monospace;font-size:13px"></div>
+        <div><label style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--t-faint);display:block;margin-bottom:4px">${pt.calc_out}</label><input type="number" id="pcOutTok" value="500" min="0" step="100" style="width:100%;padding:8px 10px;background:var(--bg-inset);border:1px solid var(--bd-sub);border-radius:var(--radius-sm);color:var(--t-max);font-family:'IBM Plex Mono',monospace;font-size:13px"></div>
+        <div><label style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--t-faint);display:block;margin-bottom:4px">${pt.calc_calls}</label><input type="number" id="pcCalls" value="1000" min="1" step="100" style="width:100%;padding:8px 10px;background:var(--bg-inset);border:1px solid var(--bd-sub);border-radius:var(--radius-sm);color:var(--t-max);font-family:'IBM Plex Mono',monospace;font-size:13px"></div>
+      </div>
+      <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--t-ghost);margin-bottom:10px">${pt.calc_help}</div>
+      <div id="pcResults" style="display:flex;flex-direction:column;gap:4px;max-height:340px;overflow-y:auto;border-top:1px solid var(--bd-sub);padding-top:12px"></div>
+    </div>
+    ${sections}
+    <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--t-ghost);margin-top:24px;padding-top:14px;border-top:1px solid var(--bd-sub)">${pt.disclaimer}</div>
+  </div>`;
+  // wire calculator
+  const recalc=()=>{
+    const inT=+document.getElementById('pcInTok').value||0;
+    const outT=+document.getElementById('pcOutTok').value||0;
+    const calls=+document.getElementById('pcCalls').value||0;
+    const llms=pricingData.filter(m=>m.cat==='llm'&&m.unit==='per_1m_tokens');
+    const rows=llms.map(m=>{
+      const cost=((inT*m.input)+(outT*m.output))/1e6*calls;
+      return {name:m.name,provider:m.provider,cost,free:m.free};
+    }).sort((a,b)=>a.cost-b.cost);
+    document.getElementById('pcResults').innerHTML=rows.map((r,i)=>{
+      const c=r.cost===0?'<span style="color:#34d399">free</span>':r.cost<0.01?'$'+r.cost.toFixed(5):'$'+r.cost.toFixed(2);
+      const rank=i<3?'#34d399':i<10?'#fbbf24':'var(--t-faint)';
+      return `<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-radius:var(--radius-sm);background:${i%2?'transparent':'var(--bg-inset)'}">
+        <div style="display:flex;align-items:center;gap:8px;font-family:'Inter',system-ui,sans-serif;font-size:12px;color:var(--t-soft)"><span style="color:${rank};font-family:'IBM Plex Mono',monospace;font-weight:700;width:24px">#${i+1}</span><b style="color:var(--t-max)">${r.name}</b><span style="color:var(--t-faint);font-size:10px">${r.provider}</span></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;color:var(--accent-blue)">${c}</div>
+      </div>`;
+    }).join('');
+  };
+  ['pcInTok','pcOutTok','pcCalls'].forEach(id=>document.getElementById(id).addEventListener('input',recalc));
+  recalc();
+}
+
 // --- i18n: apply language ---
 function applyLang(){
   document.documentElement.lang=currentLang;
@@ -3463,6 +3623,7 @@ function applyLang(){
   document.querySelector('[data-tab="tab-countdown"]').textContent=tabs.countdown||'Countdown';
   document.querySelector('[data-tab="tab-platforms"]').textContent=tabs.platforms||'Platforms';
   document.querySelector('[data-tab="tab-companies"]').textContent=tabs.companies||'Companies';
+  const pricingBtn=document.querySelector('[data-tab="tab-pricing"]');if(pricingBtn)pricingBtn.textContent='💰 '+(tabs.pricing||'Pricing');
   document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
   document.querySelector('[data-tab="tab-contact"]').textContent=tabs.contact||'Contact';
   // Update contact tab i18n
@@ -3499,6 +3660,7 @@ function applyLang(){
   renderMetaTab();
   renderPlatformsTab();
   renderCompaniesTab();
+  renderPricingTab();
   renderApiTab();
   makeCollapsible(document.getElementById('tab-arc'),'colArc');
   makeCollapsible(document.getElementById('tab-countdown'),'colCountdown');
