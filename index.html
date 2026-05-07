@@ -3538,11 +3538,11 @@ function renderPricingTab(){
   const pt=t('pricing');
   const labels={verified:pt.verified,approx:pt.approx,per_image:pt.per_image,per_second:pt.per_second,per_chars:pt.per_chars,per_minute:pt.per_minute,plan_based:pt.plan_based};
   const cats=[
-    {key:'llm',label:pt.cat_llm,icon:'🧠'},
-    {key:'embed',label:pt.cat_embed,icon:'🔢'},
-    {key:'image',label:pt.cat_image,icon:'🎨'},
-    {key:'video',label:pt.cat_video,icon:'🎬'},
-    {key:'audio',label:pt.cat_audio,icon:'🔊'}
+    {key:'llm',label:pt.cat_llm},
+    {key:'embed',label:pt.cat_embed},
+    {key:'image',label:pt.cat_image},
+    {key:'video',label:pt.cat_video},
+    {key:'audio',label:pt.cat_audio}
   ];
   const sections=cats.map(c=>{
     const items=pricingData.filter(m=>m.cat===c.key).sort((a,b)=>{
@@ -3550,16 +3550,16 @@ function renderPricingTab(){
       const bi=(b.input||b.per_unit||0)+(b.output||0)*0.25;
       return ai-bi;
     });
-    return `<div class="info-section"><h3>${c.icon} ${c.label} <span style="font-size:11px;color:var(--t-faint);font-weight:400">${items.length}</span></h3>
+    return `<div class="info-section"><h3>${c.label} <span style="font-size:11px;color:var(--t-faint);font-weight:400">${items.length}</span></h3>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">
         ${items.map(m=>pricingCardHtml(m,labels)).join('')}
       </div></div>`;
   }).join('');
   document.getElementById('tab-pricing').innerHTML=`<div class="info-page">
-    <h2 style="font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:700;color:var(--accent-gold);margin-bottom:6px">💰 ${pt.title}</h2>
+    <h2 style="font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:700;color:var(--accent-gold);margin-bottom:6px">${pt.title}</h2>
     <p style="font-family:'Inter',system-ui,sans-serif;font-size:13px;color:var(--t-soft);margin-bottom:18px">${pt.sub}</p>
     <div style="background:var(--bg-surface);border:1px solid var(--bd-sub);border-radius:var(--radius-md);padding:18px;margin-bottom:24px">
-      <h3 style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--accent-blue);margin-bottom:12px;letter-spacing:0.3px">🧮 ${pt.calc_title}</h3>
+      <h3 style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;color:var(--accent-blue);margin-bottom:12px;letter-spacing:0.3px">${pt.calc_title}</h3>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:12px">
         <div><label style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--t-faint);display:block;margin-bottom:4px">${pt.calc_in}</label><input type="number" id="pcInTok" value="1000" min="0" step="100" style="width:100%;padding:8px 10px;background:var(--bg-inset);border:1px solid var(--bd-sub);border-radius:var(--radius-sm);color:var(--t-max);font-family:'IBM Plex Mono',monospace;font-size:13px"></div>
         <div><label style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--t-faint);display:block;margin-bottom:4px">${pt.calc_out}</label><input type="number" id="pcOutTok" value="500" min="0" step="100" style="width:100%;padding:8px 10px;background:var(--bg-inset);border:1px solid var(--bd-sub);border-radius:var(--radius-sm);color:var(--t-max);font-family:'IBM Plex Mono',monospace;font-size:13px"></div>
