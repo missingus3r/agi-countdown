@@ -1270,6 +1270,9 @@ const models = [
 {name:"Inworld Realtime TTS-2",date:"2026-05-05",company:"Inworld",open:false,intelligence:60,type:"TTS",cat:"audio"},
 {name:"ZAYA1-8B",date:"2026-05-06",company:"Zyphra",open:true,intelligence:78,type:"Reasoning",cat:"reasoning"},
 {name:"Krisp VIVA 2.0",date:"2026-05-06",company:"Krisp",open:false,intelligence:55,type:"ASR",cat:"audio"},
+{name:"GPT-Realtime-2",date:"2026-05-07",company:"OpenAI",open:false,intelligence:78,type:"Multimodal",cat:"audio"},
+{name:"GPT-Realtime-Translate",date:"2026-05-07",company:"OpenAI",open:false,intelligence:70,type:"Multimodal",cat:"audio"},
+{name:"GPT-Realtime-Whisper",date:"2026-05-07",company:"OpenAI",open:false,intelligence:65,type:"ASR",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1834,6 +1837,9 @@ const modelUrls={
 "Inworld Realtime TTS-2":"https://inworld.ai/blog/realtime-tts-2",
 "ZAYA1-8B":"https://www.zyphra.com/post/zaya1-8b",
 "Krisp VIVA 2.0":"https://krisp.ai/blog/viva-2-0-ai-infrastructure-for-voice-ai-agents/",
+"GPT-Realtime-2":"https://www.neowin.net/news/openai-unveils-trio-of-realtime-audio-models-to-power-next-gen-voice-agents/",
+"GPT-Realtime-Translate":"https://www.neowin.net/news/openai-unveils-trio-of-realtime-audio-models-to-power-next-gen-voice-agents/",
+"GPT-Realtime-Whisper":"https://www.neowin.net/news/openai-unveils-trio-of-realtime-audio-models-to-power-next-gen-voice-agents/",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
