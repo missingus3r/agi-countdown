@@ -1273,6 +1273,7 @@ const models = [
 {name:"GPT-Realtime-2",date:"2026-05-07",company:"OpenAI",open:false,intelligence:78,type:"Multimodal",cat:"audio"},
 {name:"GPT-Realtime-Translate",date:"2026-05-07",company:"OpenAI",open:false,intelligence:70,type:"Multimodal",cat:"audio"},
 {name:"GPT-Realtime-Whisper",date:"2026-05-07",company:"OpenAI",open:false,intelligence:65,type:"ASR",cat:"audio"},
+{name:"KAME",date:"2026-05-03",company:"Sakana AI",open:true,intelligence:72,type:"Multimodal",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1840,6 +1841,7 @@ const modelUrls={
 "GPT-Realtime-2":"https://www.neowin.net/news/openai-unveils-trio-of-realtime-audio-models-to-power-next-gen-voice-agents/",
 "GPT-Realtime-Translate":"https://www.neowin.net/news/openai-unveils-trio-of-realtime-audio-models-to-power-next-gen-voice-agents/",
 "GPT-Realtime-Whisper":"https://www.neowin.net/news/openai-unveils-trio-of-realtime-audio-models-to-power-next-gen-voice-agents/",
+"KAME":"https://pub.sakana.ai/kame/",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
