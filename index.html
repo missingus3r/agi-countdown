@@ -1279,6 +1279,9 @@ const models = [
 {name:"Ling-2.6-1T",date:"2026-05-03",company:"Ant Group / InclusionAI",open:true,intelligence:84,type:"LLM",cat:"llm"},
 {name:"Ling-2.6-flash",date:"2026-05-03",company:"Ant Group / InclusionAI",open:true,intelligence:72,type:"LLM",cat:"llm"},
 {name:"Fish Audio S2-Pro",date:"2026-03-09",company:"Fish Audio",open:true,intelligence:78,type:"TTS",cat:"audio"},
+{name:"Fish Audio S1",date:"2025-11-20",company:"Fish Audio",open:true,intelligence:74,type:"TTS",cat:"audio"},
+{name:"Fish Speech 1.5",date:"2025-03-25",company:"Fish Audio",open:true,intelligence:65,type:"TTS",cat:"audio"},
+{name:"Fish Speech 1.4",date:"2024-11-05",company:"Fish Audio",open:true,intelligence:60,type:"TTS",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1851,6 +1854,9 @@ const modelUrls={
 "Ling-2.6-1T":"https://huggingface.co/inclusionAI/Ling-2.6-1T",
 "Ling-2.6-flash":"https://huggingface.co/inclusionAI/Ling-2.6-flash",
 "Fish Audio S2-Pro":"https://fish.audio/blog/fish-audio-open-sources-s2/",
+"Fish Audio S1":"https://fish.audio/blog/introducing-s1/",
+"Fish Speech 1.5":"https://huggingface.co/fishaudio/fish-speech-1.5",
+"Fish Speech 1.4":"https://huggingface.co/fishaudio/fish-speech-1.4",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
