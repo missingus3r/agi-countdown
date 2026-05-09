@@ -1276,6 +1276,8 @@ const models = [
 {name:"GPT-Realtime-Whisper",date:"2026-05-07",company:"OpenAI",open:false,intelligence:65,type:"ASR",cat:"audio"},
 {name:"KAME",date:"2026-05-03",company:"Sakana AI",open:true,intelligence:72,type:"Multimodal",cat:"audio"},
 {name:"Ring-2.6-1T",date:"2026-05-08",company:"Ant Group / InclusionAI",open:true,intelligence:88,type:"Reasoning",cat:"reasoning"},
+{name:"Ling-2.6-1T",date:"2026-05-03",company:"Ant Group / InclusionAI",open:true,intelligence:84,type:"LLM",cat:"llm"},
+{name:"Ling-2.6-flash",date:"2026-05-03",company:"Ant Group / InclusionAI",open:true,intelligence:72,type:"LLM",cat:"llm"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1845,6 +1847,8 @@ const modelUrls={
 "GPT-Realtime-Whisper":"https://www.neowin.net/news/openai-unveils-trio-of-realtime-audio-models-to-power-next-gen-voice-agents/",
 "KAME":"https://pub.sakana.ai/kame/",
 "Ring-2.6-1T":"https://openrouter.ai/inclusionai/ring-2.6-1t",
+"Ling-2.6-1T":"https://huggingface.co/inclusionAI/Ling-2.6-1T",
+"Ling-2.6-flash":"https://huggingface.co/inclusionAI/Ling-2.6-flash",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
