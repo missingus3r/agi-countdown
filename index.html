@@ -1282,6 +1282,12 @@ const models = [
 {name:"Fish Audio S1",date:"2025-11-20",company:"Fish Audio",open:true,intelligence:74,type:"TTS",cat:"audio"},
 {name:"Fish Speech 1.5",date:"2025-03-25",company:"Fish Audio",open:true,intelligence:65,type:"TTS",cat:"audio"},
 {name:"Fish Speech 1.4",date:"2024-11-05",company:"Fish Audio",open:true,intelligence:60,type:"TTS",cat:"audio"},
+{name:"Fish Audio S1-mini",date:"2025-11-20",company:"Fish Audio",open:true,intelligence:68,type:"TTS",cat:"audio"},
+{name:"Fish Speech 1.2-SFT",date:"2024-08-02",company:"Fish Audio",open:true,intelligence:55,type:"TTS",cat:"audio"},
+{name:"Fish Speech 1.2",date:"2024-07-02",company:"Fish Audio",open:true,intelligence:54,type:"TTS",cat:"audio"},
+{name:"Fish Speech 1.0",date:"2024-05-20",company:"Fish Audio",open:true,intelligence:50,type:"TTS",cat:"audio"},
+{name:"Fish Agent v0.1 3B",date:"2024-11-01",company:"Fish Audio",open:true,intelligence:62,type:"Multimodal",cat:"audio"},
+{name:"Fish Speech-LM v1",date:"2024-03-01",company:"Fish Audio",open:true,intelligence:45,type:"TTS",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1857,6 +1863,12 @@ const modelUrls={
 "Fish Audio S1":"https://fish.audio/blog/introducing-s1/",
 "Fish Speech 1.5":"https://huggingface.co/fishaudio/fish-speech-1.5",
 "Fish Speech 1.4":"https://huggingface.co/fishaudio/fish-speech-1.4",
+"Fish Audio S1-mini":"https://huggingface.co/fishaudio/s1-mini",
+"Fish Speech 1.2-SFT":"https://huggingface.co/fishaudio/fish-speech-1.2-sft",
+"Fish Speech 1.2":"https://huggingface.co/fishaudio/fish-speech-1.2",
+"Fish Speech 1.0":"https://huggingface.co/fishaudio/fish-speech-1",
+"Fish Agent v0.1 3B":"https://huggingface.co/fishaudio/fish-agent-v0.1-3b",
+"Fish Speech-LM v1":"https://huggingface.co/fishaudio/speech-lm-v1",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
