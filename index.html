@@ -1077,7 +1077,6 @@ const models = [
   {name:"ACE-Step v1.5",date:"2026-01-28",company:"ACE Studio/StepFun",open:true,intelligence:52,type:"Music Gen",cat:"audio"},
   {name:"Suno v5.5",date:"2026-03-26",company:"Suno",open:false,intelligence:60,type:"Music Gen",cat:"audio"},
   {name:"Pika 2.5",date:"2026-01-26",company:"Pika",open:false,intelligence:55,type:"Diffusion",cat:"video"},
-  {name:"Voyage 4 Large",date:"2026-01-15",company:"Voyage AI/MongoDB",open:false,intelligence:58,type:"LLM",cat:"text"},
   {name:"Interaction Model (276B MoE / 12B active)",date:"2026-05-11",company:"Thinking Machines Lab",open:false,intelligence:82,type:"Multimodal",cat:"multi"},
   {name:"MiniCPM-V 4.6 (1.3B)",date:"2026-05-11",company:"OpenBMB",open:true,intelligence:58,type:"Multimodal",cat:"multi"},
   {name:"LLaVA-UHD v4",date:"2026-05-08",company:"THUNLP/OpenBMB",open:true,intelligence:52,type:"Multimodal",cat:"image"},
@@ -1903,6 +1902,15 @@ const modelUrls={
 "Fish Speech 1.0":"https://huggingface.co/fishaudio/fish-speech-1",
 "Fish Agent v0.1 3B":"https://huggingface.co/fishaudio/fish-agent-v0.1-3b",
 "Fish Speech-LM v1":"https://huggingface.co/fishaudio/speech-lm-v1",
+"Suno v5.5":"https://suno.com/blog/v5-5",
+"Pika 2.5":"https://pikaslabs.com/pika-2.5/",
+"Interaction Model (276B MoE / 12B active)":"https://thinkingmachines.ai/blog/interaction-models/",
+"MiniCPM-V 4.6 (1.3B)":"https://huggingface.co/openbmb/MiniCPM-V-4.6",
+"LLaVA-UHD v4":"https://huggingface.co/papers/2605.08985",
+"MACE-Dance":"https://huggingface.co/papers/2512.18181",
+"GLiGuard (300M)":"https://huggingface.co/fastino/gliguard-LLMGuardrails-300M",
+"Talkie-1930 (13B)":"https://huggingface.co/talkie-lm/talkie-1930-13b-it",
+"Machina Mirabilis (3.3B)":"https://michaelhla.com/blog/machina-mirabilis.html",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
