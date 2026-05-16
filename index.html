@@ -2051,7 +2051,8 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
       {name:"Scale AI Leaderboard",url:"https://labs.scale.com/leaderboard",description:"Enterprise-grade AI evaluation by Scale AI. Comprehensive model comparisons across safety, accuracy, and reasoning."},
       {name:"EQ-Bench",url:"https://eqbench.com/",description:"Emotional intelligence benchmark for LLMs. Tests nuanced understanding of emotions and social dynamics."},
       {name:"UGI Leaderboard",url:"https://ugi-leaderboard.hf.space/",description:"Uncensored General Intelligence leaderboard. Tests model capabilities without safety guardrail constraints."},
-      {name:"LA Leaderboard",url:"https://la-leaderboard.llmservice.net/",description:"LiveArena dynamic leaderboard. Continuously updated model rankings from real-time evaluations."}
+      {name:"LA Leaderboard",url:"https://la-leaderboard.llmservice.net/",description:"LiveArena dynamic leaderboard. Continuously updated model rankings from real-time evaluations."},
+      {name:"ExploitBench",url:"https://exploitbench.ai/",description:"Frontier LLM benchmark on V8 exploit synthesis. 16 capabilities per run, multi-round shuffled-layout grading — measures how far up the exploitation ladder an agent can climb on a production JS engine."}
     ];
     result={ok:true,endpoint:'v1/benchmarks',total:data.length,data};
   } else if(api==='v1/projects'||api==='v1/projects/'){
@@ -2951,6 +2952,16 @@ function renderArcTab(){
         </div>
         <div class="ic-desc">Language Agent leaderboard evaluating LLMs on agentic tasks, tool use, and multi-step reasoning capabilities.</div>
         <div class="ic-link">LA-Leaderboard (HuggingFace) →</div>
+      </div></a>
+      <a href="https://exploitbench.ai/" target="_blank" rel="noopener" style="text-decoration:none">
+      <div class="info-card">
+        <div style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;height:120px;background:linear-gradient(135deg,#2a0a0a,#401818);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#ef4444;letter-spacing:1px">ExploitBench</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <img src="https://www.google.com/s2/favicons?domain=exploitbench.ai&sz=32" width="20" height="20" style="border-radius:3px">
+          <div class="ic-title">ExploitBench</div>
+        </div>
+        <div class="ic-desc">Frontier LLM benchmark on V8 exploit synthesis. Measures how far up the exploitation ladder an agent can climb on a production JS engine — 16 capabilities per run, multi-round shuffled-layout grading.</div>
+        <div class="ic-link">exploitbench.ai →</div>
       </div></a>
     </div>
   </div>
