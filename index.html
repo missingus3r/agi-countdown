@@ -540,6 +540,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
     <button class="tab-btn" data-tab="tab-platforms">Platforms</button>
     <button class="tab-btn" data-tab="tab-companies">Companies</button>
     <button class="tab-btn" data-tab="tab-robotics">Robotics<span class="tab-new-badge">NEW</span></button>
+    <button class="tab-btn" data-tab="tab-glasses">Smart Glasses<span class="tab-new-badge">NEW</span></button>
     <button class="tab-btn" data-tab="tab-pricing">Pricing</button>
     <button class="tab-btn" data-tab="tab-api">API</button>
     <button class="tab-btn" data-tab="tab-contact">Contact</button>
@@ -702,6 +703,15 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
     <h2 id="roboticsTitle">🤖 Robotics</h2>
     <p class="sub" id="roboticsSub">Empresas y modelos de robots humanoides, manos dextrasas y plataformas robóticas relevantes.</p>
     <div class="robot-grid" id="roboticsGrid"></div>
+  </div>
+</div>
+
+<!-- ==================== SMART GLASSES TAB ==================== -->
+<div class="tab-panel" id="tab-glasses">
+  <div class="info-page">
+    <h2 id="glassesTitle">🕶️ Smart Glasses</h2>
+    <p class="sub" id="glassesSub">Lentes inteligentes y AR: HUD, waveguide, AI on-device, AR display y wearables productivos.</p>
+    <div class="robot-grid" id="glassesGrid"></div>
   </div>
 </div>
 
@@ -2147,7 +2157,7 @@ const i18n={
     footer:"* Estimated intelligence (0\u2013100), relative to state of the art in March 2026. Based on public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Diffusion models rated by generation quality and prompt adherence. Not absolute metrics.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
-    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",robotics:"Robotics",pricing:"Pricing",api:"API",contact:"Contact"},
+    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",robotics:"Robotics",glasses:"Smart Glasses",pricing:"Pricing",api:"API",contact:"Contact"},
     pricing:{title:"AI Pricing",sub:"Unified view of token, image, video and audio costs across providers. Sorted from cheapest to most expensive within each category. Click a model name to open its official pricing page.",calc_title:"Cost calculator",calc_in:"Input tokens / call",calc_out:"Output tokens / call",calc_calls:"Calls per month",calc_help:"Estimate ranks LLMs only (per-1M-token models). Other categories (image/video/audio) shown below as-is.",cat_llm:"LLM / Reasoning",cat_embed:"Embeddings",cat_image:"Image generation",cat_video:"Video generation",cat_audio:"Audio / TTS / STT",verified:"verified",approx:"approx",per_image:"img",per_second:"sec",per_chars:"chars",per_minute:"min",plan_based:"plan-based — see provider page",disclaimer:"Prices in USD, last verified May 2026. Rates change frequently — always confirm on the provider page (link on each card). Open-weight models marked free can be self-hosted (Ollama/vLLM) or run via aggregators like Together/Fireworks at the listed rates."},
     upcoming:"UPCOMING",
     contact:{title:"Contact",sub:"Get in touch",ghDesc:"Source code, issues, and contributions.",emailDesc:"Questions, suggestions, or feedback."},
@@ -3728,6 +3738,36 @@ const roboticsData=[
   {name:"ORCA Dexterity Hands",company:"ORCA",domain:"github.com",type:"Manos open-source",desc:"Tres manos robóticas open-source liberadas en simultáneo. Foco en accesibilidad y manipulación de research.",url:"https://github.com/orcadexterity",img:"https://opengraph.githubassets.com/1/orcadexterity"},
   {name:"MOTOROiD2",company:"Yamaha",domain:"yamaha-motor.com",type:"Vehículo auto-balance",desc:"Concept de motocicleta autónoma con IA: se balancea sola sin apoyo, reconoce al conductor y responde por gestos.",url:"https://global.yamaha-motor.com/showroom/cp/collection/motoroid2/",img:"https://img.youtube.com/vi/qzKngF82Bm4/hqdefault.jpg"}
 ];
+const smartGlassesData=[
+  {name:"Mira Glasses",company:"Mira",domain:"trymira.com",type:"AI · HUD waveguide",desc:"Dual waveguide, sin cámara, 60+ idiomas, AI 'Second Brain' que escucha el día. 10 h batería. USD 649 / 799 con prescripción.",url:"https://trymira.com",img:"https://trymira.com/cdn/shop/files/MIRA-Glasses-Hero.png"},
+  {name:"Even G1",company:"Even Realities",domain:"evenrealities.com",type:"HUD micro-OLED",desc:"45-50 g, micro-OLED verde via waveguide, sin cámara. Teleprompt, traducción 13 idiomas, navegación, ChatGPT. USD 599.",url:"https://www.evenrealities.com/g1",img:"https://cdn.shopify.com/s/files/1/0700/0470/8253/files/G1.jpg"},
+  {name:"Rokid AR Spatial",company:"Rokid",domain:"rokid.com",type:"AR spatial computing",desc:"Rokid Max 2 (75 g, 50° FoV, 1080p-1200p, 600 nits) + Station 2 (Snapdragon 6 Gen 1, YodaOS-Master). USD 749.",url:"https://global.rokid.com/products/rokid-ar-spatial",img:"https://global.rokid.com/cdn/shop/files/AR-Spatial.jpg"},
+  {name:"XREAL One Pro",company:"XREAL",domain:"xreal.com",type:"AR display tethered",desc:"57° FoV — el más amplio del mercado. Reemplaza setups multi-monitor. Project Aura corre Android XR (2026).",url:"https://www.xreal.com",img:"https://www.xreal.com/static/images/one-pro.jpg"},
+  {name:"Ray-Ban Meta Display",company:"Meta + EssilorLuxottica",domain:"meta.com",type:"AI + in-lens display",desc:"Primer Ray-Ban Meta con display in-lens. Cámara 12MP ultra-wide, parlantes open-ear, Meta AI. Desde USD 499 con prescripción.",url:"https://www.meta.com/ai-glasses/",img:"https://about.fb.com/wp-content/uploads/2026/03/Meta-AI-Glasses-Prescription.jpg"},
+  {name:"Android XR Glasses",company:"Google",domain:"android.com",type:"Android XR · Gemini",desc:"Gemini 2.5 Pro + Project Astra. Parters Warby Parker + Gentle Monster. Lanzamiento screen-less primero, monocular display después. 2026.",url:"https://www.android.com/xr/",img:"https://www.gstatic.com/android/xr/og-image.jpg"},
+  {name:"Brilliant Halo",company:"Brilliant Labs",domain:"brilliant.xyz",type:"AI monocular microLED",desc:"USD 349. microLED 0.2\" full-color 20° FoV en lente derecha. Procesador Alif B1 + NPU, ZephyrOS, AI agent 'Noa' con memoria Narrative.",url:"https://brilliant.xyz",img:"https://brilliant.xyz/cdn/shop/files/halo-hero.jpg"},
+  {name:"Halliday DigiWindow",company:"Halliday",domain:"hallidayglobal.com",type:"HUD invisible 'DigiWindow'",desc:"28.5 g, 12 h batería. Display 3.6 mm (sensación de 3.5\") invisible al exterior. Traducción 40 idiomas, notificaciones, nav. USD 489.",url:"https://hallidayglobal.com",img:"https://hallidayglobal.com/cdn/shop/files/halliday-glasses.jpg"},
+  {name:"Solos AirGo V",company:"Solos",domain:"solos.com",type:"AI audio + visión",desc:"Cámaras + GPT-4 vision, sin display. Battery 10+ h (líder del segmento). Asistente conversacional como Ray-Ban Meta pero más liviano.",url:"https://www.solos.com",img:"https://www.solos.com/cdn/shop/files/AirGo-V.jpg"},
+  {name:"Snap Spectacles 5",company:"Snap Inc.",domain:"spectacles.com",type:"AR dev kit",desc:"Lentes AR con overlay holográfico, dual displays. Programa de desarrolladores para AR Lens Studio. Solo dev kit, no consumer.",url:"https://www.spectacles.com",img:"https://www.spectacles.com/static/images/spectacles-5.jpg"}
+];
+function renderGlassesTab(){
+  const grid=document.getElementById('glassesGrid');
+  if(!grid)return;
+  grid.innerHTML=smartGlassesData.map(r=>{
+    const initial=r.name.slice(0,2).toUpperCase();
+    const fav=`https://www.google.com/s2/favicons?domain=${r.domain}&sz=32`;
+    return `<div class="robot-card">
+      <div class="thumb"><img src="${r.img}" alt="${r.name}" onerror="this.style.display='none';this.parentNode.querySelector('.fallback').style.display='flex'"><div class="fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center">${initial}</div></div>
+      <div class="body">
+        <h3>${r.name}</h3>
+        <div class="company"><img class="fav" src="${fav}" alt="" onerror="this.style.display='none'">${r.company}</div>
+        <div class="type">${r.type}</div>
+        <div class="desc">${r.desc}</div>
+        <a class="link" href="${r.url}" target="_blank" rel="noopener">→ Página oficial</a>
+      </div>
+    </div>`;
+  }).join('');
+}
 function renderRoboticsTab(){
   const grid=document.getElementById('roboticsGrid');
   if(!grid)return;
@@ -3836,6 +3876,7 @@ function applyLang(){
   document.querySelector('[data-tab="tab-platforms"]').textContent=tabs.platforms||'Platforms';
   document.querySelector('[data-tab="tab-companies"]').textContent=tabs.companies||'Companies';
   const robBtn=document.querySelector('[data-tab="tab-robotics"]');if(robBtn)robBtn.innerHTML=(tabs.robotics||'Robotics')+'<span class="tab-new-badge">NEW</span>';
+  const glBtn=document.querySelector('[data-tab="tab-glasses"]');if(glBtn)glBtn.innerHTML=(tabs.glasses||'Smart Glasses')+'<span class="tab-new-badge">NEW</span>';
   const pricingBtn=document.querySelector('[data-tab="tab-pricing"]');if(pricingBtn)pricingBtn.textContent=tabs.pricing||'Pricing';
   document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
   document.querySelector('[data-tab="tab-contact"]').textContent=tabs.contact||'Contact';
@@ -3874,6 +3915,7 @@ function applyLang(){
   renderPlatformsTab();
   renderCompaniesTab();
   renderRoboticsTab();
+  renderGlassesTab();
   renderPricingTab();
   renderApiTab();
   makeCollapsible(document.getElementById('tab-arc'),'colArc');
