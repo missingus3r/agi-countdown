@@ -1313,6 +1313,8 @@ const models = [
 {name:"Fish Speech 1.0",date:"2024-05-20",company:"Fish Audio",open:true,intelligence:50,type:"TTS",cat:"audio"},
 {name:"Fish Agent v0.1 3B",date:"2024-11-01",company:"Fish Audio",open:true,intelligence:62,type:"Multimodal",cat:"audio"},
 {name:"Fish Speech-LM v1",date:"2024-03-01",company:"Fish Audio",open:true,intelligence:45,type:"TTS",cat:"audio"},
+{name:"Gemini 3.5 Flash",date:"2026-05-19",company:"Google",open:false,intelligence:78,type:"LLM",cat:"multi"},
+{name:"Gemini Omni",date:"2026-05-19",company:"Google",open:false,intelligence:90,type:"Multimodal",cat:"multi"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1547,6 +1549,8 @@ const modelUrls={
 "MiniMax M2.5":"https://www.minimax.io/",
 "Gemini 3 Deep Think":"https://blog.google/products/gemini/gemini-3/",
 "Gemini 3.1 Flash-Lite":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/",
+"Gemini 3.5 Flash":"https://blog.google/products/gemini/",
+"Gemini Omni":"https://blog.google/products/gemini/",
 "Qwen 3.5 Flash":"https://qwen.ai/blog?id=qwen3.5",
 "Mercury Coder (dLLM)":"https://www.inceptionlabs.ai/",
 "Mercury 2 (dLLM)":"https://www.inceptionlabs.ai/",
@@ -3973,7 +3977,7 @@ renderUpcoming();
 // AGI Countdown Timer — average of estimates: Metaculus Weak AGI Mar 2028, Full AGI ~2032,
 // plus external sites avg ~mid 2029. Overall average: ~Jan 2030
 (function(){
-  const targetDate=new Date('2030-01-15T00:00:00Z').getTime();
+  const targetDate=new Date('2031-01-15T00:00:00Z').getTime();
   function update(){
     const now=Date.now(),diff=targetDate-now;
     if(diff<=0){document.getElementById('cdYears').textContent='00';document.getElementById('cdDays').textContent='000';document.getElementById('cdHours').textContent='00';document.getElementById('cdMins').textContent='00';document.getElementById('cdSecs').textContent='00';return}
