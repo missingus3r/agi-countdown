@@ -278,6 +278,22 @@ html.light .badge-fresh{background:rgba(245,158,11,0.18);color:#b45309}
 .tab-nav{display:flex;gap:4px;max-width:1280px;margin:0 auto;padding:0 24px;overflow-x:auto;scrollbar-width:none}
 .tab-nav::-webkit-scrollbar{display:none}
 .tab-btn{padding:12px 20px;font-family:'Inter',system-ui,sans-serif;font-size:13px;font-weight:500;cursor:pointer;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--t-dim);transition:all var(--transition-normal);white-space:nowrap;letter-spacing:0.2px;position:relative}
+.tab-new-badge{display:inline-block;background:#ef4444;color:#fff;font-size:9px;font-weight:700;padding:2px 5px;border-radius:3px;margin-left:6px;vertical-align:middle;letter-spacing:0.5px;animation:newPulse 2s ease-in-out infinite}
+@keyframes newPulse{0%,100%{opacity:1}50%{opacity:0.7}}
+.robot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin:20px 0}
+.robot-card{background:rgba(255,255,255,0.02);border:1px solid var(--bd-sub);border-radius:var(--radius-md);overflow:hidden;transition:all .2s;display:flex;flex-direction:column}
+.robot-card:hover{border-color:var(--accent-blue);transform:translateY(-2px)}
+.robot-card .thumb{width:100%;height:160px;background:linear-gradient(135deg,rgba(107,138,255,0.08),rgba(168,120,212,0.06));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.robot-card .thumb img{width:100%;height:100%;object-fit:cover}
+.robot-card .thumb .fallback{font-family:'IBM Plex Mono',monospace;font-size:32px;color:var(--t-faint);font-weight:700}
+.robot-card .body{padding:14px;flex:1;display:flex;flex-direction:column}
+.robot-card h3{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:700;color:var(--t-max);margin:0 0 6px}
+.robot-card .company{font-size:11px;color:var(--t-dim);margin-bottom:6px;display:flex;gap:6px;align-items:center}
+.robot-card .company img.fav{width:14px;height:14px;border-radius:2px}
+.robot-card .type{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--accent-gold);text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px}
+.robot-card .desc{font-size:12px;color:var(--t-soft);line-height:1.45;margin-bottom:10px;flex:1}
+.robot-card a.link{font-size:11px;color:var(--accent-blue);text-decoration:none;font-family:'IBM Plex Mono',monospace;display:inline-block}
+.robot-card a.link:hover{text-decoration:underline}
 .tab-btn.active{color:var(--accent-blue);border-bottom-color:var(--accent-blue)}
 .tab-btn:hover{color:var(--t-max);background:rgba(107,138,255,0.04);border-radius:var(--radius-sm) var(--radius-sm) 0 0}
 .tab-btn:active{transform:scale(0.97)}
@@ -523,6 +539,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
     <button class="tab-btn" data-tab="tab-countdown">Countdown</button>
     <button class="tab-btn" data-tab="tab-platforms">Platforms</button>
     <button class="tab-btn" data-tab="tab-companies">Companies</button>
+    <button class="tab-btn" data-tab="tab-robotics">Robotics<span class="tab-new-badge">NEW</span></button>
     <button class="tab-btn" data-tab="tab-pricing">Pricing</button>
     <button class="tab-btn" data-tab="tab-api">API</button>
     <button class="tab-btn" data-tab="tab-contact">Contact</button>
@@ -678,6 +695,15 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
 
 <!-- ==================== COMPANIES TAB ==================== -->
 <div class="tab-panel" id="tab-companies"></div>
+
+<!-- ==================== ROBOTICS TAB ==================== -->
+<div class="tab-panel" id="tab-robotics">
+  <div class="info-page">
+    <h2 id="roboticsTitle">🤖 Robotics</h2>
+    <p class="sub" id="roboticsSub">Empresas y modelos de robots humanoides, manos dextrasas y plataformas robóticas relevantes.</p>
+    <div class="robot-grid" id="roboticsGrid"></div>
+  </div>
+</div>
 
 <!-- ==================== API TAB ==================== -->
 <div class="tab-panel" id="tab-pricing"></div>
@@ -2121,7 +2147,7 @@ const i18n={
     footer:"* Estimated intelligence (0\u2013100), relative to state of the art in March 2026. Based on public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Diffusion models rated by generation quality and prompt adherence. Not absolute metrics.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
-    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",pricing:"Pricing",api:"API",contact:"Contact"},
+    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",robotics:"Robotics",pricing:"Pricing",api:"API",contact:"Contact"},
     pricing:{title:"AI Pricing",sub:"Unified view of token, image, video and audio costs across providers. Sorted from cheapest to most expensive within each category. Click a model name to open its official pricing page.",calc_title:"Cost calculator",calc_in:"Input tokens / call",calc_out:"Output tokens / call",calc_calls:"Calls per month",calc_help:"Estimate ranks LLMs only (per-1M-token models). Other categories (image/video/audio) shown below as-is.",cat_llm:"LLM / Reasoning",cat_embed:"Embeddings",cat_image:"Image generation",cat_video:"Video generation",cat_audio:"Audio / TTS / STT",verified:"verified",approx:"approx",per_image:"img",per_second:"sec",per_chars:"chars",per_minute:"min",plan_based:"plan-based — see provider page",disclaimer:"Prices in USD, last verified May 2026. Rates change frequently — always confirm on the provider page (link on each card). Open-weight models marked free can be self-hosted (Ollama/vLLM) or run via aggregators like Together/Fireworks at the listed rates."},
     upcoming:"UPCOMING",
     contact:{title:"Contact",sub:"Get in touch",ghDesc:"Source code, issues, and contributions.",emailDesc:"Questions, suggestions, or feedback."},
@@ -3687,6 +3713,39 @@ function pricingCardHtml(m,labels){
   </div>`;
 }
 
+const roboticsData=[
+  {name:"Atlas",company:"Boston Dynamics",domain:"bostondynamics.com",type:"Humanoide bípedo",desc:"Robot bípedo de Boston Dynamics. Acrobacias, manipulación y navegación dinámica. Generación 2026 totalmente eléctrica.",url:"https://bostondynamics.com/atlas/",img:"https://img.youtube.com/vi/3aQWvdCac9o/hqdefault.jpg"},
+  {name:"Unitree H2",company:"Unitree Robotics",domain:"unitree.com",type:"Humanoide bípedo",desc:"1.80 m · 70 kg · 31 DOF · 2070 TOPS · USD 29.900 base. Primer Unitree con cara biónica.",url:"https://shop.unitree.com/products/unitree-h2",img:"https://img.youtube.com/vi/_3T0e0u-7Wg/hqdefault.jpg"},
+  {name:"XPeng Iron",company:"XPeng",domain:"xpeng.com",type:"Humanoide bípedo",desc:"1.73 m · 70 kg · 82 DOF · 2250 TOPS · all-solid-state battery. Mass production fin de 2026.",url:"https://www.xpeng.com/news/xpeng-iron-humanoid-robot",img:"https://www.xpeng.com/file/news/poster/2025/8d68077b39ba9367040af1c4a2bc8b96.webp"},
+  {name:"Origin F1",company:"AheadForm",domain:"aheadform.com",type:"Cabeza biónica",desc:"Cabeza ultra-realista: 25 micromotores, cameras RGB en pupilas, skin de silicona médica, expresiones lifelike.",url:"https://aheadform.com",img:"https://img.youtube.com/vi/p7mGVH0XWnU/hqdefault.jpg"},
+  {name:"Memo",company:"Sunday Robotics",domain:"sunday.ai",type:"Robot doméstico (rodante)",desc:"Sin piernas, sobre ruedas, manos Lego, foundation model ACT-1. Lava platos, ordena. Sunday vale $1.15B (Coatue + Tiger).",url:"https://www.sunday.ai",img:"https://img.youtube.com/vi/zd2cuPyOlPM/hqdefault.jpg"},
+  {name:"GENE",company:"Genesis AI",domain:"genesis.ai",type:"Humanoide + World Model",desc:"Plataforma robótica con world model entrenado en simulación, capaz de operación autónoma a 1x speed.",url:"https://www.genesis.ai",img:"https://img.youtube.com/vi/6K_bGH54ltI/hqdefault.jpg"},
+  {name:"Figure 03 (BotQ)",company:"Figure AI",domain:"figure.ai",type:"Humanoide industrial",desc:"Ramp-up de línea de producción F.03 en BotQ (planta propia de Figure). Foco en logística + manufactura.",url:"https://www.figure.ai",img:"https://www.figure.ai/static/images/og-image.png"},
+  {name:"Neo",company:"1X Technologies",domain:"1x.tech",type:"Humanoide doméstico",desc:"Humanoide bípedo amigable para el hogar; foco en seguridad y operación autónoma. Sucesor de EVE.",url:"https://www.1x.tech",img:"https://www.1x.tech/_next/static/media/neo-hero.opengraph.jpg"},
+  {name:"Asimov v1",company:"Asimov Inc",domain:"github.com",type:"Humanoide open-source",desc:"1.20 m · 35 kg · 25+2 DoF · teleops + AI agents + Digital Twin. Open-source.",url:"https://github.com/asimovinc",img:"https://opengraph.githubassets.com/1/asimovinc"},
+  {name:"KAIST Humanoid v0.7",company:"KAIST",domain:"kaist.ac.kr",type:"Humanoide research",desc:"Plataforma de research KAIST. Field test + interaction demo (acrobacias y navegación en campo abierto).",url:"https://www.kaist.ac.kr/en/",img:"https://img.youtube.com/vi/Cse78w_KGq0/hqdefault.jpg"},
+  {name:"Xynova Flex 2",company:"Xynova",domain:"xynova.com.cn",type:"Mano dextrasa",desc:"23 DOF · 400 g · ±0.1 mm repetibilidad · 0.05 N · 12 kg de carga. Xiaomi Strategic en cap table. 2da gen híbrida.",url:"https://www.xynova.com.cn/en",img:"https://img.youtube.com/vi/hnp9my-bKm4/hqdefault.jpg"},
+  {name:"ORCA Dexterity Hands",company:"ORCA",domain:"github.com",type:"Manos open-source",desc:"Tres manos robóticas open-source liberadas en simultáneo. Foco en accesibilidad y manipulación de research.",url:"https://github.com/orcadexterity",img:"https://opengraph.githubassets.com/1/orcadexterity"},
+  {name:"MOTOROiD2",company:"Yamaha",domain:"yamaha-motor.com",type:"Vehículo auto-balance",desc:"Concept de motocicleta autónoma con IA: se balancea sola sin apoyo, reconoce al conductor y responde por gestos.",url:"https://global.yamaha-motor.com/showroom/cp/collection/motoroid2/",img:"https://img.youtube.com/vi/qzKngF82Bm4/hqdefault.jpg"}
+];
+function renderRoboticsTab(){
+  const grid=document.getElementById('roboticsGrid');
+  if(!grid)return;
+  grid.innerHTML=roboticsData.map(r=>{
+    const initial=r.name.slice(0,2).toUpperCase();
+    const fav=`https://www.google.com/s2/favicons?domain=${r.domain}&sz=32`;
+    return `<div class="robot-card">
+      <div class="thumb"><img src="${r.img}" alt="${r.name}" onerror="this.style.display='none';this.parentNode.querySelector('.fallback').style.display='flex'"><div class="fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center">${initial}</div></div>
+      <div class="body">
+        <h3>${r.name}</h3>
+        <div class="company"><img class="fav" src="${fav}" alt="" onerror="this.style.display='none'">${r.company}</div>
+        <div class="type">${r.type}</div>
+        <div class="desc">${r.desc}</div>
+        <a class="link" href="${r.url}" target="_blank" rel="noopener">→ Página oficial</a>
+      </div>
+    </div>`;
+  }).join('');
+}
 function renderPricingTab(){
   const pt=t('pricing');
   const labels={verified:pt.verified,approx:pt.approx,per_image:pt.per_image,per_second:pt.per_second,per_chars:pt.per_chars,per_minute:pt.per_minute,plan_based:pt.plan_based};
@@ -3776,6 +3835,7 @@ function applyLang(){
   document.querySelector('[data-tab="tab-countdown"]').textContent=tabs.countdown||'Countdown';
   document.querySelector('[data-tab="tab-platforms"]').textContent=tabs.platforms||'Platforms';
   document.querySelector('[data-tab="tab-companies"]').textContent=tabs.companies||'Companies';
+  const robBtn=document.querySelector('[data-tab="tab-robotics"]');if(robBtn)robBtn.innerHTML=(tabs.robotics||'Robotics')+'<span class="tab-new-badge">NEW</span>';
   const pricingBtn=document.querySelector('[data-tab="tab-pricing"]');if(pricingBtn)pricingBtn.textContent=tabs.pricing||'Pricing';
   document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
   document.querySelector('[data-tab="tab-contact"]').textContent=tabs.contact||'Contact';
@@ -3813,6 +3873,7 @@ function applyLang(){
   renderMetaTab();
   renderPlatformsTab();
   renderCompaniesTab();
+  renderRoboticsTab();
   renderPricingTab();
   renderApiTab();
   makeCollapsible(document.getElementById('tab-arc'),'colArc');
