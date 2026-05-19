@@ -574,7 +574,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
     <div class="cd-based" id="cdBasedOn">Based on the average of Metaculus community forecasts (Weak AGI ~Mar 2028, Full AGI ~2032) and estimates from similar countdown/forecast projects.</div>
     <div class="cd-meta">
       <span id="cdLastAdjust">Last adjusted: 2026-05-19</span>
-      <span id="cdShift" style="color:#34d399">No change since last review</span>
+      <span id="cdShift" data-shifted="true" style="color:#fbbf24">Δ +12 months (2030-01 → 2031-01)</span>
     </div>
   </div>
 
@@ -2120,6 +2120,7 @@ const i18n={
       basedOn:"Based on the average of Metaculus community forecasts (Weak AGI ~Mar 2028, Full AGI ~2032) and estimates from similar countdown/forecast projects.",
       lastAdjust:"Last adjusted",
       noChange:"No change since last review",
+      shift:"Δ +12 months (2030-01 → 2031-01)",
       sp:{aicountdown:"Countdown timer estimating when AGI might arrive, based on speculative timelines and community predictions.",asi:"Countdown to Artificial Superintelligence (ASI) — speculative estimates for when AI surpasses all human cognitive abilities.",ai2027:"Speculative scenario exploring the AI race toward 2027, depicting how geopolitical competition and rapid capability gains could unfold.",timeline:"Collaborative timeline of AI milestones and predictions, tracking progress toward artificial general intelligence.",doomsday:"A pessimistic take on AI risk, estimating when AI could pose existential threats. Uses speculative risk models and expert survey data.",lifearch:"Dr. Alan D. Thompson's comprehensive AGI tracking page with model comparisons, benchmarks, and progress estimates toward general intelligence.",cdasi:"Another community-driven countdown to Artificial Superintelligence with estimated timelines and milestone tracking.",goodheart:"Aggregated AGI forecasts from Metaculus, Manifold Markets, and Kalshi. Central estimate with confidence intervals, updated in real-time."}
     },
     arc:{
@@ -2208,6 +2209,7 @@ const i18n={
       basedOn:"Basado en el promedio de los pronósticos de la comunidad Metaculus (AGI Débil ~Mar 2028, AGI Completa ~2032) y estimaciones de proyectos similares de countdown.",
       lastAdjust:"Último ajuste",
       noChange:"Sin cambios desde la última revisión",
+      shift:"Δ +12 meses (2030-01 → 2031-01)",
       sp:{aicountdown:"Temporizador de cuenta regresiva estimando cuándo podría llegar la AGI, basado en líneas de tiempo especulativas y predicciones comunitarias.",asi:"Cuenta regresiva hacia la Superinteligencia Artificial (ASI) — estimaciones especulativas de cuándo la IA superará todas las capacidades cognitivas humanas.",ai2027:"Escenario especulativo explorando la carrera de IA hacia 2027, mostrando cómo la competencia geopolítica y los avances rápidos podrían desarrollarse.",timeline:"Línea de tiempo colaborativa de hitos de IA y predicciones, rastreando el progreso hacia la inteligencia artificial general.",doomsday:"Una visión pesimista del riesgo de IA, estimando cuándo la IA podría representar amenazas existenciales. Usa modelos especulativos de riesgo y datos de encuestas a expertos.",lifearch:"Página de seguimiento de AGI del Dr. Alan D. Thompson con comparaciones de modelos, benchmarks y estimaciones de progreso hacia la inteligencia general.",cdasi:"Otra cuenta regresiva comunitaria hacia la Superinteligencia Artificial con líneas de tiempo estimadas y seguimiento de hitos.",goodheart:"Pronósticos agregados de AGI de Metaculus, Manifold Markets y Kalshi. Estimación central con intervalos de confianza, actualizado en tiempo real."}
     },
     arc:{
@@ -2296,6 +2298,7 @@ const i18n={
       basedOn:"Baseado na média das previsões da comunidade Metaculus (AGI Fraca ~Mar 2028, AGI Completa ~2032) e estimativas de projetos similares de countdown.",
       lastAdjust:"Último ajuste",
       noChange:"Sem alterações desde a última revisão",
+      shift:"Δ +12 meses (2030-01 → 2031-01)",
       sp:{aicountdown:"Temporizador de contagem regressiva estimando quando a AGI pode chegar, baseado em linhas do tempo especulativas e previsões comunitárias.",asi:"Contagem regressiva para a Superinteligência Artificial (ASI) — estimativas especulativas de quando a IA superará todas as capacidades cognitivas humanas.",ai2027:"Cenário especulativo explorando a corrida da IA rumo a 2027, mostrando como a competição geopolítica e avanços rápidos poderiam se desenrolar.",timeline:"Linha do tempo colaborativa de marcos de IA e previsões, acompanhando o progresso rumo à inteligência artificial geral.",doomsday:"Uma visão pessimista do risco da IA, estimando quando a IA poderia representar ameaças existenciais. Usa modelos especulativos de risco e dados de pesquisas com especialistas.",lifearch:"Página de acompanhamento de AGI do Dr. Alan D. Thompson com comparações de modelos, benchmarks e estimativas de progresso rumo à inteligência geral.",cdasi:"Outra contagem regressiva comunitária para a Superinteligência Artificial com linhas do tempo estimadas e acompanhamento de marcos.",goodheart:"Previsões agregadas de AGI do Metaculus, Manifold Markets e Kalshi. Estimativa central com intervalos de confiança, atualizado em tempo real."}
     },
     arc:{
@@ -3777,7 +3780,7 @@ function applyLang(){
     const laEl=document.getElementById('cdLastAdjust');
     if(laEl){const d=laEl.textContent.match(/\d{4}-\d{2}-\d{2}/);if(d)laEl.textContent=cd.lastAdjust+': '+d[0]}
     const shEl=document.getElementById('cdShift');
-    if(shEl&&!shEl.dataset.shifted)shEl.textContent=cd.noChange;
+    if(shEl){if(shEl.dataset.shifted&&cd.shift)shEl.textContent=cd.shift;else if(!shEl.dataset.shifted)shEl.textContent=cd.noChange;}
     const scEl=document.getElementById('similarCount');
     if(scEl){const cards=document.getElementById('tab-countdown');if(cards)scEl.textContent=cards.querySelectorAll('.info-cards .info-card').length;}
     if(cd.sp){Object.keys(cd.sp).forEach(k=>{const e=el('spDesc-'+k);if(e)e.textContent=cd.sp[k]})}
