@@ -700,7 +700,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
 <!-- ==================== ROBOTICS TAB ==================== -->
 <div class="tab-panel" id="tab-robotics">
   <div class="info-page">
-    <h2 id="roboticsTitle">🤖 Robotics</h2>
+    <h2 id="roboticsTitle">Robotics</h2>
     <p class="sub" id="roboticsSub">Empresas y modelos de robots humanoides, manos dextrasas y plataformas robóticas relevantes.</p>
     <div class="robot-grid" id="roboticsGrid"></div>
   </div>
@@ -709,7 +709,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
 <!-- ==================== SMART GLASSES TAB ==================== -->
 <div class="tab-panel" id="tab-glasses">
   <div class="info-page">
-    <h2 id="glassesTitle">🕶️ Smart Glasses</h2>
+    <h2 id="glassesTitle">Smart Glasses</h2>
     <p class="sub" id="glassesSub">Lentes inteligentes y AR: HUD, waveguide, AI on-device, AR display y wearables productivos.</p>
     <div class="robot-grid" id="glassesGrid"></div>
   </div>
@@ -2158,6 +2158,8 @@ const i18n={
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
     tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",robotics:"Robotics",glasses:"Smart Glasses",pricing:"Pricing",api:"API",contact:"Contact"},
+    robotics:{title:"Robotics",sub:"Companies and models of humanoid robots, dexterous hands and relevant robotic platforms.",link:"→ Official page"},
+    glasses:{title:"Smart Glasses",sub:"Smart and AR glasses: HUD, waveguide, on-device AI, AR display and productive wearables.",link:"→ Official page"},
     pricing:{title:"AI Pricing",sub:"Unified view of token, image, video and audio costs across providers. Sorted from cheapest to most expensive within each category. Click a model name to open its official pricing page.",calc_title:"Cost calculator",calc_in:"Input tokens / call",calc_out:"Output tokens / call",calc_calls:"Calls per month",calc_help:"Estimate ranks LLMs only (per-1M-token models). Other categories (image/video/audio) shown below as-is.",cat_llm:"LLM / Reasoning",cat_embed:"Embeddings",cat_image:"Image generation",cat_video:"Video generation",cat_audio:"Audio / TTS / STT",verified:"verified",approx:"approx",per_image:"img",per_second:"sec",per_chars:"chars",per_minute:"min",plan_based:"plan-based — see provider page",disclaimer:"Prices in USD, last verified May 2026. Rates change frequently — always confirm on the provider page (link on each card). Open-weight models marked free can be self-hosted (Ollama/vLLM) or run via aggregators like Together/Fireworks at the listed rates."},
     upcoming:"UPCOMING",
     contact:{title:"Contact",sub:"Get in touch",ghDesc:"Source code, issues, and contributions.",emailDesc:"Questions, suggestions, or feedback."},
@@ -2246,7 +2248,9 @@ const i18n={
     footer:"* Inteligencia estimada (0\u2013100), relativa al estado del arte en marzo 2026. Basado en benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opiniones de expertos y posicionamiento de mercado. Modelos de difusi\u00f3n evaluados por calidad de generaci\u00f3n y adherencia a prompts. No son m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tendencia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 ventana \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"es-UY",
-    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",pricing:"Precios",api:"API",contact:"Contacto"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",robotics:"Robótica",glasses:"Smart Glasses",pricing:"Precios",api:"API",contact:"Contacto"},
+    robotics:{title:"Robótica",sub:"Empresas y modelos de robots humanoides, manos dextrasas y plataformas robóticas relevantes.",link:"→ Página oficial"},
+    glasses:{title:"Smart Glasses",sub:"Lentes inteligentes y AR: HUD, waveguide, AI on-device, AR display y wearables productivos.",link:"→ Página oficial"},
     pricing:{title:"Precios de IA",sub:"Vista unificada de costos de tokens, imagen, video y audio por proveedor. Ordenado de más barato a más caro dentro de cada categoría. Click en el nombre del modelo abre su página oficial de precios.",calc_title:"Calculadora de costos",calc_in:"Tokens entrada / llamada",calc_out:"Tokens salida / llamada",calc_calls:"Llamadas por mes",calc_help:"El ranking compara solo LLMs (precio por 1M tokens). Las otras categorías (imagen/video/audio) se muestran abajo tal cual.",cat_llm:"LLM / Razonamiento",cat_embed:"Embeddings",cat_image:"Generación de imagen",cat_video:"Generación de video",cat_audio:"Audio / TTS / STT",verified:"verificado",approx:"aprox",per_image:"img",per_second:"seg",per_chars:"caracteres",per_minute:"min",plan_based:"basado en plan — ver página del proveedor",disclaimer:"Precios en USD, última verificación mayo 2026. Las tarifas cambian seguido — siempre confirmá en la página del proveedor (link en cada tarjeta). Los modelos open-weight marcados como free pueden auto-hostearse (Ollama/vLLM) o usarse vía agregadores como Together/Fireworks a los precios listados."},
     upcoming:"PRÓXIMAMENTE",
     contact:{title:"Contacto",sub:"Ponete en contacto",ghDesc:"Código fuente, issues y contribuciones.",emailDesc:"Preguntas, sugerencias o feedback."},
@@ -2335,7 +2339,9 @@ const i18n={
     footer:"* Intelig\u00eancia estimada (0\u2013100), relativa ao estado da arte em mar\u00e7o de 2026. Baseado em benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opini\u00f5es de especialistas e posicionamento de mercado. Modelos de difus\u00e3o avaliados por qualidade de gera\u00e7\u00e3o e ader\u00eancia a prompts. N\u00e3o s\u00e3o m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tend\u00eancia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 janela \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"pt-BR",
-    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",pricing:"Preços",api:"API",contact:"Contato"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",robotics:"Robótica",glasses:"Smart Glasses",pricing:"Preços",api:"API",contact:"Contato"},
+    robotics:{title:"Robótica",sub:"Empresas e modelos de robôs humanoides, mãos destras e plataformas robóticas relevantes.",link:"→ Página oficial"},
+    glasses:{title:"Smart Glasses",sub:"Óculos inteligentes e AR: HUD, waveguide, IA on-device, AR display e wearables produtivos.",link:"→ Página oficial"},
     pricing:{title:"Preços de IA",sub:"Visão unificada de custos de tokens, imagem, vídeo e áudio por provedor. Ordenado do mais barato ao mais caro em cada categoria. Clique no nome do modelo para abrir sua página oficial de preços.",calc_title:"Calculadora de custos",calc_in:"Tokens entrada / chamada",calc_out:"Tokens saída / chamada",calc_calls:"Chamadas por mês",calc_help:"O ranking compara apenas LLMs (preço por 1M tokens). As outras categorias (imagem/vídeo/áudio) aparecem abaixo como estão.",cat_llm:"LLM / Raciocínio",cat_embed:"Embeddings",cat_image:"Geração de imagem",cat_video:"Geração de vídeo",cat_audio:"Áudio / TTS / STT",verified:"verificado",approx:"aprox",per_image:"img",per_second:"seg",per_chars:"caracteres",per_minute:"min",plan_based:"baseado em plano — veja a página do provedor",disclaimer:"Preços em USD, última verificação maio 2026. As tarifas mudam frequentemente — sempre confirme na página do provedor (link em cada cartão). Modelos open-weight marcados como free podem ser auto-hospedados (Ollama/vLLM) ou usados via agregadores como Together/Fireworks aos preços listados."},
     upcoming:"EM BREVE",
     contact:{title:"Contato",sub:"Entre em contato",ghDesc:"Código fonte, issues e contribuições.",emailDesc:"Perguntas, sugestões ou feedback."},
@@ -3724,35 +3730,43 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
-  {name:"Atlas",company:"Boston Dynamics",domain:"bostondynamics.com",type:"Humanoide bípedo",desc:"Robot bípedo de Boston Dynamics. Acrobacias, manipulación y navegación dinámica. Generación 2026 totalmente eléctrica.",url:"https://bostondynamics.com/atlas/",img:"https://img.youtube.com/vi/3aQWvdCac9o/hqdefault.jpg"},
-  {name:"Unitree H2",company:"Unitree Robotics",domain:"unitree.com",type:"Humanoide bípedo",desc:"1.80 m · 70 kg · 31 DOF · 2070 TOPS · USD 29.900 base. Primer Unitree con cara biónica.",url:"https://shop.unitree.com/products/unitree-h2",img:"https://img.youtube.com/vi/_3T0e0u-7Wg/hqdefault.jpg"},
+  {name:"Atlas",company:"Boston Dynamics",domain:"bostondynamics.com",type:"Humanoide bípedo",desc:"Robot bípedo. Acrobacias, manipulación y navegación dinámica. Generación 2026 totalmente eléctrica.",url:"https://bostondynamics.com/atlas/",img:"https://img.youtube.com/vi/3aQWvdCac9o/hqdefault.jpg"},
+  {name:"Tesla Optimus Gen 3",company:"Tesla",domain:"tesla.com",type:"Humanoide industrial",desc:"1.73 m · 57 kg · 37 articulaciones · 20 kg payload · 1.2 m/s. >1000 unidades en planta Tesla. Target USD 20.000 a escala.",url:"https://www.tesla.com/AI",img:"https://digitalassets.tesla.com/tesla-contents/image/upload/h_700,c_fit,f_auto,q_auto/Optimus.png"},
+  {name:"Unitree H2",company:"Unitree Robotics",domain:"unitree.com",type:"Humanoide bípedo",desc:"1.80 m · 70 kg · 31 DOF · 2070 TOPS · USD 29.900 base. Primer Unitree con cara biónica.",url:"https://shop.unitree.com/products/unitree-h2",img:"https://shop.unitree.com/cdn/shop/files/3_d9687814-d553-451b-9429-c224a20f3b3a_1200x1200.jpg"},
   {name:"XPeng Iron",company:"XPeng",domain:"xpeng.com",type:"Humanoide bípedo",desc:"1.73 m · 70 kg · 82 DOF · 2250 TOPS · all-solid-state battery. Mass production fin de 2026.",url:"https://www.xpeng.com/news/xpeng-iron-humanoid-robot",img:"https://www.xpeng.com/file/news/poster/2025/8d68077b39ba9367040af1c4a2bc8b96.webp"},
+  {name:"Apptronik Apollo",company:"Apptronik",domain:"apptronik.com",type:"Humanoide industrial",desc:"1.73 m · 72.6 kg · 25 kg payload · 71 DOF · 4 h batería hot-swappable · NVIDIA GR00T. Valuación USD 5B.",url:"https://apptronik.com/apollo",img:"https://framerusercontent.com/images/Q5kZCv9zVrUOK7s2x5xJWqJjBgw.jpg"},
+  {name:"Sanctuary Phoenix",company:"Sanctuary AI",domain:"sanctuary.ai",type:"Humanoide general-purpose",desc:"170 cm · 70 kg · 25 kg payload · Carbon AI control (mimica subsistemas del cerebro). Sexta generación, manos human-like dexterity.",url:"https://www.sanctuary.ai",img:""},
+  {name:"Agility Digit",company:"Agility Robotics",domain:"agilityrobotics.com",type:"Mobile Manipulation Robot",desc:"5'9\" · 16 kg payload. Diseñado para warehouse + manufacturing. Sin necesidad de modificar infraestructura existente. 3-5 h batería.",url:"https://agilityrobotics.com",img:"https://cdn.prod.website-files.com/68d6ca150ffa11fdc25d7575/698c88da0a3bf08e257409ea_digit-profile.jpg"},
   {name:"Origin F1",company:"AheadForm",domain:"aheadform.com",type:"Cabeza biónica",desc:"Cabeza ultra-realista: 25 micromotores, cameras RGB en pupilas, skin de silicona médica, expresiones lifelike.",url:"https://aheadform.com",img:"https://img.youtube.com/vi/p7mGVH0XWnU/hqdefault.jpg"},
-  {name:"Memo",company:"Sunday Robotics",domain:"sunday.ai",type:"Robot doméstico (rodante)",desc:"Sin piernas, sobre ruedas, manos Lego, foundation model ACT-1. Lava platos, ordena. Sunday vale $1.15B (Coatue + Tiger).",url:"https://www.sunday.ai",img:"https://img.youtube.com/vi/zd2cuPyOlPM/hqdefault.jpg"},
+  {name:"Memo",company:"Sunday Robotics",domain:"sunday.ai",type:"Robot doméstico (rodante)",desc:"Sin piernas, sobre ruedas, manos Lego, foundation model ACT-1. Lava platos, ordena. Sunday vale USD 1.15B (Coatue + Tiger).",url:"https://www.sunday.ai",img:"https://cdn.sanity.io/images/1omys9i3/production/319392a9e6c83e4b9f7c2158c5b10fa6f75e84c1-2400x1260.png"},
   {name:"GENE",company:"Genesis AI",domain:"genesis.ai",type:"Humanoide + World Model",desc:"Plataforma robótica con world model entrenado en simulación, capaz de operación autónoma a 1x speed.",url:"https://www.genesis.ai",img:"https://img.youtube.com/vi/6K_bGH54ltI/hqdefault.jpg"},
-  {name:"Figure 03 (BotQ)",company:"Figure AI",domain:"figure.ai",type:"Humanoide industrial",desc:"Ramp-up de línea de producción F.03 en BotQ (planta propia de Figure). Foco en logística + manufactura.",url:"https://www.figure.ai",img:"https://www.figure.ai/static/images/og-image.png"},
-  {name:"Neo",company:"1X Technologies",domain:"1x.tech",type:"Humanoide doméstico",desc:"Humanoide bípedo amigable para el hogar; foco en seguridad y operación autónoma. Sucesor de EVE.",url:"https://www.1x.tech",img:"https://www.1x.tech/_next/static/media/neo-hero.opengraph.jpg"},
+  {name:"Figure 03 (BotQ)",company:"Figure AI",domain:"figure.ai",type:"Humanoide industrial",desc:"Ramp-up de línea de producción F.03 en BotQ (planta propia de Figure). Foco en logística + manufactura.",url:"https://www.figure.ai",img:"https://images.ctfassets.net/qx5k8y1u9drj/56I3mHKEdLZdrsONwOm3sc/63b1569bb855cc334c2dda67ce40ba4a/generic-page-image.jpeg"},
+  {name:"Neo",company:"1X Technologies",domain:"1x.tech",type:"Humanoide doméstico",desc:"Humanoide bípedo amigable para el hogar; foco en seguridad y operación autónoma. Sucesor de EVE.",url:"https://www.1x.tech",img:"https://cdn.sanity.io/images/qka6yvsc/production/fdda789a2e7c6caa9a798dd920b8a0acb254ea9d-1200x630.jpg"},
   {name:"Asimov v1",company:"Asimov Inc",domain:"github.com",type:"Humanoide open-source",desc:"1.20 m · 35 kg · 25+2 DoF · teleops + AI agents + Digital Twin. Open-source.",url:"https://github.com/asimovinc",img:"https://opengraph.githubassets.com/1/asimovinc"},
-  {name:"KAIST Humanoid v0.7",company:"KAIST",domain:"kaist.ac.kr",type:"Humanoide research",desc:"Plataforma de research KAIST. Field test + interaction demo (acrobacias y navegación en campo abierto).",url:"https://www.kaist.ac.kr/en/",img:"https://img.youtube.com/vi/Cse78w_KGq0/hqdefault.jpg"},
-  {name:"Xynova Flex 2",company:"Xynova",domain:"xynova.com.cn",type:"Mano dextrasa",desc:"23 DOF · 400 g · ±0.1 mm repetibilidad · 0.05 N · 12 kg de carga. Xiaomi Strategic en cap table. 2da gen híbrida.",url:"https://www.xynova.com.cn/en",img:"https://img.youtube.com/vi/hnp9my-bKm4/hqdefault.jpg"},
-  {name:"ORCA Dexterity Hands",company:"ORCA",domain:"github.com",type:"Manos open-source",desc:"Tres manos robóticas open-source liberadas en simultáneo. Foco en accesibilidad y manipulación de research.",url:"https://github.com/orcadexterity",img:"https://opengraph.githubassets.com/1/orcadexterity"},
-  {name:"MOTOROiD2",company:"Yamaha",domain:"yamaha-motor.com",type:"Vehículo auto-balance",desc:"Concept de motocicleta autónoma con IA: se balancea sola sin apoyo, reconoce al conductor y responde por gestos.",url:"https://global.yamaha-motor.com/showroom/cp/collection/motoroid2/",img:"https://img.youtube.com/vi/qzKngF82Bm4/hqdefault.jpg"}
+  {name:"KAIST Humanoid v0.7",company:"KAIST",domain:"kaist.ac.kr",type:"Humanoide research",desc:"Plataforma de research KAIST. Field test + interaction demo (acrobacias y navegación en campo abierto).",url:"https://www.kaist.ac.kr/en/",img:""},
+  {name:"Xynova Flex 2",company:"Xynova",domain:"xynova.com.cn",type:"Mano dextrasa híbrida",desc:"23 DOF · 400 g · ±0.1 mm repetibilidad · 0.05 N · 12 kg carga. Xiaomi Strategic en cap table. 2da gen híbrida.",url:"https://www.xynova.com.cn/en",img:"https://img.youtube.com/vi/hnp9my-bKm4/hqdefault.jpg"},
+  {name:"Shadow Dexterous Hand",company:"Shadow Robot Co.",domain:"shadowrobot.com",type:"Mano tendón-driven",desc:"24 DOF · 20 motores · tendón-driven · 100+ sensores @ 1kHz. La mano de 5 dedos más avanzada en research; integrada con ROS.",url:"https://shadowrobot.com/dexterous-hand-series/",img:""},
+  {name:"Inspire Dexterous Hand",company:"INSPIRE Robots",domain:"inspire-robots.com",type:"Mano comercial",desc:"6 DOF · 12 articulaciones motorizadas · híbrido posición + fuerza. Mano comercial para integración con humanoides.",url:"https://en.inspire-robots.com/product-category/the-dexterous-hands",img:""},
+  {name:"ORCA Dexterity Hands",company:"ORCA",domain:"github.com",type:"Manos open-source",desc:"Tres manos robóticas open-source liberadas en simultáneo. Foco en accesibilidad y manipulación para research.",url:"https://github.com/orcadexterity",img:""},
+  {name:"MOTOROiD2",company:"Yamaha",domain:"yamaha-motor.com",type:"Vehículo auto-balance",desc:"Concept de motocicleta autónoma con IA: se balancea sola, reconoce al conductor y responde a gestos.",url:"https://global.yamaha-motor.com/design_technology/design/concept/motoroid2/",img:"https://global.yamaha-motor.com/design_technology/design/concept/motoroid2/img/ogp_img.png"}
 ];
 const smartGlassesData=[
-  {name:"Mira Glasses",company:"Mira",domain:"trymira.com",type:"AI · HUD waveguide",desc:"Dual waveguide, sin cámara, 60+ idiomas, AI 'Second Brain' que escucha el día. 10 h batería. USD 649 / 799 con prescripción.",url:"https://trymira.com",img:"https://trymira.com/cdn/shop/files/MIRA-Glasses-Hero.png"},
-  {name:"Even G1",company:"Even Realities",domain:"evenrealities.com",type:"HUD micro-OLED",desc:"45-50 g, micro-OLED verde via waveguide, sin cámara. Teleprompt, traducción 13 idiomas, navegación, ChatGPT. USD 599.",url:"https://www.evenrealities.com/g1",img:"https://cdn.shopify.com/s/files/1/0700/0470/8253/files/G1.jpg"},
-  {name:"Rokid AR Spatial",company:"Rokid",domain:"rokid.com",type:"AR spatial computing",desc:"Rokid Max 2 (75 g, 50° FoV, 1080p-1200p, 600 nits) + Station 2 (Snapdragon 6 Gen 1, YodaOS-Master). USD 749.",url:"https://global.rokid.com/products/rokid-ar-spatial",img:"https://global.rokid.com/cdn/shop/files/AR-Spatial.jpg"},
-  {name:"XREAL One Pro",company:"XREAL",domain:"xreal.com",type:"AR display tethered",desc:"57° FoV — el más amplio del mercado. Reemplaza setups multi-monitor. Project Aura corre Android XR (2026).",url:"https://www.xreal.com",img:"https://www.xreal.com/static/images/one-pro.jpg"},
-  {name:"Ray-Ban Meta Display",company:"Meta + EssilorLuxottica",domain:"meta.com",type:"AI + in-lens display",desc:"Primer Ray-Ban Meta con display in-lens. Cámara 12MP ultra-wide, parlantes open-ear, Meta AI. Desde USD 499 con prescripción.",url:"https://www.meta.com/ai-glasses/",img:"https://about.fb.com/wp-content/uploads/2026/03/Meta-AI-Glasses-Prescription.jpg"},
-  {name:"Android XR Glasses",company:"Google",domain:"android.com",type:"Android XR · Gemini",desc:"Gemini 2.5 Pro + Project Astra. Parters Warby Parker + Gentle Monster. Lanzamiento screen-less primero, monocular display después. 2026.",url:"https://www.android.com/xr/",img:"https://www.gstatic.com/android/xr/og-image.jpg"},
-  {name:"Brilliant Halo",company:"Brilliant Labs",domain:"brilliant.xyz",type:"AI monocular microLED",desc:"USD 349. microLED 0.2\" full-color 20° FoV en lente derecha. Procesador Alif B1 + NPU, ZephyrOS, AI agent 'Noa' con memoria Narrative.",url:"https://brilliant.xyz",img:"https://brilliant.xyz/cdn/shop/files/halo-hero.jpg"},
-  {name:"Halliday DigiWindow",company:"Halliday",domain:"hallidayglobal.com",type:"HUD invisible 'DigiWindow'",desc:"28.5 g, 12 h batería. Display 3.6 mm (sensación de 3.5\") invisible al exterior. Traducción 40 idiomas, notificaciones, nav. USD 489.",url:"https://hallidayglobal.com",img:"https://hallidayglobal.com/cdn/shop/files/halliday-glasses.jpg"},
-  {name:"Solos AirGo V",company:"Solos",domain:"solos.com",type:"AI audio + visión",desc:"Cámaras + GPT-4 vision, sin display. Battery 10+ h (líder del segmento). Asistente conversacional como Ray-Ban Meta pero más liviano.",url:"https://www.solos.com",img:"https://www.solos.com/cdn/shop/files/AirGo-V.jpg"},
-  {name:"Snap Spectacles 5",company:"Snap Inc.",domain:"spectacles.com",type:"AR dev kit",desc:"Lentes AR con overlay holográfico, dual displays. Programa de desarrolladores para AR Lens Studio. Solo dev kit, no consumer.",url:"https://www.spectacles.com",img:"https://www.spectacles.com/static/images/spectacles-5.jpg"}
+  {name:"Mira Glasses",company:"Mira",domain:"trymira.com",type:"AI · HUD waveguide",desc:"Dual waveguide, sin cámara, 60+ idiomas, AI 'Second Brain' que escucha el día. 10 h batería. USD 649 / 799 con prescripción.",url:"https://trymira.com",img:""},
+  {name:"Even G1",company:"Even Realities",domain:"evenrealities.com",type:"HUD micro-OLED",desc:"45-50 g, micro-OLED verde via waveguide, sin cámara. Teleprompt, traducción 13 idiomas, navegación, ChatGPT. USD 599.",url:"https://www.evenrealities.com/g1",img:"https://cdn.sanity.io/images/wfyhg2qw/production/fa29f360026bf5c4e080b217180e646d580402f3-1200x630.jpg"},
+  {name:"Rokid AR Spatial",company:"Rokid",domain:"rokid.com",type:"AR spatial computing",desc:"Rokid Max 2 (75 g, 50° FoV, 1080p-1200p, 600 nits) + Station 2 (Snapdragon 6 Gen 1, YodaOS-Master). USD 749.",url:"https://global.rokid.com/products/rokid-ar-spatial",img:""},
+  {name:"XREAL One Pro",company:"XREAL",domain:"xreal.com",type:"AR display tethered",desc:"57° FoV — el más amplio del mercado. Reemplaza setups multi-monitor. Project Aura corre Android XR (2026).",url:"https://www.xreal.com",img:""},
+  {name:"Ray-Ban Meta Display",company:"Meta + EssilorLuxottica",domain:"meta.com",type:"AI + in-lens display",desc:"Primer Ray-Ban Meta con display in-lens. Cámara 12MP ultra-wide, parlantes open-ear, Meta AI. Desde USD 499 con prescripción.",url:"https://www.meta.com/ai-glasses/",img:""},
+  {name:"Android XR Glasses",company:"Google",domain:"android.com",type:"Android XR · Gemini",desc:"Gemini 2.5 Pro + Project Astra. Partners Warby Parker + Gentle Monster. Lanzamiento screen-less primero, monocular display después. 2026.",url:"https://www.android.com/xr/",img:"https://lh3.googleusercontent.com/DPU_23WmsbOd0im7pJyCYFuGyLzBRcgHS8A4o-g6zh3NYXcTU3FMJ1nXI1T1Tmb5_D2xWV5AZOHnRHuqF2jeanbmDAjEwq10y45u9UTbkJ0pXCpZvA"},
+  {name:"Brilliant Halo",company:"Brilliant Labs",domain:"brilliant.xyz",type:"AI monocular microLED",desc:"USD 349. microLED 0.2\" full-color 20° FoV en lente derecha. Procesador Alif B1 + NPU, ZephyrOS, AI agent 'Noa' con memoria Narrative.",url:"https://brilliant.xyz",img:"https://brilliant.xyz/cdn/shop/files/Halo_16_9e6dbe16-f264-4d22-bca1-175227d4ade6.png"},
+  {name:"Halliday DigiWindow",company:"Halliday",domain:"hallidayglobal.com",type:"HUD invisible 'DigiWindow'",desc:"28.5 g, 12 h batería. Display 3.6 mm (sensación de 3.5\") invisible al exterior. Traducción 40 idiomas, notificaciones, nav. USD 489.",url:"https://hallidayglobal.com",img:""},
+  {name:"Solos AirGo V",company:"Solos",domain:"solos.com",type:"AI audio + visión",desc:"Cámaras + GPT-4 vision, sin display. Battery 10+ h (líder del segmento). Asistente conversacional como Ray-Ban Meta pero más liviano.",url:"https://www.solos.com",img:""},
+  {name:"Snap Spectacles 5",company:"Snap Inc.",domain:"spectacles.com",type:"AR dev kit",desc:"Lentes AR con overlay holográfico, dual displays. Programa de desarrolladores para AR Lens Studio. Solo dev kit, no consumer.",url:"https://www.spectacles.com",img:"https://images.ctfassets.net/cbjigzuhgs28/5SsiASSQXGFSZzFe3mOjYb/63fd0f630941cf0c7053225d0d2bf0e4/image__2_.png"},
+  {name:"Project North Star",company:"Ultraleap (Leap Motion)",domain:"github.com",type:"MR open-source DIY",desc:"Headset MR open-hardware liberado en 2018. ~100° FoV, dual reflectors, hand tracking nativo. Comunidad activa con kits DIY y mods.",url:"https://github.com/leapmotion/ProjectNorthStar",img:"https://opengraph.githubassets.com/1/leapmotion/ProjectNorthStar"}
 ];
 function renderGlassesTab(){
   const grid=document.getElementById('glassesGrid');
   if(!grid)return;
+  const lk=(t('glasses')||{}).link||'→ Official page';
   grid.innerHTML=smartGlassesData.map(r=>{
     const initial=r.name.slice(0,2).toUpperCase();
     const fav=`https://www.google.com/s2/favicons?domain=${r.domain}&sz=32`;
@@ -3763,7 +3777,7 @@ function renderGlassesTab(){
         <div class="company"><img class="fav" src="${fav}" alt="" onerror="this.style.display='none'">${r.company}</div>
         <div class="type">${r.type}</div>
         <div class="desc">${r.desc}</div>
-        <a class="link" href="${r.url}" target="_blank" rel="noopener">→ Página oficial</a>
+        <a class="link" href="${r.url}" target="_blank" rel="noopener">${lk}</a>
       </div>
     </div>`;
   }).join('');
@@ -3771,6 +3785,7 @@ function renderGlassesTab(){
 function renderRoboticsTab(){
   const grid=document.getElementById('roboticsGrid');
   if(!grid)return;
+  const lk=(t('robotics')||{}).link||'→ Official page';
   grid.innerHTML=roboticsData.map(r=>{
     const initial=r.name.slice(0,2).toUpperCase();
     const fav=`https://www.google.com/s2/favicons?domain=${r.domain}&sz=32`;
@@ -3781,7 +3796,7 @@ function renderRoboticsTab(){
         <div class="company"><img class="fav" src="${fav}" alt="" onerror="this.style.display='none'">${r.company}</div>
         <div class="type">${r.type}</div>
         <div class="desc">${r.desc}</div>
-        <a class="link" href="${r.url}" target="_blank" rel="noopener">→ Página oficial</a>
+        <a class="link" href="${r.url}" target="_blank" rel="noopener">${lk}</a>
       </div>
     </div>`;
   }).join('');
@@ -3877,6 +3892,9 @@ function applyLang(){
   document.querySelector('[data-tab="tab-companies"]').textContent=tabs.companies||'Companies';
   const robBtn=document.querySelector('[data-tab="tab-robotics"]');if(robBtn)robBtn.innerHTML=(tabs.robotics||'Robotics')+'<span class="tab-new-badge">NEW</span>';
   const glBtn=document.querySelector('[data-tab="tab-glasses"]');if(glBtn)glBtn.innerHTML=(tabs.glasses||'Smart Glasses')+'<span class="tab-new-badge">NEW</span>';
+  const rTit=document.getElementById('roboticsTitle');const rSub=document.getElementById('roboticsSub');const rT=t('robotics');if(rTit&&rT)rTit.textContent=rT.title;if(rSub&&rT)rSub.textContent=rT.sub;
+  const gTit=document.getElementById('glassesTitle');const gSub=document.getElementById('glassesSub');const gT=t('glasses');if(gTit&&gT)gTit.textContent=gT.title;if(gSub&&gT)gSub.textContent=gT.sub;
+  renderRoboticsTab();renderGlassesTab();
   const pricingBtn=document.querySelector('[data-tab="tab-pricing"]');if(pricingBtn)pricingBtn.textContent=tabs.pricing||'Pricing';
   document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
   document.querySelector('[data-tab="tab-contact"]').textContent=tabs.contact||'Contact';
