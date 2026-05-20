@@ -1595,7 +1595,7 @@ const modelUrls={
 "Gemini 3 Deep Think":"https://blog.google/products/gemini/gemini-3/",
 "Gemini 3.1 Flash-Lite":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/",
 "Gemini 3.5 Flash":"https://blog.google/products/gemini/",
-"Gemini Omni":"https://blog.google/products/gemini/",
+"Gemini Omni":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/",
 "Fara-7B":"https://huggingface.co/microsoft/Fara-7B",
 "Cursor Composer 2.5":"https://cursor.com/blog/composer-2-5",
 "Lance 3B":"https://github.com/bytedance/Lance",
@@ -2458,7 +2458,7 @@ function isNewModel(m){return modelAgeMs(m)<=ONE_MONTH_MS}
 
 // Build type buttons
 const typeBtnContainer=document.getElementById("typeButtons");
-["all","LLM","Diffusion","Reasoning","Multimodal","ASR","TTS","Music Gen","Segmentation","Text Diffusion","World Model","Robotics","Non-Reasoning"].forEach(tp=>{
+["all","LLM","Diffusion","Video","Reasoning","Multimodal","ASR","TTS","Music Gen","Segmentation","Text Diffusion","World Model","Robotics","Non-Reasoning"].forEach(tp=>{
   const btn=document.createElement("button");
   btn.className="type-btn"+(tp==="all"?" active":"");
   btn.textContent=tp==="all"?t('all'):tp==="Non-Reasoning"?t('noR'):tp;
@@ -2553,6 +2553,7 @@ function getFiltered(){
     if(m.open&&!showOpen)return false;
     if(!m.open&&!showClosed)return false;
     if(typeFilter==="Non-Reasoning"){if(m.type==="Reasoning")return false}
+    else if(typeFilter==="Video"){if(m.cat!=="video")return false}
     else if(typeFilter!=="all"&&m.type!==typeFilter)return false;
     if(catFilter!=="all"&&m.cat!==catFilter)return false;
     if(searchQuery){
