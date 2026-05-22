@@ -1380,6 +1380,7 @@ const models = [
 {name:"SIMA 2",date:"2025-11-13",company:"Google DeepMind",open:false,intelligence:55,type:"Agent (Virtual 3D)",cat:"world"},
 {name:"Omnilingual ASR",date:"2025-11-10",company:"Meta",open:true,intelligence:55,type:"ASR",cat:"audio"},
 {name:"WeatherNext 2",date:"2025-11-17",company:"Google DeepMind",open:false,intelligence:55,type:"Weather Forecast",cat:"multi"},
+{name:"ACT-1",date:"2025-11-19",company:"Sunday Robotics",open:false,intelligence:50,type:"Robot Foundation",cat:"reasoning"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1635,6 +1636,7 @@ const modelUrls={
 "SIMA 2":"https://deepmind.google/blog/sima-2-an-agent-that-plays-reasons-and-learns-with-you-in-virtual-3d-worlds/",
 "Omnilingual ASR":"https://ai.meta.com/blog/omnilingual-asr-advancing-automatic-speech-recognition/",
 "WeatherNext 2":"https://blog.google/innovation-and-ai/models-and-research/google-deepmind/weathernext-2/",
+"ACT-1":"https://www.sunday.ai/journal/no-robot-data",
 "Fara-7B":"https://huggingface.co/microsoft/Fara-7B",
 "Cursor Composer 2.5":"https://cursor.com/blog/composer-2-5",
 "Lance 3B":"https://github.com/bytedance/Lance",
@@ -2194,6 +2196,7 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
       {name:"Epoch AI — Data on AI Models",url:"https://epoch.ai/data/ai-models",description:"Database interactivo de 3500+ ML models con métricas (training compute, params, costos, power). Notable / frontier / large-scale subsets. 1950 → presente."},
       {name:"Recursive Language Models (Zhang+Kraska+Khattab)",url:"https://arxiv.org/abs/2512.24601",description:"arxiv:2512.24601 — Inference-time scaling vía recursive decomposition de prompts largos. 26-130% mejora sobre baselines. 8B post-trained approaching GPT-5 en long-context."},
       {name:"Design Arena",url:"https://www.designarena.ai/",description:"Crowdsourced benchmark de AI-generated design por Arcada Labs. Side-by-side outputs + voting community 190+ países. Leaderboards por capabilities de diseño."},
+      {name:"Skyfall-GS (paper)",url:"https://skyfall-gs.jayinnn.dev/",description:"arxiv 2510.15869 — Synthesize immersive 3D urban scenes desde imagery satélite. 3DGS + diffusion refinement. Real-time free-flight navegable. Supera Sat-NeRF, EOGS, CityDreamer."},
       {name:"Arena AI Leaderboard",url:"https://arena.ai/leaderboard/",description:"Human preference-based model rankings. Elo ratings from blind comparisons by real users."},
       {name:"LLM Stats",url:"https://llm-stats.com/",description:"Daily AI model releases, news, and performance statistics. Real-time tracking of the LLM landscape."},
       {name:"Vellum LLM Leaderboard",url:"https://www.vellum.ai/llm-leaderboard",description:"Comprehensive LLM comparison across benchmarks. MMLU, HumanEval, GSM8K, and more."},
@@ -3204,6 +3207,16 @@ function renderArcTab(){
         </div>
         <div class="ic-desc">Crowdsourced benchmark de AI-generated design por Arcada Labs. Side-by-side outputs + voting community 190+ países. Leaderboards por capabilities de diseño.</div>
         <div class="ic-link">designarena.ai →</div>
+      </div></a>
+      <a href="https://skyfall-gs.jayinnn.dev/" target="_blank" rel="noopener" style="text-decoration:none">
+      <div class="info-card">
+        <div style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;height:120px;background:linear-gradient(135deg,#0d1a2e,#152a45);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#7dd3fc;letter-spacing:1px">Skyfall-GS</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <img src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=32" width="20" height="20" style="border-radius:3px">
+          <div class="ic-title">Skyfall-GS (paper)</div>
+        </div>
+        <div class="ic-desc">arxiv:2510.15869 — Synthesize immersive 3D urban scenes desde imagery satélite. 3DGS + diffusion refinement. Real-time free-flight navegable. Supera Sat-NeRF, EOGS, CityDreamer.</div>
+        <div class="ic-link">skyfall-gs.jayinnn.dev →</div>
       </div></a>
     </div>
   </div>
