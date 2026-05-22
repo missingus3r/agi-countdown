@@ -1387,6 +1387,7 @@ const models = [
 {name:"MoCha",date:"2025-04-01",company:"Meta GenAI",open:false,intelligence:55,type:"Talking Character",cat:"video"},
 {name:"NotaGen",date:"2025-09-01",company:"Central Conservatory of Music + U.Rochester",open:true,intelligence:50,type:"Symbolic Music",cat:"audio"},
 {name:"Project Starlight",date:"2025-03-06",company:"Topaz Labs",open:false,intelligence:55,type:"Video Restoration",cat:"video"},
+{name:"Kokoro 82M",date:"2025-01-27",company:"hexgrad",open:true,intelligence:40,type:"TTS",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1649,6 +1650,7 @@ const modelUrls={
 "MoCha":"https://congwei1230.github.io/MoCha/",
 "NotaGen":"https://electricalexis.github.io/notagen-demo/",
 "Project Starlight":"https://www.topazlabs.com/starlight",
+"Kokoro 82M":"https://huggingface.co/hexgrad/Kokoro-82M",
 "Fara-7B":"https://huggingface.co/microsoft/Fara-7B",
 "Cursor Composer 2.5":"https://cursor.com/blog/composer-2-5",
 "Lance 3B":"https://github.com/bytedance/Lance",
@@ -2223,7 +2225,7 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
       {name:"Vellum LLM Leaderboard",url:"https://www.vellum.ai/llm-leaderboard",description:"Comprehensive LLM comparison across benchmarks. MMLU, HumanEval, GSM8K, and more."},
       {name:"LiveBench",url:"https://livebench.ai/",description:"Live, contamination-free benchmark. New questions monthly to prevent data leakage in evaluations."},
       {name:"OpenRouter Rankings",url:"https://openrouter.ai/rankings",description:"Model rankings by real-world usage across hundreds of models. Pricing, speed, and popularity metrics."},
-      {name:"Humanity's Last Exam",url:"https://agi.safe.ai/",description:"2,500 expert-level questions across 100+ subjects. The hardest AI benchmark designed to test frontier model knowledge limits."},
+      {name:"Humanity's Last Exam",url:"https://lastexam.ai/",description:"2,500 expert-level questions across 100+ subjects. The hardest AI benchmark designed to test frontier model knowledge limits."},
       {name:"Scale AI Leaderboard",url:"https://labs.scale.com/leaderboard",description:"Enterprise-grade AI evaluation by Scale AI. Comprehensive model comparisons across safety, accuracy, and reasoning."},
       {name:"EQ-Bench",url:"https://eqbench.com/",description:"Emotional intelligence benchmark for LLMs. Tests nuanced understanding of emotions and social dynamics."},
       {name:"UGI Leaderboard",url:"https://ugi-leaderboard.hf.space/",description:"Uncensored General Intelligence leaderboard. Tests model capabilities without safety guardrail constraints."},
@@ -3089,7 +3091,7 @@ function renderArcTab(){
         <div class="ic-desc">Model rankings by real-world usage across 349+ models. Pricing, speed, and popularity metrics.</div>
         <div class="ic-link">openrouter.ai/rankings →</div>
       </div></a>
-      <a href="https://agi.safe.ai/" target="_blank" rel="noopener" style="text-decoration:none">
+      <a href="https://lastexam.ai/" target="_blank" rel="noopener" style="text-decoration:none">
       <div class="info-card">
         <img src="img/agi-safe-ai.png" style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;opacity:0.85">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
