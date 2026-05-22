@@ -2193,6 +2193,7 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
       {name:"Cloudflare — Markdown for Agents",url:"https://blog.cloudflare.com/markdown-for-agents/",description:"Cloudflare convierte HTML a Markdown automáticamente cuando AI agents lo piden vía content negotiation. ~80% menos tokens. Reference 2026-02-12."},
       {name:"Epoch AI — Data on AI Models",url:"https://epoch.ai/data/ai-models",description:"Database interactivo de 3500+ ML models con métricas (training compute, params, costos, power). Notable / frontier / large-scale subsets. 1950 → presente."},
       {name:"Recursive Language Models (Zhang+Kraska+Khattab)",url:"https://arxiv.org/abs/2512.24601",description:"arxiv:2512.24601 — Inference-time scaling vía recursive decomposition de prompts largos. 26-130% mejora sobre baselines. 8B post-trained approaching GPT-5 en long-context."},
+      {name:"Design Arena",url:"https://www.designarena.ai/",description:"Crowdsourced benchmark de AI-generated design por Arcada Labs. Side-by-side outputs + voting community 190+ países. Leaderboards por capabilities de diseño."},
       {name:"Arena AI Leaderboard",url:"https://arena.ai/leaderboard/",description:"Human preference-based model rankings. Elo ratings from blind comparisons by real users."},
       {name:"LLM Stats",url:"https://llm-stats.com/",description:"Daily AI model releases, news, and performance statistics. Real-time tracking of the LLM landscape."},
       {name:"Vellum LLM Leaderboard",url:"https://www.vellum.ai/llm-leaderboard",description:"Comprehensive LLM comparison across benchmarks. MMLU, HumanEval, GSM8K, and more."},
@@ -3193,6 +3194,16 @@ function renderArcTab(){
         </div>
         <div class="ic-desc">Zhang, Kraska, Khattab — arxiv:2512.24601. Inference-time scaling vía recursive decomposition de prompts largos. 26-130% mejora sobre baselines. 8B post-trained approaching GPT-5 en long-context tasks.</div>
         <div class="ic-link">arxiv.org/abs/2512.24601 →</div>
+      </div></a>
+      <a href="https://www.designarena.ai/" target="_blank" rel="noopener" style="text-decoration:none">
+      <div class="info-card">
+        <div style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;height:120px;background:linear-gradient(135deg,#2e152e,#451530);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#fbcfe8;letter-spacing:1px">Design Arena</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <img src="https://www.google.com/s2/favicons?domain=designarena.ai&sz=32" width="20" height="20" style="border-radius:3px">
+          <div class="ic-title">Design Arena</div>
+        </div>
+        <div class="ic-desc">Crowdsourced benchmark de AI-generated design por Arcada Labs. Side-by-side outputs + voting community 190+ países. Leaderboards por capabilities de diseño.</div>
+        <div class="ic-link">designarena.ai →</div>
       </div></a>
     </div>
   </div>
