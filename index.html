@@ -2170,6 +2170,7 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
       {name:"Epoch AI Benchmarks",url:"https://epoch.ai/benchmarks/",description:"Research-driven AI benchmarks tracking. Historical trends and frontier model performance."},
       {name:"LifeArchitect AI Timeline",url:"https://lifearchitect.ai/timeline/",description:"Alan D. Thompson's AI model timeline tracker. Visual history of major AI releases with capability annotations."},
       {name:"OSWorld",url:"https://os-world.github.io/",description:"Real computer environment benchmark for multimodal agents. 369 real-world tasks across Ubuntu/Windows/macOS. Humans 72.36% vs best AI 12.24%."},
+      {name:"BullshitBench",url:"https://petergpt.github.io/bullshit-benchmark/viewer/index.v2.html",description:"Benchmark by Peter Gostev. Measures how models detect/push-back on bullshit (false/misleading claims). Outcomes: Clear Pushback, Partial Challenge, Accepted Nonsense. Ranked by Green % (pushback rate)."},
       {name:"Arena AI Leaderboard",url:"https://arena.ai/leaderboard/",description:"Human preference-based model rankings. Elo ratings from blind comparisons by real users."},
       {name:"LLM Stats",url:"https://llm-stats.com/",description:"Daily AI model releases, news, and performance statistics. Real-time tracking of the LLM landscape."},
       {name:"Vellum LLM Leaderboard",url:"https://www.vellum.ai/llm-leaderboard",description:"Comprehensive LLM comparison across benchmarks. MMLU, HumanEval, GSM8K, and more."},
@@ -3120,6 +3121,16 @@ function renderArcTab(){
         </div>
         <div class="ic-desc">Real computer environment benchmark for multimodal agents. 369 real-world tasks across Ubuntu/Windows/macOS. Humans 72.36% vs best AI 12.24%. (HKU/Salesforce/CMU/Waterloo).</div>
         <div class="ic-link">os-world.github.io →</div>
+      </div></a>
+      <a href="https://petergpt.github.io/bullshit-benchmark/viewer/index.v2.html" target="_blank" rel="noopener" style="text-decoration:none">
+      <div class="info-card">
+        <div style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;height:120px;background:linear-gradient(135deg,#2a1a05,#452f10);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#fbbf24;letter-spacing:1px">BullshitBench</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <img src="https://www.google.com/s2/favicons?domain=petergpt.github.io&sz=32" width="20" height="20" style="border-radius:3px">
+          <div class="ic-title">BullshitBench</div>
+        </div>
+        <div class="ic-desc">Peter Gostev. Mide cómo los modelos detectan/refutan bullshit (claims falsos o engañosos). Outcomes: Clear Pushback, Partial Challenge, Accepted Nonsense. Ranked por Green % (pushback rate).</div>
+        <div class="ic-link">bullshit-benchmark →</div>
       </div></a>
     </div>
   </div>
