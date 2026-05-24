@@ -1402,6 +1402,9 @@ const models = [
 {name:"1X World Model",date:"2024-09-17",company:"1X Technologies",open:false,intelligence:50,type:"World Model",cat:"world"},
 {name:"DIAMOND",date:"2024-05-26",company:"Alonso et al. (Edinburgh)",open:true,intelligence:42,type:"Diffusion World Model",cat:"world"},
 {name:"F5-TTS",date:"2024-10-09",company:"SWivid (community)",open:true,intelligence:50,type:"TTS (Flow Matching)",cat:"audio"},
+{name:"Nemotron-Cascade 2 (30B-A3B)",date:"2026-03-19",company:"NVIDIA",open:true,intelligence:82,type:"Reasoning",cat:"reasoning"},
+{name:"Grok Build 0.1",date:"2026-05-15",company:"xAI",open:false,intelligence:78,type:"LLM",cat:"code"},
+{name:"Qwen3.7-Plus",date:"2026-05-21",company:"Alibaba",open:false,intelligence:85,type:"Multimodal",cat:"multi"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2061,6 +2064,9 @@ const modelUrls={
 "GLiGuard (300M)":"https://huggingface.co/fastino/gliguard-LLMGuardrails-300M",
 "Talkie-1930 (13B)":"https://huggingface.co/talkie-lm/talkie-1930-13b-it",
 "Machina Mirabilis (3.3B)":"https://michaelhla.com/blog/machina-mirabilis.html",
+"Nemotron-Cascade 2 (30B-A3B)":"https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B",
+"Grok Build 0.1":"https://www.engadget.com/2173482/xai-coding-agent-grok-build/",
+"Qwen3.7-Plus":"https://www.scmp.com/tech/tech-trends/article/3354087/alibaba-teases-new-qwen-previews-highest-ranking-chinese-ai-models-arena",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
@@ -3705,6 +3711,7 @@ const companyMeta = {
   "ETH Zurich / EPFL":{d:"ethz.ch",u:"https://ethz.ch"},
   "EleutherAI":{d:"eleuther.ai",u:"https://www.eleuther.ai"},
   "ElevenLabs":{d:"elevenlabs.io",u:"https://elevenlabs.io"},
+  "EngineAI":{d:"engineai.com",u:"https://www.engineai.com"},
   "Essential AI":{d:"essential.ai",u:"https://www.essential.ai"},
   "Figure":{d:"figure.ai",u:"https://www.figure.ai"},
   "Fish Audio":{d:"fish.audio",u:"https://fish.audio"},
@@ -4126,6 +4133,7 @@ const roboticsData=[
   {name:"ORCA Dexterity Hands",company:"ORCA",domain:"github.com",type:{en:"Open-source hands",es:"Manos open-source",pt:"Mãos open-source"},desc:{en:"Three open-source robotic hands released simultaneously. Focus on accessibility and research manipulation.",es:"Tres manos robóticas open-source liberadas en simultáneo. Foco en accesibilidad y manipulación para research.",pt:"Três mãos robóticas open-source lançadas simultaneamente. Foco em acessibilidade e manipulação para pesquisa."},url:"https://github.com/orcadexterity",img:""},
   {name:"MOTOROiD2",company:"Yamaha",domain:"yamaha-motor.com",type:{en:"Self-balancing vehicle",es:"Vehículo auto-balance",pt:"Veículo auto-equilibrante"},desc:{en:"Autonomous motorcycle concept with AI: self-balances, recognizes its rider, and responds to gestures.",es:"Concept de motocicleta autónoma con IA: se balancea sola, reconoce al conductor y responde a gestos.",pt:"Conceito de motocicleta autônoma com IA: equilibra-se sozinha, reconhece o piloto e responde a gestos."},url:"https://global.yamaha-motor.com/design_technology/design/concept/motoroid2/img/ogp_img.png",img:"https://global.yamaha-motor.com/design_technology/design/concept/motoroid2/img/ogp_img.png"},
   {name:"HELIOS",company:"ORBIT",domain:"youtube.com",type:{en:"Space humanoid (4 arms)",es:"Humanoide espacial (4 brazos)",pt:"Humanoide espacial (4 braços)"},desc:{en:"Reveal 2026-05-20 by student team ORBIT. Space humanoid with 4 arms / 4 hands, designed for orbital ops. Two semesters of R&D.",es:"Reveal 2026-05-20 por equipo estudiantil ORBIT. Humanoide espacial con 4 brazos / 4 manos, diseñado para operaciones orbitales. Dos semestres de I+D.",pt:"Reveal 2026-05-20 pela equipe estudantil ORBIT. Humanoide espacial com 4 braços / 4 mãos, projetado para operações orbitais. Dois semestres de P&D."},url:"https://www.youtube.com/watch?v=cqEEX4ct2A0",img:"https://img.youtube.com/vi/cqEEX4ct2A0/hqdefault.jpg"},
+  {name:"EngineAI T800",company:"EngineAI",domain:"engineai.com",type:{en:"Industrial humanoid",es:"Humanoide industrial",pt:"Humanoide industrial"},desc:{en:"1.73 m · 75 kg · 450 Nm torque · 4-5 h battery. Mass production for industrial use. CES 2026 reveal.",es:"1.73 m · 75 kg · 450 Nm torque · 4-5 h batería. Producción masiva para uso industrial. Presentado CES 2026.",pt:"1.73 m · 75 kg · 450 Nm torque · 4-5 h bateria. Produção em massa para uso industrial. Apresentado CES 2026."},url:"https://www.engineai.com",img:"https://newatlas.com/ai-humanoids/engineai-t800-humanoid/"},
   {name:"Linker Hand L30",company:"Linkerbot",domain:"linkaihand.com",type:{en:"Tendon-driven dexterous hand",es:"Mano dextrasa tendón-driven",pt:"Mão hábil tendão-driven"},desc:{en:"High-DOF tendon-driven hand with human-like motion. Linkerbot holds ~80% global share of mass-produced dexterous hands; Hong Kong IPO under consideration (May 2026).",es:"Mano tendón-driven de alto DOF con movimiento human-like. Linkerbot tiene ~80% share global de manos dextrasas en producción masiva; evalúa IPO en Hong Kong (mayo 2026).",pt:"Mão tendão-driven de alto DOF com movimento human-like. Linkerbot detém ~80% do share global de mãos hábeis em produção em massa; avalia IPO em Hong Kong (maio 2026)."},url:"https://linkaihand.com",img:"https://humanoid.guide/wp-content/uploads/2026/03/Linker-Hand-L30-robot-hand-by-LinkerBot-Humanoid-Huide.webp"}
 ];
 const smartGlassesData=[
