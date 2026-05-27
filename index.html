@@ -2288,7 +2288,9 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
       {name:"EQ-Bench",url:"https://eqbench.com/",description:"Emotional intelligence benchmark for LLMs. Tests nuanced understanding of emotions and social dynamics."},
       {name:"UGI Leaderboard",url:"https://ugi-leaderboard.hf.space/",description:"Uncensored General Intelligence leaderboard. Tests model capabilities without safety guardrail constraints."},
       {name:"LA Leaderboard",url:"https://la-leaderboard.llmservice.net/",description:"LiveArena dynamic leaderboard. Continuously updated model rankings from real-time evaluations."},
-      {name:"ExploitBench",url:"https://exploitbench.ai/",description:"Frontier LLM benchmark on V8 exploit synthesis. 16 capabilities per run, multi-round shuffled-layout grading — measures how far up the exploitation ladder an agent can climb on a production JS engine."}
+      {name:"ExploitBench",url:"https://exploitbench.ai/",description:"Frontier LLM benchmark on V8 exploit synthesis. 16 capabilities per run, multi-round shuffled-layout grading — measures how far up the exploitation ladder an agent can climb on a production JS engine."},
+{name:"Terminal-Bench",url:"https://www.tbench.ai/leaderboard/terminal-bench/2.0",description:"Benchmark for AI agents in terminal/CLI environments. Evaluates coding task execution via command-line. Harbor Framework."},
+{name:"AI Benchmarks",url:"https://aibenchmarks.net/",description:"Curated collection of AI performance benchmarks and evaluation datasets across multiple domains and categories."}
     ];
     result={ok:true,endpoint:'v1/benchmarks',total:data.length,data};
   } else if(api==='v1/projects'||api==='v1/projects/'){
@@ -3208,6 +3210,26 @@ function renderArcTab(){
         </div>
         <div class="ic-desc">Frontier LLM benchmark on V8 exploit synthesis. Measures how far up the exploitation ladder an agent can climb on a production JS engine — 16 capabilities per run, multi-round shuffled-layout grading.</div>
         <div class="ic-link">exploitbench.ai →</div>
+      </div></a>
+      <a href="https://www.tbench.ai/leaderboard/terminal-bench/2.0" target="_blank" rel="noopener" style="text-decoration:none">
+      <div class="info-card">
+        <div style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;height:120px;background:linear-gradient(135deg,#0a1a0a,#1a3a1a);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#34d399;letter-spacing:1px">Terminal-Bench</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <img src="https://www.google.com/s2/favicons?domain=tbench.ai&sz=32" width="20" height="20" style="border-radius:3px">
+          <div class="ic-title">Terminal-Bench 2.0</div>
+        </div>
+        <div class="ic-desc">AI agent benchmark for terminal/CLI coding tasks. Evaluates command-line execution, agentic workflows. Harbor Framework.</div>
+        <div class="ic-link">tbench.ai →</div>
+      </div></a>
+      <a href="https://aibenchmarks.net/" target="_blank" rel="noopener" style="text-decoration:none">
+      <div class="info-card">
+        <div style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;height:120px;background:linear-gradient(135deg,#1a1a2e,#2a2a4e);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#a78bfa;letter-spacing:1px">AI Benchmarks</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <img src="https://www.google.com/s2/favicons?domain=aibenchmarks.net&sz=32" width="20" height="20" style="border-radius:3px">
+          <div class="ic-title">AI Benchmarks</div>
+        </div>
+        <div class="ic-desc">Curated collection of AI performance benchmarks and evaluation datasets across multiple domains and categories.</div>
+        <div class="ic-link">aibenchmarks.net →</div>
       </div></a>
       <a href="https://lifearchitect.ai/timeline/" target="_blank" rel="noopener" style="text-decoration:none">
       <div class="info-card">
