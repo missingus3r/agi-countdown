@@ -2302,7 +2302,8 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
       {name:"LA Leaderboard",url:"https://la-leaderboard.llmservice.net/",description:"LiveArena dynamic leaderboard. Continuously updated model rankings from real-time evaluations."},
       {name:"ExploitBench",url:"https://exploitbench.ai/",description:"Frontier LLM benchmark on V8 exploit synthesis. 16 capabilities per run, multi-round shuffled-layout grading — measures how far up the exploitation ladder an agent can climb on a production JS engine."},
 {name:"Terminal-Bench",url:"https://www.tbench.ai/leaderboard/terminal-bench/2.0",description:"Benchmark for AI agents in terminal/CLI environments. Evaluates coding task execution via command-line. Harbor Framework."},
-{name:"AI Benchmarks",url:"https://aibenchmarks.net/",description:"Curated collection of AI performance benchmarks and evaluation datasets across multiple domains and categories."}
+{name:"AI Benchmarks",url:"https://aibenchmarks.net/",description:"Curated collection of AI performance benchmarks and evaluation datasets across multiple domains and categories."},
+{name:"Andon Labs Evals",url:"https://andonlabs.com/evals",description:"4 benchmarks suite: Vending-Bench 2 (long-horizon agency), Vending-Bench Arena (head-to-head), Butter-Bench (computer use), Blueprint-Bench 2 (visual reasoning)."}
     ];
     result={ok:true,endpoint:'v1/benchmarks',total:data.length,data};
   } else if(api==='v1/projects'||api==='v1/projects/'){
@@ -3243,6 +3244,20 @@ function renderArcTab(){
         <div class="ic-desc">Curated collection of AI performance benchmarks and evaluation datasets across multiple domains and categories.</div>
         <div class="ic-link">aibenchmarks.net →</div>
       </div></a>
+      <div class="info-card">
+        <div style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;height:120px;background:linear-gradient(135deg,#1a2e1a,#152a15);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#86efac;letter-spacing:1px">Andon Labs</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <img src="https://www.google.com/s2/favicons?domain=andonlabs.com&sz=32" width="20" height="20" style="border-radius:3px">
+          <div class="ic-title">Andon Labs Evals</div>
+        </div>
+        <div class="ic-desc">Suite de 4 benchmarks frontier para evaluar agencia, head-to-head, computer use y razonamiento visual.</div>
+        <div style="margin-top:8px;display:flex;flex-direction:column;gap:4px;font-size:11px">
+          <a href="https://andonlabs.com/evals/vending-bench-2" target="_blank" rel="noopener" style="color:var(--neon);text-decoration:none">↗ Vending-Bench 2</a>
+          <a href="https://andonlabs.com/evals/vending-bench-arena" target="_blank" rel="noopener" style="color:var(--neon);text-decoration:none">↗ Vending-Bench Arena</a>
+          <a href="https://andonlabs.com/evals/butter-bench" target="_blank" rel="noopener" style="color:var(--neon);text-decoration:none">↗ Butter-Bench</a>
+          <a href="https://andonlabs.com/evals/blueprint-bench-2" target="_blank" rel="noopener" style="color:var(--neon);text-decoration:none">↗ Blueprint-Bench 2</a>
+        </div>
+      </div>
       <a href="https://lifearchitect.ai/timeline/" target="_blank" rel="noopener" style="text-decoration:none">
       <div class="info-card">
         <div style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;height:120px;background:linear-gradient(135deg,#0a1a2e,#152a45);display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:#7dd3fc;letter-spacing:1px">LifeArchitect</div>
