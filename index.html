@@ -1439,6 +1439,11 @@ const models = [
 {name:"Nemotron-Cascade 2 (30B-A3B)",date:"2026-03-19",company:"NVIDIA",open:true,intelligence:82,type:"Reasoning",cat:"reasoning"},
 {name:"Grok Build 0.1",date:"2026-05-15",company:"xAI",open:false,intelligence:78,type:"LLM",cat:"code"},
 {name:"Qwen3.7-Plus",date:"2026-05-21",company:"Alibaba",open:false,intelligence:85,type:"Multimodal",cat:"multi"},
+{name:"VibeVoice-ASR",date:"2026-01-21",company:"Microsoft",open:true,intelligence:56,type:"ASR (long-form)",cat:"audio"},
+{name:"LFM2.5-8B-A1B",date:"2026-05-28",company:"Liquid AI",open:true,intelligence:62,type:"MoE on-device",cat:"text"},
+{name:"Macaron-V1-Preview",date:"2026-06-08",company:"Mind Lab",open:true,intelligence:85,type:"MoL Agent (749B)",cat:"text"},
+{name:"Nex-N2-Pro",date:"2026-06-08",company:"Nex-AGI",open:true,intelligence:87,type:"Agentic MoE",cat:"code"},
+{name:"Apple AFM 3 (on-device)",date:"2026-06-08",company:"Apple",open:false,intelligence:60,type:"Sparse on-device 20B",cat:"multi"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2135,6 +2140,11 @@ const modelUrls={
 "Nemotron-Cascade 2 (30B-A3B)":"https://huggingface.co/nvidia/Nemotron-Cascade-2-30B-A3B",
 "Grok Build 0.1":"https://www.engadget.com/2173482/xai-coding-agent-grok-build/",
 "Qwen3.7-Plus":"https://www.scmp.com/tech/tech-trends/article/3354087/alibaba-teases-new-qwen-previews-highest-ranking-chinese-ai-models-arena",
+"VibeVoice-ASR":"https://github.com/microsoft/VibeVoice",
+"LFM2.5-8B-A1B":"https://www.liquid.ai/blog/lfm2-5-8b-a1b",
+"Macaron-V1-Preview":"https://huggingface.co/mindlab-research/Macaron-V1-Preview-749B",
+"Nex-N2-Pro":"https://github.com/nex-agi/Nex-N2",
+"Apple AFM 3 (on-device)":"https://machinelearning.apple.com/research/apple-foundation-models-2025-updates",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
