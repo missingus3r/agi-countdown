@@ -1448,6 +1448,7 @@ const models = [
 {name:"Claude Mythos 5",date:"2026-06-09",company:"Anthropic",open:false,intelligence:99,type:"LLM (restricted)",cat:"text"},
 {name:"Qwopus3.6-27B-v2-MTP",date:"2026-05-28",company:"Jackrong (community)",open:true,intelligence:72,type:"Finetune (Qwen3.6 + Opus reasoning)",cat:"finetuned"},
 {name:"Gemma-4-12B-OBLITERATED",date:"2026-06-09",company:"OBLITERATUS (community)",open:true,intelligence:55,type:"Abliterated (Gemma 4)",cat:"finetuned"},
+{name:"Grok Imagine Video 1.5 Preview",date:"2026-06-04",company:"xAI",open:false,intelligence:62,type:"Video Gen",cat:"video"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2153,6 +2154,7 @@ const modelUrls={
 "Claude Mythos 5":"https://www.anthropic.com/news/claude-fable-5-mythos-5",
 "Qwopus3.6-27B-v2-MTP":"https://huggingface.co/Jackrong/Qwopus3.6-27B-v2-MTP-GGUF",
 "Gemma-4-12B-OBLITERATED":"https://huggingface.co/OBLITERATUS/Gemma-4-12B-OBLITERATED",
+"Grok Imagine Video 1.5 Preview":"https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
