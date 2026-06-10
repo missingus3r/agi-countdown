@@ -1444,6 +1444,10 @@ const models = [
 {name:"Macaron-V1-Preview",date:"2026-06-08",company:"Mind Lab",open:true,intelligence:85,type:"MoL Agent (749B)",cat:"text"},
 {name:"Nex-N2-Pro",date:"2026-06-08",company:"Nex-AGI",open:true,intelligence:87,type:"Agentic MoE",cat:"code"},
 {name:"Apple AFM 3 (on-device)",date:"2026-06-08",company:"Apple",open:false,intelligence:60,type:"Sparse on-device 20B",cat:"multi"},
+{name:"Claude Fable 5",date:"2026-06-09",company:"Anthropic",open:false,intelligence:97,type:"LLM (Mythos-class)",cat:"text"},
+{name:"Claude Mythos 5",date:"2026-06-09",company:"Anthropic",open:false,intelligence:99,type:"LLM (restricted)",cat:"text"},
+{name:"Qwopus3.6-27B-v2-MTP",date:"2026-05-28",company:"Jackrong (community)",open:true,intelligence:72,type:"Finetune (Qwen3.6 + Opus reasoning)",cat:"finetuned"},
+{name:"Gemma-4-12B-OBLITERATED",date:"2026-06-09",company:"OBLITERATUS (community)",open:true,intelligence:55,type:"Abliterated (Gemma 4)",cat:"finetuned"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2145,6 +2149,10 @@ const modelUrls={
 "Macaron-V1-Preview":"https://huggingface.co/mindlab-research/Macaron-V1-Preview-749B",
 "Nex-N2-Pro":"https://github.com/nex-agi/Nex-N2",
 "Apple AFM 3 (on-device)":"https://machinelearning.apple.com/research/apple-foundation-models-2025-updates",
+"Claude Fable 5":"https://www.anthropic.com/news/claude-fable-5-mythos-5",
+"Claude Mythos 5":"https://www.anthropic.com/news/claude-fable-5-mythos-5",
+"Qwopus3.6-27B-v2-MTP":"https://huggingface.co/Jackrong/Qwopus3.6-27B-v2-MTP-GGUF",
+"Gemma-4-12B-OBLITERATED":"https://huggingface.co/OBLITERATUS/Gemma-4-12B-OBLITERATED",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
@@ -2317,7 +2325,9 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
       {name:"OpenR",category:"coding",url:"https://github.com/openreasoner/openr",description:"Open Source framework para advanced reasoning con LLMs. Python, MIT, 1.8k stars."},
       {name:"Genesis",category:"coding",url:"https://genesis-embodied-ai.github.io/",description:"Physics simulation universal para robotics + embodied AI + physical AI. 43M FPS en manipulación (~430,000x real-time). CMU + MIT + Stanford + NVIDIA + UPenn + Tsinghua. Genera policies + videos desde NL."},
       {name:"microgpt",category:"coding",url:"https://karpathy.ai/microgpt.html",description:"Minimalist GPT entrenado e inferenced en Python puro sin dependencias — by Karpathy. Un archivo es el algoritmo completo; todo lo demás es solo eficiencia. Tool educacional."},
-      {name:"Railway",category:"infra",url:"https://railway.com/",description:"PaaS for instant app deploys. Git-based, autoscaling, managed databases. Common host for AI agents, bots, and inference proxies."}
+      {name:"Railway",category:"infra",url:"https://railway.com/",description:"PaaS for instant app deploys. Git-based, autoscaling, managed databases. Common host for AI agents, bots, and inference proxies."},
+      {name:"Apodex 1.0",category:"coding",url:"https://apodex.ai",description:"Heavy-duty deep-research agent team. Busca en la web, razona sobre evidencia y escribe reportes con evidence-chain explícito auditado antes de entregar. SOTA en BrowseComp / DeepSearchQA."},
+      {name:"SkillSpector",category:"coding",url:"https://github.com/NVIDIA/SkillSpector",description:"Security scanner de NVIDIA para AI agent skills. Detecta 64 patrones de vulnerabilidad en 16 categorías (prompt injection, exfiltración, tool poisoning, MCP least-privilege). Static checks + análisis semántico LLM opcional."}
     ];
     let data=platforms;
     const catFilter=params.get('category');
@@ -2709,7 +2719,7 @@ const typeBtnContainer=document.getElementById("typeButtons");
 
 // Build cat buttons
 const catBtnContainer=document.getElementById("catButtons");
-const catKeys=["all","text","code","image","video","audio","multi","reasoning","world","3d"];
+const catKeys=["all","text","code","image","video","audio","multi","reasoning","world","3d","finetuned"];
 catKeys.forEach(c=>{
   const btn=document.createElement("button");
   btn.className="type-btn"+(c==="all"?" active":"");
