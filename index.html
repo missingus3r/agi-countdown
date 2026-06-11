@@ -1450,6 +1450,7 @@ const models = [
 {name:"Gemma-4-12B-OBLITERATED",date:"2026-06-09",company:"OBLITERATUS (community)",open:true,intelligence:55,type:"Abliterated (Gemma 4)",cat:"finetuned"},
 {name:"Grok Imagine Video 1.5 Preview",date:"2026-06-04",company:"xAI",open:false,intelligence:62,type:"Video Gen",cat:"video"},
 {name:"DiffusionGemma 26B-A4B",date:"2026-06-10",company:"Google",open:true,intelligence:60,type:"Text Diffusion",cat:"text"},
+{name:"Fun-Realtime-TTS",date:"2026-06-03",company:"Alibaba",open:false,intelligence:70,type:"TTS",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2157,6 +2158,7 @@ const modelUrls={
 "Gemma-4-12B-OBLITERATED":"https://huggingface.co/OBLITERATUS/Gemma-4-12B-OBLITERATED",
 "Grok Imagine Video 1.5 Preview":"https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview",
 "DiffusionGemma 26B-A4B":"https://deepmind.google/models/gemma/diffusiongemma/",
+"Fun-Realtime-TTS":"https://github.com/FunAudioLLM",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
