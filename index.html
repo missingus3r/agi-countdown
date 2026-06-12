@@ -1452,6 +1452,7 @@ const models = [
 {name:"Grok Imagine Video 1.5 Preview",date:"2026-06-04",company:"xAI",open:false,intelligence:62,type:"Video Gen",cat:"video"},
 {name:"DiffusionGemma 26B-A4B",date:"2026-06-10",company:"Google",open:true,intelligence:60,type:"Text Diffusion",cat:"text"},
 {name:"Fun-Realtime-TTS",date:"2026-06-03",company:"Alibaba",open:false,intelligence:70,type:"TTS",cat:"audio"},
+{name:"Zonos-2",date:"2026-06-12",company:"Zyphra",open:true,intelligence:70,type:"TTS",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2161,6 +2162,7 @@ const modelUrls={
 "Grok Imagine Video 1.5 Preview":"https://docs.x.ai/developers/models/grok-imagine-video-1.5-preview",
 "DiffusionGemma 26B-A4B":"https://deepmind.google/models/gemma/diffusiongemma/",
 "Fun-Realtime-TTS":"https://github.com/FunAudioLLM",
+"Zonos-2":"https://www.zyphra.com/our-work/zonos2",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
