@@ -1454,6 +1454,7 @@ const models = [
 {name:"Fun-Realtime-TTS",date:"2026-06-03",company:"Alibaba",open:false,intelligence:70,type:"TTS",cat:"audio"},
 {name:"Zonos-2",date:"2026-06-12",company:"Zyphra",open:true,intelligence:70,type:"TTS",cat:"audio"},
 {name:"Ernie 5.1",date:"2026-05-09",company:"Baidu",open:false,intelligence:85,type:"LLM",cat:"text"},
+{name:"Kimi K2.7-Code",date:"2026-06-12",company:"Moonshot AI",open:true,intelligence:88,type:"LLM",cat:"code"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2165,6 +2166,7 @@ const modelUrls={
 "Fun-Realtime-TTS":"https://github.com/FunAudioLLM",
 "Zonos-2":"https://www.zyphra.com/our-work/zonos2",
 "Ernie 5.1":"https://ernie.baidu.com/blog/posts/ernie-5.1-0508-release/",
+"Kimi K2.7-Code":"https://huggingface.co/moonshotai/Kimi-K2.7-Code",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
