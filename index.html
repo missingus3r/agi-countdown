@@ -1457,6 +1457,7 @@ const models = [
 {name:"Kimi K2.7-Code",date:"2026-06-12",company:"Moonshot AI",open:true,intelligence:88,type:"LLM",cat:"code"},
 {name:"GLM-5.2",date:"2026-06-13",company:"Zhipu AI",open:true,intelligence:88,type:"LLM",cat:"code"},
 {name:"Rio 3.5 Open 397B",date:"2026-06-12",company:"IplanRIO",open:true,intelligence:84,type:"LLM",cat:"multi"},
+{name:"CWM (Code World Model)",date:"2025-09-24",company:"Meta",open:true,intelligence:76,type:"LLM",cat:"code"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2171,6 +2172,7 @@ const modelUrls={
 "Kimi K2.7-Code":"https://huggingface.co/moonshotai/Kimi-K2.7-Code",
 "GLM-5.2":"https://www.buildfastwithai.com/blogs/glm-5-2-review-2026",
 "Rio 3.5 Open 397B":"https://huggingface.co/prefeitura-rio/Rio-3.5-Open-397B",
+"CWM (Code World Model)":"https://huggingface.co/facebook/cwm",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
