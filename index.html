@@ -109,6 +109,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%235e9de5'/%3E%3Cstop offset='40%25' stop-color='%23a878d4'/%3E%3Cstop offset='70%25' stop-color='%23d4729a'/%3E%3Cstop offset='100%25' stop-color='%23e0a54c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%230c0c11'/%3E%3Ccircle cx='18' cy='44' r='4' fill='url(%23g)' opacity='.6'/%3E%3Ccircle cx='28' cy='36' r='4.5' fill='url(%23g)' opacity='.7'/%3E%3Ccircle cx='38' cy='28' r='5' fill='url(%23g)' opacity='.8'/%3E%3Ccircle cx='48' cy='18' r='6' fill='url(%23g)'/%3E%3Cline x1='18' y1='44' x2='28' y2='36' stroke='url(%23g)' stroke-width='1.5' opacity='.4'/%3E%3Cline x1='28' y1='36' x2='38' y2='28' stroke='url(%23g)' stroke-width='1.5' opacity='.5'/%3E%3Cline x1='38' y1='28' x2='48' y2='18' stroke='url(%23g)' stroke-width='1.5' opacity='.6'/%3E%3C/svg%3E"/>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 <style>
 :root{
   --bg-base:#0a0a0f;--bg-raised:#111118;--bg-surface:#15151e;--bg-surface-hover:#1c1c28;--bg-inset:#0c0c12;
@@ -490,6 +491,25 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
 ::view-transition-old(root),::view-transition-new(root){animation:none;mix-blend-mode:normal}
 ::view-transition-old(root){z-index:1}
 ::view-transition-new(root){z-index:9999}
+
+/* ==================== MAP TAB ==================== */
+#mapWrap{position:relative;margin-top:14px}
+#aiMap{height:560px;width:100%;border-radius:var(--radius-md);border:1px solid var(--bd-sub);background:var(--bg-inset);z-index:1}
+.leaflet-container{background:var(--bg-inset);font-family:'Inter',system-ui,sans-serif;outline:none}
+.leaflet-tooltip.map-tip{background:var(--bg-surface);color:var(--t-max);border:1px solid var(--bd-hover);border-radius:var(--radius-sm);font-size:12px;font-family:'IBM Plex Mono',monospace;box-shadow:var(--shadow-md);padding:5px 9px}
+.leaflet-tooltip.map-tip::before{display:none}
+.map-legend{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:10px;font-size:11px;color:var(--t-dim);font-family:'IBM Plex Mono',monospace}
+.map-legend .lg-item{display:flex;align-items:center;gap:5px}
+.map-legend .lg-swatch{width:16px;height:12px;border-radius:3px;border:1px solid rgba(255,255,255,0.15)}
+.map-balloon{background:var(--bg-surface);border:1px solid var(--accent-purple);color:var(--t-max);border-radius:var(--radius-full);padding:3px 9px;font-size:11px;font-weight:600;font-family:'IBM Plex Mono',monospace;white-space:nowrap;box-shadow:0 3px 10px rgba(0,0,0,0.45);display:flex;align-items:center;gap:4px;transition:transform var(--transition-fast)}
+.map-balloon:hover{transform:scale(1.08);border-color:var(--accent-blue);z-index:1000}
+.map-balloon .bl-flag{font-size:12px}
+.leaflet-div-icon.map-balloon-wrap{background:transparent;border:none}
+.map-info{margin-top:14px;font-size:13px;color:var(--t-soft);font-family:'Inter',system-ui,sans-serif;min-height:22px}
+.map-info .mi-country{font-family:'IBM Plex Mono',monospace;color:var(--t-max);font-weight:600;font-size:14px}
+.map-info .mi-chip{display:inline-block;background:var(--bg-inset);border:1px solid var(--bd-sub);border-radius:var(--radius-full);padding:2px 9px;margin:3px 4px 0 0;font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--t-soft)}
+html.light #aiMap,html.light .leaflet-container{background:#dfe6ef}
+@media(max-width:600px){#aiMap{height:400px}}
 </style>
 </head>
 <body>
@@ -539,6 +559,7 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
     <button class="tab-btn" data-tab="tab-countdown">Countdown</button>
     <button class="tab-btn" data-tab="tab-platforms">Platforms</button>
     <button class="tab-btn" data-tab="tab-companies">Companies</button>
+    <button class="tab-btn" data-tab="tab-map">🗺️ Map<span class="tab-new-badge">NEW</span></button>
     <button class="tab-btn" data-tab="tab-robotics">Robotics<span class="tab-new-badge">NEW</span></button>
     <button class="tab-btn" data-tab="tab-glasses">Smart Glasses<span class="tab-new-badge">NEW</span></button>
     <button class="tab-btn" data-tab="tab-pricing">Pricing</button>
@@ -697,6 +718,19 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
 <!-- ==================== COMPANIES TAB ==================== -->
 <div class="tab-panel" id="tab-companies"></div>
 
+<!-- ==================== MAP TAB ==================== -->
+<div class="tab-panel" id="tab-map">
+  <div class="info-page" style="max-width:1100px">
+    <h2 id="mapTitle">🗺️ Mapa de Labs de IA</h2>
+    <p class="sub" id="mapSub">Mapa de calor por país según cantidad de labs de IA. Hacé click en un país para ver sus empresas en globos con flechas.</p>
+    <div id="mapWrap">
+      <div id="aiMap"></div>
+      <div id="mapLegend" class="map-legend"></div>
+    </div>
+    <div id="mapInfo" class="map-info"></div>
+  </div>
+</div>
+
 <!-- ==================== ROBOTICS TAB ==================== -->
 <div class="tab-panel" id="tab-robotics">
   <div class="info-page">
@@ -743,6 +777,60 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
   </div>
 </div>
 </div>
+
+<!-- Leaflet + TopoJSON (Map tab) -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+/* Company → {c: world-atlas country name, f: flag, lat, lng (HQ city)} */
+const COMPANY_COUNTRY={
+  "Google":{c:"United States of America",f:"🇺🇸",lat:37.42,lng:-122.08},
+  "OpenAI":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.42},
+  "Meta":{c:"United States of America",f:"🇺🇸",lat:37.48,lng:-122.15},
+  "NVIDIA":{c:"United States of America",f:"🇺🇸",lat:37.35,lng:-121.97},
+  "Microsoft":{c:"United States of America",f:"🇺🇸",lat:47.67,lng:-122.12},
+  "Anthropic":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.41},
+  "xAI":{c:"United States of America",f:"🇺🇸",lat:37.76,lng:-122.40},
+  "IBM":{c:"United States of America",f:"🇺🇸",lat:41.11,lng:-73.72},
+  "Runway":{c:"United States of America",f:"🇺🇸",lat:40.72,lng:-74.00},
+  "Suno":{c:"United States of America",f:"🇺🇸",lat:42.37,lng:-71.11},
+  "Midjourney":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.43},
+  "Liquid AI":{c:"United States of America",f:"🇺🇸",lat:42.36,lng:-71.09},
+  "Luma AI":{c:"United States of America",f:"🇺🇸",lat:37.78,lng:-122.40},
+  "Pika":{c:"United States of America",f:"🇺🇸",lat:37.44,lng:-122.14},
+  "Physical Intelligence":{c:"United States of America",f:"🇺🇸",lat:37.78,lng:-122.39},
+  "Apple":{c:"United States of America",f:"🇺🇸",lat:37.33,lng:-122.03},
+  "AI2":{c:"United States of America",f:"🇺🇸",lat:47.66,lng:-122.31},
+  "Zyphra":{c:"United States of America",f:"🇺🇸",lat:37.44,lng:-122.16},
+  "Tavus":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.39},
+  "ByteDance":{c:"China",f:"🇨🇳",lat:39.98,lng:116.30},
+  "Alibaba":{c:"China",f:"🇨🇳",lat:30.27,lng:120.16},
+  "DeepSeek":{c:"China",f:"🇨🇳",lat:30.25,lng:120.18},
+  "Tencent":{c:"China",f:"🇨🇳",lat:22.54,lng:113.95},
+  "Kuaishou":{c:"China",f:"🇨🇳",lat:39.99,lng:116.48},
+  "Zhipu AI":{c:"China",f:"🇨🇳",lat:39.99,lng:116.32},
+  "MiniMax":{c:"China",f:"🇨🇳",lat:31.22,lng:121.48},
+  "Xiaomi":{c:"China",f:"🇨🇳",lat:39.96,lng:116.36},
+  "Moonshot AI":{c:"China",f:"🇨🇳",lat:39.95,lng:116.31},
+  "OpenBMB":{c:"China",f:"🇨🇳",lat:40.00,lng:116.33},
+  "Baidu":{c:"China",f:"🇨🇳",lat:40.05,lng:116.30},
+  "Ant Group / InclusionAI":{c:"China",f:"🇨🇳",lat:30.28,lng:120.20},
+  "Fish Audio":{c:"China",f:"🇨🇳",lat:31.23,lng:121.47},
+  "Mistral AI":{c:"France",f:"🇫🇷",lat:48.86,lng:2.35},
+  "DeepMind":{c:"United Kingdom",f:"🇬🇧",lat:51.53,lng:-0.12},
+  "Google DeepMind":{c:"United Kingdom",f:"🇬🇧",lat:51.53,lng:-0.12},
+  "Stability AI":{c:"United Kingdom",f:"🇬🇧",lat:51.51,lng:-0.13},
+  "ElevenLabs":{c:"United Kingdom",f:"🇬🇧",lat:51.50,lng:-0.12},
+  "AI21 Labs":{c:"Israel",f:"🇮🇱",lat:32.08,lng:34.78},
+  "Lightricks":{c:"Israel",f:"🇮🇱",lat:31.77,lng:35.21},
+  "Cohere":{c:"Canada",f:"🇨🇦",lat:43.65,lng:-79.38},
+  "TII":{c:"United Arab Emirates",f:"🇦🇪",lat:24.45,lng:54.38},
+  "Yandex":{c:"Russia",f:"🇷🇺",lat:55.75,lng:37.62},
+  "Black Forest Labs":{c:"Germany",f:"🇩🇪",lat:48.00,lng:7.85},
+  "Multiverse Computing":{c:"Spain",f:"🇪🇸",lat:43.32,lng:-1.98}
+};
+function flagFor(c){const o=COMPANY_COUNTRY[c];return o?o.f:'';}
+</script>
 
 <script>
 const models = [
@@ -2429,7 +2517,7 @@ const i18n={
     footer:"* Estimated intelligence (0\u2013100), relative to state of the art in March 2026. Based on public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Diffusion models rated by generation quality and prompt adherence. Not absolute metrics.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
-    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",robotics:"Robotics",glasses:"Smart Glasses",pricing:"Pricing",api:"API",contact:"Contact"},
+    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",map:"Map",robotics:"Robotics",glasses:"Smart Glasses",pricing:"Pricing",api:"API",contact:"Contact"},
     robotics:{title:"Robotics",sub:"Companies and models of humanoid robots, dexterous hands and relevant robotic platforms.",link:"→ Official page"},
     glasses:{title:"Smart Glasses",sub:"Smart and AR glasses: HUD, waveguide, on-device AI, AR display and productive wearables.",link:"→ Official page"},
     pricing:{title:"AI Pricing",sub:"Unified view of token, image, video and audio costs across providers. Sorted from cheapest to most expensive within each category. Click a model name to open its official pricing page.",calc_title:"Cost calculator",calc_in:"Input tokens / call",calc_out:"Output tokens / call",calc_calls:"Calls per month",calc_help:"Estimate ranks LLMs only (per-1M-token models). Other categories (image/video/audio) shown below as-is.",cat_llm:"LLM / Reasoning",cat_embed:"Embeddings",cat_image:"Image generation",cat_video:"Video generation",cat_audio:"Audio / TTS / STT",verified:"verified",approx:"approx",per_image:"img",per_second:"sec",per_chars:"chars",per_minute:"min",plan_based:"plan-based — see provider page",disclaimer:"Prices in USD, last verified May 2026. Rates change frequently — always confirm on the provider page (link on each card). Open-weight models marked free can be self-hosted (Ollama/vLLM) or run via aggregators like Together/Fireworks at the listed rates."},
@@ -2520,7 +2608,7 @@ const i18n={
     footer:"* Inteligencia estimada (0\u2013100), relativa al estado del arte en marzo 2026. Basado en benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opiniones de expertos y posicionamiento de mercado. Modelos de difusi\u00f3n evaluados por calidad de generaci\u00f3n y adherencia a prompts. No son m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tendencia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 ventana \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"es-UY",
-    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",robotics:"Robótica",glasses:"Smart Glasses",pricing:"Precios",api:"API",contact:"Contacto"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",map:"Mapa",robotics:"Robótica",glasses:"Smart Glasses",pricing:"Precios",api:"API",contact:"Contacto"},
     robotics:{title:"Robótica",sub:"Empresas y modelos de robots humanoides, manos dextrasas y plataformas robóticas relevantes.",link:"→ Página oficial"},
     glasses:{title:"Smart Glasses",sub:"Lentes inteligentes y AR: HUD, waveguide, AI on-device, AR display y wearables productivos.",link:"→ Página oficial"},
     pricing:{title:"Precios de IA",sub:"Vista unificada de costos de tokens, imagen, video y audio por proveedor. Ordenado de más barato a más caro dentro de cada categoría. Click en el nombre del modelo abre su página oficial de precios.",calc_title:"Calculadora de costos",calc_in:"Tokens entrada / llamada",calc_out:"Tokens salida / llamada",calc_calls:"Llamadas por mes",calc_help:"El ranking compara solo LLMs (precio por 1M tokens). Las otras categorías (imagen/video/audio) se muestran abajo tal cual.",cat_llm:"LLM / Razonamiento",cat_embed:"Embeddings",cat_image:"Generación de imagen",cat_video:"Generación de video",cat_audio:"Audio / TTS / STT",verified:"verificado",approx:"aprox",per_image:"img",per_second:"seg",per_chars:"caracteres",per_minute:"min",plan_based:"basado en plan — ver página del proveedor",disclaimer:"Precios en USD, última verificación mayo 2026. Las tarifas cambian seguido — siempre confirmá en la página del proveedor (link en cada tarjeta). Los modelos open-weight marcados como free pueden auto-hostearse (Ollama/vLLM) o usarse vía agregadores como Together/Fireworks a los precios listados."},
@@ -2611,7 +2699,7 @@ const i18n={
     footer:"* Intelig\u00eancia estimada (0\u2013100), relativa ao estado da arte em mar\u00e7o de 2026. Baseado em benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opini\u00f5es de especialistas e posicionamento de mercado. Modelos de difus\u00e3o avaliados por qualidade de gera\u00e7\u00e3o e ader\u00eancia a prompts. N\u00e3o s\u00e3o m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tend\u00eancia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 janela \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"pt-BR",
-    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",robotics:"Robótica",glasses:"Smart Glasses",pricing:"Preços",api:"API",contact:"Contato"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",map:"Mapa",robotics:"Robótica",glasses:"Smart Glasses",pricing:"Preços",api:"API",contact:"Contato"},
     robotics:{title:"Robótica",sub:"Empresas e modelos de robôs humanoides, mãos destras e plataformas robóticas relevantes.",link:"→ Página oficial"},
     glasses:{title:"Smart Glasses",sub:"Óculos inteligentes e AR: HUD, waveguide, IA on-device, AR display e wearables produtivos.",link:"→ Página oficial"},
     pricing:{title:"Preços de IA",sub:"Visão unificada de custos de tokens, imagem, vídeo e áudio por provedor. Ordenado do mais barato ao mais caro em cada categoria. Clique no nome do modelo para abrir sua página oficial de preços.",calc_title:"Calculadora de custos",calc_in:"Tokens entrada / chamada",calc_out:"Tokens saída / chamada",calc_calls:"Chamadas por mês",calc_help:"O ranking compara apenas LLMs (preço por 1M tokens). As outras categorias (imagem/vídeo/áudio) aparecem abaixo como estão.",cat_llm:"LLM / Raciocínio",cat_embed:"Embeddings",cat_image:"Geração de imagem",cat_video:"Geração de vídeo",cat_audio:"Áudio / TTS / STT",verified:"verificado",approx:"aprox",per_image:"img",per_second:"seg",per_chars:"caracteres",per_minute:"min",plan_based:"baseado em plano — veja a página do provedor",disclaimer:"Preços em USD, última verificação maio 2026. As tarifas mudam frequentemente — sempre confirme na página do provedor (link em cada cartão). Modelos open-weight marcados como free podem ser auto-hospedados (Ollama/vLLM) ou usados via agregadores como Together/Fireworks aos preços listados."},
@@ -3039,7 +3127,8 @@ function render(){
   // Helper: build card HTML
   function cardHTML(m,extraPrefix){
     const tc=typeColors[m.type]||"#666";
-    const metaText=`${m.company} · ${fmtDate(m.date)}`;
+    const _fl=flagFor(m.company);
+    const metaText=`${_fl?_fl+' ':''}${m.company} · ${fmtDate(m.date)}`;
     const metaContent=m.url&&m.url!=='#'?`<a href="${m.url}" target="_blank" rel="noopener">${metaText}</a>`:metaText;
     const prefix=extraPrefix||'';
     const newBadge=isFreshModel(m)?'<span class="badge badge-fresh">🔥 FRESH</span>':(isNewModel(m)?'<span class="badge badge-new">NEW</span>':'');
@@ -4451,10 +4540,13 @@ function applyLang(){
   document.querySelector('[data-tab="tab-countdown"]').textContent=tabs.countdown||'Countdown';
   document.querySelector('[data-tab="tab-platforms"]').textContent=tabs.platforms||'Platforms';
   document.querySelector('[data-tab="tab-companies"]').textContent=tabs.companies||'Companies';
+  const mapBtn=document.querySelector('[data-tab="tab-map"]');if(mapBtn)mapBtn.innerHTML='🗺️ '+(tabs.map||'Map')+'<span class="tab-new-badge">NEW</span>';
   const robBtn=document.querySelector('[data-tab="tab-robotics"]');if(robBtn)robBtn.innerHTML=(tabs.robotics||'Robotics')+'<span class="tab-new-badge">NEW</span>';
   const glBtn=document.querySelector('[data-tab="tab-glasses"]');if(glBtn)glBtn.innerHTML=(tabs.glasses||'Smart Glasses')+'<span class="tab-new-badge">NEW</span>';
   const rTit=document.getElementById('roboticsTitle');const rSub=document.getElementById('roboticsSub');const rT=t('robotics');if(rTit&&rT)rTit.textContent=rT.title;if(rSub&&rT)rSub.textContent=rT.sub;
   const gTit=document.getElementById('glassesTitle');const gSub=document.getElementById('glassesSub');const gT=t('glasses');if(gTit&&gT)gTit.textContent=gT.title;if(gSub&&gT)gSub.textContent=gT.sub;
+  const mapTxt={en:{t:"🗺️ AI Labs Map",s:"Heatmap by country based on number of AI labs. Click a country to see its companies in balloons with arrows."},es:{t:"🗺️ Mapa de Labs de IA",s:"Mapa de calor por país según cantidad de labs de IA. Hacé click en un país para ver sus empresas en globos con flechas."},pt:{t:"🗺️ Mapa de Labs de IA",s:"Mapa de calor por país conforme a quantidade de labs de IA. Clique num país para ver suas empresas em balões com setas."}}[currentLang]||null;
+  const mTit=document.getElementById('mapTitle');const mSub=document.getElementById('mapSub');if(mTit&&mapTxt)mTit.textContent=mapTxt.t;if(mSub&&mapTxt)mSub.textContent=mapTxt.s;
   renderRoboticsTab();renderGlassesTab();
   const pricingBtn=document.querySelector('[data-tab="tab-pricing"]');if(pricingBtn)pricingBtn.textContent=tabs.pricing||'Pricing';
   document.querySelector('[data-tab="tab-api"]').textContent=tabs.api||'API';
@@ -4705,6 +4797,71 @@ renderUpcoming();
 <script>
 (function(){const b=document.getElementById('scrollTop');window.addEventListener('scroll',()=>{b.classList.toggle('visible',window.scrollY>400)},{passive:true})})();
 </script>
+<!-- ==================== MAP TAB LOGIC ==================== -->
+<script>
+(function(){
+  let inited=false,map=null,geoLayer=null,companyLayer=null;
+  let COUNT={},COMPS={},maxN=1;
+  function buildData(){
+    COMPS={};
+    Object.keys(COMPANY_COUNTRY).forEach(co=>{const c=COMPANY_COUNTRY[co].c;(COMPS[c]=COMPS[c]||[]).push(co);});
+    COUNT={};Object.keys(COMPS).forEach(c=>COUNT[c]=COMPS[c].length);
+    maxN=Math.max(1,...Object.values(COUNT));
+  }
+  function heat(n){
+    if(!n)return document.documentElement.classList.contains('light')?'#c8d2de':'#1b1b26';
+    const t=Math.min(1,n/maxN),hue=212-(212-14)*t,light=40+12*t;
+    return 'hsl('+hue+',72%,'+light+'%)';
+  }
+  function styleF(f){const n=COUNT[f.properties.name]||0;return{fillColor:heat(n),fillOpacity:n?0.85:0.28,color:'#0a0a0f',weight:0.6};}
+  function clearComp(){if(companyLayer){map.removeLayer(companyLayer);companyLayer=null;}}
+  function showCountry(name,centroid){
+    clearComp();
+    const info=document.getElementById('mapInfo');
+    const comps=COMPS[name]||[];
+    if(!comps.length){info.innerHTML='<span class="mi-country">'+name+'</span> — sin labs de IA registrados.';return;}
+    companyLayer=L.layerGroup().addTo(map);
+    comps.forEach(co=>{
+      const d=COMPANY_COUNTRY[co],ll=[d.lat,d.lng];
+      L.polyline([centroid,ll],{color:'#c084fc',weight:1.4,opacity:0.75,dashArray:'3,4'}).addTo(companyLayer);
+      const icon=L.divIcon({className:'map-balloon-wrap',html:'<div class="map-balloon"><span class="bl-flag">'+d.f+'</span>'+co+'</div>'});
+      L.marker(ll,{icon,riseOnHover:true}).addTo(companyLayer);
+    });
+    const pts=comps.map(co=>[COMPANY_COUNTRY[co].lat,COMPANY_COUNTRY[co].lng]);pts.push(centroid);
+    try{map.fitBounds(L.latLngBounds(pts).pad(0.55),{maxZoom:5});}catch(e){}
+    info.innerHTML='<span class="mi-country">'+name+'</span> · '+comps.length+' lab'+(comps.length>1?'s':'')+': '+comps.map(co=>'<span class="mi-chip">'+COMPANY_COUNTRY[co].f+' '+co+'</span>').join('');
+  }
+  function legend(){
+    const lg=document.getElementById('mapLegend');if(!lg)return;
+    const items=[['0',heat(0)],['◔',heat(Math.max(1,Math.round(maxN*0.25)))],['◑',heat(Math.round(maxN*0.6))],[maxN+' máx',heat(maxN)]];
+    lg.innerHTML='<span class="lg-item" style="opacity:.65">Labs/país:</span>'+items.map(function(it){return '<span class="lg-item"><span class="lg-swatch" style="background:'+it[1]+'"></span>'+it[0]+'</span>';}).join('');
+  }
+  function initMap(){
+    if(inited)return;if(typeof L==='undefined'||typeof topojson==='undefined'){document.getElementById('mapInfo').textContent='No se pudo cargar la librería del mapa.';return;}
+    inited=true;buildData();legend();
+    map=L.map('aiMap',{minZoom:1,maxZoom:6,worldCopyJump:true}).setView([28,8],2);
+    const light=document.documentElement.classList.contains('light');
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/'+(light?'light_nolabels':'dark_nolabels')+'/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:6,attribution:'© OpenStreetMap © CARTO'}).addTo(map);
+    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(r){return r.json();}).then(function(topo){
+      const geo=topojson.feature(topo,topo.objects.countries);
+      geoLayer=L.geoJSON(geo,{style:styleF,onEachFeature:function(f,layer){
+        const name=f.properties.name,n=COUNT[name]||0;
+        layer.bindTooltip(name+' — '+n+' lab'+(n===1?'':'s'),{className:'map-tip',sticky:true});
+        layer.on('mouseover',function(){layer.setStyle({weight:1.6,color:'#6b8aff'});layer.bringToFront();});
+        layer.on('mouseout',function(){geoLayer.resetStyle(layer);});
+        layer.on('click',function(){const c=layer.getBounds().getCenter();showCountry(name,[c.lat,c.lng]);});
+      }}).addTo(map);
+    }).catch(function(){document.getElementById('mapInfo').textContent='No se pudo cargar la geodata del mapa.';});
+    setTimeout(function(){map.invalidateSize();},250);
+  }
+  function onTab(){initMap();if(map)setTimeout(function(){map.invalidateSize();},160);}
+  const mb=document.querySelector('[data-tab="tab-map"]');
+  if(mb)mb.addEventListener('click',onTab);
+  function hashCheck(){if(location.hash==='#map')setTimeout(onTab,300);}
+  window.addEventListener('hashchange',hashCheck);hashCheck();
+})();
+</script>
+
 <!-- GoatCounter analytics (privacy-friendly, no cookies) -->
 <script data-goatcounter="https://missingus3r.goatcounter.com/count"
         async src="//gc.zgo.at/count.js"></script>
