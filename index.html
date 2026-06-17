@@ -510,6 +510,22 @@ html.light .scroll-top{background:rgba(255,255,255,0.85)}
 .map-info .mi-chip{display:inline-block;background:var(--bg-inset);border:1px solid var(--bd-sub);border-radius:var(--radius-full);padding:2px 9px;margin:3px 4px 0 0;font-size:11px;font-family:'IBM Plex Mono',monospace;color:var(--t-soft)}
 html.light #aiMap,html.light .leaflet-container{background:#dfe6ef}
 @media(max-width:600px){#aiMap{height:400px}}
+
+/* ==================== RSI/AGI/ASI TAB ==================== */
+#conceptsContent{display:flex;flex-direction:column;gap:14px;margin-top:14px}
+.concept-block{background:var(--bg-surface);border:1px solid var(--bd-sub);border-left:3px solid var(--accent-blue);border-radius:var(--radius-md);padding:14px 18px;box-shadow:var(--shadow-sm)}
+.concept-block.c-rsi{border-left-color:var(--accent-blue)}
+.concept-block.c-agi{border-left-color:var(--accent-purple)}
+.concept-block.c-asi{border-left-color:#e0a54c}
+.concept-block h3{font-family:'IBM Plex Mono',monospace;font-size:16px;color:var(--t-max);margin:0 0 4px}
+.concept-block .c-acro{font-size:12px;color:var(--t-dim);font-family:'IBM Plex Mono',monospace;margin-bottom:8px}
+.concept-block .c-def{font-size:14px;color:var(--t-soft);line-height:1.55;margin-bottom:8px}
+.concept-block ul{margin:0;padding-left:18px}
+.concept-block li{font-size:13px;color:var(--t-soft);line-height:1.55;margin-bottom:4px}
+.concept-chain{background:var(--bg-inset);border:1px dashed var(--bd-hover);border-radius:var(--radius-md);padding:12px 18px;font-size:13px;color:var(--t-soft);line-height:1.6}
+.concept-chain b{color:var(--t-max)}
+.concept-src{font-size:12px;color:var(--t-dim);margin-top:6px}
+.concept-src a{color:#5bc0be;text-decoration:none}
 </style>
 </head>
 <body>
@@ -560,6 +576,7 @@ html.light #aiMap,html.light .leaflet-container{background:#dfe6ef}
     <button class="tab-btn" data-tab="tab-platforms">Platforms</button>
     <button class="tab-btn" data-tab="tab-companies">Companies</button>
     <button class="tab-btn" data-tab="tab-map">🗺️ Map<span class="tab-new-badge">NEW</span></button>
+    <button class="tab-btn" data-tab="tab-concepts">🧠 RSI/AGI/ASI<span class="tab-new-badge">NEW</span></button>
     <button class="tab-btn" data-tab="tab-robotics">Robotics<span class="tab-new-badge">NEW</span></button>
     <button class="tab-btn" data-tab="tab-glasses">Smart Glasses<span class="tab-new-badge">NEW</span></button>
     <button class="tab-btn" data-tab="tab-pricing">Pricing</button>
@@ -728,6 +745,15 @@ html.light #aiMap,html.light .leaflet-container{background:#dfe6ef}
       <div id="mapLegend" class="map-legend"></div>
     </div>
     <div id="mapInfo" class="map-info"></div>
+  </div>
+</div>
+
+<!-- ==================== RSI/AGI/ASI TAB ==================== -->
+<div class="tab-panel" id="tab-concepts">
+  <div class="info-page" style="max-width:900px">
+    <h2 id="conceptsTitle">🧠 RSI / AGI / ASI</h2>
+    <p class="sub" id="conceptsSub">Los tres conceptos clave del camino hacia la superinteligencia.</p>
+    <div id="conceptsContent"></div>
   </div>
 </div>
 
@@ -2517,7 +2543,7 @@ const i18n={
     footer:"* Estimated intelligence (0\u2013100), relative to state of the art in March 2026. Based on public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Diffusion models rated by generation quality and prompt adherence. Not absolute metrics.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> weighted trend</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 window \u00b18%, weight = intel\u00b2, frontier dominates</span>',
     loc:"en-US",
-    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",map:"Map",robotics:"Robotics",glasses:"Smart Glasses",pricing:"Pricing",api:"API",contact:"Contact"},
+    tabs:{models:"AI Models",arc:"Benchmarks",meta:"Metaculus Forecasts",countdown:"Countdown",platforms:"Platforms",companies:"Companies",map:"Map",concepts:"RSI/AGI/ASI",robotics:"Robotics",glasses:"Smart Glasses",pricing:"Pricing",api:"API",contact:"Contact"},
     robotics:{title:"Robotics",sub:"Companies and models of humanoid robots, dexterous hands and relevant robotic platforms.",link:"→ Official page"},
     glasses:{title:"Smart Glasses",sub:"Smart and AR glasses: HUD, waveguide, on-device AI, AR display and productive wearables.",link:"→ Official page"},
     pricing:{title:"AI Pricing",sub:"Unified view of token, image, video and audio costs across providers. Sorted from cheapest to most expensive within each category. Click a model name to open its official pricing page.",calc_title:"Cost calculator",calc_in:"Input tokens / call",calc_out:"Output tokens / call",calc_calls:"Calls per month",calc_help:"Estimate ranks LLMs only (per-1M-token models). Other categories (image/video/audio) shown below as-is.",cat_llm:"LLM / Reasoning",cat_embed:"Embeddings",cat_image:"Image generation",cat_video:"Video generation",cat_audio:"Audio / TTS / STT",verified:"verified",approx:"approx",per_image:"img",per_second:"sec",per_chars:"chars",per_minute:"min",plan_based:"plan-based — see provider page",disclaimer:"Prices in USD, last verified May 2026. Rates change frequently — always confirm on the provider page (link on each card). Open-weight models marked free can be self-hosted (Ollama/vLLM) or run via aggregators like Together/Fireworks at the listed rates."},
@@ -2608,7 +2634,7 @@ const i18n={
     footer:"* Inteligencia estimada (0\u2013100), relativa al estado del arte en marzo 2026. Basado en benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opiniones de expertos y posicionamiento de mercado. Modelos de difusi\u00f3n evaluados por calidad de generaci\u00f3n y adherencia a prompts. No son m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tendencia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 ventana \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"es-UY",
-    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",map:"Mapa",robotics:"Robótica",glasses:"Smart Glasses",pricing:"Precios",api:"API",contact:"Contacto"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Pronósticos Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",map:"Mapa",concepts:"RSI/AGI/ASI",robotics:"Robótica",glasses:"Smart Glasses",pricing:"Precios",api:"API",contact:"Contacto"},
     robotics:{title:"Robótica",sub:"Empresas y modelos de robots humanoides, manos dextrasas y plataformas robóticas relevantes.",link:"→ Página oficial"},
     glasses:{title:"Smart Glasses",sub:"Lentes inteligentes y AR: HUD, waveguide, AI on-device, AR display y wearables productivos.",link:"→ Página oficial"},
     pricing:{title:"Precios de IA",sub:"Vista unificada de costos de tokens, imagen, video y audio por proveedor. Ordenado de más barato a más caro dentro de cada categoría. Click en el nombre del modelo abre su página oficial de precios.",calc_title:"Calculadora de costos",calc_in:"Tokens entrada / llamada",calc_out:"Tokens salida / llamada",calc_calls:"Llamadas por mes",calc_help:"El ranking compara solo LLMs (precio por 1M tokens). Las otras categorías (imagen/video/audio) se muestran abajo tal cual.",cat_llm:"LLM / Razonamiento",cat_embed:"Embeddings",cat_image:"Generación de imagen",cat_video:"Generación de video",cat_audio:"Audio / TTS / STT",verified:"verificado",approx:"aprox",per_image:"img",per_second:"seg",per_chars:"caracteres",per_minute:"min",plan_based:"basado en plan — ver página del proveedor",disclaimer:"Precios en USD, última verificación mayo 2026. Las tarifas cambian seguido — siempre confirmá en la página del proveedor (link en cada tarjeta). Los modelos open-weight marcados como free pueden auto-hostearse (Ollama/vLLM) o usarse vía agregadores como Together/Fireworks a los precios listados."},
@@ -2699,7 +2725,7 @@ const i18n={
     footer:"* Intelig\u00eancia estimada (0\u2013100), relativa ao estado da arte em mar\u00e7o de 2026. Baseado em benchmarks p\u00fablicos (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), opini\u00f5es de especialistas e posicionamento de mercado. Modelos de difus\u00e3o avaliados por qualidade de gera\u00e7\u00e3o e ader\u00eancia a prompts. N\u00e3o s\u00e3o m\u00e9tricas absolutas.",
     cfoot:'<span><span style="color:#f472b6">\u25cf</span> closed &nbsp; <span style="color:#34d399">\u25cf</span> open &nbsp; <span style="background:linear-gradient(90deg,#ef4444,#f97316,#eab308,#22c55e,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-weight:700">\u2501\u2501</span> tend\u00eancia ponderada</span><span style="color:var(--t-xghost)">|</span><span><span class="trend-line">t(x)</span> = \u03a3(intel\u00b3) / \u03a3(intel\u00b2) \u2014 janela \u00b18%, peso = intel\u00b2, frontier domina</span>',
     loc:"pt-BR",
-    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",map:"Mapa",robotics:"Robótica",glasses:"Smart Glasses",pricing:"Preços",api:"API",contact:"Contato"},
+    tabs:{models:"Modelos IA",arc:"Benchmarks",meta:"Previsões Metaculus",countdown:"Countdown",platforms:"Plataformas",companies:"Empresas",map:"Mapa",concepts:"RSI/AGI/ASI",robotics:"Robótica",glasses:"Smart Glasses",pricing:"Preços",api:"API",contact:"Contato"},
     robotics:{title:"Robótica",sub:"Empresas e modelos de robôs humanoides, mãos destras e plataformas robóticas relevantes.",link:"→ Página oficial"},
     glasses:{title:"Smart Glasses",sub:"Óculos inteligentes e AR: HUD, waveguide, IA on-device, AR display e wearables produtivos.",link:"→ Página oficial"},
     pricing:{title:"Preços de IA",sub:"Visão unificada de custos de tokens, imagem, vídeo e áudio por provedor. Ordenado do mais barato ao mais caro em cada categoria. Clique no nome do modelo para abrir sua página oficial de preços.",calc_title:"Calculadora de custos",calc_in:"Tokens entrada / chamada",calc_out:"Tokens saída / chamada",calc_calls:"Chamadas por mês",calc_help:"O ranking compara apenas LLMs (preço por 1M tokens). As outras categorias (imagem/vídeo/áudio) aparecem abaixo como estão.",cat_llm:"LLM / Raciocínio",cat_embed:"Embeddings",cat_image:"Geração de imagem",cat_video:"Geração de vídeo",cat_audio:"Áudio / TTS / STT",verified:"verificado",approx:"aprox",per_image:"img",per_second:"seg",per_chars:"caracteres",per_minute:"min",plan_based:"baseado em plano — veja a página do provedor",disclaimer:"Preços em USD, última verificação maio 2026. As tarifas mudam frequentemente — sempre confirme na página do provedor (link em cada cartão). Modelos open-weight marcados como free podem ser auto-hospedados (Ollama/vLLM) ou usados via agregadores como Together/Fireworks aos preços listados."},
@@ -4542,6 +4568,8 @@ function applyLang(){
   document.querySelector('[data-tab="tab-platforms"]').textContent=tabs.platforms||'Platforms';
   document.querySelector('[data-tab="tab-companies"]').textContent=tabs.companies||'Companies';
   const mapBtn=document.querySelector('[data-tab="tab-map"]');if(mapBtn)mapBtn.innerHTML='🗺️ '+(tabs.map||'Map')+'<span class="tab-new-badge">NEW</span>';
+  const cptBtn=document.querySelector('[data-tab="tab-concepts"]');if(cptBtn)cptBtn.innerHTML='🧠 '+(tabs.concepts||'RSI/AGI/ASI')+'<span class="tab-new-badge">NEW</span>';
+  if(typeof renderConceptsTab==='function')renderConceptsTab();
   const robBtn=document.querySelector('[data-tab="tab-robotics"]');if(robBtn)robBtn.innerHTML=(tabs.robotics||'Robotics')+'<span class="tab-new-badge">NEW</span>';
   const glBtn=document.querySelector('[data-tab="tab-glasses"]');if(glBtn)glBtn.innerHTML=(tabs.glasses||'Smart Glasses')+'<span class="tab-new-badge">NEW</span>';
   const rTit=document.getElementById('roboticsTitle');const rSub=document.getElementById('roboticsSub');const rT=t('robotics');if(rTit&&rT)rTit.textContent=rT.title;if(rSub&&rT)rSub.textContent=rT.sub;
@@ -4861,6 +4889,48 @@ renderUpcoming();
   function hashCheck(){if(location.hash==='#map')setTimeout(onTab,300);}
   window.addEventListener('hashchange',hashCheck);hashCheck();
 })();
+</script>
+
+<!-- ==================== RSI/AGI/ASI TAB CONTENT ==================== -->
+<script>
+const CONCEPTS_DATA={
+  es:{title:"🧠 RSI / AGI / ASI",sub:"Los tres conceptos clave del camino hacia la superinteligencia.",
+    blocks:[
+      {cls:"c-rsi",h:"RSI",acro:"Recursive Self-Improvement (Auto-mejora recursiva)",def:"Una IA que mejora su propia capacidad de aprender y optimizarse. Cada versión construye una versión más capaz que ella misma — y ese loop podría acelerarse hasta una “explosión de inteligencia”.",pts:["Es posible en principio (ej: un modelo de lenguaje optimizando un modelo de ML — el experimento “fractal search”, o el Auto Research de Karpathy), pero hoy es difícil y frágil.","Puede dispararse rápido, pero también frenarse por límites de recursos (cómputo, datos) y por la dificultad creciente de los problemas.","Los modelos usados para auto-optimizarse pueden derivar en comportamientos no deseados → seguridad y control son críticos.","Es el motor que, en teoría, lleva de AGI a ASI."]},
+      {cls:"c-agi",h:"AGI",acro:"Artificial General Intelligence (Inteligencia General Artificial)",def:"IA con inteligencia de nivel humano: capaz de razonar, aprender y resolver problemas en cualquier dominio, no sólo en tareas estrechas.",pts:["Generalista y adaptable, como una persona competente en muchas áreas.","Es el hito que este sitio trackea con el countdown (estimación agregada de cuándo llega).","No implica superar a los humanos — sólo igualarlos de forma general."]},
+      {cls:"c-asi",h:"ASI",acro:"Artificial Superintelligence (Superinteligencia Artificial)",def:"Inteligencia que supera ampliamente a la humana en prácticamente todos los dominios — incluida la propia investigación científica y de IA.",pts:["Resultado típico de una RSI exitosa partiendo de AGI (el “takeoff”).","Plantea los mayores beneficios potenciales y también los mayores riesgos de alineación.","Su velocidad de llegada depende de cuán rápido sea el loop de RSI tras AGI."]}
+    ],
+    chain:"La escalera: <b>RSI</b> es el mecanismo, <b>AGI</b> el punto de partida de nivel humano, y <b>ASI</b> el destino si la auto-mejora se acelera. RSI sobre una AGI podría comprimir años de progreso en meses o días — por eso el “takeoff” y su control son el debate central.",
+    src:"Notas basadas en el video “Recursive Self-Improvement” (Emergent Garden)."},
+  en:{title:"🧠 RSI / AGI / ASI",sub:"The three key concepts on the road to superintelligence.",
+    blocks:[
+      {cls:"c-rsi",h:"RSI",acro:"Recursive Self-Improvement",def:"An AI that improves its own ability to learn and optimize. Each version builds a more capable successor — a loop that could accelerate into an “intelligence explosion”.",pts:["Possible in principle (e.g. an LLM optimizing an ML model — the “fractal search” experiment, or Karpathy's Auto Research), but today it's hard and fragile.","Could take off fast, but is also bounded by resource limits (compute, data) and the rising difficulty of problems.","Models used to self-optimize can drift into unwanted behavior → safety and control are critical.","It's the engine that, in theory, takes you from AGI to ASI."]},
+      {cls:"c-agi",h:"AGI",acro:"Artificial General Intelligence",def:"AI with human-level intelligence: able to reason, learn and solve problems across any domain, not just narrow tasks.",pts:["General and adaptable, like a competent person across many areas.","It's the milestone this site tracks with the countdown (aggregate estimate of arrival).","Doesn't imply surpassing humans — just matching them generally."]},
+      {cls:"c-asi",h:"ASI",acro:"Artificial Superintelligence",def:"Intelligence that vastly exceeds humans across virtually all domains — including scientific and AI research itself.",pts:["Typical outcome of a successful RSI starting from AGI (the “takeoff”).","Poses the largest potential benefits and the largest alignment risks.","How fast it arrives depends on how fast the RSI loop runs after AGI."]}
+    ],
+    chain:"The ladder: <b>RSI</b> is the mechanism, <b>AGI</b> the human-level starting point, and <b>ASI</b> the destination if self-improvement accelerates. RSI on top of an AGI could compress years of progress into months or days — which is why the “takeoff” and its control are the central debate.",
+    src:"Notes based on the video “Recursive Self-Improvement” (Emergent Garden)."},
+  pt:{title:"🧠 RSI / AGI / ASI",sub:"Os três conceitos-chave no caminho para a superinteligência.",
+    blocks:[
+      {cls:"c-rsi",h:"RSI",acro:"Recursive Self-Improvement (Auto-melhoria recursiva)",def:"Uma IA que melhora a própria capacidade de aprender e otimizar. Cada versão constrói uma sucessora mais capaz — um loop que poderia acelerar até uma “explosão de inteligência”.",pts:["Possível em princípio (ex: um LLM otimizando um modelo de ML — o experimento “fractal search”, ou o Auto Research de Karpathy), mas hoje é difícil e frágil.","Pode disparar rápido, mas também é limitado por recursos (computação, dados) e pela dificuldade crescente dos problemas.","Modelos usados para auto-otimização podem derivar em comportamentos indesejados → segurança e controle são críticos.","É o motor que, em teoria, leva de AGI a ASI."]},
+      {cls:"c-agi",h:"AGI",acro:"Artificial General Intelligence (Inteligência Geral Artificial)",def:"IA com inteligência de nível humano: capaz de raciocinar, aprender e resolver problemas em qualquer domínio, não só tarefas estreitas.",pts:["Generalista e adaptável, como uma pessoa competente em muitas áreas.","É o marco que este site monitora com o countdown (estimativa agregada de chegada).","Não implica superar humanos — só igualá-los de forma geral."]},
+      {cls:"c-asi",h:"ASI",acro:"Artificial Superintelligence (Superinteligência Artificial)",def:"Inteligência que supera amplamente a humana em praticamente todos os domínios — incluindo a própria pesquisa científica e de IA.",pts:["Resultado típico de uma RSI bem-sucedida partindo de AGI (o “takeoff”).","Traz os maiores benefícios potenciais e também os maiores riscos de alinhamento.","Sua velocidade de chegada depende de quão rápido é o loop de RSI após a AGI."]}
+    ],
+    chain:"A escada: <b>RSI</b> é o mecanismo, <b>AGI</b> o ponto de partida de nível humano, e <b>ASI</b> o destino se a auto-melhoria acelerar. RSI sobre uma AGI poderia comprimir anos de progresso em meses ou dias — por isso o “takeoff” e seu controle são o debate central.",
+    src:"Notas baseadas no vídeo “Recursive Self-Improvement” (Emergent Garden)."}
+};
+function renderConceptsTab(){
+  const el=document.getElementById('conceptsContent');if(!el)return;
+  const lang=(typeof currentLang!=='undefined')?currentLang:'es';
+  const d=CONCEPTS_DATA[lang]||CONCEPTS_DATA.es;
+  const tit=document.getElementById('conceptsTitle');const sub=document.getElementById('conceptsSub');
+  if(tit)tit.textContent=d.title; if(sub)sub.textContent=d.sub;
+  const blocks=d.blocks.map(function(b){
+    return '<div class="concept-block '+b.cls+'"><h3>'+b.h+'</h3><div class="c-acro">'+b.acro+'</div><div class="c-def">'+b.def+'</div><ul>'+b.pts.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul></div>';
+  }).join('');
+  el.innerHTML=blocks+'<div class="concept-chain">'+d.chain+'</div><div class="concept-src">'+d.src+' <a href="https://www.youtube.com/watch?v=t7_ZXgfJVG8" target="_blank" rel="noopener">▶ ver</a></div>';
+}
+renderConceptsTab();
 </script>
 
 <!-- GoatCounter analytics (privacy-friendly, no cookies) -->
