@@ -839,6 +839,8 @@ const COMPANY_COUNTRY={
   "Multiverse Computing":{c:"Spain",f:"🇪🇸",lat:43.32,lng:-1.98}
 };
 function flagFor(c){const o=COMPANY_COUNTRY[c];return o?o.f:'';}
+function isoFromFlag(e){if(!e)return'';const a=[...e];if(a.length!==2)return'';const base=0x1F1E6,c0=a[0].codePointAt(0),c1=a[1].codePointAt(0);if(c0<base||c0>base+25||c1<base||c1>base+25)return'';return String.fromCharCode(97+(c0-base))+String.fromCharCode(97+(c1-base));}
+function flagImg(c){const iso=isoFromFlag(flagFor(c));return iso?`<img src="https://flagcdn.com/20x15/${iso}.png" srcset="https://flagcdn.com/40x30/${iso}.png 2x" width="20" height="15" alt="${iso.toUpperCase()}" loading="lazy" style="border-radius:2px;vertical-align:-3px;margin-right:5px;box-shadow:0 0 0 1px rgba(255,255,255,0.12)" onerror="this.style.display='none'">`:'';}
 </script>
 
 <script>
@@ -3140,9 +3142,9 @@ function render(){
   // Helper: build card HTML
   function cardHTML(m,extraPrefix){
     const tc=typeColors[m.type]||"#666";
-    const _fl=flagFor(m.company);
-    const metaText=`${_fl?_fl+' ':''}${m.company} · ${fmtDate(m.date)}`;
-    const metaContent=m.url&&m.url!=='#'?`<a href="${m.url}" target="_blank" rel="noopener">${metaText}</a>`:metaText;
+    const _flimg=flagImg(m.company);
+    const metaInner=`${m.company} · ${fmtDate(m.date)}`;
+    const metaContent=_flimg+(m.url&&m.url!=='#'?`<a href="${m.url}" target="_blank" rel="noopener">${metaInner}</a>`:metaInner);
     const prefix=extraPrefix||'';
     const newBadge=isFreshModel(m)?'<span class="badge badge-fresh">🔥 FRESH</span>':(isNewModel(m)?'<span class="badge badge-new">NEW</span>':'');
     return `<div class="accent" style="background:${tc}"></div><div class="card-top"><div class="card-info"><div class="card-name">${prefix}<span class="card-number">#${m.chronoNum}</span> ${m.name}</div><div class="card-meta">${metaContent}</div></div><div class="badges">${newBadge}${m.open?'<span class="badge badge-open">OPEN</span>':''}<span class="badge" style="background:${tc}18;color:${tc}">${m.type.toUpperCase()}</span></div></div><div class="bar-section"><div class="bar-label animate">INTEL ${m.intelligence}</div><div class="bar-bg"><div class="bar-fill animate" style="--bar-w:${m.intelligence}%;width:${m.intelligence}%"></div></div></div>`;
