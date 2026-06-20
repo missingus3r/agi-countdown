@@ -1,8 +1,18 @@
 # Road to AGI - Every AI Model Since Transformers
 
-Interactive timeline tracking **270+ AI models** from the original Transformer (2017) to the current frontier (March 2026).
+Interactive timeline tracking **700+ AI models** from the original Transformer (2017) to the current frontier (2026).
 
 **Live:** [countdowntoai.com](https://countdowntoai.com/)
+
+## Preview
+
+![AI model timeline — every model since the Transformer, plotted by date vs intelligence rating](img/preview-models.png)
+
+*Interactive scatter chart: 700+ models by date vs intelligence rating, with a weighted trend line, filters, search, and animated timeline playback.*
+
+![AGI Countdown — averaged Metaculus and community forecasts](img/preview-countdown.png)
+
+*AGI Countdown tab: a live timer based on the average of Metaculus community forecasts and similar countdown/forecast projects.*
 
 ## Features
 
