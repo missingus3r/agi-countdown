@@ -575,10 +575,8 @@ html.light #aiMap,html.light .leaflet-container{background:#dfe6ef}
     <button class="tab-btn" data-tab="tab-countdown">Countdown</button>
     <button class="tab-btn" data-tab="tab-platforms">Platforms</button>
     <button class="tab-btn" data-tab="tab-companies">Companies</button>
-    <button class="tab-btn" data-tab="tab-map">🗺️ Map<span class="tab-new-badge">NEW</span></button>
-    <button class="tab-btn" data-tab="tab-concepts">🧠 RSI/AGI/ASI<span class="tab-new-badge">NEW</span></button>
-    <button class="tab-btn" data-tab="tab-robotics">Robotics<span class="tab-new-badge">NEW</span></button>
-    <button class="tab-btn" data-tab="tab-glasses">Smart Glasses<span class="tab-new-badge">NEW</span></button>
+    <button class="tab-btn" data-tab="tab-robotics">Robotics</button>
+    <button class="tab-btn" data-tab="tab-glasses">Smart Glasses</button>
     <button class="tab-btn" data-tab="tab-pricing">Pricing</button>
     <button class="tab-btn" data-tab="tab-api">API</button>
     <button class="tab-btn" data-tab="tab-contact">Contact</button>
@@ -735,27 +733,8 @@ html.light #aiMap,html.light .leaflet-container{background:#dfe6ef}
 <!-- ==================== COMPANIES TAB ==================== -->
 <div class="tab-panel" id="tab-companies"></div>
 
-<!-- ==================== MAP TAB ==================== -->
-<div class="tab-panel" id="tab-map">
-  <div class="info-page" style="max-width:1100px">
-    <h2 id="mapTitle">🗺️ Mapa de Labs de IA</h2>
-    <p class="sub" id="mapSub">Mapa de calor por país según cantidad de labs de IA. Hacé click en un país para ver sus empresas en globos con flechas.</p>
-    <div id="mapWrap">
-      <div id="aiMap"></div>
-      <div id="mapLegend" class="map-legend"></div>
-    </div>
-    <div id="mapInfo" class="map-info"></div>
-  </div>
-</div>
+<!-- Map & RSI/AGI/ASI tabs removed; RSI/AGI/ASI cards merged into the Benchmarks tab (rendered inside renderArcTab) -->
 
-<!-- ==================== RSI/AGI/ASI TAB ==================== -->
-<div class="tab-panel" id="tab-concepts">
-  <div class="info-page" style="max-width:900px">
-    <h2 id="conceptsTitle">🧠 RSI / AGI / ASI</h2>
-    <p class="sub" id="conceptsSub">Los tres conceptos clave del camino hacia la superinteligencia.</p>
-    <div id="conceptsContent"></div>
-  </div>
-</div>
 
 <!-- ==================== ROBOTICS TAB ==================== -->
 <div class="tab-panel" id="tab-robotics">
@@ -786,6 +765,13 @@ html.light #aiMap,html.light .leaflet-container{background:#dfe6ef}
   <h2 id="contactTitle">Contact</h2>
   <p class="info-subtitle" id="contactSub">Get in touch</p>
   <div class="info-cards" style="max-width:500px">
+    <a href="https://github.com/missingus3r/agi-countdown" target="_blank" rel="noopener" style="text-decoration:none">
+    <div class="info-card">
+      <div class="ic-accent" style="background:linear-gradient(90deg,#6b8aff,#34d399)"></div>
+      <div class="ic-title">Repository</div>
+      <div class="ic-desc">This project's source code — a single HTML file, MIT licensed.</div>
+      <div class="ic-link">github.com/missingus3r/agi-countdown →</div>
+    </div></a>
     <a href="https://github.com/missingus3r" target="_blank" rel="noopener" style="text-decoration:none">
     <div class="info-card">
       <div class="ic-accent" style="background:linear-gradient(90deg,#6b8aff,#c084fc)"></div>
@@ -3616,7 +3602,13 @@ function renderArcTab(){
       </div></a>
     </div>
   </div>
+  <div class="info-section">
+    <h3 id="conceptsTitle">🧠 RSI / AGI / ASI</h3>
+    <p class="info-subtitle" id="conceptsSub" style="margin-top:-4px">Los tres conceptos clave del camino hacia la superinteligencia.</p>
+    <div id="conceptsContent"></div>
+  </div>
 </div>`;
+  if(typeof renderConceptsTab==='function')renderConceptsTab();
 }
 
 // --- Render Metaculus tab ---
@@ -4572,11 +4564,9 @@ function applyLang(){
   document.querySelector('[data-tab="tab-countdown"]').textContent=tabs.countdown||'Countdown';
   document.querySelector('[data-tab="tab-platforms"]').textContent=tabs.platforms||'Platforms';
   document.querySelector('[data-tab="tab-companies"]').textContent=tabs.companies||'Companies';
-  const mapBtn=document.querySelector('[data-tab="tab-map"]');if(mapBtn)mapBtn.innerHTML='🗺️ '+(tabs.map||'Map')+'<span class="tab-new-badge">NEW</span>';
-  const cptBtn=document.querySelector('[data-tab="tab-concepts"]');if(cptBtn)cptBtn.innerHTML='🧠 '+(tabs.concepts||'RSI/AGI/ASI')+'<span class="tab-new-badge">NEW</span>';
   if(typeof renderConceptsTab==='function')renderConceptsTab();
-  const robBtn=document.querySelector('[data-tab="tab-robotics"]');if(robBtn)robBtn.innerHTML=(tabs.robotics||'Robotics')+'<span class="tab-new-badge">NEW</span>';
-  const glBtn=document.querySelector('[data-tab="tab-glasses"]');if(glBtn)glBtn.innerHTML=(tabs.glasses||'Smart Glasses')+'<span class="tab-new-badge">NEW</span>';
+  const robBtn=document.querySelector('[data-tab="tab-robotics"]');if(robBtn)robBtn.textContent=tabs.robotics||'Robotics';
+  const glBtn=document.querySelector('[data-tab="tab-glasses"]');if(glBtn)glBtn.textContent=tabs.glasses||'Smart Glasses';
   const rTit=document.getElementById('roboticsTitle');const rSub=document.getElementById('roboticsSub');const rT=t('robotics');if(rTit&&rT)rTit.textContent=rT.title;if(rSub&&rT)rSub.textContent=rT.sub;
   const gTit=document.getElementById('glassesTitle');const gSub=document.getElementById('glassesSub');const gT=t('glasses');if(gTit&&gT)gTit.textContent=gT.title;if(gSub&&gT)gSub.textContent=gT.sub;
   const mapTxt={en:{t:"🗺️ AI Labs Map",s:"Heatmap by country based on number of AI labs. Click a country to see its companies in balloons with arrows."},es:{t:"🗺️ Mapa de Labs de IA",s:"Mapa de calor por país según cantidad de labs de IA. Hacé click en un país para ver sus empresas en globos con flechas."},pt:{t:"🗺️ Mapa de Labs de IA",s:"Mapa de calor por país conforme a quantidade de labs de IA. Clique num país para ver suas empresas em balões com setas."}}[currentLang]||null;
