@@ -109,7 +109,6 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%235e9de5'/%3E%3Cstop offset='40%25' stop-color='%23a878d4'/%3E%3Cstop offset='70%25' stop-color='%23d4729a'/%3E%3Cstop offset='100%25' stop-color='%23e0a54c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%230c0c11'/%3E%3Ccircle cx='18' cy='44' r='4' fill='url(%23g)' opacity='.6'/%3E%3Ccircle cx='28' cy='36' r='4.5' fill='url(%23g)' opacity='.7'/%3E%3Ccircle cx='38' cy='28' r='5' fill='url(%23g)' opacity='.8'/%3E%3Ccircle cx='48' cy='18' r='6' fill='url(%23g)'/%3E%3Cline x1='18' y1='44' x2='28' y2='36' stroke='url(%23g)' stroke-width='1.5' opacity='.4'/%3E%3Cline x1='28' y1='36' x2='38' y2='28' stroke='url(%23g)' stroke-width='1.5' opacity='.5'/%3E%3Cline x1='38' y1='28' x2='48' y2='18' stroke='url(%23g)' stroke-width='1.5' opacity='.6'/%3E%3C/svg%3E"/>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 <style>
 :root{
   --bg-base:#0a0a0f;--bg-raised:#111118;--bg-surface:#15151e;--bg-surface-hover:#1c1c28;--bg-inset:#0c0c12;
@@ -791,8 +790,6 @@ html.light #aiMap,html.light .leaflet-container{background:#dfe6ef}
 </div>
 
 <!-- Leaflet + TopoJSON (Map tab) -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <script>
 /* Company → {c: world-atlas country name, f: flag, lat, lng (HQ city)} */
 const COMPANY_COUNTRY={
@@ -3905,9 +3902,11 @@ function makeCollapsible(containerEl,storageKey){
     sec.style.cursor='pointer';
     const arrow=document.createElement('span');
     arrow.style.cssText='margin-right:4px;font-size:12px';
-    arrow.textContent=state[key]===true?'▼':'►';
+    const defOpen=(h3.id==='conceptsTitle');
+    const isOpen=(state[key]===true)||(defOpen&&typeof state[key]==='undefined');
+    arrow.textContent=isOpen?'▼':'►';
     h3.insertBefore(arrow,h3.firstChild);
-    if(state[key]!==true)siblings.forEach(s=>s.style.display='none');
+    if(!isOpen)siblings.forEach(s=>s.style.display='none');
     sec.addEventListener('click',()=>{
       const open=siblings[0].style.display!=='none';
       siblings.forEach(s=>s.style.display=open?'none':'');
@@ -4821,70 +4820,7 @@ renderUpcoming();
 <script>
 (function(){const b=document.getElementById('scrollTop');window.addEventListener('scroll',()=>{b.classList.toggle('visible',window.scrollY>400)},{passive:true})})();
 </script>
-<!-- ==================== MAP TAB LOGIC ==================== -->
-<script>
-(function(){
-  let inited=false,map=null,geoLayer=null,companyLayer=null;
-  let COUNT={},COMPS={},maxN=1;
-  function buildData(){
-    COMPS={};
-    Object.keys(COMPANY_COUNTRY).forEach(co=>{const c=COMPANY_COUNTRY[co].c;(COMPS[c]=COMPS[c]||[]).push(co);});
-    COUNT={};Object.keys(COMPS).forEach(c=>COUNT[c]=COMPS[c].length);
-    maxN=Math.max(1,...Object.values(COUNT));
-  }
-  function heat(n){
-    if(!n)return document.documentElement.classList.contains('light')?'#c8d2de':'#1b1b26';
-    const t=Math.min(1,n/maxN),hue=212-(212-14)*t,light=40+12*t;
-    return 'hsl('+hue+',72%,'+light+'%)';
-  }
-  function styleF(f){const n=COUNT[f.properties.name]||0;return{fillColor:heat(n),fillOpacity:n?0.85:0.28,color:'#0a0a0f',weight:0.6};}
-  function clearComp(){if(companyLayer){map.removeLayer(companyLayer);companyLayer=null;}}
-  function showCountry(name,centroid){
-    clearComp();
-    const info=document.getElementById('mapInfo');
-    const comps=COMPS[name]||[];
-    if(!comps.length){info.innerHTML='<span class="mi-country">'+name+'</span> — sin labs de IA registrados.';return;}
-    companyLayer=L.layerGroup().addTo(map);
-    comps.forEach(co=>{
-      const d=COMPANY_COUNTRY[co],ll=[d.lat,d.lng];
-      L.polyline([centroid,ll],{color:'#c084fc',weight:1.4,opacity:0.75,dashArray:'3,4'}).addTo(companyLayer);
-      const icon=L.divIcon({className:'map-balloon-wrap',html:'<div class="map-balloon"><span class="bl-flag">'+d.f+'</span>'+co+'</div>'});
-      L.marker(ll,{icon,riseOnHover:true}).addTo(companyLayer);
-    });
-    const pts=comps.map(co=>[COMPANY_COUNTRY[co].lat,COMPANY_COUNTRY[co].lng]);pts.push(centroid);
-    try{map.fitBounds(L.latLngBounds(pts).pad(0.55),{maxZoom:5});}catch(e){}
-    info.innerHTML='<span class="mi-country">'+name+'</span> · '+comps.length+' lab'+(comps.length>1?'s':'')+': '+comps.map(co=>'<span class="mi-chip">'+COMPANY_COUNTRY[co].f+' '+co+'</span>').join('');
-  }
-  function legend(){
-    const lg=document.getElementById('mapLegend');if(!lg)return;
-    const items=[['0',heat(0)],['◔',heat(Math.max(1,Math.round(maxN*0.25)))],['◑',heat(Math.round(maxN*0.6))],[maxN+' máx',heat(maxN)]];
-    lg.innerHTML='<span class="lg-item" style="opacity:.65">Labs/país:</span>'+items.map(function(it){return '<span class="lg-item"><span class="lg-swatch" style="background:'+it[1]+'"></span>'+it[0]+'</span>';}).join('');
-  }
-  function initMap(){
-    if(inited)return;if(typeof L==='undefined'||typeof topojson==='undefined'){document.getElementById('mapInfo').textContent='No se pudo cargar la librería del mapa.';return;}
-    inited=true;buildData();legend();
-    map=L.map('aiMap',{minZoom:1,maxZoom:6,worldCopyJump:true}).setView([28,8],2);
-    const light=document.documentElement.classList.contains('light');
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/'+(light?'light_nolabels':'dark_nolabels')+'/{z}/{x}/{y}{r}.png',{subdomains:'abcd',maxZoom:6,attribution:'© OpenStreetMap © CARTO'}).addTo(map);
-    fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(function(r){return r.json();}).then(function(topo){
-      const geo=topojson.feature(topo,topo.objects.countries);
-      geoLayer=L.geoJSON(geo,{style:styleF,onEachFeature:function(f,layer){
-        const name=f.properties.name,n=COUNT[name]||0;
-        layer.bindTooltip(name+' — '+n+' lab'+(n===1?'':'s'),{className:'map-tip',sticky:true});
-        layer.on('mouseover',function(){layer.setStyle({weight:1.6,color:'#6b8aff'});layer.bringToFront();});
-        layer.on('mouseout',function(){geoLayer.resetStyle(layer);});
-        layer.on('click',function(){const c=layer.getBounds().getCenter();showCountry(name,[c.lat,c.lng]);});
-      }}).addTo(map);
-    }).catch(function(){document.getElementById('mapInfo').textContent='No se pudo cargar la geodata del mapa.';});
-    setTimeout(function(){map.invalidateSize();},250);
-  }
-  function onTab(){initMap();if(map)setTimeout(function(){map.invalidateSize();},160);}
-  const mb=document.querySelector('[data-tab="tab-map"]');
-  if(mb)mb.addEventListener('click',onTab);
-  function hashCheck(){if(location.hash==='#map')setTimeout(onTab,300);}
-  window.addEventListener('hashchange',hashCheck);hashCheck();
-})();
-</script>
+<!-- Map tab removed: leaflet map JS deleted -->
 
 <!-- ==================== RSI/AGI/ASI TAB CONTENT ==================== -->
 <script>
