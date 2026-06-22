@@ -2828,6 +2828,8 @@ const NOW_MS=new Date().getTime();
 const ONE_WEEK_MS=7*24*60*60*1000;
 const ONE_MONTH_MS=30*24*60*60*1000;
 function modelAgeMs(m){return NOW_MS-new Date(m.date).getTime()}
+// Chart X-axis end: for the in-progress year, extend ~30 days past the latest model so recent points aren't glued to the right edge
+function chartEndMs(yt,yf){if(yt!=="2026")return new Date((parseInt(yt)+1)+"-01-01").getTime();const last=models&&models.length?Math.max.apply(null,models.map(m=>new Date(m.date).getTime())):NOW_MS;const end=Math.max(last,NOW_MS);const start=new Date((yf||"2017")+"-01-01").getTime();return end+Math.max((end-start)*0.04,30*864e5);}
 function isFreshModel(m){return modelAgeMs(m)<=ONE_WEEK_MS}
 function isNewModel(m){return modelAgeMs(m)<=ONE_MONTH_MS}
 
@@ -2968,7 +2970,7 @@ function render(){
   }
 
   const baseChartStart=new Date(yearFrom+"-01-01").getTime();
-  const baseChartEnd=new Date(yearTo==="2026"?"2026-04-15":(parseInt(yearTo)+1)+"-01-01").getTime();
+  const baseChartEnd=chartEndMs(yearTo,yearFrom);
   const chartStart=chartZoom?chartZoom.dateStart:baseChartStart;
   const chartEnd=chartZoom?chartZoom.dateEnd:baseChartEnd;
   const chartRange=chartEnd-chartStart;
@@ -4672,7 +4674,7 @@ renderUpcoming();
     const yFrac=Math.max(0,Math.min(1,(y-PT)/innerH));
     // Current chart ranges — read from last render
     const cStart=chartZoom?chartZoom.dateStart:new Date(yearFrom+"-01-01").getTime();
-    const cEnd=chartZoom?chartZoom.dateEnd:new Date(yearTo==="2026"?"2026-04-15":(parseInt(yearTo)+1)+"-01-01").getTime();
+    const cEnd=chartZoom?chartZoom.dateEnd:chartEndMs(yearTo,yearFrom);
     const iMin=chartZoom?chartZoom.intelMin:0;
     const iMax=chartZoom?chartZoom.intelMax:100;
     const date=cStart+xFrac*(cEnd-cStart);
