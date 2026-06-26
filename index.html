@@ -1567,10 +1567,6 @@ const models = [
 {name:"DeepSeek-OCR",date:"2025-10-20",company:"DeepSeek",open:true,intelligence:48,type:"OCR",cat:"text"},
 {name:"GPT-5.6 Terra",date:"2026-06-26",company:"OpenAI",open:false,intelligence:89,type:"LLM",cat:"text"},
 {name:"GPT-5.6 Luna",date:"2026-06-26",company:"OpenAI",open:false,intelligence:85,type:"LLM",cat:"text"},
-{name:"FrontierCode",date:"2026-06-08",company:"Cognition",open:false,intelligence:50,type:"Benchmark",cat:"code"},
-{name:"Open Notebook",date:"2026-02-18",company:"lfnovo",open:true,intelligence:50,type:"Tool",cat:"multi"},
-{name:"vLLM-Omni",date:"2025-11-30",company:"vLLM",open:true,intelligence:55,type:"Framework",cat:"multi"},
-{name:"Hebbia Financial AI Benchmark",date:"2025-09-12",company:"Hebbia",open:false,intelligence:45,type:"Benchmark",cat:"text"},
 {name:"localVQE Pi V1",date:"2026-06-22",company:"LocalAI",open:true,intelligence:22,type:"Voice Enhancement",cat:"audio"},
 ];
 
@@ -1584,10 +1580,6 @@ const modelUrls={
 "DeepSeek-OCR":"https://github.com/deepseek-ai/DeepSeek-OCR",
 "GPT-5.6 Terra":"https://openai.com/index/previewing-gpt-5-6-sol/",
 "GPT-5.6 Luna":"https://openai.com/index/previewing-gpt-5-6-sol/",
-"FrontierCode":"https://cognition.com/blog/frontier-code",
-"Open Notebook":"https://github.com/lfnovo/open-notebook",
-"vLLM-Omni":"https://github.com/vllm-project/vllm-omni",
-"Hebbia Financial AI Benchmark":"https://www.hebbia.com/blog/which-model-will-give-me-the-edge",
 "localVQE Pi V1":"https://huggingface.co/LocalAI-io/LocalVQE",
 "Transformer (original)":"https://arxiv.org/abs/1706.03762",
 "Mask R-CNN":"https://arxiv.org/abs/1703.06870",
@@ -2426,6 +2418,8 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
       {name:"Ollama",category:"local",url:"https://ollama.com",description:"Run LLMs locally. Simple CLI, model library, OpenAI-compatible API."},
       {name:"LM Studio",category:"local",url:"https://lmstudio.ai",description:"Desktop app for local LLMs. GGUF support, chat UI, local server."},
       {name:"vLLM",category:"local",url:"https://docs.vllm.ai",description:"High-throughput LLM inference engine. PagedAttention, continuous batching."},
+      {name:"vLLM-Omni",category:"local",url:"https://github.com/vllm-project/vllm-omni",description:"Omni-modal inference framework from the vLLM project. Efficient serving across text, vision and audio."},
+      {name:"Open Notebook",category:"local",url:"https://github.com/lfnovo/open-notebook",description:"Open-source, self-hosted NotebookLM alternative. Orchestrates 16+ providers; notes, podcasts, research."},
       {name:"t3chat",category:"local",url:"https://t3chat.com",description:"Fast, minimal AI chat interface. Multi-model support."},
       {name:"Jan",category:"local",url:"https://jan.ai",description:"Open-source ChatGPT alternative. Runs 100% offline, extensible."},
       {name:"Open WebUI",category:"local",url:"https://openwebui.com",description:"Self-hosted AI interface. Ollama/OpenAI compatible, RAG, multi-user."},
@@ -2487,6 +2481,8 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
   } else if(api==='v1/benchmarks'||api==='v1/benchmarks/'){
     const data=[
       {name:"Artificial Analysis",url:"https://artificialanalysis.ai/leaderboards/models",description:"Independent benchmarks of AI models. Speed, quality, pricing comparisons across providers."},
+      {name:"Hebbia Financial AI Benchmark",url:"https://www.hebbia.com/blog/which-model-will-give-me-the-edge",description:"Proprietary benchmark of AI models on 600+ real financial analysis workflows."},
+      {name:"FrontierCode",url:"https://cognition.com/blog/frontier-code",description:"Cognition's benchmark measuring real-world code mergeability across open-source repos."},
       {name:"WoAI Bench",url:"https://www.woaibench.ai/",description:"World of AI Bench (World of AI Inc., independiente) — benchmark de 'vibe coding' en 10 categorías (frontend UI, game dev, SVG art, 3D, full-stack, data viz, animation, code golf). Panel de jueces AI con rúbricas ponderadas (functionality, design, code quality, creativity) sobre 3900+ prompts con contamination checks. Rankea 16+ modelos frontier; resultados auditables."},
       {name:"Epoch AI Benchmarks",url:"https://epoch.ai/benchmarks/",description:"Research-driven AI benchmarks tracking. Historical trends and frontier model performance."},
       {name:"LifeArchitect AI Timeline",url:"https://lifearchitect.ai/timeline/",description:"Alan D. Thompson's AI model timeline tracker. Visual history of major AI releases with capability annotations."},
