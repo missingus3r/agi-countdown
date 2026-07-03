@@ -813,6 +813,7 @@ const COMPANY_COUNTRY={
   "Zyphra":{c:"United States of America",f:"🇺🇸",lat:37.44,lng:-122.16},
   "Tavus":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.39},
   "ByteDance":{c:"China",f:"🇨🇳",lat:39.98,lng:116.30},
+  "Meituan":{c:"China",f:"🇨🇳",lat:39.90,lng:116.40},
   "Alibaba":{c:"China",f:"🇨🇳",lat:30.27,lng:120.16},
   "DeepSeek":{c:"China",f:"🇨🇳",lat:30.25,lng:120.18},
   "Tencent":{c:"China",f:"🇨🇳",lat:22.54,lng:113.95},
@@ -1572,10 +1573,12 @@ const models = [
 {name:"GPT-5.6 Terra",date:"2026-06-26",company:"OpenAI",open:false,intelligence:89,type:"LLM",cat:"text"},
 {name:"GPT-5.6 Luna",date:"2026-06-26",company:"OpenAI",open:false,intelligence:85,type:"LLM",cat:"text"},
 {name:"localVQE Pi V1",date:"2026-06-22",company:"LocalAI",open:true,intelligence:22,type:"Voice Enhancement",cat:"audio"},
+{name:"LongCat-2.0",date:"2026-06-30",company:"Meituan",open:true,intelligence:87,type:"LLM",cat:"code"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
+"LongCat-2.0":"https://huggingface.co/meituan-longcat/LongCat-2.0",
 "Sakana Fugu":"https://sakana.ai/fugu-release/",
 "GPT-5.6 Sol":"https://openai.com/index/previewing-gpt-5-6-sol/",
 "Ornith 1.0":"https://huggingface.co/deepreinforce-ai/Ornith-1.0-397B",
@@ -3998,6 +4001,7 @@ const companyMeta = {
   "Databricks":{d:"databricks.com",u:"https://www.databricks.com"},
   "Decart":{d:"decart.ai",u:"https://decart.ai"},
   "DeepSeek":{d:"deepseek.com",u:"https://www.deepseek.com"},
+  "Meituan":{d:"longcatai.org",u:"https://www.longcatai.org"},
   "Deepgram":{d:"deepgram.com",u:"https://deepgram.com"},
   "Dynamic Labs":{d:"huggingface.co",u:"https://huggingface.co/dynamicslab",letter:"DL",letterColors:["#0d2a1a","#1a4a2e","#34d399"]},
   "ETH Zurich / EPFL":{d:"ethz.ch",u:"https://ethz.ch"},
