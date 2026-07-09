@@ -795,6 +795,7 @@ html.light #aiMap,html.light .leaflet-container{background:#dfe6ef}
 const COMPANY_COUNTRY={
   "Google":{c:"United States of America",f:"🇺🇸",lat:37.42,lng:-122.08},
   "OpenAI":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.42},
+  "Cognition":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.42},
   "Meta":{c:"United States of America",f:"🇺🇸",lat:37.48,lng:-122.15},
   "NVIDIA":{c:"United States of America",f:"🇺🇸",lat:37.35,lng:-121.97},
   "Microsoft":{c:"United States of America",f:"🇺🇸",lat:47.67,lng:-122.12},
@@ -1578,10 +1579,18 @@ const models = [
 {name:"Muse Image",date:"2026-07-07",company:"Meta",open:false,intelligence:76,type:"Image Gen",cat:"image"},
 {name:"Muse Video",date:"2026-07-07",company:"Meta",open:false,intelligence:74,type:"Video Gen",cat:"video"},
 {name:"Hunyuan Hy3",date:"2026-07-06",company:"Tencent",open:true,intelligence:88,type:"LLM",cat:"code"},
+{name:"GPT-Live",date:"2026-07-08",company:"OpenAI",open:false,intelligence:82,type:"Voice",cat:"audio"},
+{name:"SWE-1.7",date:"2026-07-08",company:"Cognition",open:false,intelligence:85,type:"LLM",cat:"code"},
+{name:"Seedream 5.0 Pro",date:"2026-07-08",company:"ByteDance",open:false,intelligence:62,type:"Diffusion",cat:"image"},
+{name:"Cohere Transcribe Arabic",date:"2026-07-07",company:"Cohere",open:true,intelligence:50,type:"ASR",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
+"GPT-Live":"https://openai.com/index/introducing-gpt-live/",
+"SWE-1.7":"https://cognition.com/blog/swe-1-7",
+"Seedream 5.0 Pro":"https://ai.byteplus.com/lumina/en/resource/what-is-seedream-5-0-pro",
+"Cohere Transcribe Arabic":"https://huggingface.co/CohereLabs/cohere-transcribe-arabic-07-2026",
 "Hunyuan Hy3":"https://www.tencent.com/en-us/articles/2202386.html",
 "Muse Image":"https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/",
 "Muse Video":"https://ai.meta.com/blog/introducing-muse-image-muse-video-msl/",
@@ -4057,6 +4066,7 @@ const companyMeta = {
   "NuMind":{d:"numind.ai",u:"https://numind.ai"},
   "Odyssey":{d:"odyssey.world",u:"https://odyssey.world"},
   "OpenAI":{d:"openai.com",u:"https://openai.com"},
+  "Cognition":{d:"cognition.com",u:"https://cognition.com"},
   "OpenBMB":{d:"openbmb.cn",u:"https://www.openbmb.cn"},
   "Overworld":{d:"over.world",u:"https://over.world"},
   "Physical Intelligence":{d:"pi.website",u:"https://www.pi.website"},
