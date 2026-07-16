@@ -1559,6 +1559,7 @@ const models = [
 {name:"Ernie 5.1",date:"2026-05-09",company:"Baidu",open:false,intelligence:85,type:"LLM",cat:"text"},
 {name:"Kimi K2.7-Code",date:"2026-06-12",company:"Moonshot AI",open:true,intelligence:88,type:"LLM",cat:"code"},
 {name:"Kimi K3",date:"2026-07-16",company:"Moonshot AI",open:true,intelligence:95,type:"LLM",cat:"text"},
+{name:"GenCeption",date:"2026-07-15",company:"Google DeepMind",open:true,intelligence:60,type:"Diffusion",cat:"video"},
 {name:"GLM-5.2",date:"2026-06-13",company:"Zhipu AI",open:true,intelligence:88,type:"LLM",cat:"code"},
 {name:"VibeThinker-3B",date:"2026-06-15",company:"Weibo",open:true,intelligence:80,type:"Reasoning",cat:"reasoning"},
 {name:"Rio 3.5 Open 397B",date:"2026-06-12",company:"IplanRIO",open:true,intelligence:84,type:"LLM",cat:"multi"},
@@ -2386,6 +2387,7 @@ models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
   } else if(api==='v1/platforms'||api==='v1/platforms/'){
     const platforms=[
       {name:"OpenAI",category:"cloud",url:"https://chatgpt.com",description:"Frontier LLMs. Chat, image generation, code interpreter, plugins."},
+      {name:"NVIDIA DeepStream 9.1",category:"media",url:"https://developer.nvidia.com/deepstream-sdk",description:"Video analytics SDK with 13 agentic skills (multi-camera 3D tracking, auto-calibration). Build vision pipelines with coding agents like Claude Code/Codex. Open source."},
       {name:"Anthropic",category:"cloud",url:"https://claude.ai",description:"Frontier LLMs. Extended thinking, artifacts, projects, Claude Code."},
       {name:"Google",category:"cloud",url:"https://gemini.google.com",description:"Gemini models. Multimodal, Deep Research, Gems, AI Studio."},
       {name:"Google Labs",category:"cloud",url:"https://labs.google/",description:"Experimental AI tools and prototypes. Try new Google AI features early."},
