@@ -1488,6 +1488,7 @@ const models = [
 {name:"Fish Agent v0.1 3B",date:"2024-11-01",company:"Fish Audio",open:true,intelligence:62,type:"Multimodal",cat:"audio"},
 {name:"Fish Speech-LM v1",date:"2024-03-01",company:"Fish Audio",open:true,intelligence:45,type:"TTS",cat:"audio"},
 {name:"Gemini 3.5 Flash",date:"2026-05-19",company:"Google",open:false,intelligence:78,type:"LLM",cat:"multi"},
+{name:"Gemini 3.6 Flash",date:"2026-07-21",company:"Google",open:false,intelligence:80,type:"LLM",cat:"multi"},
 {name:"Fara-7B",date:"2025-11-24",company:"Microsoft",open:true,intelligence:62,type:"Multimodal",cat:"multi"},
 {name:"Cursor Composer 2.5",date:"2026-05-18",company:"Cursor",open:false,intelligence:82,type:"LLM",cat:"code"},
 {name:"Lance 3B",date:"2026-05-18",company:"ByteDance",open:true,intelligence:65,type:"Multimodal",cat:"multi"},
@@ -1872,6 +1873,7 @@ const modelUrls={
 "Gemini 3 Deep Think":"https://blog.google/products/gemini/gemini-3/",
 "Gemini 3.1 Flash-Lite":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-1-pro/",
 "Gemini 3.5 Flash":"https://blog.google/products/gemini/",
+"Gemini 3.6 Flash":"https://blog.google/products/gemini/",
 "Gemini Omni":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni/",
 "Google Pics":"https://blog.google/innovation-and-ai/sundar-pichai-io-2026/",
 "Gemini Spark":"https://blog.google/innovation-and-ai/sundar-pichai-io-2026/",
@@ -4108,6 +4110,7 @@ const companyMeta = {
   "Riffusion":{d:"riffusion.com",u:"https://www.riffusion.com"},
   "Robbyant":{d:"robbyant.com",u:"https://robbyant.com",logo:"https://mdn.alipayobjects.com/huamei_u94ywh/afts/img/xEyrTpmj4LUAAAAAQEAAAAgADkxfAQFr/original"},
   "Roboflow":{d:"roboflow.com",u:"https://roboflow.com"},
+  "Robot.com":{d:"robot.com",u:"https://robot.com"},
   "Runway":{d:"runwayml.com",u:"https://runwayml.com"},
   "Sakana AI":{d:"sakana.ai",u:"https://sakana.ai"},
   "Samsung":{d:"samsung.com",u:"https://www.samsung.com"},
@@ -4457,6 +4460,7 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
+  {name:"R-noid",company:"Robot.com",domain:"robot.com",type:{en:"Service humanoid (RaaS)",es:"Humanoide de servicio (RaaS)",pt:"Humanoide de serviço (RaaS)"},desc:{en:"Humanoid for repetitive, multi-shift, hard-to-staff jobs, delivered as Robot-as-a-Service — from site visit to autonomous operation in 8–12 weeks. Five roles at launch (restaurant assistant, packer, picker, folder, host) across industrial, logistics, healthcare, food service, lodging and experiential. Launched Jul 2026.",es:"Humanoide para tareas repetitivas, multi-turno y difíciles de cubrir, ofrecido como Robot-as-a-Service — de la visita al sitio a operación autónoma en 8–12 semanas. Cinco roles al lanzamiento (asistente de restaurante, empacador, picker, doblador, anfitrión) en industria, logística, salud, gastronomía, hotelería y experiencias. Lanzado jul 2026.",pt:"Humanoide para tarefas repetitivas, multi-turno e difíceis de preencher, oferecido como Robot-as-a-Service — da visita ao site à operação autônoma em 8–12 semanas. Cinco funções no lançamento (assistente de restaurante, empacotador, picker, dobrador, anfitrião) em indústria, logística, saúde, gastronomia, hotelaria e experiências. Lançado jul 2026."},url:"https://robot.com",img:"https://www.datocms-assets.com/166246/1782079765-r-noid-hero.jpg"},
   {name:"Gene.01",company:"Generative Bionics",domain:"generativebionics.com",type:{en:"Sensorized industrial humanoid",es:"Humanoide industrial sensorizado",pt:"Humanoide industrial sensorizado"},desc:{en:"Full-body distributed tactile skin (touch, temperature, proximity, force) + physics-native AI derived from IIT's iCub/ergoCub. AMD-powered. Built in 6 months. Bipedal on uneven terrain, dexterous multi-fingered hands. First industrial use with Fincantieri (shipyards). Commercial Q4 2026; robot model to be open-sourced. Italian deep-tech.",es:"Piel táctil distribuida de cuerpo entero (tacto, temperatura, proximidad, fuerza) + IA physics-native derivada del iCub/ergoCub del IIT. Procesadores AMD. Construido en 6 meses. Bípedo en terreno irregular, manos diestras multi-dedo. Primer caso industrial con Fincantieri (astilleros). Comercial Q4 2026; van a open-sourcear el modelo. Deep-tech italiana.",pt:"Pele tátil distribuída de corpo inteiro (toque, temperatura, proximidade, força) + IA physics-native do iCub/ergoCub do IIT. Processadores AMD. Construído em 6 meses. Bípede em terreno irregular, mãos destras multi-dedo. Primeiro caso industrial com Fincantieri (estaleiros). Comercial Q4 2026; modelo será open-source. Deep-tech italiana."},url:"https://generativebionics.com",img:"https://img.youtube.com/vi/mGF142yepjc/hqdefault.jpg"},
   {name:"Isaac 1",company:"Weave Robotics",domain:"weaverobotics.com",type:{en:"Home tidying robot",es:"Robot doméstico de orden",pt:"Robô doméstico de organização"},desc:{en:"Mobile home robot for general tidying — spots scattered objects and puts them away. Green chassis, two-finger grippers. Appliance-first vs full humanoids. Refundable waitlist. Shown SF Jun 2026.",es:"Robot doméstico móvil para ordenar — detecta objetos dispersos y los guarda. Chasis verde, grippers de 2 dedos. Enfoque electrodoméstico vs humanoides. Waitlist reembolsable. Presentado en SF jun 2026.",pt:"Robô doméstico móvel para organizar — detecta objetos e os guarda. Chassi verde, garras de 2 dedos. Foco eletrodoméstico. Waitlist reembolsável. Apresentado em SF jun 2026."},url:"https://www.weaverobotics.com/isaac-1"},
   {name:"Nori L2",company:"Nori Robotics",domain:"norirobotics.com",type:{en:"Bimanual home robot",es:"Robot doméstico bimanual",pt:"Robô doméstico bimanual"},desc:{en:"Affordable dual-arm mobile manipulator (17 DoF) from USD 1,288, made in USA, shipping 2026. Autonomous chores: dishwasher, laundry, coffee, sweeping. Skill marketplace; units cooperate. Two sizes.",es:"Manipulador móvil de doble brazo asequible (17 GDL) desde USD 1.288, hecho en USA, envíos 2026. Tareas autónomas: lavavajillas, ropa, café, barrer. Marketplace de skills; unidades cooperan. Dos tamaños.",pt:"Manipulador móvel de dois braços acessível (17 GDL) desde USD 1.288, feito nos EUA. Tarefas autônomas: louça, roupa, café. Marketplace de skills. Dois tamanhos."},url:"https://www.norirobotics.com"},
