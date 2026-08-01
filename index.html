@@ -804,6 +804,7 @@ const COMPANY_COUNTRY={
   "IBM":{c:"United States of America",f:"🇺🇸",lat:41.11,lng:-73.72},
   "Runway":{c:"United States of America",f:"🇺🇸",lat:40.72,lng:-74.00},
   "Speechify":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.42},
+  "LG AI Research":{c:"South Korea",f:"🇰🇷",lat:37.39,lng:127.11},
   "Suno":{c:"United States of America",f:"🇺🇸",lat:42.37,lng:-71.11},
   "Midjourney":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.43},
   "Liquid AI":{c:"United States of America",f:"🇺🇸",lat:42.36,lng:-71.09},
@@ -1606,6 +1607,8 @@ const models = [
     {name:"Qwen3.7 Flash",date:"2026-07-27",company:"Alibaba",open:false,intelligence:78,type:"Multimodal",cat:"multi"},
     {name:"Cosmos 3 Edge",date:"2026-07-20",company:"NVIDIA",open:true,intelligence:70,type:"World Model",cat:"world"},
     {name:"Simba 3.2",date:"2026-07-07",company:"Speechify",open:false,intelligence:83,type:"TTS",cat:"audio"},
+    {name:"DeepSeek-V4-Flash-0731",date:"2026-07-31",company:"DeepSeek",open:true,intelligence:93,type:"LLM",cat:"text"},
+    {name:"K-EXAONE 2.0",date:"2026-07-31",company:"LG AI Research",open:true,intelligence:80,type:"LLM",cat:"text"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2360,6 +2363,8 @@ const modelUrls={
 "Qwen3.7 Flash":"https://openrouter.ai/qwen/qwen3.7-flash",
 "Cosmos 3 Edge":"https://huggingface.co/blog/nvidia/cosmos3edge",
 "Simba 3.2":"https://www.prweb.com/releases/speechifys-simba-3-2-ranks-1-on-independent-artificial-analysis-tts-leaderboard-worlds-best-real-time-voice-model-above-elevenlabs-openai-google-deepmind--others-302819731.html",
+"DeepSeek-V4-Flash-0731":"https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-0731",
+"K-EXAONE 2.0":"https://www.koreatimes.co.kr/business/tech-science/20260731/lg-unveils-750-bil-parameter-frontier-ai-model-k-exaone-20",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
