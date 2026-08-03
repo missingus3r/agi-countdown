@@ -806,6 +806,7 @@ const COMPANY_COUNTRY={
   "Speechify":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.42},
   "LG AI Research":{c:"South Korea",f:"🇰🇷",lat:37.39,lng:127.11},
   "Thinking Machines":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.42},
+  "Poolside":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.42},
   "Suno":{c:"United States of America",f:"🇺🇸",lat:42.37,lng:-71.11},
   "Midjourney":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.43},
   "Liquid AI":{c:"United States of America",f:"🇺🇸",lat:42.36,lng:-71.09},
@@ -1612,6 +1613,8 @@ const models = [
     {name:"K-EXAONE 2.0",date:"2026-07-31",company:"LG AI Research",open:true,intelligence:80,type:"LLM",cat:"text"},
     {name:"Inkling Small",date:"2026-07-30",company:"Thinking Machines",open:true,intelligence:78,type:"LLM",cat:"text"},
     {name:"MiniMax H3",date:"2026-07-31",company:"MiniMax",open:false,intelligence:76,type:"Video Gen",cat:"video"},
+    {name:"Laguna XS 2.1",date:"2026-07-02",company:"Poolside",open:true,intelligence:66,type:"LLM",cat:"code"},
+    {name:"Laguna S 2.1",date:"2026-07-21",company:"Poolside",open:true,intelligence:74,type:"LLM",cat:"code"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2370,6 +2373,8 @@ const modelUrls={
 "K-EXAONE 2.0":"https://www.koreatimes.co.kr/business/tech-science/20260731/lg-unveils-750-bil-parameter-frontier-ai-model-k-exaone-20",
 "Inkling Small":"https://huggingface.co/thinkingmachines/Inkling-Small",
 "MiniMax H3":"https://www.minimax.io/blog/minimax-h3",
+"Laguna XS 2.1":"https://poolside.ai/blog/introducing-laguna-xs-2-1",
+"Laguna S 2.1":"https://poolside.ai/blog/introducing-laguna-s-2-1",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
