@@ -1604,7 +1604,7 @@ const models = [
 {name:"Gemini Omni Flash",date:"2026-06-30",company:"Google",open:false,intelligence:74,type:"Multi",cat:"video"},
 {name:"Hailuo 2.3",date:"2025-10-28",company:"MiniMax",open:false,intelligence:72,type:"Diffusion",cat:"video"},
 {name:"MiniMax Speech 2.8",date:"2026-01-23",company:"MiniMax",open:false,intelligence:65,type:"TTS",cat:"audio"},
-    {name:"FLUX 3",date:"2026-07-23",company:"Black Forest Labs",open:false,intelligence:70,type:"Multimodal",cat:"image"},
+    {name:"FLUX 3",date:"2026-07-23",company:"Black Forest Labs",open:false,intelligence:70,type:"Multimodal",cat:"multi"},
     {name:"Gemini Robotics 2",date:"2026-07-30",company:"Google DeepMind",open:false,intelligence:80,type:"Robotics",cat:"world"},
     {name:"Qwen3.7 Flash",date:"2026-07-27",company:"Alibaba",open:false,intelligence:78,type:"Multimodal",cat:"multi"},
     {name:"Cosmos 3 Edge",date:"2026-07-20",company:"NVIDIA",open:true,intelligence:70,type:"World Model",cat:"world"},
@@ -1612,10 +1612,11 @@ const models = [
     {name:"DeepSeek-V4-Flash-0731",date:"2026-07-31",company:"DeepSeek",open:true,intelligence:93,type:"LLM",cat:"text"},
     {name:"K-EXAONE 2.0",date:"2026-07-31",company:"LG AI Research",open:true,intelligence:80,type:"LLM",cat:"text"},
     {name:"Inkling Small",date:"2026-07-30",company:"Thinking Machines",open:true,intelligence:78,type:"LLM",cat:"text"},
-    {name:"MiniMax H3",date:"2026-07-31",company:"MiniMax",open:false,intelligence:76,type:"Video Gen",cat:"video"},
+    {name:"MiniMax H3",date:"2026-07-31",company:"MiniMax",open:true,intelligence:76,type:"Multimodal",cat:"multi"},
     {name:"Laguna XS 2.1",date:"2026-07-02",company:"Poolside",open:true,intelligence:66,type:"LLM",cat:"code"},
     {name:"Laguna S 2.1",date:"2026-07-21",company:"Poolside",open:true,intelligence:74,type:"LLM",cat:"code"},
     {name:"Wonder",date:"2026-07-29",company:"Adobe Research",open:false,intelligence:72,type:"World Model",cat:"world"},
+    {name:"Alpamayo 2 Super",date:"2026-08-04",company:"NVIDIA",open:true,intelligence:78,type:"VLA",cat:"world"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1806,6 +1807,7 @@ const modelUrls={
 "Cosmos 3":"https://nvidianews.nvidia.com/news/nvidia-launches-cosmos-3-the-open-frontier-foundation-model-for-physical-ai",
     "Reflect v1.0":"https://flexion.ai/news/flexion-reflect-v1.0",
 "Alpamayo 1":"https://nvidianews.nvidia.com/news/alpamayo-autonomous-vehicle-development",
+"Alpamayo 2 Super":"https://blogs.nvidia.com/blog/alpamayo-2-super-open-model-now-available/",
 "Odyssey-1":"https://www.odyssey.systems/",
 "Mirage":"https://blog.dynamicslab.ai/",
 "Magica":"https://blog.dynamicslab.ai/",
@@ -2375,6 +2377,7 @@ const modelUrls={
 "K-EXAONE 2.0":"https://www.koreatimes.co.kr/business/tech-science/20260731/lg-unveils-750-bil-parameter-frontier-ai-model-k-exaone-20",
 "Inkling Small":"https://huggingface.co/thinkingmachines/Inkling-Small",
 "MiniMax H3":"https://www.minimax.io/blog/minimax-h3",
+"FLUX 3":"https://bfl.ai/announcements/flux-3",
 "Laguna XS 2.1":"https://poolside.ai/blog/introducing-laguna-xs-2-1",
 "Laguna S 2.1":"https://poolside.ai/blog/introducing-laguna-s-2-1",
 };
@@ -4819,7 +4822,7 @@ const upcomingModels = [
   {name:"Gemini 4",company:"Google",expected:"Q4 2026 / Q1 2027",type:"LLM",status:"I/O 2026 reveló Gemini 3.5 Spark/Omni en lugar de 4. Hassabis (ene 2026): 'foco en Gemini 4 este año'. Patrón histórico = lanzamiento Q4.",color:"#4285f4"},
   {name:"Grok 5",company:"xAI",expected:"Q2 2026",type:"LLM",status:"6T MoE en training (doble de Grok 4)",color:"#f472b6"},
   {name:"Seedance 2.1",company:"ByteDance",expected:"Mayo 2026 (anunciado)",type:"Diffusion",status:"+20% calidad vs 2.0, sin fecha de release confirmada",color:"#ef4444"},
-  {name:"Alpamayo 2 Super",company:"NVIDIA",expected:"Verano 2026",type:"VLA",status:"32B reasoning VLA para robotaxis L4. Anunciado 01/06; código (GitHub) + pesos (HuggingFace) este verano.",color:"#76b900"},
+  // Alpamayo 2 Super released 2026-08-04 (open weights en HuggingFace, OpenMDW-1.1) → moved to models array
 ];
 
 function renderUpcoming(){
