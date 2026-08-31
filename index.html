@@ -1670,10 +1670,16 @@ const models = [
 {name:"Qwen3.8-Flash-Next",date:"2026-08-26",company:"Alibaba",open:true,intelligence:91,type:"MoE Multimodal (180B, preview Qwen4)",cat:"multi"},
 {name:"Hunyuan Hy4-preview",date:"2026-08-27",company:"Tencent",open:true,intelligence:90,type:"MoE LLM (770B/49B act, Apache 2.0)",cat:"text"},
 {name:"Breeze TTS 2",date:"2026-08-25",company:"BreezeBlue",open:true,intelligence:58,type:"TTS (3B, open-weight)",cat:"audio"},
+{name:"Granite 4.2",date:"2026-08-25",company:"IBM",open:true,intelligence:62,type:"LLM (30B/8B/3B, open)",cat:"text"},
+{name:"Parse",date:"2026-08-27",company:"Cohere",open:false,intelligence:55,type:"Vision parsing (docs a Markdown)",cat:"multi"},
+{name:"Riemann-1.0",date:"2026-08-29",company:"Riemann Dynamics",open:true,intelligence:50,type:"Embodied World Action Model (paper, IROS 2026)",cat:"world"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
+"Granite 4.2":"https://huggingface.co/ibm-granite/granite-4.2-30b",
+"Parse":"https://cohere.com/blog/parse",
+"Riemann-1.0":"https://arxiv.org/abs/2608.27033",
 "Hunyuan Hy4-preview":"https://huggingface.co/tencent/Hy4-preview",
 "Breeze TTS 2":"https://huggingface.co/BreezeBlue/Breeze-TTS-2",
 "FLUX 3 Video":"https://bfl.ai/blog/flux-3-video",
@@ -4283,6 +4289,7 @@ const companyMeta = {
   "Riffusion":{d:"riffusion.com",u:"https://www.riffusion.com"},
   "Robbyant":{d:"robbyant.com",u:"https://robbyant.com",logo:"https://mdn.alipayobjects.com/huamei_u94ywh/afts/img/xEyrTpmj4LUAAAAAQEAAAAgADkxfAQFr/original"},
   "Roboflow":{d:"roboflow.com",u:"https://roboflow.com"},
+  "Riemann Dynamics":{d:"arxiv.org",u:"https://arxiv.org/abs/2608.27033"},
   "Robot.com":{d:"robot.com",u:"https://robot.com"},
   "Robotics Center":{d:"roboticscenter.ai",u:"https://roboticscenter.ai"},
   "Runway":{d:"runwayml.com",u:"https://runwayml.com"},
