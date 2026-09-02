@@ -1678,10 +1678,18 @@ const models = [
 {name:"Celeris-1 Magnus",date:"2026-09-01",company:"Celeris",open:false,intelligence:74,type:"Agentic hybrid diffusion (27B, ex qwen3.8 — τ³-bench banking 41.2% en 55s)",cat:"code"},
 {name:"Orbis 1.0",date:"2026-09-01",company:"Visko",open:false,intelligence:68,type:"Live Model — mundos interactivos en streaming (memoria persistente, física, largo ilimitado)",cat:"world"},
 {name:"Muse Voice Transcribe",date:"2026-09-01",company:"Meta",open:false,intelligence:62,type:"Real-time audio perception — streaming STT + diarization + endpointing nativos (MSL)",cat:"audio"},
+{name:"Claude Fable 5.1",date:"2026-09-01",company:"Anthropic",open:false,intelligence:98,type:"LLM (coding + knowledge work, research)",cat:"text"},
+{name:"Claude Mythos 5.1",date:"2026-09-01",company:"Anthropic",open:false,intelligence:99,type:"LLM (restricted, frontier research)",cat:"text"},
+{name:"LTX-2.5",date:"2026-08-11",company:"Lightricks",open:true,intelligence:66,type:"Video+Audio Gen (22B open, multi-shot nativo, 4K HDR, diffusion decoder)",cat:"video"},
+{name:"MiniMax H3",date:"2026-07-31",company:"MiniMax",open:true,intelligence:68,type:"Omni video gen (2K, stereo audio en 1 pasada, 33B open)",cat:"video"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
+"Claude Fable 5.1":"https://www.anthropic.com/claude-fable-and-mythos-5-1",
+"Claude Mythos 5.1":"https://www.anthropic.com/claude-fable-and-mythos-5-1",
+"LTX-2.5":"https://ltx.io/model/ltx-2-5",
+"MiniMax H3":"https://www.minimax.io/blog/minimax-h3",
 "Sparrow-2":"https://www.tavus.io/post/sparrow-2",
 "Fibo 1.5":"https://huggingface.co/briaai/Fibo-1.5",
 "Celeris-1 Magnus":"https://celeris.ai/",
@@ -4262,6 +4270,7 @@ const companyMeta = {
   "Linkerbot":{d:"linkaihand.com",u:"https://linkaihand.com"},
   "Liquid AI":{d:"liquid.ai",u:"https://www.liquid.ai"},
   "Luma AI":{d:"lumalabs.ai",u:"https://lumalabs.ai"},
+  "Lumos Robotics":{d:"lumosbot.tech",u:"https://www.lumosbot.tech"},
   "Meta":{d:"ai.meta.com",u:"https://ai.meta.com"},
   "Microsoft Research":{d:"microsoft.com",u:"https://www.microsoft.com/en-us/research/"},
   "Microsoft":{d:"microsoft.com",u:"https://www.microsoft.com/en-us/ai"},
@@ -4684,6 +4693,7 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
+  {name:"Lumos MOS 2",company:"Lumos Robotics",domain:"lumosbot.tech",type:{en:"Mobile manipulator (AI worker)",es:"Manipulador móvil (AI worker)",pt:"Manipulador móvel (AI worker)"},desc:{en:"Heavy-duty dual-arm mobile manipulator launched Sep 2026 as an 'AI Worker': 30 kg rated payload (50 kg max), omnidirectional base, hot-swappable batteries, 275 TOPS edge compute. Already deployed on Mitsubishi Electric PLC production lines (quality inspection, screwdriving, material handling).",es:"Manipulador móvil bimanual de carga pesada lanzado en septiembre 2026 como 'AI Worker': 30 kg de carga nominal (50 kg máx), base omnidireccional, baterías hot-swap, 275 TOPS de cómputo edge. Ya desplegado en líneas de producción de PLC de Mitsubishi Electric (inspección de calidad, atornillado, manejo de materiales).",pt:"Manipulador móvel bimanual de carga pesada lançado em setembro de 2026 como 'AI Worker': 30 kg de carga nominal (50 kg máx), base omnidirecional, baterias hot-swap, 275 TOPS de computação edge. Já implantado nas linhas de produção de PLC da Mitsubishi Electric (inspeção de qualidade, aparafusamento, manuseio de materiais)."},url:"https://www.lumosbot.tech/products/mos/",img:""},
   {name:"Lumi",company:"Lightberry",domain:"lightberry.com",type:{en:"Interactive service humanoid",es:"Humanoide interactivo de servicio",pt:"Humanoide interativo de serviço"},desc:{en:"USD 40k interactive humanoid unveiled Aug 2026: a Unitree G1 base wrapped in Lightberry's custom sensors and conversational AI stack. Entertains crowds, holds long conversations, tells stories, takes photos and guides people — no code required.",es:"Humanoide interactivo de USD 40k presentado en agosto 2026: base Unitree G1 con sensores propios y el stack de IA conversacional de Lightberry. Entretiene multitudes, mantiene conversaciones largas, cuenta historias, saca fotos y guía personas — sin escribir código.",pt:"Humanoide interativo de USD 40k apresentado em agosto de 2026: base Unitree G1 com sensores próprios e o stack de IA conversacional da Lightberry. Entretém multidões, mantém conversas longas, conta histórias, tira fotos e guia pessoas — sem escrever código."},url:"https://lightberry.com/lumi",img:"https://lightberry.com/_ploy_static/_astro/lumi-founder-edition.23msbltX.jpg"},
   {name:"Walden",company:"Walden Robotics",domain:"waldenrobotics.com",type:{en:"Wheeled industrial humanoid",es:"Humanoide industrial con ruedas",pt:"Humanoide industrial sobre rodas"},desc:{en:"Toyota-backed startup led by Russ Tedrake, out of stealth Jul 2026 with USD 300M at a USD 1.1B valuation: humanoid torso with two arms on a wheeled base, already doing production work at a North American Toyota plant (machine tending, kitting, assembly).",es:"Startup respaldada por Toyota y liderada por Russ Tedrake, salió del stealth en julio 2026 con USD 300M a una valuación de USD 1.100M: torso humanoide con dos brazos sobre base con ruedas, ya trabajando en producción en una planta de Toyota en Norteamérica (atención de máquinas, kitting, ensamblaje).",pt:"Startup apoiada pela Toyota e liderada por Russ Tedrake, saiu do stealth em julho de 2026 com USD 300M a uma avaliação de USD 1,1B: torso humanoide com dois braços sobre base com rodas, já trabalhando em produção numa fábrica da Toyota na América do Norte (atendimento de máquinas, kitting, montagem)."},url:"https://www.waldenrobotics.com",img:"https://images.prismic.io/walden-robotics/9I8awOQCjIVgt1m1_walden_socialshare.png?auto=format,compress&rect=0,0,1200,630&w=2400&h=1260"},
   {name:"North",company:"Sharpa",domain:"sharpa.com",type:{en:"Wheeled dexterous humanoid",es:"Humanoide diestro con ruedas",pt:"Humanoide hábil sobre rodas"},desc:{en:"Sharpa's first full-body wheeled humanoid, unveiled at CES 2026, built around its SharpaWave hands; demos included ping-pong, blackjack dealing and an autonomous 30+ step paper-windmill assembly.",es:"Primer humanoide con ruedas de cuerpo completo de Sharpa, presentado en CES 2026, construido alrededor de sus manos SharpaWave; demos de ping-pong, blackjack y un armado autónomo de molinete de papel de 30+ pasos.",pt:"Primeiro humanoide sobre rodas de corpo inteiro da Sharpa, apresentado na CES 2026, construído em torno das mãos SharpaWave; demos de pingue-pongue, blackjack e montagem autônoma de cata-vento de papel com 30+ passos."},url:"https://www.sharpa.com",img:""},
