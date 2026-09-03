@@ -3961,10 +3961,11 @@ function renderMetaTab(){
 }
 
 // --- Render Platforms tab ---
+const PLATFORM_IMGS=new Set(["aider", "amazon-bedrock", "anthropic", "anythingllm", "bfl", "bigagi", "brave-leo", "cerebras-chat", "claudecode", "codex", "cohere", "deepseek", "elevenlabs", "fal", "firefly", "fireworks", "geminicli", "google-gemini", "google-labs", "gpt4all", "groq", "hailuo", "huggingface", "hyper3d", "ideogram", "inception", "jan", "kimi", "kimicode", "kling", "koboldcpp", "krea", "leonardo", "librechat", "llamafile", "lmstudio", "lobechat", "localai", "lumalabs", "magnific", "meta-ai", "microsoft-copilot", "midjourney", "mistral", "msty", "nanoclaw", "nemoclaw", "ollama", "openai", "openclaw", "opencode", "openrouter", "openwebui", "perplexity", "pika", "poe", "qwen", "qwencode", "recraft", "replicate", "runway", "stability", "suno", "t3chat", "textgenwebui", "together", "typingmind", "udio", "venice", "vllm", "xai", "you"]);
 function renderPlatformsTab(){
   function pc(img,fav,title,desc,links,clr){
     const linksHtml=links.map(l=>`<a class="ic-link" href="${l[1]}" target="_blank" style="margin-right:12px" onclick="event.stopPropagation()">${l[0]} →</a>`).join('');
-    const thumb=clr?`<div style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;height:120px;background:linear-gradient(135deg,${clr[0]},${clr[1]});display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:${clr[2]};letter-spacing:1px">${fav}</div>`:`<img src="img/platforms/${img}.png" style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;opacity:0.85">`;
+    const eclr=clr||(!PLATFORM_IMGS.has(img)?["#1a1a2e","#2a2a4a","#8a8aa0"]:null);const thumb=eclr?`<div style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;height:120px;background:linear-gradient(135deg,${eclr[0]},${eclr[1]});display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:16px;font-weight:700;color:${eclr[2]};letter-spacing:1px">${fav}</div>`:`<img src="img/platforms/${img}.png" style="width:100%;border-radius:var(--radius-md);margin-bottom:12px;opacity:0.85">`;
     return `<div class="info-card" style="cursor:pointer" onclick="window.open('${links[0][1]}','_blank')">
       ${thumb}
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
