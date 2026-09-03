@@ -184,7 +184,7 @@ html,body{min-height:100vh;background:var(--bg-base);color:var(--t-primary);font
 .card .accent{position:absolute;top:0;left:0;right:0;height:3px;opacity:0.5;border-radius:var(--radius-md) var(--radius-md) 0 0}
 .card .card-top{display:flex;justify-content:space-between;align-items:flex-start}
 .card .card-info{flex:1;min-width:0}
-.card .card-name{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--t-max);white-space:normal;overflow-wrap:anywhere;line-height:1.35}
+.card .card-name{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;color:var(--t-max);white-space:normal;overflow-wrap:anywhere;line-height:1.35;width:100%;margin-top:4px}
 .card .card-meta{font-size:12px;color:var(--t-dim);font-family:'Inter',system-ui,sans-serif;margin-top:3px}
 .card .badges{display:flex;gap:4px;flex-shrink:0;align-items:center}
 .badge{font-size:9px;padding:3px 7px;border-radius:var(--radius-full);font-weight:600;font-family:'IBM Plex Mono',monospace}
@@ -3408,7 +3408,7 @@ function render(){
     const metaContent=_flimg+(m.url&&m.url!=='#'?`<a href="${m.url}" target="_blank" rel="noopener">${metaInner}</a>`:metaInner);
     const prefix=extraPrefix||'';
     const newBadge=isFreshModel(m)?'<span class="badge badge-fresh">🔥 FRESH</span>':(isNewModel(m)?'<span class="badge badge-new">NEW</span>':'');
-    return `<div class="accent" style="background:${tc}"></div><div class="card-top"><div class="card-info"><div class="card-number-line">${prefix}<span class="card-number">#${m.chronoNum}</span></div><div class="card-name">${m.name}</div><div class="card-meta">${metaContent}</div></div><div class="badges">${newBadge}${m.open?'<span class="badge badge-open">OPEN</span>':''}<span class="badge" style="background:${tc}18;color:${tc}">${m.type.toUpperCase()}</span></div></div><div class="bar-section"><div class="bar-label animate">INTEL ${m.intelligence}</div><div class="bar-bg"><div class="bar-fill animate" style="--bar-w:${m.intelligence}%;width:${m.intelligence}%"></div></div></div>`;
+    return `<div class="accent" style="background:${tc}"></div><div class="card-top"><div class="card-number-line">${prefix}<span class="card-number">#${m.chronoNum}</span></div><div class="badges">${newBadge}${m.open?'<span class="badge badge-open">OPEN</span>':''}<span class="badge" style="background:${tc}18;color:${tc}">${m.type.toUpperCase()}</span></div></div><div class="card-name">${m.name}</div><div class="card-meta">${metaContent}</div><div class="bar-section"><div class="bar-label animate">INTEL ${m.intelligence}</div><div class="bar-bg"><div class="bar-fill animate" style="--bar-w:${m.intelligence}%;width:${m.intelligence}%"></div></div></div>`;
   }
 
   // Timeline list
