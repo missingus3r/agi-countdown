@@ -1695,6 +1695,11 @@ const models = [
 {name:"Atlas",date:"2026-09-01",company:"World Labs",open:false,intelligence:23,type:"Multimodal World Model (3D)",cat:"world"},
 {name:"GPT-6 Astra",date:"2026-09-03",company:"OpenAI",open:false,intelligence:61,type:"LLM (recurrent depth, SOTA)",cat:"text"},
 {name:"WeatherNext 3",date:"2026-09-03",company:"Google DeepMind",open:false,intelligence:11,type:"Weather Forecast",cat:"multi"},
+{name:"Gemini 3.5 Transcribe",date:"2026-08-26",company:"Google",open:false,intelligence:30,type:"STT (85+ langs, diarization)",cat:"audio"},
+{name:"Gemini Omni 1.1 Flash",date:"2026-08-27",company:"Google",open:false,intelligence:29,type:"Video gen + edit, GA 1.1",cat:"video"},
+{name:"TimesFM-3",date:"2026-08-31",company:"Google",open:true,intelligence:11,type:"Time-series FM (330M, open)",cat:"multi"},
+{name:"Qwen3.8-Max-0902",date:"2026-09-02",company:"Alibaba",open:false,intelligence:59,type:"LLM snapshot (2.4T, 1M ctx)",cat:"multi"},
+{name:"Lyria 3.5 Pro",date:"2026-09-03",company:"Google",open:false,intelligence:13,type:"Music gen, full songs (prev)",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2538,6 +2543,11 @@ const modelUrls={
 "FLUX 3":"https://bfl.ai/announcements/flux-3",
 "Laguna XS 2.1":"https://poolside.ai/blog/introducing-laguna-xs-2-1",
 "Laguna S 2.1":"https://poolside.ai/blog/introducing-laguna-s-2-1",
+"Gemini 3.5 Transcribe":"https://ai.google.dev/gemini-api/docs/changelog",
+"Gemini Omni 1.1 Flash":"https://ai.google.dev/gemini-api/docs/changelog",
+"TimesFM-3":"https://github.com/google-research/timesfm",
+"Qwen3.8-Max-0902":"https://www.qwencloud.com/models/qwen3.8-max-0902",
+"Lyria 3.5 Pro":"https://ai.google.dev/gemini-api/docs/changelog",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
