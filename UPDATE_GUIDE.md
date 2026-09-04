@@ -218,6 +218,36 @@ Non-LLM modalities (image, video, audio, world models) were leveled with the sam
 
 ---
 
+## ARC-AGI & Pricing data (auto-refreshed)
+
+Two data blocks in `index.html` are refreshed automatically by the research-daily cron and must be edited **only through their data objects**, never through the render functions or the i18n blocks.
+
+### `arcData` (Benchmarks tab, daily)
+
+```js
+const arcData={
+  updated:"YYYY-MM-DD",                       // date the leaderboard was read
+  a1:{top:"GPT-6 Astra, High",topShort:"Astra",score:98.5,cost:"$0.28/task",others:[[name,score,cost],...]},
+  a2:{top:..., score:95.0, cost:"$1.12/task", others:[...3 rows...], kaggle:["team",73.33]},
+  a3:{pa:{top,score,cost}, std:{top,score,cost}, others:[...], kaggle:["team",7.51]}
+};
+```
+
+- Source of truth: the **"Leaderboard Breakdown"** table on https://arcprize.org/leaderboard (ARC Prize Verified, semi-private eval) plus the public Kaggle 2026 leaderboards (first row after `Entries`).
+- `score` values are numbers (percent); `cost` values are display strings. ARC-AGI-1/2 costs are per task; ARC-AGI-3 costs are the **total** run cost.
+- ARC-AGI-3 has two harnesses: `pa` = Provider Adapter, `std` = Standard. Keep both.
+- Top = highest score; ties broken by lower cost. Lab announcements (e.g. "100% on ARC-AGI-3") are not used unless they appear on the verified leaderboard.
+- Prize amounts and dates live in the i18n keys `vPrizes2`/`vPrizes3`/`arcFooter` and change rarely.
+
+### `pricingData` (Pricing tab, every 3 days)
+
+- One object per model. LLM/embeddings: `unit:"per_1m_tokens"` with numeric `input`/`output`. Image: `unit:"per_image"` with `per_unit` (+ optional `per_unit_max`). Video: `per_second`. Audio: `per_1k_chars` or `per_minute`. Plan-based products: `unit:"plan"`/`"plan_based"`.
+- `url` must be the provider's **official pricing page** (the list of pages per provider is in the cron prompt). `verified:true` only when the number was read from that page in the current pass; secondary sources → `verified:false` + a `note` naming the source. Never invent or "approximate" a price.
+- Promotional prices are recorded as the current price with the end date in `note` (e.g. GPT-5.6 Sol through Nov 21, 2026; Gemini 3.x Flash through Dec 31, 2026). Tiered context pricing uses the lowest tier with the higher tiers in `note`. DeepSeek uses the peak rate.
+- Models that disappear from their provider's page keep their row with `verified:false` and `note:"Not on current pricing page"`; do not delete rows.
+- Candidates for new rows: entries of the `models` array released in the last 30 days with `intelligence >= 50` and a public API price.
+- After editing, bump `PRICING_VERIFIED` (the date shown in the tab disclaimer) and run the eval check: no duplicate names, no non-numeric prices.
+
 ## Quick Checklist Before Submitting
 
 - [ ] No duplicate model names in the array
