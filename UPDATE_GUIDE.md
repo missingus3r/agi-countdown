@@ -14,7 +14,7 @@ Each model is a JS object with exactly 7 fields:
   date: "YYYY-MM-DD",       // String - release/announcement date (ISO format)
   company: "Company Name",  // String - developer/organization
   open: true,               // Boolean - true if open-weight/open-source, false if proprietary
-  intelligence: 75,         // Number (1-100) - capability/quality rating (relative scale)
+  intelligence: 45,         // Number (1-100) - capability rating on the leveled scale (frontier ≈ 66, see Scale Reference)
   type: "LLM",              // String - model category (see valid values below)
   cat: "text"               // String - primary output modality (see valid values below)
 }
@@ -192,26 +192,29 @@ Systematically check each of these providers for new releases:
 
 ## Scale Reference
 
-The `intelligence` value is on a relative 1-100 scale. Use these reference points to calibrate new entries:
+The `intelligence` value is a 1-100 rating where 100 is the AGI ceiling. On 2026-09-03 the whole array was leveled **once** against the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index) v4.1.1 (a composite of nine benchmarks: GDPval-AA, τ³-Banking, Terminal-Bench, SciCode, HLE, GPQA Diamond, CritPt, AA-Omniscience, AA-LCR). Models present in the index took its value (best configuration); the rest were extrapolated from a monotone calibration curve fitted on the ~200 overlapping models, anchored to indexed siblings where available. The current frontier is therefore ≈ 66, not 99.
 
-### Intelligence Scale (capability/quality)
+### Intelligence Scale (leveled 2026-09-03)
 
-| Range | Example Models | Description |
-|-------|---------------|-------------|
-| 5-15 | Transformer, ELMo, GPT-1, BERT | Early/foundational models |
-| 15-30 | GPT-2, GPT-3, DALL-E 1, early diffusion | Pre-ChatGPT era |
-| 30-45 | ChatGPT, GPT-4, Claude 1-2, Llama 1-2, SD XL, Midjourney v5 | 2023 generation |
-| 45-60 | GPT-4o, Claude 3 Opus/Sonnet, Gemini 1.5, Llama 3, FLUX.1 | Early 2024 generation |
-| 60-75 | Claude 3.5/3.7, DeepSeek-R1, Grok-3/4, GPT-5, Gemini 2.5 | Late 2024 - mid 2025 |
-| 75-85 | GPT-5.1/5.2, Opus 4/4.5, Grok-4.1, Gemini 3, Qwen 3.5 | Late 2025 - early 2026 |
-| 85-95 | Opus 4.6, Sonnet 4.6, GPT-5.4, Gemini 3.1, Qwen 3.5-Plus | Current frontier (early 2026) |
+| Range | Era | Example Models |
+|-------|-----|----------------|
+| 60-66 | Sep 2026 frontier | Claude Fable 5.1 (66), Claude Opus 5 (63), GPT-6 Astra (61), Kimi K3 (60) |
+| 50-59 | Mid 2026 | Gemini 3.8 Flash (59), GPT-5.5 (56), GPT-5.4 Thinking (53) |
+| 40-49 | Early 2026 | Claude Sonnet 4.6 (48), Gemini 3.1 Pro (48), Opus 4.6 (45), GPT-5.2 (43), Opus 4.5 (42) |
+| 25-39 | 2025 | GPT-5 (35), Gemini 2.5 Pro (26) |
+| 10-24 | Late 2024 - early 2025 | DeepSeek-R1 (19), GPT-4o (12), Claude 3.5 Sonnet (10) |
+| 3-9 | 2023 - mid 2024 | GPT-4 (7), Llama 3 (3), GPT-3.5 (3) |
+| 1-2 | 2017-2022 | Transformer, BERT, GPT-2, GPT-3 |
+
+Non-LLM modalities (image, video, audio, world models) were leveled with the same calibration curve, so they sit on one scale with the LLMs: Sora 2 (20), Veo 3 (15), Nano Banana (10), FLUX.1 (6).
 
 ### Key Principles for Rating
 
-1. **Intelligence** should reflect benchmark performance AND real-world capability relative to peers at release time
-2. Reasoning models typically get higher intelligence than their non-reasoning counterparts
-3. Open-weight models of similar architecture get the same ratings as closed equivalents
-4. When uncertain, place the model between its known nearest neighbors in the timeline
+1. **Do not copy Artificial Analysis values for new models.** The leveling was a one-time calibration. New entries are inferred from the benchmarks published on the model's official blog/model card (GPQA, HLE, SWE-bench, Terminal-Bench, GDPval, AIME, etc.) and from reputable coverage, then placed against the reference points above.
+2. Compare reported benchmarks with peers already on the scale: a model that beats GPT-5.5 on most benchmarks but trails Claude Opus 5 lands around 57-62.
+3. Rate the best configuration of the model (reasoning / max effort), not the cheapest one.
+4. Non-LLM models are placed relative to their predecessors on the same scale (Veo 3 = 15, so a clearly better Veo 4 ≈ 20-25).
+5. Nothing goes above the current frontier by more than a few points without extraordinary evidence; the headroom up to 100 is deliberate.
 
 ---
 
@@ -222,6 +225,6 @@ The `intelligence` value is on a relative 1-100 scale. Use these reference point
 - [ ] All `type` values are one of: LLM, Diffusion, Reasoning, Multimodal, ASR, Text Diffusion
 - [ ] All `cat` values are one of: text, image, video, audio, multi, code, reasoning
 - [ ] `open` is correctly set (true = weights downloadable, false = API-only or proprietary)
-- [ ] Intelligence values are calibrated against similar existing models
+- [ ] Intelligence values are inferred from official benchmarks/news and placed against the Scale Reference (never copied from Artificial Analysis)
 - [ ] No models that are only announced but not released
 - [ ] Output is valid JS syntax ready to paste into the array

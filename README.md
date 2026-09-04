@@ -28,17 +28,19 @@ Interactive timeline tracking **700+ AI models** from the original Transformer (
 
 ## Intelligence Scale
 
-Relative 0-100 scale calibrated against public benchmarks (AIME, SWE-bench, MMLU, HLE, ARC-AGI, GPQA), expert opinions, and market positioning. Not absolute metrics.
+1-100 rating where 100 is the AGI ceiling. On 2026-09-03 the scale was leveled once against the [Artificial Analysis Intelligence Index](https://artificialanalysis.ai/evaluations/artificial-analysis-intelligence-index) v4.1.1 (nine benchmarks: GDPval-AA, τ³-Banking, Terminal-Bench, SciCode, HLE, GPQA Diamond, CritPt, AA-Omniscience, AA-LCR): indexed models took their index value, the rest were extrapolated with a calibration curve fitted on the overlap. New models are rated from their official benchmarks and coverage against the reference points below, not copied from Artificial Analysis.
 
-| Range | Era | Examples |
-|-------|-----|----------|
-| 5-15 | 2017-2018 | Transformer, ELMo, GPT-1, BERT |
-| 15-30 | 2019-2021 | GPT-2, GPT-3, DALL-E 1 |
-| 30-45 | 2022-2023 | ChatGPT, GPT-4, Claude 1-2, Llama 1-2 |
-| 45-60 | Early 2024 | GPT-4o, Claude 3, Gemini 1.5, FLUX.1 |
-| 60-75 | Late 2024-Mid 2025 | Claude 3.5/3.7, DeepSeek-R1, Grok-3/4 |
-| 75-85 | Late 2025 | GPT-5.1/5.2, Opus 4/4.5, Gemini 3 |
-| 85-95 | Early 2026 | Opus 4.6, Sonnet 4.6, GPT-5.4, Gemini 3.1 |
+| Range | Era | Example Models |
+|-------|-----|----------------|
+| 60-66 | Sep 2026 frontier | Claude Fable 5.1 (66), Claude Opus 5 (63), GPT-6 Astra (61), Kimi K3 (60) |
+| 50-59 | Mid 2026 | Gemini 3.8 Flash (59), GPT-5.5 (56), GPT-5.4 Thinking (53) |
+| 40-49 | Early 2026 | Claude Sonnet 4.6 (48), Gemini 3.1 Pro (48), Opus 4.6 (45), GPT-5.2 (43), Opus 4.5 (42) |
+| 25-39 | 2025 | GPT-5 (35), Gemini 2.5 Pro (26) |
+| 10-24 | Late 2024 - early 2025 | DeepSeek-R1 (19), GPT-4o (12), Claude 3.5 Sonnet (10) |
+| 3-9 | 2023 - mid 2024 | GPT-4 (7), Llama 3 (3), GPT-3.5 (3) |
+| 1-2 | 2017-2022 | Transformer, BERT, GPT-2, GPT-3 |
+
+Non-LLM modalities (image, video, audio, world models) were leveled with the same calibration curve, so they sit on one scale with the LLMs: Sora 2 (20), Veo 3 (15), Nano Banana (10), FLUX.1 (6).
 
 ## Tech Stack
 
