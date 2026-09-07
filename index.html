@@ -3514,10 +3514,10 @@ function render(){
 // Sources: https://arcprize.org/leaderboard (ARC Prize Verified, semi-private eval) + Kaggle 2026 public leaderboards.
 // Scores are numbers (percent); costs are display strings. ARC-AGI-3 costs are total run cost, not per task.
 const arcData={
-  updated:"2026-09-04",
+  updated:"2026-09-07",
   a1:{top:"GPT-6 Astra, High",topShort:"Astra",score:98.5,cost:"$0.28/task",others:[["Claude Fable 5 (XHigh)",98.5,"$1.02/task"]]},
   a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["GPT-5.6 Sol (Max)",92.5,"$1.44/task"],["Claude Opus 5 (Max)",90.4,"$2.06/task"],["Claude Fable 5.1 (Max)",90.0,"$4.49/task"]],kaggle:["rabbithole",73.33]},
-  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["mostik.ai",7.51]}
+  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Third Intelligence",7.91]}
 };
 function renderArcTab(){
   const a=t('arc');
@@ -4643,7 +4643,7 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-09-04"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-09-07"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
   // ===== LLM (text/reasoning) =====
   {name:"Claude Opus 4.7",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:5,output:25,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.50, batch 50% off",verified:true},
@@ -4673,7 +4673,7 @@ const pricingData=[
   {name:"GPT-5.1 Codex",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1.50,output:6,free:false,url:"https://openai.com/api/pricing/",note:"Coding specialist",verified:false},
   {name:"GPT-5.3 Codex",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1.75,output:14,free:false,url:"https://platform.openai.com/docs/pricing",note:"Coding flagship",verified:true},
   {name:"GPT-Rosalind",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:10,output:40,free:false,url:"https://openai.com/api/pricing/",note:"Heavy reasoning, pricing approx",verified:false},
-  {name:"Qwen3-Max-Thinking",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:1.20,output:6,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"0-32K tier; tiered up to $3/$15 at 128K-256K",verified:true},
+  {name:"Qwen3-Max-Thinking",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:1.20,output:6,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Listed as qwen3-max (Non-Thinking and Thinking modes, = qwen3-max-2026-01-23): 0-32K $1.2/$6; 32K-128K $2.4/$12; 128K-256K $3/$15",verified:true},
   {name:"Qwen3.6-Max-Preview",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:1.3,output:7.8,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"0-128K tier; $2/$12 over 128K",verified:true},
   {name:"Qwen3.8-Max",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Cache read $0.25; Singapore region pricing",verified:true},
   {name:"Qwen3.8-Flash",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.47,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",verified:true},
@@ -4681,7 +4681,7 @@ const pricingData=[
   {name:"Gemini Deep Think",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:5,output:30,free:false,url:"https://ai.google.dev/pricing",note:"Not on Gemini API pricing page",verified:false},
   {name:"Gemini 3 Deep Think",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:6,output:36,free:false,url:"https://ai.google.dev/pricing",note:"Not on Gemini API pricing page",verified:false},
   {name:"Gemini 3.1 Pro",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:2,output:12,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"≤200K ctx; $4/$18 over 200K",verified:true},
-  {name:"Gemini 3 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:true,free_note:"AI Studio free tier",url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
+  {name:"Gemini 3 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.5,output:3,free:true,free_note:"Listed as Gemini 3 Flash Preview (gemini-3-flash-preview): $0.50 text/image/video in, $1.00 audio in, $3.00 out",url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
   {name:"Gemini 3.1 Flash-Lite",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.25,output:1.50,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",verified:true},
   {name:"Gemini 3.5 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.50,output:9,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Cached input $0.15/1M (90% off). Non-global region $1.65/$9.90.",verified:true},
   {name:"Gemini 3.8 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
@@ -4698,7 +4698,7 @@ const pricingData=[
   {name:"Seed 2.0 Mini",provider:"ByteDance Seed",cat:"llm",unit:"per_1m_tokens",input:0.10,output:0.50,free:false,url:"https://seed.bytedance.com/en/seed2",note:"Low-latency, 30K RPM",verified:false},
   {name:"GLM-5.3",provider:"Zhipu AI",cat:"llm",unit:"per_1m_tokens",input:1.4,output:4.4,free:false,url:"https://docs.z.ai/guides/overview/pricing",note:"Cached $0.26",verified:true},
   {name:"GLM-5.2",provider:"Zhipu AI",cat:"llm",unit:"per_1m_tokens",input:1.4,output:4.4,free:false,url:"https://docs.z.ai/guides/overview/pricing",note:"Cached $0.26",verified:true},
-  {name:"GLM-5.3-Flash",provider:"Zhipu AI",cat:"llm",unit:"per_1m_tokens",input:0.075,output:0.25,free:false,url:"https://docs.z.ai/guides/overview/pricing",note:"Cached $0.015",verified:true},
+  {name:"GLM-5.3-Flash",provider:"Zhipu AI",cat:"llm",unit:"per_1m_tokens",input:0.075,output:0.25,free:false,url:"https://docs.z.ai/guides/overview/pricing",note:"Cached $0.015; 50% launch promo through 2026-09-09",verified:true},
   {name:"Muse Spark 1.3",provider:"Meta",cat:"llm",unit:"per_1m_tokens",input:1.25,output:4.25,free:false,url:"https://developer.meta.com/ai/models/muse-spark/",note:"Cached $0.15; contributor tier $0.10/$0.20 (Meta trains on your data)",verified:true},
   {name:"Gemini 2.5 Pro",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.25,output:10,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"≤200K ctx; $2.50/$15 over 200K",verified:true},
   {name:"Gemini 2.5 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.30,output:2.50,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",verified:true},
@@ -4708,6 +4708,7 @@ const pricingData=[
   {name:"Grok 4.5",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/docs/models",note:"Cached $0.30; 2x over 200K ctx",verified:true},
   {name:"DeepSeek V4-Pro (0813)",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:1.32,output:3.96,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Peak rate; off-peak 50% off; cache hit $0.044",verified:true},
   {name:"DeepSeek V4-Flash (0731)",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:0.44,output:1.32,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Peak rate; off-peak $0.22/$0.66; cache hit $0.014",verified:true},
+{name:"DeepSeek-V4-Flash-Vision-Exp",provider:"DeepSeek",cat:"multi",unit:"per_1m_tokens",input:0.44,output:1.32,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Peak rate; off-peak 50% ($0.22/$0.66); images billed as input tokens; same price as V4-Flash",verified:true},
   {name:"Mistral Large 3",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:0.5,output:1.5,free:false,url:"https://mistral.ai/pricing/api",verified:true},
   {name:"Mistral Medium 3.5",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:1.5,output:7.5,free:false,url:"https://mistral.ai/pricing/api",verified:true},
   {name:"Mistral Small 4",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.6,free:false,url:"https://mistral.ai/pricing/api",verified:true},
@@ -4731,7 +4732,7 @@ const pricingData=[
   {name:"Imagen 4",provider:"Google",cat:"image",unit:"per_image",per_unit:0.02,per_unit_max:0.06,free:false,url:"https://ai.google.dev/pricing",note:"Not on Gemini API pricing page (Vertex AI only)",verified:false},
   {name:"Nano Banana (Gemini 3 Pro Image)",provider:"Google",cat:"image",unit:"per_image",per_unit:0.134,per_unit_max:0.24,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"$0.134 per 1K/2K image, $0.24 per 4K",verified:true},
   {name:"GPT-Image-2",provider:"OpenAI",cat:"image",unit:"per_1m_tokens",input:8,output:30,free:false,url:"https://platform.openai.com/docs/pricing",note:"Token-billed: $8/M input, $30/M output image tokens; text input $5/M",verified:true},
-  {name:"MAI-Image-2.5",provider:"Microsoft",cat:"image",unit:"per_1m_tokens",input:5,output:47,free:false,url:"https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/microsoft/",note:"Foundry: text in $5/M, image in $8/M, image out $47/M tokens; 2.5 Flash $1.75/$19.50; 2.5 Pro $5/$106",verified:true},
+  {name:"MAI-Image-2.5",provider:"Microsoft",cat:"image",unit:"per_1m_tokens",input:5,output:47,free:false,url:"https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/microsoft/",note:"Foundry: text in $5/M, image in $8/M, image out $47/M tokens; 2.5 Flash $1.75/$19.50; 2.5 Pro $5/$106 | 2026-09-07: Azure Foundry page shows $- placeholders, last seen $5/$47",verified:false},
   {name:"MAI-Image-2.6",provider:"Microsoft",cat:"image",unit:"per_image",per_unit:0.0389,per_unit_max:0.048,free:false,url:"https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/microsoft/",note:"Arena.ai (Sep 4, 2026): Foundry price $38.90 per 1K output images, ~$0.048 avg per generated image. Not yet on the Azure pricing page; Learn docs still mark it Preview",verified:false},
   {name:"FLUX 1.1 Pro",provider:"Black Forest Labs",cat:"image",unit:"per_image",per_unit:0.04,free:false,url:"https://docs.bfl.ml/quick_start/pricing",note:"Ultra/Raw $0.06; Kontext pro $0.04, max $0.08",verified:true},
   {name:"FLUX.2 Pro",provider:"Black Forest Labs",cat:"image",unit:"per_image",per_unit:0.03,per_unit_max:0.07,free:false,url:"https://docs.bfl.ml/quick_start/pricing",note:"Per megapixel: Klein 4B $0.014, Klein 9B $0.015, Pro $0.03, Flex $0.05, Max $0.07",verified:true},
