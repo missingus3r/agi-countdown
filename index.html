@@ -1579,7 +1579,7 @@ const models = [
 {name:"Ernie 5.1",date:"2026-05-09",company:"Baidu",open:false,intelligence:40,type:"LLM",cat:"text"},
 {name:"Kimi K2.7-Code",date:"2026-06-12",company:"Moonshot AI",open:true,intelligence:43,type:"LLM",cat:"code"},
 {name:"Kimi K3",date:"2026-07-16",company:"Moonshot AI",open:true,intelligence:60,type:"LLM",cat:"text"},
-{name:"Qwen3.8-Max",date:"2026-08-03",company:"Alibaba",open:false,intelligence:58,type:"Multimodal",cat:"multi"},
+{name:"Qwen3.8-Max",date:"2026-08-03",company:"Alibaba",open:false,intelligence:58,type:"Multimodal",cat:"multi",note:"Singapore region, tier 0-1M tokens. El precio de cache-hit no esta publicado: los docs listan qwen3.8-max como excepcion a la regla del 10% y remiten a la consola de Model Studio"},
 {name:"Inkling",date:"2026-07-15",company:"Thinking Machines",open:true,intelligence:42,type:"LLM",cat:"text"},
 {name:"GenCeption",date:"2026-07-15",company:"Google DeepMind",open:true,intelligence:15,type:"Diffusion",cat:"video"},
 {name:"GLM-5.2",date:"2026-06-13",company:"Zhipu AI",open:true,intelligence:53,type:"LLM",cat:"code"},
@@ -1701,6 +1701,17 @@ const models = [
 {name:"Ling-3.0-flash-Sante",date:"2026-09-04",company:"inclusionAI (Ant)",open:true,intelligence:38,type:"MoE LLM (health & medicine, 124B/5.1B active)",cat:"text"},
 {name:"MiniCPM5-2B",date:"2026-09-07",company:"OpenBMB",open:true,intelligence:15,type:"LLM (2.5B, on-device)",cat:"text"},
 {name:"UnifoLM-X2-1.0",date:"2026-09-07",company:"Unitree Robotics",open:false,intelligence:13,type:"World-action model",cat:"world"},
+{name:"ChatGPT Images 2.5",date:"2026-09-08",company:"OpenAI",open:false,intelligence:28,type:"Image Gen (ChatGPT SOTA)",cat:"image"},
+{name:"GPT-Image-2.5 Flare",date:"2026-09-08",company:"OpenAI",open:false,intelligence:27,type:"Image Gen API (fast default)",cat:"image"},
+{name:"GPT-Image-2.5 Sunburst",date:"2026-09-08",company:"OpenAI",open:false,intelligence:28,type:"Image Gen API (precision)",cat:"image"},
+{name:"Nex-N2.5-Max",date:"2026-09-08",company:"Nex-AGI",open:true,intelligence:58,type:"Agentic MoE (1.6T)",cat:"code"},
+{name:"Nex-N2.5-Pro",date:"2026-09-08",company:"Nex-AGI",open:true,intelligence:52,type:"Agentic MoE (multimodal)",cat:"code"},
+{name:"Nex-N2.5-mini",date:"2026-09-08",company:"Nex-AGI",open:true,intelligence:40,type:"Agentic MoE (multimodal)",cat:"code"},
+{name:"Mercury 2.5",date:"2026-09-08",company:"Inception",open:false,intelligence:31,type:"Text Diffusion (dLLM)",cat:"reasoning"},
+{name:"OxCoder-9B",date:"2026-09-07",company:"OrionLLM",open:true,intelligence:38,type:"Agentic coding LLM (9B)",cat:"code"},
+{name:"FrogNano",date:"2026-09-07",company:"Microsoft Research",open:false,intelligence:30,type:"Coding agent (4B, RL)",cat:"code"},
+{name:"PhysBrain 1.5-8B",date:"2026-09-08",company:"DeepCybo",open:true,intelligence:30,type:"Embodied VLM (8B)",cat:"world"},
+{name:"Gander",date:"2026-09-07",company:"Omni-Interaction",open:true,intelligence:18,type:"Full-duplex omni (audio+vid)",cat:"audio"},
 {name:"Muse",date:"2026-09-08",company:"Meta",open:false,intelligence:60,type:"Personal agent (Secure VM)",cat:"multi"},
 {name:"Z1T",date:"2026-09-04",company:"Extropic",open:true,intelligence:2,type:"Sparse pbit transformer",cat:"text"},
 {name:"MAI-Transcribe-2",date:"2026-09-03",company:"Microsoft",open:false,intelligence:32,type:"ASR (60 langs, diarization)",cat:"audio"},
@@ -1759,7 +1770,7 @@ const modelUrls={
 "Ling-3.0-flash":"https://huggingface.co/inclusionAI/Ling-3.0-flash",
 "Ling-3.0-flash-Sante":"https://x.com/AntLingAGI/status/2095953758148853892",
 "MiniCPM5-2B":"https://huggingface.co/openbmb/MiniCPM5-2B",
-"UnifoLM-X2-1.0":"https://x.com/UnitreeRobotics/status/2096932273602048258","Muse":"https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
+"UnifoLM-X2-1.0":"https://x.com/UnitreeRobotics/status/2096932273602048258","ChatGPT Images 2.5":"https://openai.com/index/introducing-chatgpt-images-2-5/","GPT-Image-2.5 Flare":"https://openai.com/index/introducing-chatgpt-images-2-5/","GPT-Image-2.5 Sunburst":"https://openai.com/index/introducing-chatgpt-images-2-5/","Nex-N2.5-Max":"https://huggingface.co/nex-agi/Nex-N2.5-Max","Nex-N2.5-Pro":"https://huggingface.co/nex-agi/Nex-N2.5-Pro","Nex-N2.5-mini":"https://huggingface.co/nex-agi/Nex-N2.5-mini","Mercury 2.5":"https://www.inceptionlabs.ai/blog/introducing-mercury-2-5","OxCoder-9B":"https://huggingface.co/OrionLLM/OxCoder-9B","FrogNano":"https://arxiv.org/abs/2609.07925","PhysBrain 1.5-8B":"https://huggingface.co/DeepCybo/PhysBrain1.5-8B","Gander":"https://arxiv.org/abs/2609.08977","Muse":"https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
 "voyage-code-4":"https://blog.voyageai.com/2026/08/13/voyage-code-4/",
 "Nemotron 3.5 Lightning":"https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Lightning-30B-A3B-BF16",
 "Hy3D WorldClaw":"https://github.com/Tencent-Hunyuan/Hunyuan3D-WorldClaw",
@@ -3523,9 +3534,9 @@ function render(){
 // Sources: https://arcprize.org/leaderboard (ARC Prize Verified, semi-private eval) + Kaggle 2026 public leaderboards.
 // Scores are numbers (percent); costs are display strings. ARC-AGI-3 costs are total run cost, not per task.
 const arcData={
-  updated:"2026-09-08",
+  updated:"2026-09-09",
   a1:{top:"GPT-6 Astra, High",topShort:"Astra",score:98.5,cost:"$0.28/task",others:[["Claude Fable 5 (XHigh)",98.5,"$1.02/task"]]},
-  a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["GPT-5.6 Sol (Max)",92.5,"$1.44/task"],["Claude Opus 5 (Max)",90.4,"$2.06/task"],["Claude Fable 5.1 (Max)",90.0,"$4.49/task"]],kaggle:["rabbithole",76.67]},
+  a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["GPT-5.6 Sol (Max)",92.5,"$1.44/task"],["Claude Opus 5 (Max)",90.4,"$2.06/task"],["Claude Fable 5.1 (Max)",90.0,"$4.49/task"]],kaggle:["rabbithole",76.94]},
   a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Tufa Labs",11.04]}
 };
 function renderArcTab(){
@@ -4394,7 +4405,7 @@ const companyMeta = {
   "Speechify":{d:"speechify.com",u:"https://speechify.com"},
   "Stability AI":{d:"stability.ai",u:"https://stability.ai"},
   "Stanford":{d:"stanford.edu",u:"https://hai.stanford.edu"},
-  "Stellon Labs":{d:"stellonlabs.com",u:"https://stellonlabs.com",logo:"https://stellonlabs.com/minimal.svg"},
+  "Stellon Labs":{d:"stellonlabs.com",u:"https://stellonlabs.com",logo:"https://stellonlabs.com/minimal.svg"},"SwitchBot":{d:"switch-bot.com",u:"https://www.switch-bot.com"},
   "Subquadratic":{d:"huggingface.co",u:"https://huggingface.co",letter:"SQ",letterColors:["#2a1a1a","#4a2a2a","#fca5a5"]},
   "Suno":{d:"suno.com",u:"https://suno.com"},
   "Supertone":{d:"supertone.ai",u:"https://supertone.ai"},
@@ -4654,7 +4665,7 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-09-07"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-09-09"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
   // ===== LLM (text/reasoning) =====
   {name:"Claude Opus 4.7",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:5,output:25,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.50, batch 50% off",verified:true},
@@ -4692,7 +4703,7 @@ const pricingData=[
   {name:"Gemini Deep Think",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:5,output:30,free:false,url:"https://ai.google.dev/pricing",note:"Not on Gemini API pricing page",verified:false},
   {name:"Gemini 3 Deep Think",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:6,output:36,free:false,url:"https://ai.google.dev/pricing",note:"Not on Gemini API pricing page",verified:false},
   {name:"Gemini 3.1 Pro",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:2,output:12,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"≤200K ctx; $4/$18 over 200K",verified:true},
-  {name:"Gemini 3 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.5,output:3,free:true,free_note:"Listed as Gemini 3 Flash Preview (gemini-3-flash-preview): $0.50 text/image/video in, $1.00 audio in, $3.00 out",url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
+  {name:"Gemini 3 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.5,output:3,free:true,free_note:"Legacy Flash model: flat $0.50 in (texto/imagen/video), $1.00 audio in, $3.00 out. Cached $0.05 / $0.10 audio. Sin promo ni fecha de vencimiento en la pagina",url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
   {name:"Gemini 3.1 Flash-Lite",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.25,output:1.50,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",verified:true},
   {name:"Gemini 3.5 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.50,output:9,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Cached input $0.15/1M (90% off). Non-global region $1.65/$9.90.",verified:true},
   {name:"Gemini 3.8 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
@@ -4713,10 +4724,10 @@ const pricingData=[
   {name:"Muse Spark 1.3",provider:"Meta",cat:"llm",unit:"per_1m_tokens",input:1.25,output:4.25,free:false,url:"https://developer.meta.com/ai/models/muse-spark/",note:"Cached $0.15; contributor tier $0.10/$0.20 (Meta trains on your data)",verified:true},
   {name:"Gemini 2.5 Pro",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.25,output:10,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"≤200K ctx; $2.50/$15 over 200K",verified:true},
   {name:"Gemini 2.5 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.30,output:2.50,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",verified:true},
-  {name:"Grok 4.3",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:1.25,output:2.5,free:false,url:"https://docs.x.ai/docs/models",note:"Cached $0.20; 2x over 200K ctx",verified:true},
+  {name:"Grok 4.3",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:1.25,output:2.5,free:false,url:"https://docs.x.ai/docs/pricing",note:"Cached $0.20; 2x over 200K ctx",verified:true},
   {name:"Grok 4 Fast",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:0.20,output:0.50,free:false,url:"https://x.ai/api",note:"Legacy; not on docs.x.ai pricing table",verified:false},
-  {name:"Grok 4.6",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/docs/models",note:"Cached $0.50; 2x over 200K ctx",verified:true},
-  {name:"Grok 4.5",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/docs/models",note:"Cached $0.30; 2x over 200K ctx",verified:true},
+  {name:"Grok 4.6",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/docs/pricing",note:"Cached $0.50; 2x over 200K ctx",verified:true},
+  {name:"Grok 4.5",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/docs/pricing",note:"Cached $0.30; 2x over 200K ctx",verified:true},
   {name:"DeepSeek V4-Pro (0813)",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:1.32,output:3.96,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Peak rate; off-peak 50% off; cache hit $0.044",verified:true},
   {name:"DeepSeek V4-Flash (0731)",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:0.44,output:1.32,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Peak rate; off-peak $0.22/$0.66; cache hit $0.014",verified:true},
 {name:"DeepSeek-V4-Flash-Vision-Exp",provider:"DeepSeek",cat:"multi",unit:"per_1m_tokens",input:0.44,output:1.32,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Peak rate; off-peak 50% ($0.22/$0.66); images billed as input tokens; same price as V4-Flash",verified:true},
@@ -4757,12 +4768,12 @@ const pricingData=[
   {name:"Runway Gen-4.5",provider:"Runway",cat:"video",unit:"per_second",per_unit:0.12,free:false,url:"https://docs.dev.runwayml.com/guides/pricing/",note:"12 credits/s at $0.01/credit; Gen-4 Turbo $0.05/s; Aleph 2 $0.28/s",verified:true},
   {name:"Kling 3.0",provider:"Kuaishou",cat:"video",unit:"per_second",per_unit:0.075,free:false,url:"https://www.klingai.com/",note:"Official dev platform bills 6-12 credits/s via prepaid packs; ~$0.075/s via resellers",verified:false},
   {name:"FLUX 3 (video)",provider:"Black Forest Labs",cat:"video",unit:"per_second",per_unit:0.17,per_unit_max:0.29,free:false,url:"https://docs.bfl.ml/quick_start/pricing",note:"HD $0.17/s, FHD $0.29/s; draft $0.06/s",verified:true},
-  {name:"Grok Imagine Video 1.5",provider:"xAI",cat:"video",unit:"per_second",per_unit:0.08,free:false,url:"https://docs.x.ai/docs/models",note:"Imagine Video 1.5 $0.08/s; Imagine Video (1.0) $0.05/s",verified:true},
+  {name:"Grok Imagine Video 1.5",provider:"xAI",cat:"video",unit:"per_second",per_unit:0.08,free:false,url:"https://docs.x.ai/docs/pricing",note:"Imagine Video 1.5 $0.08/s; Imagine Video (1.0) $0.05/s",verified:true},
   {name:"VEED Fabric 1.0",provider:"VEED",cat:"video",unit:"per_second",per_unit:0.08,per_unit_max:0.15,free:false,url:"https://www.veed.io/tools/fabric-1.0-api",note:"480p $0.08/s, 720p $0.15/s; image + audio → talking video up to 5 min; hosted on fal.ai",verified:true},
   {name:"PixVerse V6",provider:"PixVerse",cat:"video",unit:"per_second",per_unit:0.05,per_unit_max:0.23,free:false,url:"https://docs.platform.pixverse.ai/model-pricing-796039m0",note:"5-23 credits/s by resolution and audio at $0.01/credit pay-as-you-go (720p no audio = $0.09/s); C1 $0.06-0.24/s",verified:true},
   {name:"MiniMax Hailuo 2.3",provider:"MiniMax",cat:"video",unit:"per_second",per_unit:0.044,per_unit_max:0.089,free:false,url:"https://platform.minimax.io/docs/guides/pricing-video",note:"Derived from official video points: Standard pack $1,000 = 3,760 pts; 768p 6s = 1 pt (~$0.27/video), 1080p 6s = 2 pts; Fast ~30% cheaper; H3 not in packages",verified:true},
   {name:"Wan 3.0",provider:"Alibaba",cat:"video",unit:"per_second",per_unit:0.05,per_unit_max:0.20,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"wan3.0-video list price 480P $0.05, 720P $0.10, 1080P $0.20 per second (30% off promo); Prime $0.068/$0.14/$0.28; input video billed too",verified:true},
-  {name:"HappyHorse 1.1",provider:"Alibaba",cat:"video",unit:"per_second",per_unit:0.07,per_unit_max:0.18,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"480P $0.07, 720P $0.14, 1080P $0.18 per second; HappyHorse 1.0 list $0.14/$0.24 (20% off)",verified:true},
+  {name:"HappyHorse 1.1",provider:"Alibaba",cat:"video",unit:"per_second",per_unit:0.07,per_unit_max:0.18,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"480P $0.07, 720P $0.14, 1080P $0.18 per second; HappyHorse 1.0 720P $0.14, 1080P $0.24 (ya sin descuento marcado)",verified:true},
   // ===== Audio / TTS =====
   {name:"ElevenLabs v3 / Multilingual v2",provider:"ElevenLabs",cat:"audio",unit:"per_1k_chars",per_unit:0.1,free:false,url:"https://elevenlabs.io/pricing/api",note:"$0.10 per 1k chars (v2/v3); Flash/Turbo $0.05; Starter $6 = 60k chars",verified:true},
   {name:"Stable Audio 3",provider:"Stability AI",cat:"audio",unit:"plan_based",per_unit:null,free:true,url:"https://stability.ai/news-updates/meet-stable-audio-3-the-model-family-built-for-artistic-experimentation-with-open-weight-models",note:"Open-weight, self-host. Membership plan en stability.ai",verified:false},
@@ -4770,7 +4781,9 @@ const pricingData=[
   {name:"OpenAI tts-1",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.015,free:false,url:"https://openai.com/api/pricing/",note:"Legacy; not on current pricing page",verified:false},
   {name:"OpenAI tts-1-hd",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.030,free:false,url:"https://openai.com/api/pricing/",note:"Legacy; not on current pricing page",verified:false},
   {name:"Inworld TTS-2",provider:"Inworld",cat:"audio",unit:"per_1k_chars",per_unit:0.025,free:false,url:"https://inworld.ai/pricing",note:"$25 per 1M chars on-demand; TTS-2 Flash $15/M",verified:true},
-  {name:"gpt-4o-transcribe (Whisper successor)",provider:"OpenAI",cat:"audio",unit:"per_minute",per_unit:0.006,free:false,url:"https://platform.openai.com/docs/pricing",note:"STT $0.006/min; gpt-transcribe $0.0045/min; live $0.017/min",verified:true}
+  {name:"gpt-4o-transcribe (Whisper successor)",provider:"OpenAI",cat:"audio",unit:"per_minute",per_unit:0.006,free:false,url:"https://platform.openai.com/docs/pricing",note:"STT $0.006/min; gpt-transcribe $0.0045/min; live $0.017/min",verified:true},
+  {name:"Qwen3.8-27B",provider:"Alibaba",cat:"multi",unit:"per_1m_tokens",input:0.5,output:3,free:true,free_note:"Open weights (self-host) + 1M tokens gratis por 90 dias en Model Studio",url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Region Singapur, tier 0-1M tokens, modos Non-Thinking y Thinking",verified:true},
+  {name:"Claude Mythos 5.1",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:10,output:50,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Limited availability; cache read $0.25 (2.5% del input base), batch 50% off ($5/$25)",verified:true},
 ];
 
 function fmtPrice(p){if(p===0)return'<span style="color:#34d399">free</span>';if(p<0.01)return'$'+p.toFixed(4);if(p<1)return'$'+p.toFixed(2);return'$'+p.toFixed(2);}
@@ -4808,6 +4821,7 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
+  {name:"Onero H1",company:"SwitchBot",domain:"switch-bot.com",type:{en:"Household humanoid robot",es:"Robot humanoide doméstico",pt:"Robô humanoide doméstico"},desc:{en:"Universal household humanoid built around Omni Sense VLA, a multimodal system that fuses vision, depth, touch and language to do laundry and wash dishes without task-specific programming. Listed at US$9,999, marked Coming Soon; product page published Jan 2026 (CES). Added Sep 2026 to close an index gap, not a new announcement.",es:"Humanoide doméstico universal construido sobre Omni Sense VLA, un sistema multimodal que fusiona visión, profundidad, tacto y lenguaje para lavar la ropa y los platos sin programación por tarea. Sale USD 9.999 y figura como Coming Soon; ficha publicada en enero 2026 (CES). Agregado en setiembre 2026 para cerrar un hueco del índice, no es un anuncio nuevo.",pt:"Humanoide doméstico universal construído sobre o Omni Sense VLA, sistema multimodal que funde visão, profundidade, tato e linguagem para lavar roupa e louça sem programação por tarefa. Custa US$ 9.999 e aparece como Coming Soon; ficha publicada em janeiro de 2026 (CES). Adicionado em setembro de 2026 para fechar uma lacuna do índice, não é um anúncio novo."},url:"https://www.switch-bot.com/products/onero-h1",img:"https://www.switch-bot.com/cdn/shop/files/H1_1x_1_1200x1200.png?v=1767594228"},
   {name:"Prima 1",company:"Xynova",domain:"xynova.com.cn",type:{en:"Dexterous robotic hand",es:"Mano robótica diestra",pt:"Mão robótica destra"},desc:{en:"22-DoF direct-drive dexterous hand with vision and tactile sensing, high-precision force control and payloads up to 20 kg, aimed at industrial manipulation. Unveiled Sep 2026 (WRC Beijing); startup fresh off a US$13M angel round (added at Bruno's request).",es:"Mano diestra de 22 grados de libertad con direct-drive, sensado táctil y de visión, control de fuerza de alta precisión y cargas de hasta 20 kg, orientada a manipulación industrial. Presentada sep 2026 (WRC Beijing); startup recién salida de una ronda ángel de USD 13M (agregada a pedido de Bruno).",pt:"Mão destra de 22 graus de liberdade com direct-drive, sensoriamento tátil e de visão, controle de força de alta precisão e cargas de até 20 kg, voltada à manipulação industrial. Apresentada set 2026 (WRC Beijing); startup recém-saída de uma rodada anjo de US$13M (adicionada a pedido de Bruno)."},url:"https://www.xynova.com.cn/en/xynova-prima-1",img:""},
   {name:"Tau",company:"Tau Robotics",domain:"tau-robotics.com",type:{en:"Cleaning service humanoid",es:"Humanoide de servicio de limpieza",pt:"Humanoide de serviço de limpeza"},desc:{en:"Humanoid housecleaning service launched in San Francisco at $30/hour (Sep 2026): vacuuming, surfaces, deep and office cleaning for early members, teleop-assisted with a path to autonomy and home repairs.",es:"Servicio de limpieza doméstica con humanoides lanzado en San Francisco a USD 30/hora (sep 2026): aspirado, superficies, limpieza profunda y de oficinas para early members, asistido por teleoperación con camino a la autonomía y reparaciones del hogar.",pt:"Serviço de limpeza doméstica com humanoides lançado em San Francisco a USD 30/hora (set 2026): aspiração, superfícies, limpeza profunda e de escritórios para early members, assistido por teleoperação com caminho à autonomia e reparos domésticos."},url:"https://www.tau-robotics.com/",img:"https://www.tau-robotics.com/assets/hero.jpg"},
   {name:"Lumos MOS 2",company:"Lumos Robotics",domain:"lumosbot.tech",type:{en:"Mobile manipulator (AI worker)",es:"Manipulador móvil (AI worker)",pt:"Manipulador móvel (AI worker)"},desc:{en:"Heavy-duty dual-arm mobile manipulator launched Sep 2026 as an 'AI Worker': 30 kg rated payload (50 kg max), omnidirectional base, hot-swappable batteries, 275 TOPS edge compute. Already deployed on Mitsubishi Electric PLC production lines (quality inspection, screwdriving, material handling).",es:"Manipulador móvil bimanual de carga pesada lanzado en septiembre 2026 como 'AI Worker': 30 kg de carga nominal (50 kg máx), base omnidireccional, baterías hot-swap, 275 TOPS de cómputo edge. Ya desplegado en líneas de producción de PLC de Mitsubishi Electric (inspección de calidad, atornillado, manejo de materiales).",pt:"Manipulador móvel bimanual de carga pesada lançado em setembro de 2026 como 'AI Worker': 30 kg de carga nominal (50 kg máx), base omnidirecional, baterias hot-swap, 275 TOPS de computação edge. Já implantado nas linhas de produção de PLC da Mitsubishi Electric (inspeção de qualidade, aparafusamento, manuseio de materiais)."},url:"https://www.lumosbot.tech/products/mos/",img:""},
