@@ -1736,6 +1736,10 @@ const models = [
 {name:"TimesFM-3",date:"2026-08-31",company:"Google",open:true,intelligence:11,type:"Time-series FM (330M, open)",cat:"multi"},
 {name:"Qwen3.8-Max-0902",date:"2026-09-02",company:"Alibaba",open:false,intelligence:59,type:"LLM snapshot (2.4T, 1M ctx)",cat:"multi"},
 {name:"Lyria 3.5 Pro",date:"2026-09-03",company:"Google",open:false,intelligence:13,type:"Music gen, full songs (prev)",cat:"audio"},
+{name:"Kimi K2.8 Preview",date:"2026-09-11",company:"Moonshot AI",open:false,intelligence:57,type:"LLM (coding, agentic)",cat:"code"},
+{name:"Fugu Ultra v2",date:"2026-09-11",company:"Sakana AI",open:false,intelligence:60,type:"Orchestration (v2)",cat:"code"},
+{name:"Fugu Max",date:"2026-09-11",company:"Sakana AI",open:false,intelligence:54,type:"Orchestration (cost-eff.)",cat:"code"},
+{name:"Scribe v2 Medical",date:"2026-09-11",company:"ElevenLabs",open:false,intelligence:20,type:"ASR (medical, HIPAA)",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2600,6 +2604,10 @@ const modelUrls={
 "TimesFM-3":"https://github.com/google-research/timesfm",
 "Qwen3.8-Max-0902":"https://www.qwencloud.com/models/qwen3.8-max-0902",
 "Lyria 3.5 Pro":"https://ai.google.dev/gemini-api/docs/changelog",
+"Kimi K2.8 Preview":"https://www.kimi.com/en/agent-flash",
+"Fugu Ultra v2":"https://sakana.ai/fugu-max-release/",
+"Fugu Max":"https://sakana.ai/fugu-max-release/",
+"Scribe v2 Medical":"https://elevenlabs.io/docs/changelog/2026/9/11",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
