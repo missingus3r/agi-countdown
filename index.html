@@ -1740,10 +1740,18 @@ const models = [
 {name:"Fugu Ultra v2",date:"2026-09-11",company:"Sakana AI",open:false,intelligence:60,type:"Orchestration (v2)",cat:"code"},
 {name:"Fugu Max",date:"2026-09-11",company:"Sakana AI",open:false,intelligence:54,type:"Orchestration (cost-eff.)",cat:"code"},
 {name:"Scribe v2 Medical",date:"2026-09-11",company:"ElevenLabs",open:false,intelligence:20,type:"ASR (medical, HIPAA)",cat:"audio"},
+{name:"Atria Dawn Preview",date:"2026-09-11",company:"Shanghai AI Lab (ATRIA)",open:true,intelligence:52,type:"Agentic MoE (744B, open)",cat:"code"},
+{name:"Odyssey-3",date:"2026-09-17",company:"Odyssey",open:false,intelligence:28,type:"World Model (multi-body)",cat:"world"},
+{name:"Flux TTS",date:"2026-08-12",company:"Deepgram",open:false,intelligence:27,type:"TTS (conversation-native)",cat:"audio"},
+{name:"OM-1",date:"2026-09-14",company:"Reward AI",open:false,intelligence:19,type:"Human-data Robot Policy",cat:"world"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
+"Atria Dawn Preview":"https://huggingface.co/internlm/Atria-Dawn-Preview",
+"Odyssey-3":"https://odyssey.systems/introducing-odyssey-3",
+"Flux TTS":"https://deepgram.com/learn/introducing-flux-tts-conversation-native-text-to-speech-for-real-time-voice-agents",
+"OM-1":"https://www.rewardai.com/blog/OM-1/",
 "Claude Fable 5.1":"https://www.anthropic.com/claude-fable-and-mythos-5-1",
 "Gemini 3.8 Flash":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/3-8-flash-and-3-8-flash-cyber/",
 "Gemini 3.8 Live":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-gemini-3-8-live-extended-thinking/",
@@ -4325,6 +4333,7 @@ const companyMeta = {
   "Cursor":{d:"cursor.com",u:"https://cursor.com"},
   "Community":{d:"huggingface.co",u:"https://huggingface.co",letter:"COM",letterColors:["#1a2a1a","#2a4a2a","#86efac"]},
   "Databricks":{d:"databricks.com",u:"https://www.databricks.com"},
+  "Daxo Robotics":{d:"daxo-robotics.com",u:"https://www.daxo-robotics.com"},
   "Decart":{d:"decart.ai",u:"https://decart.ai"},
   "DeepSeek":{d:"deepseek.com",u:"https://www.deepseek.com"},
 "DexRobot":{d:"dex-robot.com",u:"https://www.dex-robot.com"},
@@ -4337,7 +4346,10 @@ const companyMeta = {
 "INMO":{d:"inmo.com",u:"https://www.inmo.com/"},
 "Nori Robotics":{d:"norirobotics.com",u:"https://www.norirobotics.com"},
 "PNDbotics":{d:"pndbotics.com",u:"https://www.pndbotics.com"},
+  "Reward AI":{d:"rewardai.com",u:"https://www.rewardai.com"},
 "Rokid":{d:"rokid.com",u:"https://global.rokid.com/"},
+  "Shanghai AI Lab (ATRIA)":{d:"shlab.org.cn",u:"https://www.shlab.org.cn"},
+  "ugo Inc.":{d:"ugo.plus",u:"https://ugo.plus"},
 "X-Humanoid":{d:"x-humanoid.com",u:"https://www.x-humanoid.com"},
   "Meituan":{d:"longcatai.org",u:"https://www.longcatai.org"},
   "Deepgram":{d:"deepgram.com",u:"https://deepgram.com"},
@@ -4854,6 +4866,8 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
+  {name:"ugo Nova",company:"ugo Inc.",domain:"ugo.plus",type:{en:"Wheeled dual-arm semi-humanoid",es:"Semi-humanoide bibrazo con ruedas",pt:"Semi-humanoide bibraco com rodas"},desc:{en:"Japan-designed-and-built semi-humanoid: two arms with human-like range of motion and a multi-joint torso that turns and bends from floor level to overhead shelves, 4 kg payload per arm (10 kg combined). Backed by NEDO/AIRoA so it also generates physical-AI training data on the job. Mass production planned for 2027.",es:"Semi-humanoide disenado y fabricado en Japon: dos brazos con rango de movimiento similar al humano y torso multi-articulado que gira y se flexiona desde el piso hasta estantes altos, payload de 4 kg por brazo (10 kg combinado). Con apoyo de NEDO/AIRoA, tambien genera datos de entrenamiento de IA fisica mientras trabaja. Produccion en masa prevista para 2027.",pt:"Semi-humanoide projetado e fabricado no Japao: dois bracos com amplitude de movimento similar a humana e torso multi-articulado que gira e flexiona do piso a prateleiras altas, payload de 4 kg por braco (10 kg combinado). Com apoio da NEDO/AIRoA, tambem gera dados de treinamento de IA fisica durante o trabalho. Producao em massa prevista para 2027."},url:"https://ugo.plus/information/2026/09/16/ugo-nova/",img:"https://ugo.plus/wp-content/uploads/2026/09/260915_ugo_press-scaled.png"},
+  {name:"Muscle V0",company:"Daxo Robotics",domain:"daxo-robotics.com",type:{en:"Tendon-driven dexterous hand",es:"Mano diestra tendon-driven",pt:"Mao habil tendon-driven"},desc:{en:"Soft robotic hand with an ultra-redundant tendon-driven architecture: 120 individual actuators (about 3x a human hand), no rigid joints, fully backdrivable and compliant, with force-aware tactile sensing. Prototype today; limited release planned for late 2026.",es:"Mano robotica blanda con arquitectura tendon-driven ultra-redundante: 120 actuadores individuales (unas 3x una mano humana), sin articulaciones rigidas, totalmente backdrivable y compliant, con sensado tactil consciente de fuerza. Hoy es prototipo; release limitado previsto para fines de 2026.",pt:"Mao robotica flexivel com arquitetura tendon-driven ultra-redundante: 120 atuadores individuais (cerca de 3x uma mao humana), sem articulacoes rigidas, totalmente backdrivable e compliant, com sensoriamento tatil sensivel a forca. Hoje e prototipo; lancamento limitado previsto para o fim de 2026."},url:"https://www.daxo-robotics.com",img:""},
   {name:"Onero H1",company:"SwitchBot",domain:"switch-bot.com",type:{en:"Household humanoid robot",es:"Robot humanoide doméstico",pt:"Robô humanoide doméstico"},desc:{en:"Universal household humanoid built around Omni Sense VLA, a multimodal system that fuses vision, depth, touch and language to do laundry and wash dishes without task-specific programming. Listed at US$9,999, marked Coming Soon; product page published Jan 2026 (CES). Added Sep 2026 to close an index gap, not a new announcement.",es:"Humanoide doméstico universal construido sobre Omni Sense VLA, un sistema multimodal que fusiona visión, profundidad, tacto y lenguaje para lavar la ropa y los platos sin programación por tarea. Sale USD 9.999 y figura como Coming Soon; ficha publicada en enero 2026 (CES). Agregado en setiembre 2026 para cerrar un hueco del índice, no es un anuncio nuevo.",pt:"Humanoide doméstico universal construído sobre o Omni Sense VLA, sistema multimodal que funde visão, profundidade, tato e linguagem para lavar roupa e louça sem programação por tarefa. Custa US$ 9.999 e aparece como Coming Soon; ficha publicada em janeiro de 2026 (CES). Adicionado em setembro de 2026 para fechar uma lacuna do índice, não é um anúncio novo."},url:"https://www.switch-bot.com/products/onero-h1",img:"https://www.switch-bot.com/cdn/shop/files/H1_1x_1_1200x1200.png?v=1767594228"},
   {name:"Prima 1",company:"Xynova",domain:"xynova.com.cn",type:{en:"Dexterous robotic hand",es:"Mano robótica diestra",pt:"Mão robótica destra"},desc:{en:"22-DoF direct-drive dexterous hand with vision and tactile sensing, high-precision force control and payloads up to 20 kg, aimed at industrial manipulation. Unveiled Sep 2026 (WRC Beijing); startup fresh off a US$13M angel round (added at Bruno's request).",es:"Mano diestra de 22 grados de libertad con direct-drive, sensado táctil y de visión, control de fuerza de alta precisión y cargas de hasta 20 kg, orientada a manipulación industrial. Presentada sep 2026 (WRC Beijing); startup recién salida de una ronda ángel de USD 13M (agregada a pedido de Bruno).",pt:"Mão destra de 22 graus de liberdade com direct-drive, sensoriamento tátil e de visão, controle de força de alta precisão e cargas de até 20 kg, voltada à manipulação industrial. Apresentada set 2026 (WRC Beijing); startup recém-saída de uma rodada anjo de US$13M (adicionada a pedido de Bruno)."},url:"https://www.xynova.com.cn/en/xynova-prima-1",img:""},
   {name:"Tau",company:"Tau Robotics",domain:"tau-robotics.com",type:{en:"Cleaning service humanoid",es:"Humanoide de servicio de limpieza",pt:"Humanoide de serviço de limpeza"},desc:{en:"Humanoid housecleaning service launched in San Francisco at $30/hour (Sep 2026): vacuuming, surfaces, deep and office cleaning for early members, teleop-assisted with a path to autonomy and home repairs.",es:"Servicio de limpieza doméstica con humanoides lanzado en San Francisco a USD 30/hora (sep 2026): aspirado, superficies, limpieza profunda y de oficinas para early members, asistido por teleoperación con camino a la autonomía y reparaciones del hogar.",pt:"Serviço de limpeza doméstica com humanoides lançado em San Francisco a USD 30/hora (set 2026): aspiração, superfícies, limpeza profunda e de escritórios para early members, assistido por teleoperação com caminho à autonomia e reparos domésticos."},url:"https://www.tau-robotics.com/",img:"https://www.tau-robotics.com/assets/hero.jpg"},
