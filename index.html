@@ -1745,10 +1745,18 @@ const models = [
 {name:"Odyssey-3",date:"2026-09-17",company:"Odyssey",open:false,intelligence:28,type:"World Model (multi-body)",cat:"world"},
 {name:"Flux TTS",date:"2026-08-12",company:"Deepgram",open:false,intelligence:27,type:"TTS (conversation-native)",cat:"audio"},
 {name:"OM-1",date:"2026-09-14",company:"Reward AI",open:false,intelligence:19,type:"Human-data Robot Policy",cat:"world"},
+{name:"Step 5 Preview",date:"2026-09-20",company:"StepFun",open:false,intelligence:57,type:"LLM (MoE, 1M ctx)",cat:"text"},
+{name:"Laya",date:"2026-09-20",company:"Convai Innovations",open:true,intelligence:24,type:"Typed-output model",cat:"text"},
+{name:"Qwen-Image 2.1",date:"2026-09-20",company:"Alibaba",open:true,intelligence:17,type:"Diffusion",cat:"image"},
+{name:"openjev",date:"2026-09-20",company:"AlexWortega (community)",open:true,intelligence:16,type:"NLI Reproduction (Jev)",cat:"finetuned"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
+"Step 5 Preview":"https://platform.stepfun.com/docs/zh/guides/models/step-5-preview",
+"Laya":"https://huggingface.co/convaiinnovations/laya",
+"Qwen-Image 2.1":"https://qwen.ai/blog?id=qwen-image-2.1",
+"openjev":"https://huggingface.co/AlexWortega/openjev",
 "Helix 2.5":"https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
 "Atria Dawn Preview":"https://huggingface.co/internlm/Atria-Dawn-Preview",
 "Odyssey-3":"https://odyssey.systems/introducing-odyssey-3",
@@ -4305,6 +4313,7 @@ const companyMeta = {
   "Agility Robotics":{d:"agilityrobotics.com",u:"https://www.agilityrobotics.com"},
   "AIVA":{d:"aiva.ai",u:"https://aiva.ai"},
   "Adobe":{d:"adobe.com",u:"https://www.adobe.com/products/firefly.html"},
+  "AlexWortega (community)":{d:"huggingface.co/AlexWortega",u:"https://huggingface.co/AlexWortega"},
   "Alibaba":{d:"qwen.ai",u:"https://qwen.ai"},
   "AllenAI":{d:"allenai.org",u:"https://allenai.org"},
   "AllenNLP":{d:"allenai.org",u:"https://allenai.org"},
@@ -4332,6 +4341,7 @@ const companyMeta = {
 "CASBOT Hands":{d:"casbot.com",u:"https://www.casbot.com"},
 "Cerebras":{d:"cerebras.ai",u:"https://cerebras.ai"},
   "Cohere":{d:"cohere.com",u:"https://cohere.com"},
+  "Convai Innovations":{d:"huggingface.co/convaiinnovations",u:"https://huggingface.co/convaiinnovations"},
   "Cursor":{d:"cursor.com",u:"https://cursor.com"},
   "Community":{d:"huggingface.co",u:"https://huggingface.co",letter:"COM",letterColors:["#1a2a1a","#2a4a2a","#86efac"]},
   "Databricks":{d:"databricks.com",u:"https://www.databricks.com"},
@@ -4339,6 +4349,7 @@ const companyMeta = {
   "Decart":{d:"decart.ai",u:"https://decart.ai"},
   "DeepSeek":{d:"deepseek.com",u:"https://www.deepseek.com"},
 "DexRobot":{d:"dex-robot.com",u:"https://www.dex-robot.com"},
+  "Faraday Future":{d:"ff.com",u:"https://www.ff.com"},
 "Generalist AI":{d:"generalistai.com",u:"https://generalistai.com"},
 "GOSIGHT":{d:"gosightai.com",u:"https://gosightai.com/"},
 "Grip Robotics":{d:"griprobotics.ai",u:"https://www.griprobotics.ai"},
@@ -4351,6 +4362,7 @@ const companyMeta = {
   "Reward AI":{d:"rewardai.com",u:"https://www.rewardai.com"},
 "Rokid":{d:"rokid.com",u:"https://global.rokid.com/"},
   "Shanghai AI Lab (ATRIA)":{d:"shlab.org.cn",u:"https://www.shlab.org.cn"},
+  "StepFun":{d:"stepfun.com",u:"https://stepfun.com"},
   "ugo Inc.":{d:"ugo.plus",u:"https://ugo.plus"},
 "X-Humanoid":{d:"x-humanoid.com",u:"https://www.x-humanoid.com"},
   "Meituan":{d:"longcatai.org",u:"https://www.longcatai.org"},
@@ -4868,6 +4880,8 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
+  {name:"Unitree G1+",company:"Unitree Robotics",domain:"unitree.com",type:{en:"Upgraded bipedal humanoid",es:"Humanoide bipedo mejorado",pt:"Humanoide bipede aprimorado"},desc:{en:"Refresh of the G1: +2 neck DOF (pitch -25/36 deg, yaw 110 deg), shoulder and waist torque +110% with 72% less heat, binocular plus wide-angle vision, integrated tactile sensing, 6-mic array and external continuous power. 25 DOF, about 35 kg, USD 15,000.",es:"Actualizacion del G1: +2 grados de libertad en el cuello (pitch -25/36 grados, yaw 110), torque de hombro y cintura +110% con 72% menos calor, vision binocular y gran angular, sensado tactil integrado, array de 6 microfonos y alimentacion externa continua. 25 GDL, unos 35 kg, USD 15.000.",pt:"Atualizacao do G1: +2 graus de liberdade no pescoco (pitch -25/36 graus, yaw 110), torque de ombro e cintura +110% com 72% menos calor, visao binocular e grande angular, sensoriamento tatil integrado, array de 6 microfones e alimentacao externa continua. 25 GDL, cerca de 35 kg, USD 15.000."},url:"https://www.unitree.com/G1pl",img:""},
+  {name:"FF Master Mini",company:"Faraday Future",domain:"ff.com",type:{en:"Compact educational humanoid",es:"Humanoide educativo compacto",pt:"Humanoide educacional compacto"},desc:{en:"Entry model of Faraday Future EAI Robot World 2.0, unveiled at the 919 event on 2026-09-19 alongside the All-New Futurist and the FX Aegis series. Aimed at K-12 education, open development and sports competition. From USD 9,990 (Pro 12,990 / Ultra 17,990).",es:"Modelo de entrada de la linea EAI Robot World 2.0 de Faraday Future, presentado en el evento 919 del 19/09/2026 junto al All-New Futurist y la serie FX Aegis. Orientado a educacion K-12, desarrollo abierto y competencia deportiva. Desde USD 9.990 (Pro 12.990 / Ultra 17.990).",pt:"Modelo de entrada da linha EAI Robot World 2.0 da Faraday Future, apresentado no evento 919 de 19/09/2026 junto ao All-New Futurist e a serie FX Aegis. Voltado para educacao K-12, desenvolvimento aberto e competicao esportiva. A partir de USD 9.990 (Pro 12.990 / Ultra 17.990)."},url:"https://www.ff.com",img:""},
   {name:"ugo Nova",company:"ugo Inc.",domain:"ugo.plus",type:{en:"Wheeled dual-arm semi-humanoid",es:"Semi-humanoide bibrazo con ruedas",pt:"Semi-humanoide bibraco com rodas"},desc:{en:"Japan-designed-and-built semi-humanoid: two arms with human-like range of motion and a multi-joint torso that turns and bends from floor level to overhead shelves, 4 kg payload per arm (10 kg combined). Backed by NEDO/AIRoA so it also generates physical-AI training data on the job. Mass production planned for 2027.",es:"Semi-humanoide disenado y fabricado en Japon: dos brazos con rango de movimiento similar al humano y torso multi-articulado que gira y se flexiona desde el piso hasta estantes altos, payload de 4 kg por brazo (10 kg combinado). Con apoyo de NEDO/AIRoA, tambien genera datos de entrenamiento de IA fisica mientras trabaja. Produccion en masa prevista para 2027.",pt:"Semi-humanoide projetado e fabricado no Japao: dois bracos com amplitude de movimento similar a humana e torso multi-articulado que gira e flexiona do piso a prateleiras altas, payload de 4 kg por braco (10 kg combinado). Com apoio da NEDO/AIRoA, tambem gera dados de treinamento de IA fisica durante o trabalho. Producao em massa prevista para 2027."},url:"https://ugo.plus/information/2026/09/16/ugo-nova/",img:"https://ugo.plus/wp-content/uploads/2026/09/260915_ugo_press-scaled.png"},
   {name:"Muscle V0",company:"Daxo Robotics",domain:"daxo-robotics.com",type:{en:"Tendon-driven dexterous hand",es:"Mano diestra tendon-driven",pt:"Mao habil tendon-driven"},desc:{en:"Soft robotic hand with an ultra-redundant tendon-driven architecture: 120 individual actuators (about 3x a human hand), no rigid joints, fully backdrivable and compliant, with force-aware tactile sensing. Prototype today; limited release planned for late 2026.",es:"Mano robotica blanda con arquitectura tendon-driven ultra-redundante: 120 actuadores individuales (unas 3x una mano humana), sin articulaciones rigidas, totalmente backdrivable y compliant, con sensado tactil consciente de fuerza. Hoy es prototipo; release limitado previsto para fines de 2026.",pt:"Mao robotica flexivel com arquitetura tendon-driven ultra-redundante: 120 atuadores individuais (cerca de 3x uma mao humana), sem articulacoes rigidas, totalmente backdrivable e compliant, com sensoriamento tatil sensivel a forca. Hoje e prototipo; lancamento limitado previsto para o fim de 2026."},url:"https://www.daxo-robotics.com",img:""},
   {name:"Onero H1",company:"SwitchBot",domain:"switch-bot.com",type:{en:"Household humanoid robot",es:"Robot humanoide doméstico",pt:"Robô humanoide doméstico"},desc:{en:"Universal household humanoid built around Omni Sense VLA, a multimodal system that fuses vision, depth, touch and language to do laundry and wash dishes without task-specific programming. Listed at US$9,999, marked Coming Soon; product page published Jan 2026 (CES). Added Sep 2026 to close an index gap, not a new announcement.",es:"Humanoide doméstico universal construido sobre Omni Sense VLA, un sistema multimodal que fusiona visión, profundidad, tacto y lenguaje para lavar la ropa y los platos sin programación por tarea. Sale USD 9.999 y figura como Coming Soon; ficha publicada en enero 2026 (CES). Agregado en setiembre 2026 para cerrar un hueco del índice, no es un anuncio nuevo.",pt:"Humanoide doméstico universal construído sobre o Omni Sense VLA, sistema multimodal que funde visão, profundidade, tato e linguagem para lavar roupa e louça sem programação por tarefa. Custa US$ 9.999 e aparece como Coming Soon; ficha publicada em janeiro de 2026 (CES). Adicionado em setembro de 2026 para fechar uma lacuna do índice, não é um anúncio novo."},url:"https://www.switch-bot.com/products/onero-h1",img:"https://www.switch-bot.com/cdn/shop/files/H1_1x_1_1200x1200.png?v=1767594228"},
