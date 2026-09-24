@@ -1766,6 +1766,7 @@ const models = [
 {name:"Grok 4.7",date:"2026-09-21",company:"xAI",open:false,intelligence:63,type:"LLM",cat:"text"},
 {name:"MiMo-V2.6-Pro",date:"2026-09-22",company:"Xiaomi",open:true,intelligence:60,type:"Multimodal",cat:"multi"},
 {name:"MiMo-V2.6-Flash",date:"2026-09-22",company:"Xiaomi",open:true,intelligence:55,type:"Multimodal",cat:"multi"},
+{name:"Grok Voice Transcribe 2.0",date:"2026-09-18",company:"xAI",open:false,intelligence:33,type:"ASR (streaming, diarization)",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -1783,6 +1784,7 @@ const modelUrls={
 "Grok 4.7":"https://x.ai/news/grok-4-7",
 "MiMo-V2.6-Pro":"https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Pro-RL",
 "MiMo-V2.6-Flash":"https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Flash-RL",
+"Grok Voice Transcribe 2.0":"https://x.ai/news/grok-voice-transcribe-2",
 "Helix 2.5":"https://www.figure.ai/news/helix-2-5-zero-shot-30-home-generalization",
 "Atria Dawn Preview":"https://huggingface.co/internlm/Atria-Dawn-Preview",
 "Odyssey-3":"https://odyssey.systems/introducing-odyssey-3",
@@ -4516,6 +4518,7 @@ const companyMeta = {
   "Udio":{d:"udio.com",u:"https://www.udio.com"},
   "University of Geneva":{d:"unige.ch",u:"https://www.unige.ch"},
   "VITURE":{d:"viture.com",u:"https://www.viture.com"},
+  "VONDER":{d:"vonder.ai",u:"https://www.vonder.ai/"},
   "Voyage AI":{d:"voyageai.com",u:"https://www.voyageai.com"},
   "Vstone":{d:"vstone.co.jp",u:"https://www.vstone.co.jp/english/"},
   "Vuzix":{d:"vuzix.com",u:"https://www.vuzix.com"},
@@ -4756,8 +4759,9 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-09-18"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-09-24"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
+  {name:"Claude Opus 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:4,output:20,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.20/1M",verified:true},
   // ===== LLM (text/reasoning) =====
   {name:"Claude Opus 4.7",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:5,output:25,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.50, batch 50% off",verified:true},
   {name:"Claude Fable 5.1",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:10,output:50,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.25 (2.5%), batch 50% off. Mythos 5.1 same price, limited availability",verified:true},
@@ -4779,6 +4783,8 @@ const pricingData=[
   {name:"GPT-5.4 Thinking",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2.50,output:15,free:false,url:"https://openai.com/api/pricing/",note:"Reasoning variant",verified:false},
   {name:"GPT-5.5",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:5,output:30,free:false,url:"https://openai.com/api/pricing/",verified:false},
   {name:"GPT-6 Astra",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:10,output:50,free:false,url:"https://platform.openai.com/docs/pricing",note:"Cached $1; Fast mode 2x ($20/$75); Trusted Access rollout",verified:true},
+  {name:"GPT-6 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.openai.com/docs/pricing",note:"Standard short context; long context $4/$15",verified:true},
+  {name:"GPT-6 Luna",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.1,output:0.5,free:false,url:"https://platform.openai.com/docs/pricing",note:"Standard short context; long context $0.20/$0.75",verified:true},
   {name:"GPT-5.6 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:4,output:20,free:false,url:"https://platform.openai.com/docs/pricing",note:"Promo through Nov 21, 2026 (list $5); cached $0.40",verified:true},
   {name:"GPT-5.6 Terra",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:12,free:false,url:"https://platform.openai.com/docs/pricing",note:"Cached $0.20",verified:true},
   {name:"GPT-5.6 Luna",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.2,output:1.2,free:false,url:"https://platform.openai.com/docs/pricing",note:"Cached $0.02",verified:true},
@@ -4819,6 +4825,7 @@ const pricingData=[
   {name:"Grok 4.3",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:1.25,output:2.5,free:false,url:"https://docs.x.ai/docs/pricing",note:"Cached $0.20; 2x over 200K ctx",verified:true},
   {name:"Grok 4 Fast",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:0.20,output:0.50,free:false,url:"https://x.ai/api",note:"Legacy; not on docs.x.ai pricing table",verified:false},
   {name:"Grok 4.6",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/docs/pricing",note:"Cached $0.50; 2x over 200K ctx",verified:true},
+  {name:"Grok 4.7",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/developers/grok-4-7",verified:true},
   {name:"Grok 4.5",provider:"xAI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/docs/pricing",note:"Cached $0.30; 2x over 200K ctx",verified:true},
   {name:"DeepSeek-V4.1-Flash",provider:"DeepSeek",cat:"multi",unit:"per_1m_tokens",input:0.3,output:1.2,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Tarifa peak (cache miss); off-peak la mitad ($0.15/$0.60); cache hit $0.006. Sirve tambien los alias retirados deepseek-v4-flash y -vision-exp",verified:true},
   {name:"DeepSeek V4-Pro (0813)",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:1.32,output:3.96,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Peak rate; off-peak 50% off; cache hit $0.044",verified:true},
@@ -4869,8 +4876,8 @@ const pricingData=[
   {name:"HappyHorse 1.1",provider:"Alibaba",cat:"video",unit:"per_second",per_unit:0.07,per_unit_max:0.18,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"480P $0.07, 720P $0.14, 1080P $0.18 per second; HappyHorse 1.0 720P $0.14, 1080P $0.24 (ya sin descuento marcado)",verified:true},
   // ===== Audio / TTS =====
   {name:"ElevenLabs v3 / Multilingual v2",provider:"ElevenLabs",cat:"audio",unit:"per_1k_chars",per_unit:0.1,free:false,url:"https://elevenlabs.io/pricing/api",note:"$0.10 per 1k chars (v2/v3); Flash/Turbo $0.05; Starter $6 = 60k chars",verified:true},
-  {name:"Stable Audio 3",provider:"Stability AI",cat:"audio",unit:"plan_based",per_unit:null,free:true,url:"https://stability.ai/news-updates/meet-stable-audio-3-the-model-family-built-for-artistic-experimentation-with-open-weight-models",note:"Open-weight, self-host. Membership plan en stability.ai",verified:false},
-  {name:"Supertonic 3",provider:"Supertone",cat:"audio",unit:"plan_based",per_unit:null,free:true,url:"https://github.com/supertone-inc/supertonic",note:"99M params on-device TTS, MIT+OpenRAIL-M",verified:false},
+  {name:"Stable Audio 3",provider:"Stability AI",cat:"audio",unit:"plan_based",free:true,url:"https://stability.ai/news-updates/meet-stable-audio-3-the-model-family-built-for-artistic-experimentation-with-open-weight-models",note:"Open-weight, self-host. Membership plan en stability.ai",verified:false},
+  {name:"Supertonic 3",provider:"Supertone",cat:"audio",unit:"plan_based",free:true,url:"https://github.com/supertone-inc/supertonic",note:"99M params on-device TTS, MIT+OpenRAIL-M",verified:false},
   {name:"OpenAI tts-1",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.015,free:false,url:"https://openai.com/api/pricing/",note:"Legacy; not on current pricing page",verified:false},
   {name:"OpenAI tts-1-hd",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.030,free:false,url:"https://openai.com/api/pricing/",note:"Legacy; not on current pricing page",verified:false},
   {name:"Inworld TTS-2",provider:"Inworld",cat:"audio",unit:"per_1k_chars",per_unit:0.025,free:false,url:"https://inworld.ai/pricing",note:"$25 per 1M chars on-demand; TTS-2 Flash $15/M",verified:true},
@@ -5055,6 +5062,10 @@ const smartGlassesData=[
   {name:"INMO GO3",company:"INMO",domain:"inmo.com",type:{en:"Binocular MicroLED HUD AI glasses",es:"Lentes IA HUD MicroLED binocular",pt:"Óculos IA HUD MicroLED binocular"},desc:{en:"58 g AI glasses, binocular green Micro-LED 640×480 (1,500 nits, 30° FoV), 77→98-language live translation, 5-s swap battery; US$499.",es:"Lentes IA de 58 g, Micro-LED verde binocular 640×480 (1.500 nits, 30° FoV), traducción en vivo 77→98 idiomas, batería swap en 5 s; USD 499.",pt:"Óculos IA de 58 g, Micro-LED verde binocular 640×480 (1.500 nits, 30° FoV), tradução ao vivo 77→98 idiomas, bateria swap em 5 s; US$ 499."},url:"https://www.inmo.com/products/inmo-go3",img:"https://www.inmo.com/cdn/shop/files/img_v3_0213d_87d14156-7894-4fa7-a9d2-d94c7ee238eg.png?v=1783555037"},
   {name:"Rokid AI Glasses Style Pack",company:"Rokid",domain:"rokid.com",type:{en:"Screenless AI camera glasses",es:"Lentes IA con cámara sin display",pt:"Óculos IA com câmera sem display"},desc:{en:"38.5 g display-less AI glasses: 12MP Sony IMX681 (3K/30fps, 109°), ChatGPT+Gemini, 12 h battery, 21 h with 2 Power Capsules; US$399, €449.",es:"Lentes IA sin display de 38,5 g: 12MP Sony IMX681 (3K/30fps, 109°), ChatGPT+Gemini, 12 h, 21 h con 2 Power Capsules; USD 399, €449.",pt:"Óculos IA sem display de 38,5 g: 12MP Sony IMX681 (3K/30fps, 109°), ChatGPT+Gemini, 12 h, 21 h com 2 Power Capsules; US$ 399, €449."},url:"https://global.rokid.com/products/rokid-ai-glasses-style-pack",img:"https://global.rokid.com/cdn/shop/files/003_715ab62e-1d5c-45b7-8003-884b5e1d7594.jpg"},
   {name:"VIVE Eagle",company:"HTC",domain:"vive.com",type:{en:"AI camera glasses",es:"Lentes IA con cámara",pt:"Óculos IA com câmera"},desc:{en:"48.5 g screenless AI glasses: 12MP ultra-wide camera, 3K video, Gemini or GPT, 4.5 h music; global launch at IFA, US$499/€469/£429.",es:"Lentes IA sin display de 48,5 g: cámara 12MP ultra angular, video 3K, Gemini o GPT, 4,5 h de música; lanzamiento global en IFA, USD 499.",pt:"Óculos IA sem display de 48,5 g: câmera 12MP ultra-wide, vídeo 3K, Gemini ou GPT, 4,5 h de música; lançamento global na IFA, US$ 499/€469."},url:"https://www.vive.com/us/product/vive-eagle/overview/",img:"https://i.ytimg.com/vi/ActLJCvv6xg/hqdefault.jpg"},
+  {name:"Ray-Ban Meta Audio",company:"Meta",domain:"meta.com",type:{en:"Audio AI glasses",es:"Lentes IA de audio",pt:"Óculos IA de áudio"},desc:{en:"Camera-free open-ear AI glasses announced at Connect 2026. 43 g, up to 12 h battery plus 48 h from the case; Clubmaster and Burbank styles. Preorders from US$349, shipping October 13.",es:"Lentes IA sin cámara anunciados en Connect 2026. 43 g, hasta 12 h de batería más 48 h del estuche; estilos Clubmaster y Burbank. Reservas desde USD 349, envíos el 13 de octubre.",pt:"Óculos IA sem câmera anunciados no Connect 2026. 43 g, até 12 h de bateria mais 48 h do estojo; estilos Clubmaster e Burbank. Pré-venda desde US$ 349, envios em 13 de outubro."},url:"https://about.fb.com/news/2026/09/introducing-ray-ban-meta-audio-glasses-new-styles-plus-muse/",img:""},
+  {name:"Ray-Ban Meta (Gen 3)",company:"Meta",domain:"meta.com",type:{en:"AI camera glasses",es:"Lentes IA con cámara",pt:"Óculos IA com câmera"},desc:{en:"Available from Sep 23, 2026, starting at US$449. Slimmer frame, 9 h battery, six-microphone array, 12 MP camera and 3K video; Aviator, Zena and Wayfarer styles.",es:"Disponibles desde el 23/09/2026 desde USD 449. Marco más delgado, 9 h de batería, seis micrófonos, cámara de 12 MP y video 3K; estilos Aviator, Zena y Wayfarer.",pt:"Disponíveis desde 23/09/2026 a partir de US$ 449. Armação mais fina, 9 h de bateria, seis microfones, câmera de 12 MP e vídeo 3K; estilos Aviator, Zena e Wayfarer."},url:"https://about.fb.com/news/2026/09/introducing-ray-ban-meta-audio-glasses-new-styles-plus-muse/",img:""},
+  {name:"VONDER Intelligent Eyewear",company:"VONDER",domain:"vonder.ai",type:{en:"Audio AI glasses",es:"Lentes IA de audio",pt:"Óculos IA de áudio"},desc:{en:"Six prescription-ready acetate styles with open-ear audio and a personal memory graph; no camera or display. About 30 g and 16 h battery. Announced Sep 22, 2026; preorders Sep 28 from US$299, shipping November.",es:"Seis estilos de acetato aptos para receta, con audio abierto y memoria personal; sin cámara ni pantalla. Unos 30 g y 16 h de batería. Anunciados el 22/09/2026; reservas el 28/09 desde USD 299 y entregas en noviembre.",pt:"Seis estilos de acetato compatíveis com prescrição, áudio aberto e memória pessoal; sem câmera nem tela. Cerca de 30 g e 16 h de bateria. Anunciados em 22/09/2026; pré-venda em 28/09 desde US$ 299 e entregas em novembro."},url:"https://www.vonder.ai/",img:""},
+  {name:"Meta VR Glasses",company:"Meta",domain:"meta.com",type:{en:"Tethered VR glasses",es:"Lentes VR con cable",pt:"Óculos VR com cabo"},desc:{en:"100 g VR glasses with 5K micro-OLED display, 37 pixels per degree, hand and eye controls, Meta AI and Snapdragon Reality Elite puck; up to 3 h media playback. Announced Sep 23, 2026; US$1,299.99, spring 2027.",es:"Lentes VR de 100 g con pantalla micro-OLED 5K, 37 píxeles por grado, control ocular y manual, Meta AI y módulo Snapdragon Reality Elite; hasta 3 h de video. Anunciados el 23/09/2026; USD 1.299,99, primavera boreal 2027.",pt:"Óculos VR de 100 g com tela micro-OLED 5K, 37 pixels por grau, controle ocular e manual, Meta AI e módulo Snapdragon Reality Elite; até 3 h de vídeo. Anunciados em 23/09/2026; US$ 1.299,99, primavera de 2027 no hemisfério norte."},url:"https://about.fb.com/news/2026/09/introducing-meta-vr-glasses-3d-movies-immersive-live-sports-100-grams/",img:""},
 ];
 function renderGlassesTab(){
   const grid=document.getElementById('glassesGrid');
