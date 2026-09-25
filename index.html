@@ -1771,10 +1771,12 @@ const models = [
 {name:"Gemini 3.8 Flash-Lite TTS",date:"2026-09-22",company:"Google",open:false,intelligence:26,type:"TTS (fast, 101 langs)",cat:"audio"},
 {name:"Muse Realtime Avatar",date:"2026-09-23",company:"Meta",open:false,intelligence:31,type:"Live Avatar Video",cat:"video"},
 {name:"Xing4.0-29B-A4B",date:"2026-09-16",company:"XingChen-AGI",open:true,intelligence:43,type:"LLM (29B MoE, 4B active)",cat:"code"},
+{name:"FLUX 3 Action",date:"2026-09-23",company:"Black Forest Labs",open:true,intelligence:32,type:"World Action Model (7B)",cat:"world"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
+"FLUX 3 Action":"https://huggingface.co/blog/black-forest-labs/flux-3-action",
 "Claude Opus 5.5":"https://www.anthropic.com/claude-opus-5-5",
 "GPT-6 Sol":"https://openai.com/index/introducing-gpt-6-sol-and-luna/",
 "GPT-6 Luna":"https://openai.com/index/introducing-gpt-6-sol-and-luna/",
@@ -3624,10 +3626,10 @@ function render(){
 // Sources: https://arcprize.org/leaderboard (ARC Prize Verified, semi-private eval) + Kaggle 2026 public leaderboards.
 // Scores are numbers (percent); costs are display strings. ARC-AGI-3 costs are total run cost, not per task.
 const arcData={
-  updated:"2026-09-23",
+  updated:"2026-09-25",
   a1:{top:"Claude Opus 5.5, High",topShort:"Opus 5.5",score:98.5,cost:"$0.158/task",others:[["GPT-6 Astra (High)",98.5,"$0.284/task"],["Claude Fable 5 (XHigh)",98.5,"$1.02/task"]]},
   a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["Claude Opus 5.5 (High)",93.3,"$0.408/task"],["GPT-6 Astra (XHigh)",93.3,"$0.829/task"],["Claude Opus 5.5 (XHigh)",92.5,"$0.671/task"]],kaggle:["Tufa Labs",83.06]},
-  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Lord Han Solo",19.40]}
+  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Lord Han Solo",19.45]}
 };
 function renderArcTab(){
   const a=t('arc');
