@@ -3628,10 +3628,10 @@ function render(){
 // Sources: https://arcprize.org/leaderboard (ARC Prize Verified, semi-private eval) + Kaggle 2026 public leaderboards.
 // Scores are numbers (percent); costs are display strings. ARC-AGI-3 costs are total run cost, not per task.
 const arcData={
-  updated:"2026-09-26",
+  updated:"2026-09-27",
   a1:{top:"Claude Opus 5.5, High",topShort:"Opus 5.5",score:98.5,cost:"$0.158/task",others:[["GPT-6 Astra (High)",98.5,"$0.284/task"],["Claude Fable 5 (XHigh)",98.5,"$1.02/task"]]},
   a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["Claude Opus 5.5 (High)",93.3,"$0.408/task"],["GPT-6 Astra (XHigh)",93.3,"$0.829/task"],["Claude Opus 5.5 (XHigh)",92.5,"$0.671/task"]],kaggle:["Tufa Labs",83.06]},
-  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Tong Hui Kang",20.53]}
+  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Tufa Labs",27.29]}
 };
 function renderArcTab(){
   const a=t('arc');
@@ -4774,7 +4774,7 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-09-24"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-09-27"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
   {name:"Claude Opus 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:4,output:20,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.20/1M",verified:true},
   // ===== LLM (text/reasoning) =====
@@ -4812,6 +4812,7 @@ const pricingData=[
   {name:"Qwen3.8-Max",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Cache read $0.25; Singapore region pricing",verified:true},
   {name:"Qwen3.8-Max-0902",provider:"Alibaba",cat:"multi",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Region Singapur, tier 0-1M tokens; mismo precio que qwen3.8-max",verified:true},
   {name:"Qwen3.8-Flash",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.47,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",verified:true},
+  {name:"Qwen3.8-Omni-Flash",provider:"Alibaba",cat:"multi",unit:"per_1m_tokens",input:0.15,output:0.47,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Región Singapur, alcance International; cache-hit input $0.016/1M",verified:true},
   {name:"Magistral Medium",provider:"Mistral AI",cat:"llm",unit:"per_1m_tokens",input:2,output:5,free:false,url:"https://mistral.ai/pricing",note:"Not on current mistral.ai pricing page",verified:false},
   {name:"Gemini Deep Think",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:5,output:30,free:false,url:"https://ai.google.dev/pricing",note:"Not on Gemini API pricing page",verified:false},
   {name:"Gemini 3 Deep Think",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:6,output:36,free:false,url:"https://ai.google.dev/pricing",note:"Not on Gemini API pricing page",verified:false},
