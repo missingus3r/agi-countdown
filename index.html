@@ -1771,6 +1771,12 @@ const models = [
 {name:"Gemini 3.8 Flash TTS",date:"2026-09-22",company:"Google",open:false,intelligence:30,type:"TTS (expressive, 130 langs)",cat:"audio"},
 {name:"Gemini 3.8 Flash-Lite TTS",date:"2026-09-22",company:"Google",open:false,intelligence:26,type:"TTS (fast, 101 langs)",cat:"audio"},
 {name:"Muse Realtime Avatar",date:"2026-09-23",company:"Meta",open:false,intelligence:31,type:"Live Avatar Video",cat:"video"},
+{name:"Eleven v4",date:"2026-09-28",company:"ElevenLabs",open:false,intelligence:36,type:"TTS (90+ langs, expressive)",cat:"audio"},
+{name:"Eleven v4 Turbo",date:"2026-09-28",company:"ElevenLabs",open:false,intelligence:33,type:"Realtime TTS (~100ms)",cat:"audio"},
+{name:"Claude Sonnet 5.5",date:"2026-09-28",company:"Anthropic",open:false,intelligence:62,type:"LLM (coding + knowledge work)",cat:"multi"},
+{name:"Holo4 27B",date:"2026-09-28",company:"H Company",open:true,intelligence:54,type:"Computer-use agent (27B)",cat:"code"},
+{name:"Holo4 35B-A3B",date:"2026-09-28",company:"H Company",open:true,intelligence:46,type:"Computer-use agent (MoE)",cat:"code"},
+{name:"Holotron4 Nano",date:"2026-09-28",company:"H Company",open:true,intelligence:30,type:"Computer-use agent (Nano)",cat:"code"},
 {name:"Xing4.0-29B-A4B",date:"2026-09-16",company:"XingChen-AGI",open:true,intelligence:43,type:"LLM (29B MoE, 4B active)",cat:"code"},
 {name:"FLUX 3 Action",date:"2026-09-23",company:"Black Forest Labs",open:true,intelligence:32,type:"World Action Model (7B)",cat:"world"},
 {name:"NV-Reason-CT",date:"2026-09-23",company:"NVIDIA",open:true,intelligence:18,type:"3D CT Medical VLM",cat:"multi"},
@@ -1778,6 +1784,12 @@ const models = [
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
+"Claude Sonnet 5.5":"https://www.anthropic.com/claude-sonnet-5-5",
+"Holo4 27B":"https://hcompany.ai/newsroom/holo4",
+"Holo4 35B-A3B":"https://hcompany.ai/newsroom/holo4",
+"Holotron4 Nano":"https://hcompany.ai/newsroom/holo4",
+"Eleven v4":"https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4",
+"Eleven v4 Turbo":"https://elevenlabs.io/docs/overview/capabilities/text-to-speech/eleven-v4",
 "NV-Reason-CT":"https://developer.nvidia.com/blog/introducing-nv-reason-ct-open-3d-ct-vlm-for-radiologist-chain-of-thought-reasoning/",
 "FLUX 3 Action":"https://huggingface.co/blog/black-forest-labs/flux-3-action",
 "Claude Opus 5.5":"https://www.anthropic.com/claude-opus-5-5",
@@ -3630,10 +3642,10 @@ function render(){
 // Sources: https://arcprize.org/leaderboard (ARC Prize Verified, semi-private eval) + Kaggle 2026 public leaderboards.
 // Scores are numbers (percent); costs are display strings. ARC-AGI-3 costs are total run cost, not per task.
 const arcData={
-  updated:"2026-09-28",
+  updated:"2026-09-29",
   a1:{top:"Claude Opus 5.5, High",topShort:"Opus 5.5",score:98.5,cost:"$0.158/task",others:[["GPT-6 Astra (High)",98.5,"$0.284/task"],["Claude Fable 5 (XHigh)",98.5,"$1.02/task"]]},
   a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["Claude Opus 5.5 (High)",93.3,"$0.408/task"],["GPT-6 Astra (XHigh)",93.3,"$0.829/task"],["Claude Opus 5.5 (XHigh)",92.5,"$0.671/task"]],kaggle:["Tufa Labs",83.06]},
-  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Yi-Chia Chen",28.34]}
+  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Tufa Labs",45.33]}
 };
 function renderArcTab(){
   const a=t('arc');
@@ -4942,6 +4954,8 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
+  {name:"Sharpa D01",company:"Sharpa",domain:"sharpa.com",type:{en:"Tactile humanoid robot",es:"Robot humanoide táctil",pt:"Robô humanoide tátil"},desc:{en:"Dexterous robot unveiled at IROS 2026 with two 7-DoF arms, Wave hands, whole-body tactile E-skin and native teleoperation. NVIDIA Jetson Thor; 5 kg rated payload per arm.",es:"Robot diestro presentado en IROS 2026 con dos brazos de 7 DoF, manos Wave, piel táctil en todo el cuerpo y teleoperación nativa. NVIDIA Jetson Thor; carga nominal de 5 kg por brazo.",pt:"Robô hábil apresentado na IROS 2026 com dois braços de 7 DoF, mãos Wave, pele tátil no corpo inteiro e teleoperação nativa. NVIDIA Jetson Thor; carga nominal de 5 kg por braço."},url:"https://www.sharpa.com/pages/d01",img:""},
+  {name:"Sharpa W02",company:"Sharpa",domain:"sharpa.com",type:{en:"Tactile dexterous hand",es:"Mano diestra táctil",pt:"Mão hábil tátil"},desc:{en:"Compact 21-DoF robotic hand unveiled at IROS 2026. Full-hand tactile sensing, under 750 g and IP54 protection; fingertip force resolution of 5 mN.",es:"Mano robótica compacta de 21 DoF presentada en IROS 2026. Sensores táctiles en toda la mano, menos de 750 g y protección IP54; resolución de fuerza de 5 mN en las yemas.",pt:"Mão robótica compacta de 21 DoF apresentada na IROS 2026. Sensores táteis na mão inteira, menos de 750 g e proteção IP54; resolução de força de 5 mN nas pontas dos dedos."},url:"https://www.sharpa.com/pages/w02",img:""},
   {name:"DOBOT LUMO",company:"DOBOT",domain:"dobot-robots.com",type:{en:"Compact interactive humanoid",es:"Humanoide interactivo compacto",pt:"Humanoide interativo compacto"},desc:{en:"Compact humanoid shown at IFA Berlin 2026. Combines expressive movement, facial expressions and voice interaction; DOBOT positions it for entertainment, education and commercial scenarios.",es:"Humanoide compacto exhibido en IFA Berlín 2026. Combina movimientos expresivos, expresiones faciales e interacción por voz; DOBOT lo orienta a entretenimiento, educación y usos comerciales.",pt:"Humanoide compacto apresentado na IFA Berlim 2026. Combina movimentos expressivos, expressões faciais e interação por voz; a DOBOT o destina a entretenimento, educação e usos comerciais."},url:"https://www.dobot-robots.com/insights/case-studies/1283.html",img:""},
   {name:"Unitree G1+",company:"Unitree Robotics",domain:"unitree.com",type:{en:"Upgraded bipedal humanoid",es:"Humanoide bipedo mejorado",pt:"Humanoide bipede aprimorado"},desc:{en:"Refresh of the G1: +2 neck DOF (pitch -25/36 deg, yaw 110 deg), shoulder and waist torque +110% with 72% less heat, binocular plus wide-angle vision, integrated tactile sensing, 6-mic array and external continuous power. 25 DOF, about 35 kg, USD 15,000.",es:"Actualizacion del G1: +2 grados de libertad en el cuello (pitch -25/36 grados, yaw 110), torque de hombro y cintura +110% con 72% menos calor, vision binocular y gran angular, sensado tactil integrado, array de 6 microfonos y alimentacion externa continua. 25 GDL, unos 35 kg, USD 15.000.",pt:"Atualizacao do G1: +2 graus de liberdade no pescoco (pitch -25/36 graus, yaw 110), torque de ombro e cintura +110% com 72% menos calor, visao binocular e grande angular, sensoriamento tatil integrado, array de 6 microfones e alimentacao externa continua. 25 GDL, cerca de 35 kg, USD 15.000."},url:"https://www.unitree.com/G1pl",img:""},
   {name:"FF Master Mini",company:"Faraday Future",domain:"ff.com",type:{en:"Compact educational humanoid",es:"Humanoide educativo compacto",pt:"Humanoide educacional compacto"},desc:{en:"Entry model of Faraday Future EAI Robot World 2.0, unveiled at the 919 event on 2026-09-19 alongside the All-New Futurist and the FX Aegis series. Aimed at K-12 education, open development and sports competition. From USD 9,990 (Pro 12,990 / Ultra 17,990).",es:"Modelo de entrada de la linea EAI Robot World 2.0 de Faraday Future, presentado en el evento 919 del 19/09/2026 junto al All-New Futurist y la serie FX Aegis. Orientado a educacion K-12, desarrollo abierto y competencia deportiva. Desde USD 9.990 (Pro 12.990 / Ultra 17.990).",pt:"Modelo de entrada da linha EAI Robot World 2.0 da Faraday Future, apresentado no evento 919 de 19/09/2026 junto ao All-New Futurist e a serie FX Aegis. Voltado para educacao K-12, desenvolvimento aberto e competicao esportiva. A partir de USD 9.990 (Pro 12.990 / Ultra 17.990)."},url:"https://www.ff.com",img:""},
