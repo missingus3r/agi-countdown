@@ -1774,6 +1774,7 @@ const models = [
 {name:"Eleven v4",date:"2026-09-28",company:"ElevenLabs",open:false,intelligence:36,type:"TTS (90+ langs, expressive)",cat:"audio"},
 {name:"Eleven v4 Turbo",date:"2026-09-28",company:"ElevenLabs",open:false,intelligence:33,type:"Realtime TTS (~100ms)",cat:"audio"},
 {name:"Claude Sonnet 5.5",date:"2026-09-28",company:"Anthropic",open:false,intelligence:62,type:"LLM (coding + knowledge work)",cat:"multi"},
+{name:"GPT-6.1 Sol",date:"2026-09-29",company:"OpenAI",open:false,intelligence:60,type:"LLM (agentic coding)",cat:"code"},
 {name:"Holo4 27B",date:"2026-09-28",company:"H Company",open:true,intelligence:54,type:"Computer-use agent (27B)",cat:"code"},
 {name:"Holo4 35B-A3B",date:"2026-09-28",company:"H Company",open:true,intelligence:46,type:"Computer-use agent (MoE)",cat:"code"},
 {name:"Holotron4 Nano",date:"2026-09-28",company:"H Company",open:true,intelligence:30,type:"Computer-use agent (Nano)",cat:"code"},
@@ -1784,6 +1785,7 @@ const models = [
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
+"GPT-6.1 Sol":"https://openai.com/index/introducing-gpt-6-1-sol/",
 "Claude Sonnet 5.5":"https://www.anthropic.com/claude-sonnet-5-5",
 "Holo4 27B":"https://hcompany.ai/newsroom/holo4",
 "Holo4 35B-A3B":"https://hcompany.ai/newsroom/holo4",
@@ -4544,6 +4546,7 @@ const companyMeta = {
   "TencentARC":{d:"tencent.com",u:"https://github.com/TencentARC"},
   "Tsinghua/Zhipu":{d:"zhipuai.cn",u:"https://zhipuai.cn"},
   "UBTech":{d:"ubtrobot.com",u:"https://www.ubtrobot.com"},
+  "UC Irvine":{d:"uci.edu",u:"https://www.uci.edu"},
   "UCSD/Berkeley":{d:"ucsd.edu",u:"https://ucsd.edu"},
   "Udio":{d:"udio.com",u:"https://www.udio.com"},
   "University of Geneva":{d:"unige.ch",u:"https://www.unige.ch"},
@@ -4791,8 +4794,10 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-09-27"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-09-30"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
+  {name:"GPT-6.1 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://developers.openai.com/api/docs/models/gpt-6.1-sol",note:"Cached input $0.10/1M; standard short context",verified:true},
+  {name:"Claude Sonnet 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.20/1M",verified:true},
   {name:"Claude Opus 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:4,output:20,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.20/1M",verified:true},
   // ===== LLM (text/reasoning) =====
   {name:"Claude Opus 4.7",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:5,output:25,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.50, batch 50% off",verified:true},
@@ -4954,6 +4959,7 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
+  {name:"CRAFT Hand",company:"UC Irvine",domain:"uci.edu",type:{en:"Open-source dexterous hand",es:"Mano diestra de código abierto",pt:"Mão hábil de código aberto"},desc:{en:"3D-printable hybrid rigid-soft hand, 800 g, 15 motors and under $600 to build. Its compliant joints handle delicate objects and impacts; complete hardware and software are open source. UC Irvine and UIUC research, published Sep 2026.",es:"Mano 3D de materiales rígidos y blandos, 800 g, 15 motores y costo de armado menor a USD 600. Las articulaciones flexibles manipulan objetos delicados y resisten impactos; hardware y software abiertos. Investigación de UC Irvine y UIUC publicada en septiembre de 2026.",pt:"Mão 3D de materiais rígidos e macios, 800 g, 15 motores e custo de montagem inferior a US$ 600. As articulações flexíveis manipulam objetos delicados e resistem a impactos; hardware e software abertos. Pesquisa da UC Irvine e UIUC publicada em setembro de 2026."},url:"https://craft-hand.github.io/",img:""},
   {name:"Sharpa D01",company:"Sharpa",domain:"sharpa.com",type:{en:"Tactile humanoid robot",es:"Robot humanoide táctil",pt:"Robô humanoide tátil"},desc:{en:"Dexterous robot unveiled at IROS 2026 with two 7-DoF arms, Wave hands, whole-body tactile E-skin and native teleoperation. NVIDIA Jetson Thor; 5 kg rated payload per arm.",es:"Robot diestro presentado en IROS 2026 con dos brazos de 7 DoF, manos Wave, piel táctil en todo el cuerpo y teleoperación nativa. NVIDIA Jetson Thor; carga nominal de 5 kg por brazo.",pt:"Robô hábil apresentado na IROS 2026 com dois braços de 7 DoF, mãos Wave, pele tátil no corpo inteiro e teleoperação nativa. NVIDIA Jetson Thor; carga nominal de 5 kg por braço."},url:"https://www.sharpa.com/pages/d01",img:""},
   {name:"Sharpa W02",company:"Sharpa",domain:"sharpa.com",type:{en:"Tactile dexterous hand",es:"Mano diestra táctil",pt:"Mão hábil tátil"},desc:{en:"Compact 21-DoF robotic hand unveiled at IROS 2026. Full-hand tactile sensing, under 750 g and IP54 protection; fingertip force resolution of 5 mN.",es:"Mano robótica compacta de 21 DoF presentada en IROS 2026. Sensores táctiles en toda la mano, menos de 750 g y protección IP54; resolución de fuerza de 5 mN en las yemas.",pt:"Mão robótica compacta de 21 DoF apresentada na IROS 2026. Sensores táteis na mão inteira, menos de 750 g e proteção IP54; resolução de força de 5 mN nas pontas dos dedos."},url:"https://www.sharpa.com/pages/w02",img:""},
   {name:"DOBOT LUMO",company:"DOBOT",domain:"dobot-robots.com",type:{en:"Compact interactive humanoid",es:"Humanoide interactivo compacto",pt:"Humanoide interativo compacto"},desc:{en:"Compact humanoid shown at IFA Berlin 2026. Combines expressive movement, facial expressions and voice interaction; DOBOT positions it for entertainment, education and commercial scenarios.",es:"Humanoide compacto exhibido en IFA Berlín 2026. Combina movimientos expresivos, expresiones faciales e interacción por voz; DOBOT lo orienta a entretenimiento, educación y usos comerciales.",pt:"Humanoide compacto apresentado na IFA Berlim 2026. Combina movimentos expressivos, expressões faciais e interação por voz; a DOBOT o destina a entretenimento, educação e usos comerciais."},url:"https://www.dobot-robots.com/insights/case-studies/1283.html",img:""},
