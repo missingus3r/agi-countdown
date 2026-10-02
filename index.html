@@ -1786,6 +1786,9 @@ const models = [
 {name:"dots3-note Preview",date:"2026-08-09",company:"Dots Studio",open:true,intelligence:44,type:"LLM",cat:"multi"},
 {name:"Altar-1",date:"2026-09-21",company:"Aikido",open:true,intelligence:55,type:"Security LLM (GLM-5.3 pruned)",cat:"code"},
 {name:"Griffin",date:"2026-10-01",company:"Tavus",open:false,intelligence:22,type:"Human Interaction Model (video-to-video, real-time)",cat:"video"},
+{name:"Fish Audio S2.1 Pro",date:"2026-07-28",company:"Fish Audio",open:false,intelligence:37,type:"TTS",cat:"audio"},
+{name:"Qwen-Audio-3.1-Realtime-Plus",date:"2026-09-23",company:"Alibaba",open:false,intelligence:40,type:"Full-duplex speech (realtime)",cat:"audio"},
+{name:"Qwen-Audio-3.1-ASR-Flash-Filetrans",date:"2026-09-23",company:"Alibaba",open:false,intelligence:24,type:"ASR (file transcription)",cat:"audio"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2700,6 +2703,9 @@ const modelUrls={
 "dots3-note Preview":"https://studio.dots.ai/dots/dots3-en.html",
 "Altar-1":"https://www.aikido.dev/blog/aikido-altar-open-weight-ai-sovereign-security",
 "Griffin":"https://www.tavus.io/griffin",
+"Fish Audio S2.1 Pro":"https://fish.audio/blog/s2-1-pro-free-api/",
+"Qwen-Audio-3.1-Realtime-Plus":"https://www.qwencloud.com/models/qwen-audio-3.1-realtime-plus",
+"Qwen-Audio-3.1-ASR-Flash-Filetrans":"https://www.qwencloud.com/models/qwen-audio-3.1-asr-flash-filetrans",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
