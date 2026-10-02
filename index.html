@@ -1782,6 +1782,8 @@ const models = [
 {name:"FLUX 3 Action",date:"2026-09-23",company:"Black Forest Labs",open:true,intelligence:32,type:"World Action Model (7B)",cat:"world"},
 {name:"NV-Reason-CT",date:"2026-09-23",company:"NVIDIA",open:true,intelligence:18,type:"3D CT Medical VLM",cat:"multi"},
 {name:"Gemini 4 Argon",date:"2026-09-30",company:"Google",open:false,intelligence:65,type:"LLM (restricted)",cat:"multi"},
+{name:"Solaris",date:"2026-08-31",company:"Runway",open:false,intelligence:12,type:"Interface World Model",cat:"world"},
+{name:"dots3-note Preview",date:"2026-08-09",company:"Dots Studio",open:true,intelligence:44,type:"LLM",cat:"multi"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2692,6 +2694,8 @@ const modelUrls={
 "Fugu Ultra v2":"https://sakana.ai/fugu-max-release/",
 "Fugu Max":"https://sakana.ai/fugu-max-release/",
 "Scribe v2 Medical":"https://elevenlabs.io/docs/changelog/2026/9/11",
+"Solaris":"https://runway.com/news/research/introducing-solaris",
+"dots3-note Preview":"https://studio.dots.ai/dots/dots3-en.html",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
@@ -4418,6 +4422,7 @@ const companyMeta = {
 "DexRobot":{d:"dex-robot.com",u:"https://www.dex-robot.com"},
   "DH-Robotics":{d:"dh-robotics.com",u:"https://en.dh-robotics.com/"},
   "DOBOT":{d:"dobot-robots.com",u:"https://www.dobot-robots.com"},
+  "Dots Studio":{d:"dots.ai",u:"https://studio.dots.ai/dots/dots3-en.html"},
   "Faraday Future":{d:"ff.com",u:"https://www.ff.com"},
   "Feather Robotics":{d:"feather.dev",u:"https://feather.dev/"},
 "Generalist AI":{d:"generalistai.com",u:"https://generalistai.com"},
