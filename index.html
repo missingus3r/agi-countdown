@@ -1800,6 +1800,7 @@ const models = [
 {name:"Ideogram 4.5",date:"2026-09-30",company:"Ideogram",open:false,intelligence:27,type:"Image editing",cat:"image"},
 {name:"Phonon-2",date:"2026-09-29",company:"Fermion Research",open:true,intelligence:7,type:"ASR (164 MB, ternary)",cat:"audio"},
 {name:"Praxis-1",date:"2026-09-30",company:"Runway",open:false,intelligence:20,type:"World-Action Model",cat:"world"},
+{name:"GLiNER2.5-Decide",date:"2026-09-23",company:"Fastino Labs",open:true,intelligence:10,type:"Decision model (0.5B)",cat:"text"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2726,6 +2727,7 @@ const modelUrls={
 "Ideogram 4.5":"https://ideogram.ai/models/4.5",
 "Phonon-2":"https://www.fermionresearch.com/research/phonon-2/",
 "Praxis-1":"https://runway.com/research/introducing-praxis-1",
+"GLiNER2.5-Decide":"https://huggingface.co/fastino/GLiNER2.5-Decide",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
