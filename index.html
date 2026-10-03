@@ -846,6 +846,8 @@ const COMPANY_COUNTRY={
   "AI21 Labs":{c:"Israel",f:"🇮🇱",lat:32.08,lng:34.78},
   "Lightricks":{c:"Israel",f:"🇮🇱",lat:31.77,lng:35.21},
   "Cohere":{c:"Canada",f:"🇨🇦",lat:43.65,lng:-79.38},
+  "Cloudflare":{c:"United States of America",f:"🇺🇸",lat:37.78,lng:-122.39},
+  "Dyna Robotics":{c:"United States of America",f:"🇺🇸",lat:37.49,lng:-122.23},
   "TII":{c:"United Arab Emirates",f:"🇦🇪",lat:24.45,lng:54.38},
   "Yandex":{c:"Russia",f:"🇷🇺",lat:55.75,lng:37.62},
   "Black Forest Labs":{c:"Germany",f:"🇩🇪",lat:48.00,lng:7.85},
@@ -1789,6 +1791,15 @@ const models = [
 {name:"Fish Audio S2.1 Pro",date:"2026-07-28",company:"Fish Audio",open:false,intelligence:37,type:"TTS",cat:"audio"},
 {name:"Qwen-Audio-3.1-Realtime-Plus",date:"2026-09-23",company:"Alibaba",open:false,intelligence:40,type:"Full-duplex speech (realtime)",cat:"audio"},
 {name:"Qwen-Audio-3.1-ASR-Flash-Filetrans",date:"2026-09-23",company:"Alibaba",open:false,intelligence:24,type:"ASR (file transcription)",cat:"audio"},
+{name:"Clef",date:"2026-10-01",company:"Cloudflare",open:true,intelligence:27,type:"Decision model (27B)",cat:"text"},
+{name:"Clef-flash",date:"2026-10-01",company:"Cloudflare",open:true,intelligence:22,type:"Decision model (9B)",cat:"text"},
+{name:"Strands Decider 2B",date:"2026-10-01",company:"Amazon",open:true,intelligence:12,type:"Decision model (2B)",cat:"text"},
+{name:"Mercury Voice",date:"2026-09-29",company:"Inception",open:false,intelligence:33,type:"Text Diffusion (voice agents)",cat:"text"},
+{name:"Mercury Decide",date:"2026-09-30",company:"Inception",open:false,intelligence:27,type:"Decision model",cat:"text"},
+{name:"FLUX 3 Image",date:"2026-10-01",company:"Black Forest Labs",open:false,intelligence:26,type:"Diffusion (4K, bbox edits)",cat:"image"},
+{name:"Ideogram 4.5",date:"2026-09-30",company:"Ideogram",open:false,intelligence:27,type:"Image editing",cat:"image"},
+{name:"Phonon-2",date:"2026-09-29",company:"Fermion Research",open:true,intelligence:7,type:"ASR (164 MB, ternary)",cat:"audio"},
+{name:"Praxis-1",date:"2026-09-30",company:"Runway",open:false,intelligence:20,type:"World-Action Model",cat:"world"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2706,6 +2717,15 @@ const modelUrls={
 "Fish Audio S2.1 Pro":"https://fish.audio/blog/s2-1-pro-free-api/",
 "Qwen-Audio-3.1-Realtime-Plus":"https://www.qwencloud.com/models/qwen-audio-3.1-realtime-plus",
 "Qwen-Audio-3.1-ASR-Flash-Filetrans":"https://www.qwencloud.com/models/qwen-audio-3.1-asr-flash-filetrans",
+"Clef":"https://blog.cloudflare.com/clef-decision-models/",
+"Clef-flash":"https://blog.cloudflare.com/clef-decision-models/",
+"Strands Decider 2B":"https://strandsagents.com/blog/introducing-strands-decider/",
+"Mercury Voice":"https://www.inceptionlabs.ai/blog/introducing-mercury-voice",
+"Mercury Decide":"https://x.com/_inception_ai/status/2105375133003325768",
+"FLUX 3 Image":"https://bfl.ai/models/flux-3-image",
+"Ideogram 4.5":"https://ideogram.ai/models/4.5",
+"Phonon-2":"https://www.fermionresearch.com/research/phonon-2/",
+"Praxis-1":"https://runway.com/research/introducing-praxis-1",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
@@ -4422,6 +4442,7 @@ const companyMeta = {
 "CASBOT Hands":{d:"casbot.com",u:"https://www.casbot.com"},
 "Cerebras":{d:"cerebras.ai",u:"https://cerebras.ai"},
   "Cohere":{d:"cohere.com",u:"https://cohere.com"},
+  "Cloudflare":{d:"cloudflare.com",u:"https://www.cloudflare.com"},
   "Convai Innovations":{d:"huggingface.co/convaiinnovations",u:"https://huggingface.co/convaiinnovations"},
   "Cursor":{d:"cursor.com",u:"https://cursor.com"},
   "Community":{d:"huggingface.co",u:"https://huggingface.co",letter:"COM",letterColors:["#1a2a1a","#2a4a2a","#86efac"]},
@@ -4430,6 +4451,7 @@ const companyMeta = {
   "Aikido":{d:"aikido.dev",u:"https://www.aikido.dev"},
   "Decart":{d:"decart.ai",u:"https://decart.ai"},
   "DeepSeek":{d:"deepseek.com",u:"https://www.deepseek.com"},
+  "Dyna Robotics":{d:"dyna.co",u:"https://www.dyna.co"},
 "DexRobot":{d:"dex-robot.com",u:"https://www.dex-robot.com"},
   "DH-Robotics":{d:"dh-robotics.com",u:"https://en.dh-robotics.com/"},
   "DOBOT":{d:"dobot-robots.com",u:"https://www.dobot-robots.com"},
@@ -4462,6 +4484,7 @@ const companyMeta = {
   "Essential AI":{d:"essential.ai",u:"https://www.essential.ai"},
   "Even Realities":{d:"evenrealities.com",u:"https://www.evenrealities.com"},
   "Extropic":{d:"extropic.ai",u:"https://extropic.ai"},
+  "Fermion Research":{d:"fermionresearch.com",u:"https://www.fermionresearch.com"},
   "Figure":{d:"figure.ai",u:"https://www.figure.ai"},
   "Fish Audio":{d:"fish.audio",u:"https://fish.audio"},
   "Flourish Robots":{d:"flourish-robots.com",u:"https://flourish-robots.com/"},
@@ -4815,7 +4838,7 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-09-30"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-10-03"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
   {name:"GPT-6.1 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://developers.openai.com/api/docs/models/gpt-6.1-sol",note:"Cached input $0.10/1M; standard short context",verified:true},
   {name:"Claude Sonnet 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.20/1M",verified:true},
@@ -4841,7 +4864,7 @@ const pricingData=[
   {name:"GPT-5.4 Thinking",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2.50,output:15,free:false,url:"https://openai.com/api/pricing/",note:"Reasoning variant",verified:false},
   {name:"GPT-5.5",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:5,output:30,free:false,url:"https://openai.com/api/pricing/",verified:false},
   {name:"GPT-6 Astra",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:10,output:50,free:false,url:"https://platform.openai.com/docs/pricing",note:"Cached $1; Fast mode 2x ($20/$75); Trusted Access rollout",verified:true},
-  {name:"GPT-6 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.openai.com/docs/pricing",note:"Standard short context; long context $4/$15",verified:true},
+  {name:"GPT-6 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.openai.com/docs/pricing",note:"Not on current pricing page (replaced by GPT-6.1 Sol, same $2/$10); last verified 2026-09-30",verified:false},
   {name:"GPT-6 Luna",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.1,output:0.5,free:false,url:"https://platform.openai.com/docs/pricing",note:"Standard short context; long context $0.20/$0.75",verified:true},
   {name:"GPT-5.6 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:4,output:20,free:false,url:"https://platform.openai.com/docs/pricing",note:"Promo through Nov 21, 2026 (list $5); cached $0.40",verified:true},
   {name:"GPT-5.6 Terra",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:12,free:false,url:"https://developers.openai.com/api/docs/models/gpt-5.6-terra",note:"Cached $0.20",verified:true},
@@ -4980,6 +5003,7 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
+  {name:"Taku (Dyna-2.1)",company:"Dyna Robotics",domain:"dyna.co",type:{en:"Wheeled semi-humanoid",es:"Semihumanoide con ruedas",pt:"Semi-humanoide com rodas"},desc:{en:"Humanoid torso on a foldable lower body with two 7-DoF arms and a four-wheel steerable base. Dyna's launch demo shows one uncut hour of hotel laundry work. Announced Sep 29, 2026.",es:"Torso humanoide sobre una parte inferior plegable, con dos brazos de 7 DoF y una base de cuatro ruedas direccionables. La demo de lanzamiento muestra una hora sin cortes de trabajo de lavandería de hotel. Anunciado el 29 de septiembre de 2026.",pt:"Torso humanoide sobre uma parte inferior dobrável, com dois braços de 7 DoF e uma base de quatro rodas direcionáveis. A demo de lançamento mostra uma hora sem cortes de trabalho de lavanderia de hotel. Anunciado em 29 de setembro de 2026."},url:"https://www.dyna.co/dyna-2.1",img:"https://www.dyna.co/assets/videos/whole-employee-card-poster.jpg"},
   {name:"CRAFT Hand",company:"UC Irvine",domain:"uci.edu",type:{en:"Open-source dexterous hand",es:"Mano diestra de código abierto",pt:"Mão hábil de código aberto"},desc:{en:"3D-printable hybrid rigid-soft hand, 800 g, 15 motors and under $600 to build. Its compliant joints handle delicate objects and impacts; complete hardware and software are open source. UC Irvine and UIUC research, published Sep 2026.",es:"Mano 3D de materiales rígidos y blandos, 800 g, 15 motores y costo de armado menor a USD 600. Las articulaciones flexibles manipulan objetos delicados y resisten impactos; hardware y software abiertos. Investigación de UC Irvine y UIUC publicada en septiembre de 2026.",pt:"Mão 3D de materiais rígidos e macios, 800 g, 15 motores e custo de montagem inferior a US$ 600. As articulações flexíveis manipulam objetos delicados e resistem a impactos; hardware e software abertos. Pesquisa da UC Irvine e UIUC publicada em setembro de 2026."},url:"https://craft-hand.github.io/",img:""},
   {name:"Sharpa D01",company:"Sharpa",domain:"sharpa.com",type:{en:"Tactile humanoid robot",es:"Robot humanoide táctil",pt:"Robô humanoide tátil"},desc:{en:"Dexterous robot unveiled at IROS 2026 with two 7-DoF arms, Wave hands, whole-body tactile E-skin and native teleoperation. NVIDIA Jetson Thor; 5 kg rated payload per arm.",es:"Robot diestro presentado en IROS 2026 con dos brazos de 7 DoF, manos Wave, piel táctil en todo el cuerpo y teleoperación nativa. NVIDIA Jetson Thor; carga nominal de 5 kg por brazo.",pt:"Robô hábil apresentado na IROS 2026 com dois braços de 7 DoF, mãos Wave, pele tátil no corpo inteiro e teleoperação nativa. NVIDIA Jetson Thor; carga nominal de 5 kg por braço."},url:"https://www.sharpa.com/pages/d01",img:"https://www.sharpa.com/cdn/shop/files/D01-banner.png?v=1790739804&width=3840"},
   {name:"Sharpa W02",company:"Sharpa",domain:"sharpa.com",type:{en:"Tactile dexterous hand",es:"Mano diestra táctil",pt:"Mão hábil tátil"},desc:{en:"Compact 21-DoF robotic hand unveiled at IROS 2026. Full-hand tactile sensing, under 750 g and IP54 protection; fingertip force resolution of 5 mN.",es:"Mano robótica compacta de 21 DoF presentada en IROS 2026. Sensores táctiles en toda la mano, menos de 750 g y protección IP54; resolución de fuerza de 5 mN en las yemas.",pt:"Mão robótica compacta de 21 DoF apresentada na IROS 2026. Sensores táteis na mão inteira, menos de 750 g e proteção IP54; resolução de força de 5 mN nas pontas dos dedos."},url:"https://www.sharpa.com/pages/w02",img:"https://www.sharpa.com/cdn/shop/files/W02_9df7145b-5ff3-4ec1-a6b6-6c2b126396d4.jpg?v=1790438618&width=3840"},
