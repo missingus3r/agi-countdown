@@ -1807,6 +1807,7 @@ const models = [
 {name:"Index-Translate-35B-A3B",date:"2026-10-02",company:"Bilibili",open:true,intelligence:30,type:"Translation MoE (preview)",cat:"text"},
 {name:"Topos-2",date:"2026-09-30",company:"Topos Bio",open:false,intelligence:3,type:"Protein ensemble model",cat:"multi"},
 {name:"Topos-Bind",date:"2026-09-30",company:"Topos Bio",open:false,intelligence:3,type:"Protein-ligand ensembles",cat:"multi"},
+{name:"Mind-1",date:"2026-09-30",company:"MindOn",open:false,intelligence:18,type:"VLA (cross-embodiment)",cat:"world"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2740,6 +2741,7 @@ const modelUrls={
 "Index-Translate-35B-A3B":"https://github.com/bilibili/Index-Translate",
 "Topos-2":"https://www.toposbio.ai/topos-2-topos-bind",
 "Topos-Bind":"https://www.toposbio.ai/topos-2-topos-bind",
+"Mind-1":"https://x.com/MindOn_Tech/status/2105153163355467968",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
@@ -4502,6 +4504,7 @@ const companyMeta = {
   "Fermion Research":{d:"fermionresearch.com",u:"https://www.fermionresearch.com"},
   "Figure":{d:"figure.ai",u:"https://www.figure.ai"},
   "RoboParty":{d:"roboparty.com",u:"https://roboparty.com"},
+  "MindOn":{d:"mindon.tech",u:"https://www.mindon.tech/"},
   "Topos Bio":{d:"toposbio.ai",u:"https://www.toposbio.ai"},
   "Fish Audio":{d:"fish.audio",u:"https://fish.audio"},
   "Flourish Robots":{d:"flourish-robots.com",u:"https://flourish-robots.com/"},
