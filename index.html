@@ -1811,6 +1811,7 @@ const models = [
 {name:"Kolibri-1",date:"2026-10-03",company:"Aleph Alpha",open:true,intelligence:50,type:"MoE reasoning (78B, 3.5B act)",cat:"llm"},
 {name:"MAI-Code-1.1-Flash",date:"2026-08-11",company:"Microsoft",open:false,intelligence:38,type:"LLM (coding, vision)",cat:"code"},
 {name:"Kardashev-0.7",date:"2026-10-05",company:"Banbury Road",open:false,intelligence:30,type:"Trained swarm of 32 models (announced, unreleased)",cat:"novelty"},
+{name:"Mistral Large 4",date:"2026-10-06",company:"Mistral AI",open:false,intelligence:60,type:"MoE 1T/49B (preview)",cat:"multi"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2747,6 +2748,7 @@ const modelUrls={
 "Mind-1":"https://x.com/MindOn_Tech/status/2105153163355467968",
 "Kolibri-1":"https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
 "Kardashev-0.7":"https://x.com/MLCatttt/status/2107147690450817259",
+"Mistral Large 4":"https://mistral.ai/news/mistral-large-4/",
 "MAI-Code-1.1-Flash":"https://github.blog/changelog/2026-08-11-mai-code-1-1-flash-available-in-github-copilot/",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
