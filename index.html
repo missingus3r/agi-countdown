@@ -1860,6 +1860,9 @@ const models = [
 {name:"ElevenAgents Architect",date:"2026-10-06",company:"ElevenLabs",open:false,intelligence:25,type:"Agent-building agent",cat:"text"},
 {name:"Nano Banana 2.1",date:"2026-10-06",company:"Google",open:false,intelligence:17,type:"Diffusion (image gen + edit)",cat:"image"},
 {name:"Claude Haiku 5.5",date:"2026-10-07",company:"Anthropic",open:false,intelligence:45,type:"LLM (small, computer use)",cat:"multi"},
+{name:"d1",date:"2026-10-05",company:"Liquid AI",open:false,intelligence:22,type:"Decision model (text + vision)",cat:"multi"},
+{name:"d1-3B",date:"2026-10-07",company:"Liquid AI",open:true,intelligence:14,type:"Decision model (3B, edge)",cat:"text"},
+{name:"d1-omni-600M",date:"2026-10-07",company:"Liquid AI",open:true,intelligence:6,type:"Decision model (text + image + audio, 600M)",cat:"multi"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2804,6 +2807,9 @@ const modelUrls={
 "ElevenAgents Architect":"https://elevenlabs.io/blog/elevenagents-architect",
 "Nano Banana 2.1":"https://ai.google.dev/gemini-api/docs/models/gemini-nano-banana-2.1",
 "Claude Haiku 5.5":"https://www.anthropic.com/claude-haiku-5-5",
+"d1":"https://www.liquid.ai/blog/d1-decision-model",
+"d1-3B":"https://www.liquid.ai/blog/d1-open",
+"d1-omni-600M":"https://www.liquid.ai/blog/d1-open",
 "MAI-Code-1.1-Flash":"https://github.blog/changelog/2026-08-11-mai-code-1-1-flash-available-in-github-copilot/",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
@@ -4641,6 +4647,7 @@ const companyMeta = {
   "Ideogram":{d:"ideogram.ai",u:"https://ideogram.ai"},
   "Inception":{d:"inceptionlabs.ai",u:"https://www.inceptionlabs.ai"},
   "Inworld":{d:"inworld.ai",u:"https://inworld.ai"},
+  "KingKong Robotics":{d:"kingkong.tech",u:"https://kingkong.tech"},
   "Krisp":{d:"krisp.ai",u:"https://krisp.ai"},
   "Kuaishou":{d:"kuaishou.com",u:"https://www.kuaishou.com"},
   "Kyutai":{d:"kyutai.org",u:"https://kyutai.org"},
@@ -5143,6 +5150,7 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
+  {name:"Jumper",company:"KingKong Robotics",domain:"kingkong.tech",type:{en:"Open-source crab robot",es:"Robot cangrejo de c\u00f3digo abierto",pt:"Rob\u00f4 caranguejo de c\u00f3digo aberto"},desc:{en:"Small 22-DoF crab-shaped robot that walks, jumps, dances and grasps. Its AI toolkit is open source (Apache-2.0): you describe an appearance, a motion or a scene to a coding assistant and it trains and packages it for the robot.",es:"Robot peque\u00f1o con forma de cangrejo y 22 grados de libertad que camina, salta, baila y agarra objetos. Su kit de IA es de c\u00f3digo abierto (Apache-2.0): se le describe una apariencia, un movimiento o una escena a un asistente de programaci\u00f3n y este lo entrena y lo empaqueta para el robot.",pt:"Rob\u00f4 pequeno em forma de caranguejo, com 22 graus de liberdade, que anda, salta, dan\u00e7a e agarra objetos. Seu kit de IA \u00e9 de c\u00f3digo aberto (Apache-2.0): voc\u00ea descreve uma apar\u00eancia, um movimento ou uma cena a um assistente de programa\u00e7\u00e3o e ele treina e empacota para o rob\u00f4."},url:"https://github.com/KingKongRobotics/jumper",img:"https://kingkong.tech/assets/products/robot/robot-hero-20260703.png"},
   {name:"Roger",company:"Minerva Humanoids",domain:"minervahumanoids.com",type:{en:"Hazardous-operations humanoid",es:"Humanoide para operaciones de riesgo",pt:"Humanoide para opera\u00e7\u00f5es de risco"},desc:{en:"Humanoid built for jobs too dangerous for people: explosive ordnance disposal, hazmat response and oil and gas sites. A specialist operates it remotely while onboard AI handles balance and navigation. Still a prototype; Minerva came out of stealth on Oct 6, 2026, with a $10M pre-seed round according to its launch announcement.",es:"Humanoide pensado para trabajos demasiado peligrosos para una persona: desactivaci\u00f3n de explosivos, materiales peligrosos y sitios de petr\u00f3leo y gas. Un especialista lo opera a distancia mientras la IA a bordo maneja el equilibrio y la navegaci\u00f3n. Todav\u00eda es un prototipo; Minerva sali\u00f3 de stealth el 6 de octubre de 2026, con una ronda pre-seed de USD 10M seg\u00fan su anuncio de lanzamiento.",pt:"Humanoide feito para trabalhos perigosos demais para uma pessoa: desativa\u00e7\u00e3o de explosivos, materiais perigosos e locais de petr\u00f3leo e g\u00e1s. Um especialista o opera \u00e0 dist\u00e2ncia enquanto a IA embarcada cuida do equil\u00edbrio e da navega\u00e7\u00e3o. Ainda \u00e9 um prot\u00f3tipo; a Minerva saiu do stealth em 6 de outubro de 2026, com uma rodada pre-seed de US$ 10M segundo seu an\u00fancio de lan\u00e7amento."},url:"https://www.minervahumanoids.com",img:"https://www.minervahumanoids.com/assets/282ffda794230436df55a306.jpg"},
   {name:"RoboParty RP1 (ROBOTO 01)",company:"RoboParty",domain:"roboparty.com",type:{en:"Open-source humanoid",es:"Humanoide de código abierto",pt:"Humanoide de código aberto"},desc:{en:"Full-stack humanoid unveiled at IROS 2026: in-house Romomo actuators with up to 160 N·m peak torque and the RP Hand. Control, simulation, SDK and PartyOS are being open-sourced in stages through Q4 2026.",es:"Humanoide full-stack presentado en IROS 2026: actuadores Romomo propios con hasta 160 N·m de torque pico y la mano RP Hand. Control, simulación, SDK y PartyOS se abren por etapas hasta el cuarto trimestre de 2026.",pt:"Humanoide full-stack apresentado na IROS 2026: atuadores Romomo próprios com até 160 N·m de torque de pico e a mão RP Hand. Controle, simulação, SDK e PartyOS serão abertos em etapas até o quarto trimestre de 2026."},url:"https://github.com/Roboparty/roboto_origin",img:"https://roboparty.com/logo-img-color.png"},
   {name:"Taku (Dyna-2.1)",company:"Dyna Robotics",domain:"dyna.co",type:{en:"Wheeled semi-humanoid",es:"Semihumanoide con ruedas",pt:"Semi-humanoide com rodas"},desc:{en:"Humanoid torso on a foldable lower body with two 7-DoF arms and a four-wheel steerable base. Dyna's launch demo shows one uncut hour of hotel laundry work. Announced Sep 29, 2026.",es:"Torso humanoide sobre una parte inferior plegable, con dos brazos de 7 DoF y una base de cuatro ruedas direccionables. La demo de lanzamiento muestra una hora sin cortes de trabajo de lavandería de hotel. Anunciado el 29 de septiembre de 2026.",pt:"Torso humanoide sobre uma parte inferior dobrável, com dois braços de 7 DoF e uma base de quatro rodas direcionáveis. A demo de lançamento mostra uma hora sem cortes de trabalho de lavanderia de hotel. Anunciado em 29 de setembro de 2026."},url:"https://www.dyna.co/dyna-2.1",img:"https://www.dyna.co/assets/videos/whole-employee-card-poster.jpg"},
