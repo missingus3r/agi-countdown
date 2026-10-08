@@ -3823,6 +3823,41 @@ const arcData={
   a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["GPT-6.1 Sol (Max)",94.2,"$0.254/task"],["Claude Opus 5.5 (High)",93.3,"$0.408/task"],["GPT-6 Astra (XHigh)",93.3,"$0.829/task"]],kaggle:["Tufa Labs",83.61]},
   a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Tufa Labs",55.89]}
 };
+// Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
+// top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
+const benchData={
+  checked:"2026-10-08",
+  items:[
+    {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-10-07",
+     desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 45 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 45 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 45 modelos avaliados."},
+     top:[["Gemini 4 Argon",68.90,"%"],["Claude Sonnet 5.5",67.04,"%"],["Claude Opus 5.5",66.97,"%"]]},
+    {key:"valsrsi",name:"Vals RSI Index",by:"Vals AI",badge:"RSI",clr:["#6b8aff","#34d399"],url:"https://www.vals.ai/benchmarks/rsi_index",updated:"2026-10-01",
+     desc:{en:"Can a model do the research that builds the next model? Autonomous LLM R&D (compression, LM training, harness engineering, post-training) scored against published, human and frontier references. 24 models tested.",es:"\u00bfPuede un modelo hacer la investigaci\u00f3n que construye al siguiente? I+D aut\u00f3nomo de LLM (compresi\u00f3n, entrenamiento, harness, post-entrenamiento) puntuado contra referencias publicadas, humanas y de frontera. 24 modelos evaluados.",pt:"Um modelo consegue fazer a pesquisa que constr\u00f3i o pr\u00f3ximo? P&D aut\u00f4nomo de LLM (compress\u00e3o, treino, harness, p\u00f3s-treino) pontuado contra refer\u00eancias publicadas, humanas e de fronteira. 24 modelos avaliados."},
+     top:[["Claude Opus 5.5",37.31,"%"],["Claude Fable 5.1",36.09,"%"],["Claude Opus 5",33.02,"%"]]},
+    {key:"hss",name:"Humanity's Sixth Sense",by:"Scale Labs + Elorian",badge:"VISION",clr:["#fbbf24","#f97316"],url:"https://labs.scale.com/leaderboard/hss",updated:"2026-10-08",
+     desc:{en:"HSS measures intuitive visual reasoning across diverse image and video inputs: the kind of thing people see at a glance.",es:"HSS mide el razonamiento visual intuitivo sobre im\u00e1genes y video variados: lo que una persona ve de un vistazo.",pt:"O HSS mede o racioc\u00ednio visual intuitivo sobre imagens e v\u00eddeo variados: o que uma pessoa v\u00ea de relance."},
+     top:[["GPT-6 Astra (max)",53.60," \u00b14.1"],["GPT-6.1 Sol (max)",46.60," \u00b13.8"],["Claude Opus 5.5 (xhigh)",44.60," \u00b13.8"]]}
+  ]
+};
+function renderMoreBench(){
+  const L=currentLang==='es'||currentLang==='pt'?currentLang:'en';
+  const T={en:{h:"More frontier benchmarks",upd:"Updated",src:"Full leaderboard"},es:{h:"M\u00e1s benchmarks de frontera",upd:"Actualizado",src:"Ranking completo"},pt:{h:"Mais benchmarks de fronteira",upd:"Atualizado",src:"Ranking completo"}}[L];
+  return `<div class="info-section" style="margin-top:28px"><h3>${T.h}</h3>
+    <div class="info-cards">${benchData.items.map(b=>`
+      <div class="info-card">
+        <div class="ic-accent" style="background:linear-gradient(90deg,${b.clr[0]},${b.clr[1]})"></div>
+        <div class="ic-title">${b.name} <span class="ic-badge" style="background:rgba(255,255,255,0.08);color:${b.clr[0]}">${b.badge}</span></div>
+        <div class="ic-desc">${b.desc[L]}</div>
+        <div class="ic-stats">
+          ${b.top.map((o,i)=>`<div class="ic-stat"><span class="ic-label">${i+1}. ${o[0]}</span><span class="ic-value${i===0?' highlight':''}">${o[1].toFixed(2)}${o[2]}</span></div>`).join('')}
+          <div class="ic-stat"><span class="ic-label">${T.upd}</span><span class="ic-value">${b.updated} \u00b7 ${b.by}</span></div>
+        </div>
+        <div class="ic-bar"><div class="ic-bar-fill" style="width:${b.top[0][1]}%;background:linear-gradient(90deg,${b.clr[0]},${b.clr[1]})"></div></div>
+        <a class="ic-link" href="${b.url}" target="_blank" rel="noopener">${T.src} \u2192</a>
+      </div>`).join('')}
+    </div>
+  </div>`;
+}
 function renderArcTab(){
   const a=t('arc');
   const d=arcData;
@@ -3891,6 +3926,7 @@ function renderArcTab(){
   </div>
   <div style="font-family:'Inter',system-ui,sans-serif;font-size:11px;color:var(--t-faint);line-height:1.7;border-top:1px solid var(--bd-sub);padding-top:12px">${a.arcFooter} ${a.arcUpdated} <b>${d.updated}</b>.</div>
 
+  ${renderMoreBench()}
   <div class="info-section" style="margin-top:28px"><h3>${a.benchSitesTitle||'Benchmark & Leaderboard Sites'} <span id="benchSitesCount" style="font-size:12px;color:var(--t-faint);font-weight:400"></span></h3>
     <div class="info-cards">
       <a href="https://artificialanalysis.ai/leaderboards/models" target="_blank" rel="noopener" style="text-decoration:none">
