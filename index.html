@@ -3818,15 +3818,15 @@ function render(){
 // Sources: https://arcprize.org/leaderboard (ARC Prize Verified, semi-private eval) + Kaggle 2026 public leaderboards.
 // Scores are numbers (percent); costs are display strings. ARC-AGI-3 costs are total run cost, not per task.
 const arcData={
-  updated:"2026-10-05",
+  updated:"2026-10-09",
   a1:{top:"GPT-6.1 Sol (High)",topShort:"GPT-6.1 Sol",score:98.5,cost:"$0.059/task",others:[["GPT-6.1 Sol (XHigh)",98.5,"$0.074/task"],["Claude Opus 5.5 (High)",98.5,"$0.158/task"]]},
-  a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["GPT-6.1 Sol (Max)",94.2,"$0.254/task"],["Claude Opus 5.5 (High)",93.3,"$0.408/task"],["GPT-6 Astra (XHigh)",93.3,"$0.829/task"]],kaggle:["Tufa Labs",83.61]},
-  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Tufa Labs",55.89]}
+  a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["GPT-6.1 Sol (Max)",94.2,"$0.254/task"],["Claude Opus 5.5 (High)",93.3,"$0.408/task"],["GPT-6 Astra (XHigh)",93.3,"$0.829/task"]],kaggle:["Tufa Labs",88.06]},
+  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Yi-Chia Chen",59.17]}
 };
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
 const benchData={
-  checked:"2026-10-08",
+  checked:"2026-10-09",
   items:[
     {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-10-07",
      desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 45 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 45 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 45 modelos avaliados."},
