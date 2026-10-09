@@ -5021,10 +5021,10 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-10-03"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-10-09"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
   {name:"GPT-6.1 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://developers.openai.com/api/docs/models/gpt-6.1-sol",note:"Cached input $0.10/1M; standard short context",verified:true},
-  {name:"Claude Sonnet 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.20/1M",verified:true},
+  {name:"Claude Sonnet 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.10/1M",verified:true},
   {name:"Claude Opus 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:4,output:20,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.20/1M",verified:true},
   // ===== LLM (text/reasoning) =====
   {name:"Claude Opus 4.7",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:5,output:25,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.50, batch 50% off",verified:true},
@@ -5034,6 +5034,7 @@ const pricingData=[
   {name:"Claude Opus 4.8",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:5,output:25,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.50; Fast mode $10/$50",verified:true},
   {name:"Claude Sonnet 5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Intro price made permanent (Sep 2026); cache read $0.20",verified:true},
   {name:"Claude Sonnet 4.6",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:3,output:15,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Prompt caching, batch discount",verified:true},
+  {name:"Claude Haiku 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:0.10,output:0.50,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Prompts up to 100K tokens; cache read $0.01/1M",verified:true},
   {name:"Claude Haiku 4.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:1,output:5,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",verified:true},
   {name:"GPT-5",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1.25,output:10,free:false,url:"https://openai.com/api/pricing/",verified:false},
   {name:"GPT-5 mini",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.25,output:2,free:false,url:"https://openai.com/api/pricing/",verified:false},
@@ -5096,6 +5097,7 @@ const pricingData=[
   {name:"DeepSeek V4-Pro (0813)",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:1.32,output:3.96,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Peak rate; off-peak 50% off; cache hit $0.044",verified:true},
   {name:"DeepSeek V4-Flash (0731)",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:0.44,output:1.32,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Retirado: la pagina oficial (18/09) dice que deepseek-v4-flash sigue aceptandose como alias pero lo sirve DeepSeek-V4.1-Flash, facturado al precio Flash ($0.30/$1.20 peak)",verified:false},
 {name:"DeepSeek-V4-Flash-Vision-Exp",provider:"DeepSeek",cat:"multi",unit:"per_1m_tokens",input:0.44,output:1.32,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Retirado: mismo caso que V4-Flash (0731) — alias servido por DeepSeek-V4.1-Flash al precio Flash",verified:false},
+  {name:"Mistral Large 4",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:1.36,output:4.18,free:false,url:"https://mistral.ai/pricing/api",note:"List price; launch sale $0.68/$2.09; cached input $0.14",verified:true},
   {name:"Mistral Large 3",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:0.5,output:1.5,free:false,url:"https://mistral.ai/pricing/api",verified:true},
   {name:"Mistral Medium 3.5",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:1.5,output:7.5,free:false,url:"https://mistral.ai/pricing/api",verified:true},
   {name:"Mistral Small 4",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.6,free:false,url:"https://mistral.ai/pricing/api",verified:true},
@@ -5140,7 +5142,7 @@ const pricingData=[
   {name:"Wan 3.0",provider:"Alibaba",cat:"video",unit:"per_second",per_unit:0.05,per_unit_max:0.20,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"wan3.0-video list price 480P $0.05, 720P $0.10, 1080P $0.20 per second (30% off promo); Prime $0.068/$0.14/$0.28; input video billed too",verified:true},
   {name:"HappyHorse 1.1",provider:"Alibaba",cat:"video",unit:"per_second",per_unit:0.07,per_unit_max:0.18,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"480P $0.07, 720P $0.14, 1080P $0.18 per second; HappyHorse 1.0 720P $0.14, 1080P $0.24 (ya sin descuento marcado)",verified:true},
   // ===== Audio / TTS =====
-  {name:"ElevenLabs v3 / Multilingual v2",provider:"ElevenLabs",cat:"audio",unit:"per_1k_chars",per_unit:0.1,free:false,url:"https://elevenlabs.io/pricing/api",note:"$0.10 per 1k chars (v2/v3); Flash/Turbo $0.05; Starter $6 = 60k chars",verified:true},
+  {name:"ElevenLabs v3 / Multilingual v2",provider:"ElevenLabs",cat:"audio",unit:"per_1k_chars",per_unit:0.08,free:false,url:"https://elevenlabs.io/pricing/api",note:"$0.08 per 1k chars (v3 and v2 Multilingual); v3 Conversational $0.04",verified:true},
   {name:"Stable Audio 3",provider:"Stability AI",cat:"audio",unit:"plan_based",free:true,url:"https://stability.ai/news-updates/meet-stable-audio-3-the-model-family-built-for-artistic-experimentation-with-open-weight-models",note:"Open-weight, self-host. Membership plan en stability.ai",verified:false},
   {name:"Supertonic 3",provider:"Supertone",cat:"audio",unit:"plan_based",free:true,url:"https://github.com/supertone-inc/supertonic",note:"99M params on-device TTS, MIT+OpenRAIL-M",verified:false},
   {name:"OpenAI tts-1",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.015,free:false,url:"https://openai.com/api/pricing/",note:"Legacy; not on current pricing page",verified:false},
