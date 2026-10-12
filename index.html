@@ -4833,6 +4833,84 @@ const companyMeta = {
 };
 const companySkip = new Set(["Academic","Community"]);
 
+// --- Release cadence (Companies tab) ---
+// Computed in the browser from the `models` array: nothing to maintain by hand.
+// Several models released on the same day count as one release.
+const CADENCE_MIN_RELEASES = 3;
+const CADENCE_TOP = 12;
+let cadenceSort = {key:'since', dir:1};
+let cadenceShowAll = false;
+function cadenceRows(){
+  const DAY = 86400000;
+  const now = new Date();
+  const today = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  const by = {};
+  models.forEach(m => {
+    if(companySkip.has(m.company)) return;
+    const t = Date.parse(m.date + 'T00:00:00Z');
+    if(isNaN(t)) return;
+    (by[m.company] = by[m.company] || []).push({t, name:m.name, date:m.date});
+  });
+  const avg = a => a.length ? a.reduce((x,y)=>x+y,0)/a.length : null;
+  const gaps = d => d.slice(1).map((t,i)=>(t-d[i])/DAY);
+  const rows = [];
+  Object.keys(by).forEach(company => {
+    const list = by[company].sort((a,b)=>a.t-b.t);
+    const dates = [...new Set(list.map(x=>x.t))];
+    if(dates.length < CADENCE_MIN_RELEASES) return;
+    const last = list[list.length-1];
+    const avg12 = avg(gaps(dates.filter(t => today - t <= 365*DAY)));
+    const avgAll = avg(gaps(dates));
+    const since = Math.max(0, Math.round((today - last.t)/DAY));
+    const ref = avg12 !== null ? avg12 : avgAll;
+    rows.push({company, count:list.length, avg12, avgAll, since, lastName:last.name, lastDate:last.date, overdue: ref !== null && since > ref});
+  });
+  return rows;
+}
+function renderCadenceBlock(){
+  const el = document.getElementById('cadenceBlock');
+  if(!el) return;
+  const L = currentLang==='es' ? {title:'Ritmo de lanzamientos',sub:'Calculado en vivo a partir de los modelos del index. Varios modelos el mismo día cuentan como un lanzamiento. Empresas con '+CADENCE_MIN_RELEASES+' lanzamientos o más.',company:'Empresa',count:'Modelos',avg12:'Promedio 12 meses',avgAll:'Histórico',since:'Desde el último',last:'Último modelo',days:'d',overdue:'sobre su promedio',all:'Ver todas',less:'Ver menos',every:'cada'}
+    : currentLang==='pt' ? {title:'Ritmo de lançamentos',sub:'Calculado ao vivo a partir dos modelos do index. Vários modelos no mesmo dia contam como um lançamento. Empresas com '+CADENCE_MIN_RELEASES+' lançamentos ou mais.',company:'Empresa',count:'Modelos',avg12:'Média 12 meses',avgAll:'Histórico',since:'Desde o último',last:'Último modelo',days:'d',overdue:'acima da média',all:'Ver todas',less:'Ver menos',every:'a cada'}
+    : {title:'Release cadence',sub:'Computed live from the models in the index. Several models on the same day count as one release. Companies with '+CADENCE_MIN_RELEASES+' or more releases.',company:'Company',count:'Models',avg12:'12-month average',avgAll:'All-time',since:'Since last release',last:'Latest model',days:'d',overdue:'past its average',all:'Show all',less:'Show less',every:'every'};
+  const escH = x => String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const rows = cadenceRows();
+  const k = cadenceSort.key, dir = cadenceSort.dir;
+  rows.sort((a,b) => {
+    if(k==='company') return dir * a.company.localeCompare(b.company);
+    const x = a[k], y = b[k];
+    if(x===null && y===null) return a.company.localeCompare(b.company);
+    if(x===null) return 1;
+    if(y===null) return -1;
+    return dir * (x - y) || a.company.localeCompare(b.company);
+  });
+  const shown = cadenceShowAll ? rows : rows.slice(0, CADENCE_TOP);
+  const fmt = v => v===null ? '—' : (v < 10 ? v.toFixed(1) : Math.round(v)) + ' ' + L.days;
+  const th = (key,label,align) => `<th data-sort="${key}" style="text-align:${align};padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:${k===key?'var(--accent-blue)':'var(--t-faint)'};cursor:pointer;white-space:nowrap;user-select:none;border-bottom:1px solid var(--bd-sub)">${label}${k===key?(dir>0?' ▲':' ▼'):''}</th>`;
+  const td = 'padding:8px 10px;border-bottom:1px solid var(--bd-sub);font-size:12px;';
+  const body = shown.map(r => `<tr>
+      <td style="${td}font-family:'Inter',system-ui,sans-serif;font-weight:600;color:var(--t-max);white-space:nowrap">${escH(r.company)}</td>
+      <td style="${td}font-family:'IBM Plex Mono',monospace;color:var(--t-soft);text-align:right">${r.count}</td>
+      <td style="${td}font-family:'IBM Plex Mono',monospace;color:var(--t-max);text-align:right;white-space:nowrap">${r.avg12===null?'—':L.every+' '+fmt(r.avg12)}</td>
+      <td style="${td}font-family:'IBM Plex Mono',monospace;color:var(--t-faint);text-align:right;white-space:nowrap">${fmt(r.avgAll)}</td>
+      <td style="${td}font-family:'IBM Plex Mono',monospace;text-align:right;white-space:nowrap;color:${r.overdue?'#fbbf24':'var(--t-max)'}" title="${r.overdue?L.overdue:''}">${r.since} ${L.days}${r.overdue?' ●':''}</td>
+      <td style="${td}font-family:'Inter',system-ui,sans-serif;color:var(--t-soft)">${escH(r.lastName)} <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--t-faint);white-space:nowrap">${r.lastDate}</span></td>
+    </tr>`).join('');
+  const toggle = rows.length > CADENCE_TOP ? `<button id="cadenceToggle" type="button" style="margin-top:10px;padding:6px 12px;background:var(--bg-elev);border:1px solid var(--bd-sub);border-radius:var(--radius-md);color:var(--t-soft);font-family:'IBM Plex Mono',monospace;font-size:11px;cursor:pointer">${cadenceShowAll ? L.less : L.all+' ('+rows.length+')'}</button>` : '';
+  el.innerHTML = `<h3 style="font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:700;color:var(--t-max);margin:0 0 4px">${L.title}</h3>
+    <p style="font-family:'Inter',system-ui,sans-serif;font-size:12px;color:var(--t-faint);margin:0 0 12px">${L.sub} <span style="color:#fbbf24">●</span> ${L.overdue}.</p>
+    <div style="overflow-x:auto;background:var(--bg-elev);border:1px solid var(--bd-sub);border-radius:var(--radius-md)">
+      <table style="width:100%;border-collapse:collapse;min-width:640px"><thead><tr>${th('company',L.company,'left')}${th('count',L.count,'right')}${th('avg12',L.avg12,'right')}${th('avgAll',L.avgAll,'right')}${th('since',L.since,'right')}<th style="text-align:left;padding:8px 10px;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--t-faint);border-bottom:1px solid var(--bd-sub)">${L.last}</th></tr></thead><tbody>${body}</tbody></table>
+    </div>${toggle}`;
+  el.querySelectorAll('th[data-sort]').forEach(h => h.addEventListener('click', () => {
+    const key = h.dataset.sort;
+    cadenceSort = {key, dir: cadenceSort.key===key ? -cadenceSort.dir : 1};
+    renderCadenceBlock();
+  }));
+  const tg = document.getElementById('cadenceToggle');
+  if(tg) tg.addEventListener('click', () => { cadenceShowAll = !cadenceShowAll; renderCadenceBlock(); });
+}
+
 function renderCompaniesTab(){
   const counts = {};
   models.forEach(m => {
@@ -4863,10 +4941,12 @@ function renderCompaniesTab(){
   document.getElementById('tab-companies').innerHTML = `<div class="info-page">
     <h2>${titleTxt}</h2>
     <p class="info-subtitle">${subTxt}</p>
+    <div id="cadenceBlock" style="margin-bottom:28px"></div>
     <input id="companySearch" type="text" placeholder="${placeholder}" style="width:100%;max-width:400px;padding:10px 14px;background:var(--bg-elev);border:1px solid var(--bd-sub);border-radius:var(--radius-md);color:var(--t-max);font-family:'Inter',system-ui,sans-serif;font-size:13px;margin-bottom:20px;outline:none" autocomplete="off">
     <div id="companyGrid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px">${cardHtml}</div>
     <div id="companyEmpty" style="display:none;color:var(--t-faint);font-size:13px;margin-top:16px">—</div>
   </div>`;
+  renderCadenceBlock();
   const search = document.getElementById('companySearch');
   const empty = document.getElementById('companyEmpty');
   search.addEventListener('input', () => {
