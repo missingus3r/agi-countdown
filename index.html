@@ -851,6 +851,7 @@ const COMPANY_COUNTRY={
   "Anthropic":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.41},
   "SpaceXSI":{c:"United States of America",f:"🇺🇸",lat:37.76,lng:-122.40},
   "IBM":{c:"United States of America",f:"🇺🇸",lat:41.11,lng:-73.72},
+  "Paper Instruments":{c:"United States of America",f:"🇺🇸",lat:39.83,lng:-98.58},
   "Reflection AI":{c:"United States of America",f:"🇺🇸",lat:40.69,lng:-73.99},
   "Runway":{c:"United States of America",f:"🇺🇸",lat:40.72,lng:-74.00},
   "Speechify":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.42},
@@ -1871,6 +1872,7 @@ const models = [
 {name:"d1-3B",date:"2026-10-07",company:"Liquid AI",open:true,intelligence:14,type:"Decision model (3B, edge)",cat:"text"},
 {name:"d1-omni-600M",date:"2026-10-07",company:"Liquid AI",open:true,intelligence:6,type:"Decision model (text + image + audio, 600M)",cat:"multi"},
 {name:"Grok Voice 3.0",date:"2026-10-14",company:"SpaceXSI",open:false,intelligence:40,type:"Voice (speech-to-speech)",cat:"audio"},
+{name:"Ultramarine 1 Flash",date:"2026-10-14",company:"Paper Instruments",open:false,intelligence:57,type:"LLM (knowledge work, RL sobre GLM-5.3 Flash; pesos en 2 semanas)",cat:"text"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2792,7 +2794,7 @@ const modelUrls={
 "Clef-flash":"https://blog.cloudflare.com/clef-decision-models/",
 "Clef-omni":"https://blog.cloudflare.com/clef-faster-cheaper-multimodal/",
 "Microsoft-Decision-1":"https://commandline.microsoft.com/microsoft-decision-1-model-foundry/",
-"Beam":"https://reflection.ai/blog/introducing-beam","Muse Wonder":"https://research.meta.ai/blog/introducing-muse-wonder","Muse Wonder Full":"https://research.meta.ai/blog/introducing-muse-wonder",
+"Beam":"https://reflection.ai/blog/introducing-beam","Ultramarine 1 Flash":"https://www.paperinstruments.com/blog/ultramarine","Muse Wonder":"https://research.meta.ai/blog/introducing-muse-wonder","Muse Wonder Full":"https://research.meta.ai/blog/introducing-muse-wonder",
 "Strands Decider 2B":"https://strandsagents.com/blog/introducing-strands-decider/",
 "Mercury Voice":"https://www.inceptionlabs.ai/blog/introducing-mercury-voice",
 "Mercury Decide":"https://x.com/_inception_ai/status/2105375133003325768",
@@ -4748,6 +4750,7 @@ const companyMeta = {
 "Raven Resonance":{d:"ravenresonance.com",u:"https://ravenresonance.com"},
   "Recraft":{d:"recraft.ai",u:"https://www.recraft.ai"},
   "Resemble AI":{d:"resemble.ai",u:"https://www.resemble.ai"},
+  "Paper Instruments":{d:"paperinstruments.com",u:"https://www.paperinstruments.com"},
   "Reflection AI":{d:"reflection.ai",u:"https://reflection.ai"},
   "Reve":{d:"reve.com",u:"https://reve.com"},
   "Riffusion":{d:"riffusion.com",u:"https://www.riffusion.com"},
@@ -5286,6 +5289,7 @@ function pricingCardHtml(m,labels){
 }
 
 const roboticsData=[
+  {name:"ESP32 ball",company:"Steven Cheng (showcase)",domain:"x.com",type:{en:"Handheld ESP32 companion",es:"Compa\u00f1ero de bolsillo con ESP32",pt:"Companheiro de bolso com ESP32"},desc:{en:"A palm-sized sphere built around an ESP32 microcontroller: a glossy dome with an animated pair of eyes that react as it is held and turned. Shown by Steven Cheng, who showcases physical-AI and robotics products.",es:"Una esfera del tama\u00f1o de la palma armada alrededor de un microcontrolador ESP32: una c\u00fapula brillante con un par de ojos animados que reaccionan al sostenerla y girarla. La mostr\u00f3 Steven Cheng, que difunde productos de IA f\u00edsica y rob\u00f3tica.",pt:"Uma esfera do tamanho da palma da m\u00e3o constru\u00edda em torno de um microcontrolador ESP32: uma c\u00fapula brilhante com um par de olhos animados que reagem ao ser segurada e girada. Mostrada por Steven Cheng, que divulga produtos de IA f\u00edsica e rob\u00f3tica."},url:"https://x.com/stevencheng/status/2110375346046746649",img:"https://pbs.twimg.com/amplify_video_thumb/2110374180395098112/img/rBIYvSU2rbq_XAt7.jpg"},
   {name:"STARBOY",company:"CREATURE",domain:"lilguy.net",type:{en:"Wearable digital pet",es:"Mascota digital para llevar puesta",pt:"Mascote digital vest\u00edvel"},desc:{en:"A wearable digital pet that behaves like a living creature: it senses its surroundings through a camera, microphone, temperature sensor and accelerometer, gets anxious in loud places, shivers in the cold and gets dizzy if shaken. Each unit has its own personality and one of 400+ eye designs, and STARBOYs that meet swap eyes and behaviors. Fully standalone, with no phone or Internet connection. Pre-orders open.",es:"Una mascota digital para llevar puesta que se comporta como un ser vivo: percibe el entorno con c\u00e1mara, micr\u00f3fono, sensor de temperatura y aceler\u00f3metro, se pone ansiosa en lugares ruidosos, tiembla con el fr\u00edo y se marea si la sacuden. Cada unidad tiene su propia personalidad y uno de m\u00e1s de 400 dise\u00f1os de ojos, y los STARBOY que se cruzan intercambian ojos y comportamientos. Funciona sola, sin tel\u00e9fono ni Internet. En preventa.",pt:"Um mascote digital vest\u00edvel que se comporta como um ser vivo: percebe o ambiente com c\u00e2mera, microfone, sensor de temperatura e aceler\u00f4metro, fica ansioso em lugares barulhentos, treme no frio e fica tonto se for sacudido. Cada unidade tem personalidade pr\u00f3pria e um de mais de 400 designs de olhos, e os STARBOY que se encontram trocam olhos e comportamentos. Funciona sozinho, sem celular nem Internet. Em pr\u00e9-venda."},url:"https://lilguy.net/",img:"https://hesjustalittleguy.com/img/starboy/preview.webp"},
   {name:"Jumper",company:"KingKong Robotics",domain:"kingkong.tech",type:{en:"Open-source crab robot",es:"Robot cangrejo de c\u00f3digo abierto",pt:"Rob\u00f4 caranguejo de c\u00f3digo aberto"},desc:{en:"Small 22-DoF crab-shaped robot that walks, jumps, dances and grasps. Its AI toolkit is open source (Apache-2.0): you describe an appearance, a motion or a scene to a coding assistant and it trains and packages it for the robot.",es:"Robot peque\u00f1o con forma de cangrejo y 22 grados de libertad que camina, salta, baila y agarra objetos. Su kit de IA es de c\u00f3digo abierto (Apache-2.0): se le describe una apariencia, un movimiento o una escena a un asistente de programaci\u00f3n y este lo entrena y lo empaqueta para el robot.",pt:"Rob\u00f4 pequeno em forma de caranguejo, com 22 graus de liberdade, que anda, salta, dan\u00e7a e agarra objetos. Seu kit de IA \u00e9 de c\u00f3digo aberto (Apache-2.0): voc\u00ea descreve uma apar\u00eancia, um movimento ou uma cena a um assistente de programa\u00e7\u00e3o e ele treina e empacota para o rob\u00f4."},url:"https://github.com/KingKongRobotics/jumper",img:"https://kingkong.tech/assets/products/robot/robot-hero-20260703.png"},
   {name:"IGRIS-C",company:"ROBROS",domain:"robros.co.kr",type:{en:"Indoor collaboration humanoid",es:"Humanoide colaborativo de interior",pt:"Humanoide colaborativo de interior"},desc:{en:"154 cm, 56 kg bipedal humanoid from Korean company ROBROS, with 6-DoF hands, 7-DoF arms and 6-DoF legs and a 48 V battery. Pitched as a Physical AI platform for research and education, and being deployed in semiconductor, automotive and cold-chain sites through Korea's humanoid demonstration program.",es:"Humanoide bípedo de 154 cm y 56 kg de la coreana ROBROS, con manos de 6 grados de libertad, brazos de 7 y piernas de 6, y batería de 48 V. Se presenta como plataforma de IA física para investigación y educación, y se está probando en plantas de semiconductores, automotrices y de logística en frío dentro del programa coreano de demostración de humanoides.",pt:"Humanoide bípede de 154 cm e 56 kg da coreana ROBROS, com mãos de 6 graus de liberdade, braços de 7 e pernas de 6, e bateria de 48 V. Apresentado como plataforma de IA física para pesquisa e educação, e em testes em fábricas de semicondutores, automotivas e de logística refrigerada pelo programa coreano de demonstração de humanoides."},url:"https://www.robros.co.kr/ko/igrisc",img:"https://www.robros.co.kr/images/igrisc/igrisc-hero.png"},
