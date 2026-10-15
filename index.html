@@ -5122,7 +5122,7 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-10-12"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-10-15"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
   {name:"GPT-6.1 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://developers.openai.com/api/docs/models/gpt-6.1-sol",note:"Cached input $0.10/1M; standard short context",verified:true},
   {name:"Claude Sonnet 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Cache read $0.10/1M",verified:true},
@@ -5171,7 +5171,8 @@ const pricingData=[
   {name:"Gemini 3 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.5,output:3,free:true,free_note:"Legacy Flash model: flat $0.50 in (texto/imagen/video), $1.00 audio in, $3.00 out. Cached $0.05 / $0.10 audio. Sin promo ni fecha de vencimiento en la pagina",url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
   {name:"Gemini 3.1 Flash-Lite",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.25,output:1.50,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",verified:true},
   {name:"Gemini 3.5 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.50,output:9,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Cached input $0.15/1M (90% off). Non-global region $1.65/$9.90.",verified:true},
-  {name:"Gemini 3.8 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
+  {name:"Gemini 4 Argon",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Through Nov 30, 2026; from Dec 1: $4/$20 (output includes thinking tokens)",verified:true},
+{name:"Gemini 3.8 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
   {name:"Gemini 3.7 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Not on current pricing page (last seen: $0.75/$3.75 promo)",verified:false},
   {name:"Gemini 3.6 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
   {name:"Gemini 3.5 Flash-Lite",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.3,output:2.5,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",verified:true},
