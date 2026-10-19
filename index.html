@@ -1841,7 +1841,7 @@ const models = [
 {name:"Microsoft-Decision-1",date:"2026-10-09",company:"Microsoft",open:false,intelligence:23,type:"Decision model (9B)",cat:"text"},
 {name:"Muse Wonder",date:"2026-10-12",company:"Meta",open:false,intelligence:63,type:"LLM (agentic, 1M ctx)",cat:"code"},
 {name:"Muse Wonder Full",date:"2026-10-12",company:"Meta",open:false,intelligence:65,type:"LLM (agentic, Muse Code only)",cat:"code"},
-{name:"Beam",date:"2026-10-05",company:"Reflection AI",open:false,intelligence:55,type:"LLM (501B MoE, early access)",cat:"code"},
+{name:"Beam",date:"2026-10-05",company:"Reflection AI",open:true,intelligence:55,type:"LLM (501B MoE, open)",cat:"code"},
 {name:"Strands Decider 2B",date:"2026-10-01",company:"Amazon",open:true,intelligence:12,type:"Decision model (2B)",cat:"text"},
 {name:"Mercury Voice",date:"2026-09-29",company:"Inception",open:false,intelligence:33,type:"Text Diffusion (voice agents)",cat:"text"},
 {name:"Mercury Decide",date:"2026-09-30",company:"Inception",open:false,intelligence:27,type:"Decision model",cat:"text"},
@@ -1877,6 +1877,9 @@ const models = [
 {name:"Muse Spark Open",date:"2026-10-15",company:"Meta",open:true,intelligence:52,type:"MoE 816B/42B, multimodal",cat:"multi"},
 {name:"FLUX 3 Image Klein",date:"2026-10-15",company:"Black Forest Labs",open:true,intelligence:18,type:"Diffusion (open, small)",cat:"image"},
 {name:"Granite Switch 4.1",date:"2026-10-15",company:"IBM",open:true,intelligence:25,type:"LLM (8B/30B, adapters+ASR)",cat:"text"},
+{name:"DeepSeek-V4.1-Flash-1017",date:"2026-10-17",company:"DeepSeek",open:true,intelligence:59,type:"MoE multimodal (552B, update)",cat:"multi"},
+{name:"Nemotron Labs Dory 1.0 4B",date:"2026-10-16",company:"NVIDIA",open:true,intelligence:26,type:"LLM (looped, 4B)",cat:"text"},
+{name:"Timestral",date:"2026-10-15",company:"Mistral AI",open:true,intelligence:8,type:"Time-series forecasting",cat:"text"},
 {name:"Qwen-Image 2.1 Turbo",date:"2026-10-09",company:"Alibaba",open:true,intelligence:15,type:"Diffusion (7B, 8 steps)",cat:"image"},
 {name:"Ultramarine 1 Flash",date:"2026-10-14",company:"Paper Instruments",open:false,intelligence:57,type:"LLM (knowledge work, RL sobre GLM-5.3 Flash; pesos en 2 semanas)",cat:"text"},
 ];
@@ -2800,7 +2803,7 @@ const modelUrls={
 "Clef-flash":"https://blog.cloudflare.com/clef-decision-models/",
 "Clef-omni":"https://blog.cloudflare.com/clef-faster-cheaper-multimodal/",
 "Microsoft-Decision-1":"https://commandline.microsoft.com/microsoft-decision-1-model-foundry/",
-"Beam":"https://reflection.ai/blog/introducing-beam","Ultramarine 1 Flash":"https://www.paperinstruments.com/blog/ultramarine","Qwen-Image 2.1 Turbo":"https://huggingface.co/Qwen/Qwen-Image-2.1-Turbo","Krea 3":"https://www.krea.ai/blog/introducing-krea-3","Muse Spark Open":"https://huggingface.co/blog/meta-muse-spark-open","FLUX 3 Image Klein":"https://huggingface.co/blog/flux-3","Granite Switch 4.1":"https://huggingface.co/blog/ibm-granite/granite-switch-4-1","Grok Voice 3.0":"https://x.com/SpaceXSI/status/2110416580899168305","Muse Wonder":"https://research.meta.ai/blog/introducing-muse-wonder","Muse Wonder Full":"https://research.meta.ai/blog/introducing-muse-wonder",
+"Beam":"https://huggingface.co/reflection/Beam-1.0-501B-A23B","Ultramarine 1 Flash":"https://www.paperinstruments.com/blog/ultramarine","Qwen-Image 2.1 Turbo":"https://huggingface.co/Qwen/Qwen-Image-2.1-Turbo","Krea 3":"https://www.krea.ai/blog/introducing-krea-3","Muse Spark Open":"https://huggingface.co/blog/meta-muse-spark-open","FLUX 3 Image Klein":"https://huggingface.co/blog/flux-3","Granite Switch 4.1":"https://huggingface.co/blog/ibm-granite/granite-switch-4-1","DeepSeek-V4.1-Flash-1017":"https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017","Nemotron Labs Dory 1.0 4B":"https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16","Timestral":"https://mistral.ai/news/timestral","Grok Voice 3.0":"https://x.com/SpaceXSI/status/2110416580899168305","Muse Wonder":"https://research.meta.ai/blog/introducing-muse-wonder","Muse Wonder Full":"https://research.meta.ai/blog/introducing-muse-wonder",
 "Strands Decider 2B":"https://strandsagents.com/blog/introducing-strands-decider/",
 "Mercury Voice":"https://www.inceptionlabs.ai/blog/introducing-mercury-voice",
 "Mercury Decide":"https://x.com/_inception_ai/status/2105375133003325768",
@@ -3848,9 +3851,9 @@ const arcData={
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
 const benchData={
-  checked:"2026-10-16",
+  checked:"2026-10-19",
   items:[
-    {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-10-13",
+    {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-10-18",
      desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 48 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 48 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 48 modelos avaliados."},
      top:[["Gemini 4 Argon",68.90,"%"],["Claude Sonnet 5.5",67.04,"%"],["Claude Opus 5.5",66.97,"%"]]},
     {key:"valsrsi",name:"Vals RSI Index",by:"Vals AI",badge:"RSI",clr:["#6b8aff","#34d399"],url:"https://www.vals.ai/benchmarks/rsi_index",updated:"2026-10-15",
