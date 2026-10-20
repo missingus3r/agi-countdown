@@ -853,6 +853,7 @@ const COMPANY_COUNTRY={
   "IBM":{c:"United States of America",f:"🇺🇸",lat:41.11,lng:-73.72},
   "Paper Instruments":{c:"United States of America",f:"🇺🇸",lat:39.83,lng:-98.58},
   "Krea":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.42},
+  "OpenMOSS":{c:"China",f:"🇨🇳",lat:31.30,lng:121.50},
   "Reflection AI":{c:"United States of America",f:"🇺🇸",lat:40.69,lng:-73.99},
   "Runway":{c:"United States of America",f:"🇺🇸",lat:40.72,lng:-74.00},
   "Speechify":{c:"United States of America",f:"🇺🇸",lat:37.77,lng:-122.42},
@@ -1880,6 +1881,9 @@ const models = [
 {name:"DeepSeek-V4.1-Flash-1017",date:"2026-10-17",company:"DeepSeek",open:true,intelligence:59,type:"MoE multimodal (552B, update)",cat:"multi"},
 {name:"Nemotron Labs Dory 1.0 4B",date:"2026-10-16",company:"NVIDIA",open:true,intelligence:26,type:"LLM (looped, 4B)",cat:"text"},
 {name:"Timestral",date:"2026-10-15",company:"Mistral AI",open:true,intelligence:8,type:"Time-series forecasting",cat:"text"},
+{name:"MiniCPM-V 4.7 (35B-A3B)",date:"2026-10-12",company:"OpenBMB",open:true,intelligence:12,type:"Multimodal MoE",cat:"multi"},
+{name:"MOSS-Image",date:"2026-10-11",company:"OpenMOSS",open:true,intelligence:12,type:"Diffusion (5B)",cat:"image"},
+{name:"Indra OCR",date:"2026-10-10",company:"Datalab",open:true,intelligence:6,type:"OCR (CPU)",cat:"multi"},
 {name:"Qwen-Image 2.1 Turbo",date:"2026-10-09",company:"Alibaba",open:true,intelligence:15,type:"Diffusion (7B, 8 steps)",cat:"image"},
 {name:"Ultramarine 1 Flash",date:"2026-10-14",company:"Paper Instruments",open:false,intelligence:57,type:"LLM (knowledge work, RL sobre GLM-5.3 Flash; pesos en 2 semanas)",cat:"text"},
 ];
@@ -2803,7 +2807,7 @@ const modelUrls={
 "Clef-flash":"https://blog.cloudflare.com/clef-decision-models/",
 "Clef-omni":"https://blog.cloudflare.com/clef-faster-cheaper-multimodal/",
 "Microsoft-Decision-1":"https://commandline.microsoft.com/microsoft-decision-1-model-foundry/",
-"Beam":"https://huggingface.co/reflection/Beam-1.0-501B-A23B","Ultramarine 1 Flash":"https://www.paperinstruments.com/blog/ultramarine","Qwen-Image 2.1 Turbo":"https://huggingface.co/Qwen/Qwen-Image-2.1-Turbo","Krea 3":"https://www.krea.ai/blog/introducing-krea-3","Muse Spark Open":"https://huggingface.co/blog/meta-muse-spark-open","FLUX 3 Image Klein":"https://huggingface.co/blog/flux-3","Granite Switch 4.1":"https://huggingface.co/blog/ibm-granite/granite-switch-4-1","DeepSeek-V4.1-Flash-1017":"https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017","Nemotron Labs Dory 1.0 4B":"https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16","Timestral":"https://mistral.ai/news/timestral","Grok Voice 3.0":"https://x.com/SpaceXSI/status/2110416580899168305","Muse Wonder":"https://research.meta.ai/blog/introducing-muse-wonder","Muse Wonder Full":"https://research.meta.ai/blog/introducing-muse-wonder",
+"Beam":"https://huggingface.co/reflection/Beam-1.0-501B-A23B","Ultramarine 1 Flash":"https://www.paperinstruments.com/blog/ultramarine","Qwen-Image 2.1 Turbo":"https://huggingface.co/Qwen/Qwen-Image-2.1-Turbo","Krea 3":"https://www.krea.ai/blog/introducing-krea-3","Muse Spark Open":"https://huggingface.co/blog/meta-muse-spark-open","FLUX 3 Image Klein":"https://huggingface.co/blog/flux-3","Granite Switch 4.1":"https://huggingface.co/blog/ibm-granite/granite-switch-4-1","DeepSeek-V4.1-Flash-1017":"https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017","Nemotron Labs Dory 1.0 4B":"https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16","Timestral":"https://mistral.ai/news/timestral","MiniCPM-V 4.7 (35B-A3B)":"https://huggingface.co/openbmb/MiniCPM-V-4.7-35B-A3B","MOSS-Image":"https://huggingface.co/OpenMOSS-Team/MOSS-Image-Base","Indra OCR":"https://github.com/datalab-to/indra","Grok Voice 3.0":"https://x.com/SpaceXSI/status/2110416580899168305","Muse Wonder":"https://research.meta.ai/blog/introducing-muse-wonder","Muse Wonder Full":"https://research.meta.ai/blog/introducing-muse-wonder",
 "Strands Decider 2B":"https://strandsagents.com/blog/introducing-strands-decider/",
 "Mercury Voice":"https://www.inceptionlabs.ai/blog/introducing-mercury-voice",
 "Mercury Decide":"https://x.com/_inception_ai/status/2105375133003325768",
@@ -3851,11 +3855,11 @@ const arcData={
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
 const benchData={
-  checked:"2026-10-19",
+  checked:"2026-10-20",
   items:[
-    {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-10-18",
+    {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-10-19",
      desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 48 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 48 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 48 modelos avaliados."},
-     top:[["Gemini 4 Argon",68.90,"%"],["Claude Sonnet 5.5",67.04,"%"],["Claude Opus 5.5",66.97,"%"]]},
+     top:[["Claude Sonnet 5.5",70.85,"%"],["Claude Opus 5.5",70.18,"%"],["Gemini 4 Argon",69.24,"%"]]},
     {key:"valsrsi",name:"Vals RSI Index",by:"Vals AI",badge:"RSI",clr:["#6b8aff","#34d399"],url:"https://www.vals.ai/benchmarks/rsi_index",updated:"2026-10-15",
      desc:{en:"Can a model do the research that builds the next model? Autonomous LLM R&D (compression, LM training, harness engineering, post-training) scored against published, human and frontier references. 24 models tested.",es:"\u00bfPuede un modelo hacer la investigaci\u00f3n que construye al siguiente? I+D aut\u00f3nomo de LLM (compresi\u00f3n, entrenamiento, harness, post-entrenamiento) puntuado contra referencias publicadas, humanas y de frontera. 24 modelos evaluados.",pt:"Um modelo consegue fazer a pesquisa que constr\u00f3i o pr\u00f3ximo? P&D aut\u00f4nomo de LLM (compress\u00e3o, treino, harness, p\u00f3s-treino) pontuado contra refer\u00eancias publicadas, humanas e de fronteira. 24 modelos avaliados."},
      top:[["Claude Opus 5.5",37.31,"%"],["Claude Fable 5.1",36.09,"%"],["Claude Opus 5",33.02,"%"]]},
@@ -4762,6 +4766,8 @@ const companyMeta = {
   "Resemble AI":{d:"resemble.ai",u:"https://www.resemble.ai"},
   "Paper Instruments":{d:"paperinstruments.com",u:"https://www.paperinstruments.com"},
   "Krea":{d:"krea.ai",u:"https://www.krea.ai"},
+  "OpenMOSS":{d:"huggingface.co/OpenMOSS-Team",u:"https://huggingface.co/OpenMOSS-Team"},
+  "Datalab":{d:"datalab.to",u:"https://www.datalab.to"},
   "Reflection AI":{d:"reflection.ai",u:"https://reflection.ai"},
   "Reve":{d:"reve.com",u:"https://reve.com"},
   "Riffusion":{d:"riffusion.com",u:"https://www.riffusion.com"},
