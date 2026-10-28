@@ -1888,6 +1888,7 @@ const models = [
 {name:"Grok Voice 3.0",date:"2026-10-14",company:"SpaceXSI",open:false,intelligence:40,type:"Voice (speech-to-speech)",cat:"audio"},
 {name:"Krea 3",date:"2026-10-15",company:"Krea",open:false,intelligence:20,type:"Image editing ($0.06/imagen)",cat:"image"},
 {name:"Canva Craft",date:"2026-10-22",company:"Canva",open:false,intelligence:20,type:"Design image gen (2K)",cat:"image"},
+{name:"Gemini 4 Carbon",date:"2026-10-28",company:"Google",open:false,intelligence:67,type:"LLM (cyber + long-horizon)",cat:"multi"},
 {name:"Genie 4",date:"2026-10-27",company:"Google DeepMind",open:false,intelligence:8,type:"World Model",cat:"world"},
 {name:"Muse Spark Open",date:"2026-10-15",company:"Meta",open:true,intelligence:52,type:"MoE 816B/42B, multimodal",cat:"multi"},
 {name:"FLUX 3 Image Klein",date:"2026-10-15",company:"Black Forest Labs",open:true,intelligence:18,type:"Diffusion (open, small)",cat:"image"},
@@ -1917,7 +1918,7 @@ const models = [
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
-"Gemini 4 Argon":"https://blog.google/intl/es-419/noticias-de-la-empresa/tecnologia/gemini-4-argon/",
+"Gemini 4 Argon":"https://blog.google/intl/es-419/noticias-de-la-empresa/tecnologia/gemini-4-argon/","Gemini 4 Carbon":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
 "GPT-6.1 Sol":"https://openai.com/index/introducing-gpt-6-1-sol/",
 "Claude Sonnet 5.5":"https://www.anthropic.com/claude-sonnet-5-5",
 "Holo4 27B":"https://hcompany.ai/newsroom/holo4",
@@ -5223,6 +5224,7 @@ const pricingData=[
   {name:"Gemini 3.1 Flash-Lite",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.25,output:1.50,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",verified:true},
   {name:"Gemini 3.5 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.50,output:9,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Not on current pricing page",verified:false},
   {name:"Gemini 4 Argon",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Through Nov 30, 2026; from Dec 1: $4/$20 (output includes thinking tokens)",verified:true},
+  {name:"Gemini 4 Carbon",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",note:"Introductory price, same as Argon; cached input 95% off. Rollout limited to cyber defenders first (announced 2026-10-28)",verified:true},
 {name:"Gemini 3.8 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
   {name:"Gemini 3.7 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Not on current pricing page (last seen: $0.75/$3.75 promo)",verified:false},
   {name:"Gemini 3.6 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
