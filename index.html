@@ -1889,6 +1889,12 @@ const models = [
 {name:"Krea 3",date:"2026-10-15",company:"Krea",open:false,intelligence:20,type:"Image editing ($0.06/imagen)",cat:"image"},
 {name:"Canva Craft",date:"2026-10-22",company:"Canva",open:false,intelligence:20,type:"Design image gen (2K)",cat:"image"},
 {name:"Gemini 4 Carbon",date:"2026-10-28",company:"Google",open:false,intelligence:67,type:"LLM (cyber + long-horizon)",cat:"multi"},
+{name:"LFM3-1.7B",date:"2026-10-27",company:"Liquid AI",open:true,intelligence:10,type:"Edge LLM (256K ctx)",cat:"text"},
+{name:"LFM3-VL-2B",date:"2026-10-27",company:"Liquid AI",open:true,intelligence:9,type:"Vision-language (edge)",cat:"multi"},
+{name:"LFM3-Audio-2B",date:"2026-10-27",company:"Liquid AI",open:true,intelligence:7,type:"Audio-to-audio (18 langs)",cat:"audio"},
+{name:"LFM3-Omni-2B",date:"2026-10-27",company:"Liquid AI",open:true,intelligence:9,type:"Omni (vision+audio+text)",cat:"multi"},
+{name:"d1-2B",date:"2026-10-27",company:"Liquid AI",open:true,intelligence:6,type:"Decision model (text+image)",cat:"multi"},
+{name:"d1-Omni-2B",date:"2026-10-27",company:"Liquid AI",open:true,intelligence:6,type:"Decision model (omni, voice)",cat:"multi"},
 {name:"Genie 4",date:"2026-10-27",company:"Google DeepMind",open:false,intelligence:8,type:"World Model",cat:"world"},
 {name:"Muse Spark Open",date:"2026-10-15",company:"Meta",open:true,intelligence:52,type:"MoE 816B/42B, multimodal",cat:"multi"},
 {name:"FLUX 3 Image Klein",date:"2026-10-15",company:"Black Forest Labs",open:true,intelligence:18,type:"Diffusion (open, small)",cat:"image"},
@@ -1918,7 +1924,7 @@ const models = [
 
 // URL map — official announcements, arxiv papers, GitHub repos
 const modelUrls={
-"Gemini 4 Argon":"https://blog.google/intl/es-419/noticias-de-la-empresa/tecnologia/gemini-4-argon/","Gemini 4 Carbon":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+"Gemini 4 Argon":"https://blog.google/intl/es-419/noticias-de-la-empresa/tecnologia/gemini-4-argon/","Gemini 4 Carbon":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/","LFM3-1.7B":"https://www.liquid.ai/blog/lfm3","LFM3-VL-2B":"https://www.liquid.ai/blog/lfm3","LFM3-Audio-2B":"https://www.liquid.ai/blog/lfm3","LFM3-Omni-2B":"https://www.liquid.ai/blog/lfm3","d1-2B":"https://www.liquid.ai/blog/lfm3","d1-Omni-2B":"https://www.liquid.ai/blog/lfm3",
 "GPT-6.1 Sol":"https://openai.com/index/introducing-gpt-6-1-sol/",
 "Claude Sonnet 5.5":"https://www.anthropic.com/claude-sonnet-5-5",
 "Holo4 27B":"https://hcompany.ai/newsroom/holo4",
@@ -3883,11 +3889,11 @@ const arcData={
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
 const benchData={
-  checked:"2026-10-28",
+  checked:"2026-10-29",
   items:[
     {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-10-27",
      desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 48 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 48 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 48 modelos avaliados."},
-     top:[["Claude Sonnet 5.5",70.85,"%"],["Claude Opus 5.5",70.18,"%"],["Gemini 4 Argon",69.24,"%"]]},
+     top:[["Claude Sonnet 5.5",70.85,"%"],["Gemini 4 Carbon",70.36,"%"],["Claude Opus 5.5",70.18,"%"]]},
     {key:"valsrsi",name:"Vals RSI Index",by:"Vals AI",badge:"RSI",clr:["#6b8aff","#34d399"],url:"https://www.vals.ai/benchmarks/rsi_index",updated:"2026-10-15",
      desc:{en:"Can a model do the research that builds the next model? Autonomous LLM R&D (compression, LM training, harness engineering, post-training) scored against published, human and frontier references. 24 models tested.",es:"\u00bfPuede un modelo hacer la investigaci\u00f3n que construye al siguiente? I+D aut\u00f3nomo de LLM (compresi\u00f3n, entrenamiento, harness, post-entrenamiento) puntuado contra referencias publicadas, humanas y de frontera. 24 modelos evaluados.",pt:"Um modelo consegue fazer a pesquisa que constr\u00f3i o pr\u00f3ximo? P&D aut\u00f4nomo de LLM (compress\u00e3o, treino, harness, p\u00f3s-treino) pontuado contra refer\u00eancias publicadas, humanas e de fronteira. 24 modelos avaliados."},
      top:[["Claude Opus 5.5",37.31,"%"],["Claude Fable 5.1",36.09,"%"],["Claude Opus 5",33.02,"%"]]},
