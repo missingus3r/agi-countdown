@@ -1873,7 +1873,7 @@ const models = [
 {name:"Kolibri-1",date:"2026-10-03",company:"Aleph Alpha",open:true,intelligence:50,type:"MoE reasoning (78B, 3.5B act)",cat:"llm"},
 {name:"MAI-Code-1.1-Flash",date:"2026-08-11",company:"Microsoft",open:false,intelligence:38,type:"LLM (coding, vision)",cat:"code"},
 {name:"Kardashev-0.7",date:"2026-10-05",company:"Banbury Road",open:false,intelligence:30,type:"Trained swarm of 32 models (announced, unreleased)",cat:"novelty"},
-{name:"Mistral Large 4",date:"2026-10-06",company:"Mistral AI",open:false,intelligence:60,type:"MoE 1T/52B (preview)",cat:"multi"},
+{name:"Mistral Large 4",date:"2026-10-06",company:"Mistral AI",open:true,intelligence:60,type:"MoE 1T/52B",cat:"multi"},
 {name:"Ember-1",date:"2026-09-23",company:"Fireworks AI",open:false,intelligence:58,type:"Efficient Kimi K3 variant",cat:"code"},
 {name:"Saaras V4",date:"2026-09-23",company:"Sarvam AI",open:false,intelligence:24,type:"ASR (22 Indian languages)",cat:"audio"},
 {name:"Decisions API",date:"2026-09-29",company:"OpenAI",open:false,intelligence:27,type:"Decision API (beta)",cat:"text"},
@@ -2859,7 +2859,7 @@ const modelUrls={
 "Mind-1":"https://x.com/MindOn_Tech/status/2105153163355467968",
 "Kolibri-1":"https://aleph-alpha.com/en/blog/kolibri-has-landed-a-sovereign-open-weight-model/",
 "Kardashev-0.7":"https://x.com/MLCatttt/status/2107147690450817259",
-"Mistral Large 4":"https://mistral.ai/news/mistral-large-4/",
+"Mistral Large 4":"https://mistral.ai/news/mistral-large-4-oss/",
 "Ember-1":"https://fireworks.ai/blog/ember-1",
 "Saaras V4":"https://www.sarvam.ai/blogs/introducing-saaras-v4",
 "Decisions API":"https://developers.openai.com/api/docs/guides/decisions",
@@ -3881,17 +3881,17 @@ function render(){
 // Sources: https://arcprize.org/leaderboard (ARC Prize Verified, semi-private eval) + Kaggle 2026 public leaderboards.
 // Scores are numbers (percent); costs are display strings. ARC-AGI-3 costs are total run cost, not per task.
 const arcData={
-  updated:"2026-10-27",
-  a1:{top:"GPT-6.1 Sol (High)",topShort:"GPT-6.1 Sol",score:98.5,cost:"$0.059/task",others:[["GPT-6.1 Sol (XHigh)",98.5,"$0.074/task"],["Claude Opus 5.5 (High)",98.5,"$0.158/task"]]},
+  updated:"2026-10-30",
+  a1:{top:"GPT-6.1 Sol (High)",topShort:"GPT-6.1 Sol",score:98.5,cost:"$0.059/task",others:[["Gemini 4 Argon (Medium)",98.5,"$0.065/task"],["GPT-6.1 Sol (XHigh)",98.5,"$0.074/task"]]},
   a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["GPT-6.1 Sol (Max)",94.2,"$0.254/task"],["Claude Opus 5.5 (High)",93.3,"$0.408/task"],["GPT-6 Astra (XHigh)",93.3,"$0.829/task"]],kaggle:["Tufa Labs",88.06]},
   a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"GPT-6 Astra, Max",score:62.7,cost:"$26.1K total"},others:[["Claude Opus 5 (High) · Standard",30.2,"$20.7K total"]],kaggle:["Yi-Chia Chen",75.56]}
 };
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
 const benchData={
-  checked:"2026-10-29",
+  checked:"2026-10-30",
   items:[
-    {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-10-27",
+    {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-10-29",
      desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 48 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 48 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 48 modelos avaliados."},
      top:[["Claude Sonnet 5.5",70.85,"%"],["Gemini 4 Carbon",70.36,"%"],["Claude Opus 5.5",70.18,"%"]]},
     {key:"valsrsi",name:"Vals RSI Index",by:"Vals AI",badge:"RSI",clr:["#6b8aff","#34d399"],url:"https://www.vals.ai/benchmarks/rsi_index",updated:"2026-10-15",
@@ -5179,7 +5179,7 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-10-27"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-10-30"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
   {name:"GPT-6.1 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://developers.openai.com/api/docs/models/gpt-6.1-sol",note:"Cached input $0.10/1M; standard short context",verified:true},
   {name:"GPT-6.1 Terra",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1,output:5,free:false,url:"https://developers.openai.com/api/docs/models/gpt-6.1-terra",note:"Cached input $0.05/1M; >272K input 2x in / 1.5x out",verified:true},
@@ -5255,11 +5255,12 @@ const pricingData=[
   {name:"Grok 4.6",provider:"SpaceXSI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/docs/pricing",note:"Cached $0.50; 2x over 200K ctx",verified:true},
   {name:"Grok 4.7",provider:"SpaceXSI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/developers/grok-4-7",verified:true},
   {name:"Grok 4.5",provider:"SpaceXSI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/docs/pricing",note:"Cached $0.30; 2x over 200K ctx",verified:true},
-  {name:"DeepSeek-V4.1-Flash",provider:"DeepSeek",cat:"multi",unit:"per_1m_tokens",input:0.3,output:1.2,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Tarifa peak (cache miss); off-peak la mitad ($0.15/$0.60); cache hit $0.006. Sirve tambien los alias retirados deepseek-v4-flash y -vision-exp",verified:true},
+  {name:"DeepSeek-V4.1-Flash",provider:"DeepSeek",cat:"multi",unit:"per_1m_tokens",input:0.3,output:1.2,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Not on current pricing page: deepseek-flash now serves DeepSeek-V4.1-Flash-1017. Tarifa peak (cache miss); off-peak la mitad ($0.15/$0.60); cache hit $0.006. Sirve tambien los alias retirados deepseek-v4-flash y -vision-exp",verified:false},
+  {name:"DeepSeek-V4.1-Flash-1017",provider:"DeepSeek",cat:"multi",unit:"per_1m_tokens",input:0.3,output:1.2,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Tarifa peak (cache miss) de deepseek-flash; off-peak la mitad ($0.15/$0.60); cache hit $0.006",verified:true},
   {name:"DeepSeek V4-Pro (0813)",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:1.32,output:3.96,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Peak rate; off-peak 50% off; cache hit $0.044",verified:true},
   {name:"DeepSeek V4-Flash (0731)",provider:"DeepSeek",cat:"llm",unit:"per_1m_tokens",input:0.44,output:1.32,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Retirado: la pagina oficial (18/09) dice que deepseek-v4-flash sigue aceptandose como alias pero lo sirve DeepSeek-V4.1-Flash, facturado al precio Flash ($0.30/$1.20 peak)",verified:false},
 {name:"DeepSeek-V4-Flash-Vision-Exp",provider:"DeepSeek",cat:"multi",unit:"per_1m_tokens",input:0.44,output:1.32,free:false,url:"https://api-docs.deepseek.com/quick_start/pricing",note:"Retirado: mismo caso que V4-Flash (0731) — alias servido por DeepSeek-V4.1-Flash al precio Flash",verified:false},
-  {name:"Mistral Large 4",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:1.36,output:4.18,free:false,url:"https://mistral.ai/pricing/api",note:"List price; launch sale $0.68/$2.09; cached input $0.14",verified:true},
+  {name:"Mistral Large 4",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:0.7,output:2.1,free:false,url:"https://mistral.ai/pricing/api",note:"Cached input $0.07; open weights since 2026-10-29",verified:true},
   {name:"Mistral Large 3",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:0.5,output:1.5,free:false,url:"https://mistral.ai/pricing/api",verified:true},
   {name:"Mistral Medium 3.5",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:1.5,output:7.5,free:false,url:"https://mistral.ai/pricing/api",verified:true},
   {name:"Mistral Small 4",provider:"Mistral",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.6,free:false,url:"https://mistral.ai/pricing/api",verified:true},
@@ -5300,10 +5301,10 @@ const pricingData=[
   {name:"Veo 3.1",provider:"Google",cat:"video",unit:"per_second",per_unit:0.05,per_unit_max:0.60,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Not on current pricing page",verified:false},
   {name:"Runway Gen-4.5",provider:"Runway",cat:"video",unit:"per_second",per_unit:0.12,free:false,url:"https://docs.dev.runwayml.com/guides/pricing/",note:"12 credits/s at $0.01/credit; Gen-4 Turbo $0.05/s; Aleph 2 $0.28/s",verified:true},
   {name:"Kling 3.0",provider:"Kuaishou",cat:"video",unit:"per_second",per_unit:0.075,free:false,url:"https://www.klingai.com/",note:"Official dev platform bills 6-12 credits/s via prepaid packs; ~$0.075/s via resellers",verified:false},
-  {name:"FLUX 3 (video)",provider:"Black Forest Labs",cat:"video",unit:"per_second",per_unit:0.17,per_unit_max:0.29,free:false,url:"https://docs.bfl.ml/quick_start/pricing",note:"HD $0.17/s, FHD $0.29/s; draft $0.06/s",verified:true},
+  {name:"FLUX 3 (video)",provider:"Black Forest Labs",cat:"video",unit:"per_second",per_unit:0.15,per_unit_max:0.24,free:false,url:"https://docs.bfl.ml/quick_start/pricing",note:"HD $0.15/s, FHD $0.24/s, QHD $0.28/s, UHD $0.41/s; draft $0.06/s",verified:true},
   {name:"Grok Imagine Video 1.5",provider:"SpaceXSI",cat:"video",unit:"per_second",per_unit:0.08,free:false,url:"https://docs.x.ai/docs/pricing",note:"Imagine Video 1.5 $0.08/s; Imagine Video (1.0) $0.05/s",verified:true},
   {name:"VEED Fabric 1.0",provider:"VEED",cat:"video",unit:"per_second",per_unit:0.08,per_unit_max:0.15,free:false,url:"https://www.veed.io/tools/fabric-1.0-api",note:"480p $0.08/s, 720p $0.15/s; image + audio → talking video up to 5 min; hosted on fal.ai",verified:true},
-  {name:"PixVerse V6",provider:"PixVerse",cat:"video",unit:"per_second",per_unit:0.05,per_unit_max:0.23,free:false,url:"https://docs.platform.pixverse.ai/model-pricing-796039m0",note:"5-23 credits/s by resolution and audio at $0.01/credit pay-as-you-go (720p no audio = $0.09/s); C1 $0.06-0.24/s",verified:true},
+  {name:"PixVerse V6",provider:"PixVerse",cat:"video",unit:"per_second",per_unit:0.022,per_unit_max:0.102,free:false,url:"https://docs.platform.pixverse.ai/pixverse-api-pricing-2394995m0",note:"5-23 credits/s by resolution and audio at 225 credits = $1 (720p no audio = $0.040/s); C1 $0.027-0.107/s; V6 Max $0.027-0.124/s",verified:true},
   {name:"MiniMax Hailuo 2.3",provider:"MiniMax",cat:"video",unit:"per_second",per_unit:0.044,per_unit_max:0.089,free:false,url:"https://platform.minimax.io/docs/guides/pricing-video",note:"Derived from official video points: Standard pack $1,000 = 3,760 pts; 768p 6s = 1 pt (~$0.27/video), 1080p 6s = 2 pts; Fast ~30% cheaper; H3 not in packages",verified:true},
   {name:"Wan 3.0",provider:"Alibaba",cat:"video",unit:"per_second",per_unit:0.05,per_unit_max:0.20,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"wan3.0-video list price 480P $0.05, 720P $0.10, 1080P $0.20 per second (30% off promo); Prime $0.068/$0.14/$0.28; input video billed too",verified:true},
   {name:"HappyHorse 1.1",provider:"Alibaba",cat:"video",unit:"per_second",per_unit:0.07,per_unit_max:0.18,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"480P $0.07, 720P $0.14, 1080P $0.18 per second; HappyHorse 1.0 720P $0.14, 1080P $0.24 (ya sin descuento marcado)",verified:true},
