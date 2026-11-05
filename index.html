@@ -1383,6 +1383,7 @@ const models = [
   {name:"MAI-Image-2.6-Flash",date:"2026-08-10",company:"Microsoft",open:false,intelligence:25,type:"Image Gen + Edit (fast)",cat:"image"},
   {name:"MAI-Image-2.5-Pro",date:"2026-06-19",company:"Microsoft",open:false,intelligence:26,type:"Image Gen + Edit (pro)",cat:"image"},
   {name:"MAI-Transcribe-1.5",date:"2026-06-02",company:"Microsoft",open:false,intelligence:17,type:"ASR",cat:"audio"},
+  {name:"Soniox STT v6",date:"2026-11-03",company:"Soniox",open:false,intelligence:10,type:"ASR",cat:"audio"},
   {name:"MAI-Voice-2",date:"2026-06-02",company:"Microsoft",open:false,intelligence:15,type:"TTS",cat:"audio"},
   {name:"Dia",date:"2026-06-01",company:"Nari Labs",open:true,intelligence:17,type:"TTS",cat:"audio"},
   {name:"MAI-Voice-2-Flash",date:"2026-06-02",company:"Microsoft",open:false,intelligence:11,type:"TTS",cat:"audio"},
@@ -2566,6 +2567,7 @@ const modelUrls={
 "MAI-Image-2.6-Flash":"https://learn.microsoft.com/en-us/azure/foundry/foundry-models/how-to/use-foundry-models-mai-image",
 "MAI-Image-2.5-Pro":"https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/introducing-mai-image-2-5-pro-and-mai-voice-2-flash-in-microsoft-foundry/4539446",
 "MAI-Transcribe-1.5":"https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/",
+"Soniox STT v6":"https://soniox.com/blog/soniox-stt-v6",
 "MAI-Voice-2":"https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/",
 "MAI-Voice-2-Flash":"https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/",
 "MAI-Code-1-Flash":"https://microsoft.ai/news/building-a-hillclimbing-machine-launching-seven-new-mai-models/",
@@ -3900,9 +3902,9 @@ const arcData={
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
 const benchData={
-  checked:"2026-11-02",
+  checked:"2026-11-05",
   items:[
-    {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-10-30",
+    {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-11-04",
      desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 48 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 48 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 48 modelos avaliados."},
      top:[["Claude Sonnet 5.5",70.85,"%"],["Gemini 4 Carbon",70.45,"%"],["Claude Opus 5.5",70.18,"%"]]},
     {key:"valsrsi",name:"Vals RSI Index",by:"Vals AI",badge:"RSI",clr:["#6b8aff","#34d399"],url:"https://www.vals.ai/benchmarks/rsi_index",updated:"2026-10-15",
