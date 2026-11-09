@@ -1934,7 +1934,7 @@ const models = [
 {name:"Mischief 1",date:"2026-10-30",company:"The Biological Computing Co.",open:false,intelligence:15,type:"Image-to-video (neuron-derived, Wan 2.2)",cat:"video"},
 {name:"Ripple-65B Preview",date:"2026-11-04",company:"Ricursive Intelligence",open:true,intelligence:52,type:"Dense 65B, 1M ctx",cat:"code"},
 {name:"ChatGPT Images 2.6",date:"2026-11-04",company:"OpenAI",open:false,intelligence:29,type:"Image Gen (ChatGPT, faster)",cat:"image"},
-{name:"LongCat-2.5",date:"2026-11-02",company:"Meituan",open:false,intelligence:40,type:"MoE LLM API, 1M ctx",cat:"llm"},
+{name:"LongCat-2.5",date:"2026-11-02",company:"Meituan",open:true,intelligence:40,type:"Multimodal MoE 1.6T (~48B active), MIT weights",cat:"llm"},
 ];
 
 // URL map — official announcements, arxiv papers, GitHub repos
@@ -2899,7 +2899,7 @@ const modelUrls={
 "MAI-Code-1.1-Flash":"https://github.blog/changelog/2026-08-11-mai-code-1-1-flash-available-in-github-copilot/",
 "Ripple-65B Preview":"https://www.ricursive.com/ripple",
 "ChatGPT Images 2.6":"https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
-"LongCat-2.5":"https://longcat.chat/platform/docs/change-log",
+"LongCat-2.5":"https://huggingface.co/meituan-longcat/LongCat-2.5",
 };
 models.forEach(m=>{m.url=modelUrls[m.name]||"#"});
 
