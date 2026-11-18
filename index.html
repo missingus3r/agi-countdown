@@ -1801,6 +1801,8 @@ const models = [
 {name:"Atlas",date:"2026-09-01",company:"World Labs",open:false,intelligence:23,type:"Multimodal World Model (3D)",cat:"world"},
 {name:"Quasar 438B",date:"2026-09-02",company:"Multiverse Computing",open:false,intelligence:43,type:"LLM (reasoning, 438B, 1M ctx, EN/ES)",cat:"text"},
 {name:"GPT-6 Astra",date:"2026-09-03",company:"OpenAI",open:false,intelligence:61,type:"LLM (recurrent depth, SOTA)",cat:"text"},
+{name:"GPT-6.2 Astra",date:"2026-11-17",company:"OpenAI",open:false,intelligence:62,type:"LLM (flagship)",cat:"text"},
+{name:"GPT-6.2 Sol",date:"2026-11-17",company:"OpenAI",open:false,intelligence:61,type:"LLM",cat:"text"},
 {name:"Ling-3.0-flash-Sante",date:"2026-09-04",company:"inclusionAI (Ant)",open:true,intelligence:38,type:"MoE LLM (health & medicine, 124B/5.1B active)",cat:"text"},
 {name:"MiniCPM5-2B",date:"2026-09-07",company:"OpenBMB",open:true,intelligence:15,type:"LLM (2.5B, on-device)",cat:"text"},
 {name:"UnifoLM-X2-1.0",date:"2026-09-07",company:"Unitree Robotics",open:false,intelligence:13,type:"World-action model",cat:"world"},
@@ -2040,6 +2042,8 @@ const modelUrls={
 "Atlas":"https://www.worldlabs.ai/blog/atlas",
 "Quasar 438B":"https://multiversecomputing.com/resources/introducing-quasar-438b-europe-s-leading-ai-model",
 "GPT-6 Astra":"https://openai.com/index/gpt-6-astra/",
+"GPT-6.2 Astra":"https://openai.com/index/introducing-gpt-6-2-astra-sol/",
+"GPT-6.2 Sol":"https://openai.com/index/introducing-gpt-6-2-astra-sol/",
 "Z1T":"https://extropic.ai/writing/z1t",
 "MAI-Transcribe-2":"https://microsoft.ai/news/mai-transcribe-2-is-the-fastest-most-accurate-and-cheapest-speech-recognition-model-in-the-world/",
 "NeoMME":"https://huggingface.co/blog/Hcompany/neomme",
@@ -3971,10 +3975,10 @@ function render(){
 // Sources: https://arcprize.org/leaderboard (ARC Prize Verified, semi-private eval) + Kaggle 2026 public leaderboards.
 // Scores are numbers (percent); costs are display strings. ARC-AGI-3 costs are total run cost, not per task.
 const arcData={
-  updated:"2026-11-11",
+  updated:"2026-11-18",
   a1:{top:"GPT-6.1 Sol (High)",topShort:"GPT-6.1 Sol",score:98.5,cost:"$0.059/task",others:[["Gemini 4 Argon (Medium)",98.5,"$0.065/task"],["GPT-6.1 Sol (XHigh)",98.5,"$0.074/task"]]},
-  a2:{top:"GPT-6 Astra, Max",score:95.0,cost:"$1.12/task",others:[["GPT-6.1 Sol (Max)",94.2,"$0.254/task"],["Gemini 4 Carbon",94.2,"—"],["Claude Fable 5.2",93.8,"—"]],kaggle:["Tufa Labs",88.06]},
-  a3:{pa:{top:"GPT-6 Astra, High",score:99.9,cost:"$18.8K total"},std:{top:"Claude Fable 5.2",score:81.2,cost:"—"},others:[["Gemini 4 Carbon · Standard",65.1,"—"],["GPT-6 Astra (Max) · Standard",62.7,"$26.1K total"]],kaggle:["Yi-Chia Chen",75.56]}
+  a2:{top:"GPT-6.2 Astra",score:95.8,cost:"—",others:[["GPT-6 Astra, Max",95.0,"$1.12/task"],["GPT-6.1 Sol (Max)",94.2,"$0.254/task"],["Gemini 4 Carbon",94.2,"—"]],kaggle:["Tufa Labs",88.06]},
+  a3:{pa:{top:"GPT-6.2 Astra",score:100.0,cost:"—"},std:{top:"Claude Fable 5.2",score:81.2,cost:"—"},others:[["GPT-6.2 Astra · Standard",70.3,"—"],["Gemini 4 Carbon · Standard",65.1,"—"]],kaggle:["Yi-Chia Chen",75.56]}
 };
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
