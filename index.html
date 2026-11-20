@@ -1871,6 +1871,7 @@ const models = [
 {name:"FLUX 3 Action",date:"2026-09-23",company:"Black Forest Labs",open:true,intelligence:32,type:"World Action Model (7B)",cat:"world"},
 {name:"NV-Reason-CT",date:"2026-09-23",company:"NVIDIA",open:true,intelligence:18,type:"3D CT Medical VLM",cat:"multi"},
 {name:"Gemini 4 Argon",date:"2026-09-30",company:"Google",open:false,intelligence:65,type:"LLM (restricted)",cat:"multi"},
+{name:"Gemini 4 Neon",date:"2026-11-18",company:"Google",open:false,intelligence:65,type:"LLM (frontier, 1M ctx)",cat:"multi"},
 {name:"Solaris",date:"2026-08-31",company:"Runway",open:false,intelligence:12,type:"Interface World Model",cat:"world"},
 {name:"dots3-note Preview",date:"2026-08-09",company:"Dots Studio",open:true,intelligence:44,type:"LLM",cat:"multi"},
 {name:"Altar-1",date:"2026-09-21",company:"Aikido",open:true,intelligence:55,type:"Security LLM (GLM-5.3 pruned)",cat:"code"},
@@ -1980,7 +1981,7 @@ const modelUrls={
 "WeVisOne-VL-4B":"https://huggingface.co/tencent/WeVisOne-VL-4B",
 "Hy-Nomas":"https://github.com/Tencent-Hunyuan/Hy-Nomas",
 "Mage-VL-Cowork":"https://huggingface.co/microsoft/Mage-VL-Cowork",
-"Gemini 4 Argon":"https://blog.google/intl/es-419/noticias-de-la-empresa/tecnologia/gemini-4-argon/","Gemini 4 Carbon":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/","Gemini 4 Hydrogen":"https://aistudio.google.com/docs/changelog","Gemini Decision 1":"https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/","LFM3-1.7B":"https://www.liquid.ai/blog/lfm3","LFM3-VL-2B":"https://www.liquid.ai/blog/lfm3","LFM3-Audio-2B":"https://www.liquid.ai/blog/lfm3","LFM3-Omni-2B":"https://www.liquid.ai/blog/lfm3","d1-2B":"https://www.liquid.ai/blog/lfm3","d1-Omni-2B":"https://www.liquid.ai/blog/lfm3",
+"Gemini 4 Argon":"https://blog.google/intl/es-419/noticias-de-la-empresa/tecnologia/gemini-4-argon/","Gemini 4 Neon":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/","Gemini 4 Carbon":"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/","Gemini 4 Hydrogen":"https://aistudio.google.com/docs/changelog","Gemini Decision 1":"https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/","LFM3-1.7B":"https://www.liquid.ai/blog/lfm3","LFM3-VL-2B":"https://www.liquid.ai/blog/lfm3","LFM3-Audio-2B":"https://www.liquid.ai/blog/lfm3","LFM3-Omni-2B":"https://www.liquid.ai/blog/lfm3","d1-2B":"https://www.liquid.ai/blog/lfm3","d1-Omni-2B":"https://www.liquid.ai/blog/lfm3",
 "GPT-6.1 Sol":"https://openai.com/index/introducing-gpt-6-1-sol/",
 "Claude Sonnet 5.5":"https://www.anthropic.com/claude-sonnet-5-5",
 "Holo4 27B":"https://hcompany.ai/newsroom/holo4",
@@ -3985,7 +3986,7 @@ const arcData={
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
 const benchData={
-  checked:"2026-11-19",
+  checked:"2026-11-20",
   items:[
     {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-11-18",
      desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 48 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 48 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 48 modelos avaliados."},
@@ -3993,9 +3994,9 @@ const benchData={
     {key:"valsrsi",name:"Vals RSI Index",by:"Vals AI",badge:"RSI",clr:["#6b8aff","#34d399"],url:"https://www.vals.ai/benchmarks/rsi_index",updated:"2026-10-15",
      desc:{en:"Can a model do the research that builds the next model? Autonomous LLM R&D (compression, LM training, harness engineering, post-training) scored against published, human and frontier references. 24 models tested.",es:"\u00bfPuede un modelo hacer la investigaci\u00f3n que construye al siguiente? I+D aut\u00f3nomo de LLM (compresi\u00f3n, entrenamiento, harness, post-entrenamiento) puntuado contra referencias publicadas, humanas y de frontera. 24 modelos evaluados.",pt:"Um modelo consegue fazer a pesquisa que constr\u00f3i o pr\u00f3ximo? P&D aut\u00f4nomo de LLM (compress\u00e3o, treino, harness, p\u00f3s-treino) pontuado contra refer\u00eancias publicadas, humanas e de fronteira. 24 modelos avaliados."},
      top:[["Claude Opus 5.5",37.31,"%"],["Claude Fable 5.1",36.09,"%"],["Claude Opus 5",33.02,"%"]]},
-    {key:"hss",name:"Humanity's Sixth Sense",by:"Scale Labs + Elorian",badge:"VISION",clr:["#fbbf24","#f97316"],url:"https://labs.scale.com/leaderboard/hss",updated:"2026-11-15",
+    {key:"hss",name:"Humanity's Sixth Sense",by:"Scale Labs + Elorian",badge:"VISION",clr:["#fbbf24","#f97316"],url:"https://labs.scale.com/leaderboard/hss",updated:"2026-11-20",
      desc:{en:"HSS measures intuitive visual reasoning across diverse image and video inputs: the kind of thing people see at a glance.",es:"HSS mide el razonamiento visual intuitivo sobre im\u00e1genes y video variados: lo que una persona ve de un vistazo.",pt:"O HSS mede o racioc\u00ednio visual intuitivo sobre imagens e v\u00eddeo variados: o que uma pessoa v\u00ea de relance."},
-     top:[["Gemini 4 Carbon (high)",71.10," \u00b13.6"],["Claude Fable 5.2 (max)",59.50," \u00b13.8"],["Gemini 4 Argon (high)",55.40," \u00b14.2"]]}
+     top:[["Gemini 4 Neon (xhigh)",75.86," \u00b13.4"],["Gemini 4 Carbon (high)",71.10," \u00b13.6"],["Gemini 4 Hydrogen (xhigh)",63.35," \u00b13.7"]]}
   ]
 };
 function renderMoreBench(){
@@ -5280,7 +5281,7 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-11-11"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-11-20"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
   {name:"GPT-6.1 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://developers.openai.com/api/docs/models/gpt-6.1-sol",note:"Cached input $0.10/1M; standard short context",verified:true},
   {name:"GPT-6.1 Terra",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1,output:5,free:false,url:"https://developers.openai.com/api/docs/models/gpt-6.1-terra",note:"Cached input $0.05/1M; >272K input 2x in / 1.5x out",verified:true},
@@ -5298,24 +5299,26 @@ const pricingData=[
   {name:"Claude Sonnet 4.6",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:3,output:15,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Prompt caching, batch discount",verified:true},
   {name:"Claude Haiku 5.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:0.10,output:0.50,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",note:"Prompts up to 100K tokens; cache read $0.01/1M",verified:true},
   {name:"Claude Haiku 4.5",provider:"Anthropic",cat:"llm",unit:"per_1m_tokens",input:1,output:5,free:false,url:"https://platform.claude.com/docs/en/about-claude/pricing",verified:true},
-  {name:"GPT-5",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1.25,output:10,free:false,url:"https://openai.com/api/pricing/",verified:false},
-  {name:"GPT-5 mini",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.25,output:2,free:false,url:"https://openai.com/api/pricing/",verified:false},
-  {name:"GPT-5 nano",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.05,output:0.40,free:false,url:"https://openai.com/api/pricing/",verified:false},
-  {name:"GPT-4o",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2.50,output:10,free:false,url:"https://openai.com/api/pricing/",verified:false},
-  {name:"GPT-4o mini",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.60,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"GPT-5",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1.25,output:10,free:false,url:"https://platform.openai.com/docs/pricing",verified:true},
+  {name:"GPT-5 mini",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.25,output:2,free:false,url:"https://platform.openai.com/docs/pricing",verified:true},
+  {name:"GPT-5 nano",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.05,output:0.40,free:false,url:"https://platform.openai.com/docs/pricing",verified:true},
+  {name:"GPT-4o",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2.50,output:10,free:false,url:"https://platform.openai.com/docs/pricing",verified:true},
+  {name:"GPT-4o mini",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.60,free:false,url:"https://platform.openai.com/docs/pricing",verified:true},
   {name:"o1",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:15,output:60,free:false,url:"https://openai.com/api/pricing/",note:"Reasoning model",verified:false},
   {name:"o1-mini",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:3,output:12,free:false,url:"https://openai.com/api/pricing/",verified:false},
-  {name:"o3",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:8,free:false,url:"https://openai.com/api/pricing/",note:"Reasoning, replaced o1",verified:false},
+  {name:"o3",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:8,free:false,url:"https://platform.openai.com/docs/pricing",note:"Reasoning, replaced o1",verified:true},
   {name:"o4-mini",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1.10,output:4.40,free:false,url:"https://openai.com/api/pricing/",note:"Reasoning compact",verified:false},
-  {name:"GPT-5.4 Thinking",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2.50,output:15,free:false,url:"https://openai.com/api/pricing/",note:"Reasoning variant",verified:false},
-  {name:"GPT-5.5",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:5,output:30,free:false,url:"https://openai.com/api/pricing/",verified:false},
+  {name:"GPT-5.4 Thinking",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2.50,output:15,free:false,url:"https://platform.openai.com/docs/pricing",note:"Reasoning variant",verified:true},
+  {name:"GPT-5.5",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:5,output:30,free:false,url:"https://platform.openai.com/docs/pricing",verified:true},
   {name:"GPT-6 Astra",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:10,output:50,free:false,url:"https://platform.openai.com/docs/pricing",note:"Cached $1; Fast mode 2x ($20/$75); Trusted Access rollout",verified:true},
-  {name:"GPT-6 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.openai.com/docs/pricing",note:"Not on current pricing page (replaced by GPT-6.1 Sol, same $2/$10); last verified 2026-09-30",verified:false},
+  {name:"GPT-6 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.openai.com/docs/pricing",note:"Cached $0.20",verified:true},
   {name:"GPT-6 Luna",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.1,output:0.5,free:false,url:"https://platform.openai.com/docs/pricing",note:"Standard short context; long context $0.20/$0.75",verified:true},
-  {name:"GPT-5.6 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:4,output:20,free:false,url:"https://platform.openai.com/docs/pricing",note:"Promo through Nov 21, 2026 (list $5); cached $0.40",verified:true},
+  {name:"GPT-5.6 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:4,output:20,free:false,url:"https://platform.openai.com/docs/pricing",note:"Promo through Nov 30, 2026; cached $0.40",verified:true},
+   {name:"GPT-6.2 Astra",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:8,output:40,free:false,url:"https://platform.openai.com/docs/pricing",note:"Cached $0.40; long context $16/$60",verified:true},
+   {name:"GPT-6.2 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://platform.openai.com/docs/pricing",note:"Cached $0.10; long context $4/$15",verified:true},
   {name:"GPT-5.6 Terra",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:12,free:false,url:"https://developers.openai.com/api/docs/models/gpt-5.6-terra",note:"Cached $0.20",verified:true},
   {name:"GPT-5.6 Luna",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:0.2,output:1.2,free:false,url:"https://developers.openai.com/api/docs/models/gpt-5.6-luna",note:"Cached $0.02",verified:true},
-  {name:"GPT-5.6 Cyber",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:12.5,output:75,free:false,url:"https://platform.openai.com/docs/pricing",note:"Not on current pricing page (checked 2026-11-08)",verified:false},
+  {name:"GPT-5.6 Cyber",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:12.5,output:75,free:false,url:"https://platform.openai.com/docs/pricing",note:"Short context; cached $1.25",verified:true},
   {name:"GPT-6 Cyber",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:20,output:100,free:false,url:"https://platform.openai.com/docs/pricing",note:"Daybreak model; cached $2.00",verified:true},
   {name:"GPT-5.1 Codex",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1.50,output:6,free:false,url:"https://openai.com/api/pricing/",note:"Coding specialist",verified:false},
   {name:"GPT-5.3 Codex",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1.75,output:14,free:false,url:"https://platform.openai.com/docs/pricing",note:"Coding flagship",verified:true},
@@ -5323,6 +5326,7 @@ const pricingData=[
   {name:"Qwen3-Max-Thinking",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:1.20,output:6,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Not on current pricing page",verified:false},
   {name:"Qwen3.6-Max-Preview",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:1.3,output:7.8,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Not on current pricing page (last seen: $1.30/$7.80, 0-128K tier)",verified:false},
   {name:"Qwen3.8-Max",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Cache read $0.25; Singapore region pricing",verified:true},
+   {name:"Qwen4-Max",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:1.5,output:4.5,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Region Singapur, International, tier 0-1M tokens; non-thinking y thinking; 1M tokens gratis por 90 días",verified:true},
   {name:"Qwen3.8-Max-0902",provider:"Alibaba",cat:"multi",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Region Singapur, tier 0-1M tokens; mismo precio que qwen3.8-max",verified:true},
   {name:"Qwen3.8-Flash",provider:"Alibaba",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.47,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",verified:true},
   {name:"Qwen3.8-Omni-Flash",provider:"Alibaba",cat:"multi",unit:"per_1m_tokens",input:0.15,output:0.47,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Región Singapur, alcance International; cache-hit input $0.016/1M",verified:true},
@@ -5334,7 +5338,9 @@ const pricingData=[
   {name:"Gemini 3.1 Flash-Lite",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.25,output:1.50,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",verified:true},
   {name:"Gemini 3.5 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.50,output:9,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Not on current pricing page",verified:false},
   {name:"Gemini 4 Argon",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Through Nov 30, 2026; from Dec 1: $4/$20 (output includes thinking tokens)",verified:true},
-  {name:"Gemini 4 Carbon",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",note:"Introductory price, same as Argon; cached input 95% off. Rollout limited to cyber defenders first (announced 2026-10-28)",verified:true},
+  {name:"Gemini 4 Carbon",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Through Nov 30, 2026; from Dec 1: $4/$20 (output includes thinking tokens); cached $0.10 -> $0.20; not on free tier",verified:true},
+   {name:"Gemini 4 Neon",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:3,output:15,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Cached $0.15 (implicit caching only); output includes thinking tokens; not on free tier; 1M ctx",verified:true},
+   {name:"Gemini 4 Hydrogen",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.5,output:7.5,free:true,free_url:"https://ai.google.dev/gemini-api/docs/pricing",url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Cached $0.075; free tier available (data used to improve products)",verified:true},
 {name:"Gemini 3.8 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
   {name:"Gemini 3.7 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Not on current pricing page (last seen: $0.75/$3.75 promo)",verified:false},
   {name:"Gemini 3.6 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.75,output:3.75,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Promo through Dec 31, 2026; then $1.50/$7.50",verified:true},
@@ -5352,8 +5358,8 @@ const pricingData=[
   {name:"GLM-5.3-Flash",provider:"Zhipu AI",cat:"llm",unit:"per_1m_tokens",input:0.15,output:0.5,free:false,url:"https://docs.z.ai/guides/overview/pricing",note:"Precio de lista: la promo de lanzamiento del 50% vencio el 2026-09-09 y la pagina ahora lista $0.15/$0.50",verified:true},
   {name:"Muse Spark 1.3",provider:"Meta",cat:"llm",unit:"per_1m_tokens",input:1.25,output:4.25,free:false,url:"https://developer.meta.com/ai/models/muse-spark/",note:"Cached $0.15; contributor tier $0.10/$0.20 (Meta trains on your data)",verified:true},
   {name:"Muse Wonder",provider:"Meta",cat:"llm",unit:"per_1m_tokens",input:4,output:20,free:false,url:"https://developer.meta.com/ai/models/muse-wonder/",note:"Cached $0.20; 1M context. Muse Wonder Full is not on the API (Muse Code subscription only)",verified:true},
-  {name:"Gemini 2.5 Pro",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.25,output:10,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"≤200K ctx; $2.50/$15 over 200K",verified:true},
-  {name:"Gemini 2.5 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.30,output:2.50,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",verified:true},
+  {name:"Gemini 2.5 Pro",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:1.25,output:10,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"≤200K ctx; $2.50/$15 over 200K. Deprecated: from Dec 1, 2026 requests route to Gemini 3.8 Flash and are billed at its rates",verified:true},
+  {name:"Gemini 2.5 Flash",provider:"Google",cat:"llm",unit:"per_1m_tokens",input:0.30,output:2.50,free:true,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"Deprecated: from Dec 1, 2026 requests route to Gemini 3.5 Flash-Lite and are billed at its rates",verified:true},
   {name:"Grok 4.3",provider:"SpaceXSI",cat:"llm",unit:"per_1m_tokens",input:1.25,output:2.5,free:false,url:"https://docs.x.ai/docs/pricing",note:"Cached $0.20; 2x over 200K ctx",verified:true},
   {name:"Grok 4 Fast",provider:"SpaceXSI",cat:"llm",unit:"per_1m_tokens",input:0.20,output:0.50,free:false,url:"https://x.ai/api",note:"Legacy; not on docs.x.ai pricing table",verified:false},
   {name:"Grok 4.6",provider:"SpaceXSI",cat:"llm",unit:"per_1m_tokens",input:2,output:6,free:false,url:"https://docs.x.ai/docs/pricing",note:"Cached $0.50; 2x over 200K ctx",verified:true},
@@ -5409,15 +5415,15 @@ const pricingData=[
   {name:"Grok Imagine Video 1.5",provider:"SpaceXSI",cat:"video",unit:"per_second",per_unit:0.08,free:false,url:"https://docs.x.ai/docs/pricing",note:"Imagine Video 1.5 $0.08/s; Imagine Video (1.0) $0.05/s",verified:true},
   {name:"VEED Fabric 1.0",provider:"VEED",cat:"video",unit:"per_second",per_unit:0.08,per_unit_max:0.15,free:false,url:"https://www.veed.io/tools/fabric-1.0-api",note:"480p $0.08/s, 720p $0.15/s; image + audio → talking video up to 5 min; hosted on fal.ai",verified:true},
   {name:"PixVerse V6",provider:"PixVerse",cat:"video",unit:"per_second",per_unit:0.022,per_unit_max:0.102,free:false,url:"https://docs.platform.pixverse.ai/pixverse-api-pricing-2394995m0",note:"5-23 credits/s by resolution and audio at 225 credits = $1 (720p no audio = $0.040/s); C1 $0.027-0.107/s; V6 Max $0.027-0.124/s",verified:true},
-  {name:"MiniMax Hailuo 2.3",provider:"MiniMax",cat:"video",unit:"per_second",per_unit:0.044,per_unit_max:0.089,free:false,url:"https://platform.minimax.io/docs/guides/pricing-video",note:"Derived from official video points: Standard pack $1,000 = 3,760 pts; 768p 6s = 1 pt (~$0.27/video), 1080p 6s = 2 pts; Fast ~30% cheaper; H3 not in packages",verified:true},
+  {name:"MiniMax Hailuo 2.3",provider:"MiniMax",cat:"video",unit:"per_second",per_unit:0.047,per_unit_max:0.082,free:false,url:"https://platform.minimax.io/docs/guides/pricing-video",note:"Legacy table: 768P 6s $0.28, 768P 10s $0.56, 1080P 6s $0.49 per video; Hailuo-2.3-Fast $0.19/$0.32/$0.33",verified:true},
   {name:"Wan 3.0",provider:"Alibaba",cat:"video",unit:"per_second",per_unit:0.05,per_unit_max:0.20,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"wan3.0-video list price 480P $0.05, 720P $0.10, 1080P $0.20 per second (30% off promo); Prime $0.068/$0.14/$0.28; input video billed too",verified:true},
   {name:"HappyHorse 1.1",provider:"Alibaba",cat:"video",unit:"per_second",per_unit:0.07,per_unit_max:0.18,free:false,url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"480P $0.07, 720P $0.14, 1080P $0.18 per second; HappyHorse 1.0 720P $0.14, 1080P $0.24 (ya sin descuento marcado)",verified:true},
   // ===== Audio / TTS =====
   {name:"ElevenLabs v3 / Multilingual v2",provider:"ElevenLabs",cat:"audio",unit:"per_1k_chars",per_unit:0.08,free:false,url:"https://elevenlabs.io/pricing/api",note:"$0.08 per 1k chars (v3 and v2 Multilingual); v3 Conversational $0.04",verified:true},
   {name:"Stable Audio 3",provider:"Stability AI",cat:"audio",unit:"plan_based",free:true,url:"https://stability.ai/news-updates/meet-stable-audio-3-the-model-family-built-for-artistic-experimentation-with-open-weight-models",note:"Open-weight, self-host. Membership plan en stability.ai",verified:false},
   {name:"Supertonic 3",provider:"Supertone",cat:"audio",unit:"plan_based",free:true,url:"https://github.com/supertone-inc/supertonic",note:"99M params on-device TTS, MIT+OpenRAIL-M",verified:false},
-  {name:"OpenAI tts-1",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.015,free:false,url:"https://openai.com/api/pricing/",note:"Legacy; not on current pricing page",verified:false},
-  {name:"OpenAI tts-1-hd",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.030,free:false,url:"https://openai.com/api/pricing/",note:"Legacy; not on current pricing page",verified:false},
+  {name:"OpenAI tts-1",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.015,free:false,url:"https://platform.openai.com/docs/pricing",note:"$15 per 1M characters",verified:true},
+  {name:"OpenAI tts-1-hd",provider:"OpenAI",cat:"audio",unit:"per_1k_chars",per_unit:0.030,free:false,url:"https://platform.openai.com/docs/pricing",note:"$30 per 1M characters",verified:true},
   {name:"Inworld TTS-2",provider:"Inworld",cat:"audio",unit:"per_1k_chars",per_unit:0.025,free:false,url:"https://inworld.ai/pricing",note:"$25 per 1M chars on-demand; TTS-2 Flash $15/M",verified:true},
   {name:"gpt-4o-transcribe (Whisper successor)",provider:"OpenAI",cat:"audio",unit:"per_minute",per_unit:0.006,free:false,url:"https://platform.openai.com/docs/pricing",note:"STT $0.006/min; gpt-transcribe $0.0045/min; live $0.017/min",verified:true},
   {name:"Qwen3.8-27B",provider:"Alibaba",cat:"multi",unit:"per_1m_tokens",input:0.5,output:3,free:true,free_note:"Open weights (self-host) + 1M tokens gratis por 90 dias en Model Studio",url:"https://www.alibabacloud.com/help/en/model-studio/model-pricing",note:"Region Singapur, tier 0-1M tokens, modos Non-Thinking y Thinking",verified:true},
