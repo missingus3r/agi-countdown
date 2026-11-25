@@ -1360,6 +1360,10 @@ const models = [
 {name:"Param-2",date:"2026-01-15",company:"BharatGen",open:false,intelligence:5,type:"LLM",cat:"text"},
 {name:"Sarvam-1",date:"2026-01-15",company:"Sarvam AI",open:true,intelligence:5,type:"LLM",cat:"text"},
 {name:"Sarvam-105B-1711",date:"2026-11-22",company:"Sarvam AI",open:true,intelligence:38,type:"LLM (open weights, MoE)",cat:"text"},
+{name:"GLM-5.4",date:"2026-11-23",company:"Zhipu AI",open:false,intelligence:61,type:"LLM (Loop Transformer, 750B)",cat:"code"},
+{name:"ERNIE 5.5 Flash Preview",date:"2026-11-23",company:"Baidu",open:true,intelligence:44,type:"MoE LLM (280B, 14B act)",cat:"llm"},
+{name:"Ling-3.2-air",date:"2026-11-23",company:"inclusionAI (Ant)",open:true,intelligence:42,type:"MoE multimodal (open, MIT)",cat:"multi"},
+{name:"Kolibri 1.1",date:"2026-11-23",company:"Aleph Alpha",open:true,intelligence:52,type:"MoE reasoning (DE/EN)",cat:"llm"},
 {name:"Grok 3",date:"2025-02-17",company:"SpaceXSI",open:false,intelligence:19,type:"LLM",cat:"text"},
 {name:"Mistral Small 3.1",date:"2025-03-17",company:"Mistral AI",open:true,intelligence:15,type:"LLM",cat:"text"},
 {name:"Llama 4 Scout",date:"2025-04-05",company:"Meta",open:true,intelligence:10,type:"Multimodal",cat:"multi"},
@@ -2593,6 +2597,10 @@ const modelUrls={
 "YandexGPT 5 Lite":"https://yandex.cloud/en/services/yandexgpt",
 "Sarvam-M":"https://www.sarvam.ai/",
 "Sarvam-105B-1711":"https://www.sarvam.ai/blogs/sarvam-105b-1711",
+"GLM-5.4":"https://z.ai/blog/glm-5.4",
+"ERNIE 5.5 Flash Preview":"https://ernie.baidu.com/release/ernie-5-5-flash-preview/",
+"Ling-3.2-air":"https://huggingface.co/inclusionAI/Ling-3.2-air",
+"Kolibri 1.1":"https://aleph-alpha.com/en/blog/kolibri-1-1/",
 "DeepSeek-V3.1":"https://github.com/deepseek-ai/DeepSeek-V3",
 "Alice AI LLM 1.0":"https://ya.ru/alice",
 "Apertus":"https://ethz.ch/en/news-and-events/eth-news/news/2025/09/press-release-apertus-a-fully-open-transparent-multilingual-language-model.html",
@@ -3995,7 +4003,7 @@ const arcData={
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
 const benchData={
-  checked:"2026-11-24",
+  checked:"2026-11-25",
   items:[
     {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-11-21",
      desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 48 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 48 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 48 modelos avaliados."},
