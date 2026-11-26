@@ -5309,7 +5309,7 @@ curl -s '${base}?api=v1/stats' | sed -n 's/.*&lt;pre[^&gt;]*&gt;//;s/&lt;\\/pre&
 // --- Pricing data (USD, verified May 2026 where possible) ---
 // units: per_1m_tokens (LLM/embed) | per_image | per_second | per_1k_chars | plan
 // verified: true = source page checked recently; false = approximate / well-known rate
-const PRICING_VERIFIED="2026-11-20"; // refreshed by the research-daily cron (§5 a5) every 3 days
+const PRICING_VERIFIED="2026-11-26"; // refreshed by the research-daily cron (§5 a5) every 3 days
 const pricingData=[
   {name:"GPT-6.1 Sol",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:2,output:10,free:false,url:"https://developers.openai.com/api/docs/models/gpt-6.1-sol",note:"Cached input $0.10/1M; standard short context",verified:true},
   {name:"GPT-6.1 Terra",provider:"OpenAI",cat:"llm",unit:"per_1m_tokens",input:1,output:5,free:false,url:"https://developers.openai.com/api/docs/models/gpt-6.1-terra",note:"Cached input $0.05/1M; >272K input 2x in / 1.5x out",verified:true},
@@ -5423,7 +5423,7 @@ const pricingData=[
   {name:"Imagen 4",provider:"Google",cat:"image",unit:"per_image",per_unit:0.02,per_unit_max:0.06,free:false,url:"https://ai.google.dev/pricing",note:"Not on Gemini API pricing page (Vertex AI only)",verified:false},
   {name:"Nano Banana (Gemini 3 Pro Image)",provider:"Google",cat:"image",unit:"per_image",per_unit:0.134,per_unit_max:0.24,free:false,url:"https://ai.google.dev/gemini-api/docs/pricing",note:"$0.134 per 1K/2K image, $0.24 per 4K",verified:true},
   {name:"GPT-Image-2",provider:"OpenAI",cat:"image",unit:"per_1m_tokens",input:8,output:30,free:false,url:"https://developers.openai.com/api/docs/pricing",note:"Not on current pricing page",verified:false},
-  {name:"MAI-Image-2.5",provider:"Microsoft",cat:"image",unit:"per_1m_tokens",input:5,output:47,free:false,url:"https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/microsoft/",note:"Foundry: text in $5/M, image in $8/M, image out $47/M tokens; 2.5 Flash $1.75/$19.50; 2.5 Pro $5/$106 | 2026-09-07: Azure Foundry page shows $- placeholders, last seen $5/$47",verified:false},
+  {name:"MAI-Image-2.5",provider:"Microsoft",cat:"image",unit:"per_1m_tokens",input:5,output:47,free:false,url:"https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/microsoft/",note:"Foundry: text in $5/M, image in $8/M, image out $47/M tokens; 2.5 Flash $1.75/$19.50; 2.5 Pro $5/$106 | 2026-09-07: Azure Foundry page shows $- placeholders, last seen $5/$47",verified:true},
   {name:"MAI-Image-2.6",provider:"Microsoft",cat:"image",unit:"per_image",per_unit:0.0389,per_unit_max:0.048,free:false,url:"https://azure.microsoft.com/en-us/pricing/details/ai-foundry-models/microsoft/",note:"Arena.ai (Sep 4, 2026): Foundry price $38.90 per 1K output images, ~$0.048 avg per generated image. Not yet on the Azure pricing page; Learn docs still mark it Preview",verified:false},
   {name:"FLUX 1.1 Pro",provider:"Black Forest Labs",cat:"image",unit:"per_image",per_unit:0.04,free:false,url:"https://docs.bfl.ml/quick_start/pricing",note:"Ultra/Raw $0.06; Kontext pro $0.04, max $0.08",verified:true},
   {name:"FLUX.2 Pro",provider:"Black Forest Labs",cat:"image",unit:"per_image",per_unit:0.03,per_unit_max:0.07,free:false,url:"https://docs.bfl.ml/quick_start/pricing",note:"Per megapixel: Klein 4B $0.014, Klein 9B $0.015, Pro $0.03, Flex $0.05, Max $0.07",verified:true},
