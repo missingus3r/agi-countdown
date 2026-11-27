@@ -1891,6 +1891,14 @@ const models = [
 {name:"Fish Audio S2.1 Pro",date:"2026-07-28",company:"Fish Audio",open:false,intelligence:37,type:"TTS",cat:"audio"},
 {name:"Qwen-Audio-3.1-Realtime-Plus",date:"2026-09-23",company:"Alibaba",open:false,intelligence:40,type:"Full-duplex speech (realtime)",cat:"audio"},
 {name:"Qwen-Audio-3.1-ASR-Flash-Filetrans",date:"2026-09-23",company:"Alibaba",open:false,intelligence:24,type:"ASR (file transcription)",cat:"audio"},
+{name:"Qwen-Audio-3.1-ASR-Flash",date:"2026-09-21",company:"Alibaba",open:false,intelligence:24,type:"ASR (speech recognition)",cat:"audio"},
+{name:"Qwen-Audio-3.1-ASR-Flash-Streaming",date:"2026-09-21",company:"Alibaba",open:false,intelligence:24,type:"ASR (streaming)",cat:"audio"},
+{name:"Qwen-Audio-3.1-ASR-Flash-Message",date:"2026-09-21",company:"Alibaba",open:false,intelligence:24,type:"ASR (short message)",cat:"audio"},
+{name:"Qwen-Audio-3.1-TTS-Flash",date:"2026-10-12",company:"Alibaba",open:false,intelligence:18,type:"TTS (low latency)",cat:"audio"},
+{name:"Qwen-Audio-3.1-TTS-Plus",date:"2026-10-21",company:"Alibaba",open:false,intelligence:22,type:"TTS (voice cloning)",cat:"audio"},
+{name:"Qwen-Audio-3.1-TTS-Next",date:"2026-10-22",company:"Alibaba",open:false,intelligence:24,type:"TTS + SFX + ambient audio",cat:"audio"},
+{name:"Qwen-Audio-3.1-Realtime-Flash",date:"2026-10-27",company:"Alibaba",open:false,intelligence:36,type:"Full-duplex speech (realtime)",cat:"audio"},
+{name:"Qwen-Audio-3.1-Live",date:"2026-11-23",company:"Alibaba",open:false,intelligence:40,type:"Full-duplex speech (live)",cat:"audio"},
 {name:"Clef",date:"2026-10-01",company:"Cloudflare",open:true,intelligence:27,type:"Decision model (27B)",cat:"text"},
 {name:"Clef-flash",date:"2026-10-01",company:"Cloudflare",open:true,intelligence:22,type:"Decision model (9B)",cat:"text"},
 {name:"Clef-omni",date:"2026-10-09",company:"Cloudflare",open:true,intelligence:25,type:"Omni decision model (30B-A3B)",cat:"multi"},
@@ -2954,6 +2962,14 @@ const modelUrls={
 "Griffin":"https://www.tavus.io/griffin",
 "Fish Audio S2.1 Pro":"https://fish.audio/blog/s2-1-pro-free-api/",
 "Qwen-Audio-3.1-Realtime-Plus":"https://www.qwencloud.com/models/qwen-audio-3.1-realtime-plus",
+"Qwen-Audio-3.1-ASR-Flash":"https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-asr-flash",
+"Qwen-Audio-3.1-ASR-Flash-Streaming":"https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-asr-flash-streaming",
+"Qwen-Audio-3.1-ASR-Flash-Message":"https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-asr-flash-message",
+"Qwen-Audio-3.1-TTS-Flash":"https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-tts-flash",
+"Qwen-Audio-3.1-TTS-Plus":"https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-tts-plus",
+"Qwen-Audio-3.1-TTS-Next":"https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-tts-next",
+"Qwen-Audio-3.1-Realtime-Flash":"https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-realtime-flash",
+"Qwen-Audio-3.1-Live":"https://www.alibabacloud.com/help/en/model-studio/qwen-audio-3-1-live",
 "Qwen-Audio-3.1-ASR-Flash-Filetrans":"https://www.qwencloud.com/models/qwen-audio-3.1-asr-flash-filetrans",
 "Clef":"https://blog.cloudflare.com/clef-decision-models/",
 "Clef-flash":"https://blog.cloudflare.com/clef-decision-models/",
@@ -4011,7 +4027,7 @@ const arcData={
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
 const benchData={
-  checked:"2026-11-26",
+  checked:"2026-11-27",
   items:[
     {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-11-21",
      desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 48 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 48 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 48 modelos avaliados."},
