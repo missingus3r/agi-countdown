@@ -910,6 +910,8 @@ const COMPANY_COUNTRY={
   "Dyna Robotics":{c:"United States of America",f:"🇺🇸",lat:37.49,lng:-122.23},
   "TII":{c:"United Arab Emirates",f:"🇦🇪",lat:24.45,lng:54.38},
   "Yandex":{c:"Russia",f:"🇷🇺",lat:55.75,lng:37.62},
+  "Sber":{c:"Russia",f:"🇷🇺",lat:55.72,lng:37.58},
+  "inclusionAI (Ant)":{c:"China",f:"🇨🇳",lat:30.27,lng:120.15},
   "Black Forest Labs":{c:"Germany",f:"🇩🇪",lat:48.00,lng:7.85},
   "Multiverse Computing":{c:"Spain",f:"🇪🇸",lat:43.32,lng:-1.98}
 };
@@ -1363,6 +1365,14 @@ const models = [
 {name:"GLM-5.4",date:"2026-11-23",company:"Zhipu AI",open:false,intelligence:61,type:"LLM (Loop Transformer, 750B)",cat:"code"},
 {name:"ERNIE 5.5 Flash Preview",date:"2026-11-23",company:"Baidu",open:true,intelligence:44,type:"MoE LLM (280B, 14B act)",cat:"llm"},
 {name:"Ling-3.2-air",date:"2026-11-23",company:"inclusionAI (Ant)",open:true,intelligence:42,type:"MoE multimodal (open, MIT)",cat:"multi"},
+{name:"GPT-Image-2.6 Sunburst",date:"2026-11-04",company:"OpenAI",open:false,intelligence:30,type:"Image Gen API (precision)",cat:"image"},
+{name:"GPT-Image-2.6 Flare",date:"2026-11-04",company:"OpenAI",open:false,intelligence:29,type:"Image Gen API (fast default)",cat:"image"},
+{name:"GPT-Live-1.1",date:"2026-11-19",company:"OpenAI",open:false,intelligence:38,type:"Full-duplex voice (API)",cat:"audio"},
+{name:"LingSante-3.1-flash",date:"2026-11-19",company:"inclusionAI (Ant)",open:true,intelligence:40,type:"MoE LLM (health & medicine, 560B/25B active)",cat:"text"},
+{name:"Nemotron-Labs-Image-30B-A3B",date:"2026-11-24",company:"NVIDIA",open:true,intelligence:26,type:"AR image gen MoE (30B/3B active)",cat:"image"},
+{name:"Ming-Image-0.2-Design",date:"2026-11-25",company:"inclusionAI (Ant)",open:true,intelligence:16,type:"Design image gen (6B DiT)",cat:"image"},
+{name:"GigaChat 4 708B",date:"2026-11-26",company:"Sber",open:true,intelligence:44,type:"MoE LLM (708B/41B active)",cat:"llm"},
+{name:"GigaChat 4 37B",date:"2026-11-26",company:"Sber",open:true,intelligence:34,type:"MoE LLM (37B/4B active)",cat:"llm"},
 {name:"Kolibri 1.1",date:"2026-11-23",company:"Aleph Alpha",open:true,intelligence:52,type:"MoE reasoning (DE/EN)",cat:"llm"},
 {name:"Inkling 2 Mini",date:"2026-11-20",company:"Thinking Machines",open:true,intelligence:48,type:"LLM MoE 26B (3.4B act)",cat:"llm"},
 {name:"SWE-2.1",date:"2026-11-24",company:"Cognition",open:false,intelligence:61,type:"Coding LLM (RL sobre Kimi K3)",cat:"code"},
@@ -2135,6 +2145,14 @@ const modelUrls={
 "Muse Spark 1.2":"https://techcrunch.com/2026/08/05/meta-launches-muse-code-an-ai-agent-for-large-code-bases/",
 "Muse Code":"https://techcrunch.com/2026/08/05/meta-launches-muse-code-an-ai-agent-for-large-code-bases/",
 "GPT-Live":"https://openai.com/index/introducing-gpt-live/",
+"GPT-Image-2.6 Sunburst":"https://developers.openai.com/api/docs/models/gpt-image-2.6-sunburst",
+"GPT-Image-2.6 Flare":"https://developers.openai.com/api/docs/models/gpt-image-2.6-flare",
+"GPT-Live-1.1":"https://developers.openai.com/api/docs/models/gpt-live-1.1",
+"LingSante-3.1-flash":"https://huggingface.co/inclusionAI/LingSante-3.1-flash",
+"Nemotron-Labs-Image-30B-A3B":"https://huggingface.co/nvidia/Nemotron-Labs-Image-30B-A3B",
+"Ming-Image-0.2-Design":"https://huggingface.co/inclusionAI/Ming-Image-0.2-Design",
+"GigaChat 4 708B":"https://huggingface.co/ai-sage/GigaChat4-708B-A41B",
+"GigaChat 4 37B":"https://huggingface.co/ai-sage/GigaChat4-37B-A4B",
 "SWE-1.7":"https://cognition.com/blog/swe-1-7",
 "Seedream 5.0 Pro":"https://ai.byteplus.com/lumina/en/resource/what-is-seedream-5-0-pro",
 "Seedream 5.5":"https://seed.bytedance.com/en/seedream5_5",
@@ -4027,7 +4045,7 @@ const arcData={
 // Frontier benchmarks shown under ARC in the Benchmarks tab. Edit ONLY this object when scores move.
 // top: [system, score, suffix]. "updated" is the date the source page states (or the day it was read, if it states none).
 const benchData={
-  checked:"2026-11-27",
+  checked:"2026-11-28",
   items:[
     {key:"vals",name:"Vals Index",by:"Vals AI",badge:"INDEX",clr:["#34d399","#10b981"],url:"https://www.vals.ai/benchmarks/vals_index",updated:"2026-11-21",
      desc:{en:"One number for economic usefulness: agentic performance on finance, coding, legal and tax work, weighted by each sector. 48 models tested.",es:"Un solo n\u00famero para la utilidad econ\u00f3mica: desempe\u00f1o ag\u00e9ntico en tareas de finanzas, c\u00f3digo, legal e impuestos, ponderado por sector. 48 modelos evaluados.",pt:"Um \u00fanico n\u00famero para a utilidade econ\u00f4mica: desempenho ag\u00eantico em finan\u00e7as, c\u00f3digo, jur\u00eddico e impostos, ponderado por setor. 48 modelos avaliados."},
@@ -5017,6 +5035,8 @@ const companyMeta = {
   "XREAL":{d:"xreal.com",u:"https://www.xreal.com"},
   "Xreal":{d:"xreal.com",u:"https://www.xreal.com"},
   "Yandex":{d:"yandex.com",u:"https://yandex.com"},
+  "Sber":{d:"sber.ru",u:"https://huggingface.co/ai-sage"},
+  "inclusionAI (Ant)":{d:"huggingface.co",u:"https://huggingface.co/inclusionAI"},
   "Zyphra":{d:"zyphra.com",u:"https://www.zyphra.com"},
   "Zeroth":{d:"zeroth-openbridge.com",u:"https://zeroth-openbridge.com/"},
   "Zhipu AI":{d:"zhipuai.cn",u:"https://zhipuai.cn"},
